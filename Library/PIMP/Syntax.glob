@@ -1,0 +1,542 @@
+DIGEST fd222c17337618f91dfcbbf0d979d119
+FLibrary.PIMP.Syntax
+R27:39 Stdlib.QArith.QArith <> <> lib
+R69:81 Stdlib.QArith.Qround <> <> lib
+R111:128 Stdlib.QArith.QArith_base <> <> lib
+R158:166 Stdlib.Bool.Bool <> <> lib
+R196:207 Stdlib.Reals.R_sqrt <> <> lib
+R237:240 Stdlib.Lists.List <> <> lib
+R270:280 Stdlib.Reals.Reals <> <> lib
+R310:312 Stdlib.micromega.Lia <> <> lib
+R342:371 Stdlib.Logic.FunctionalExtensionality <> <> lib
+R401:421 Stdlib.Logic.ClassicalChoice <> <> lib
+R451:463 Stdlib.ZArith.ZArith <> <> lib
+R473:485 Stdlib.Lists.List ListNotations <> mod
+R534:550 Library.UtilityQR <> <> lib
+R568:592 Library.DistState.CoreDef <> <> lib
+R610:635 Library.DistState.ValidDst <> <> lib
+R653:676 Library.DistState.Domain <> <> lib
+R694:718 Library.DistState.Support <> <> lib
+R736:763 Library.DistState.Arithmetic <> <> lib
+R781:805 Library.DistState.Combine <> <> lib
+R823:847 Library.DistState.Partial <> <> lib
+ind 972:975 <> aexp
+constr 984:986 <> Aco
+constr 1004:1006 <> Ava
+constr 1026:1028 <> Apl
+constr 1057:1059 <> Amu
+constr 1088:1090 <> Asu
+R991:994 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R990:990 Stdlib.QArith.QArith_base <> Q rec
+R995:998 Library.PIMP.Syntax <> aexp:1 ind
+R1013:1016 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1010:1012 Corelib.Init.Datatypes <> nat ind
+R1017:1020 Library.PIMP.Syntax <> aexp:1 ind
+R1036:1039 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1032:1035 Library.PIMP.Syntax <> aexp:1 ind
+R1044:1047 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1040:1043 Library.PIMP.Syntax <> aexp:1 ind
+R1048:1051 Library.PIMP.Syntax <> aexp:1 ind
+R1067:1070 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1063:1066 Library.PIMP.Syntax <> aexp:1 ind
+R1075:1078 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1071:1074 Library.PIMP.Syntax <> aexp:1 ind
+R1079:1082 Library.PIMP.Syntax <> aexp:1 ind
+R1098:1101 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1094:1097 Library.PIMP.Syntax <> aexp:1 ind
+R1106:1109 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1102:1105 Library.PIMP.Syntax <> aexp:1 ind
+R1110:1113 Library.PIMP.Syntax <> aexp:1 ind
+scheme 972:975 <> aexp_rect
+scheme 972:975 <> aexp_ind
+scheme 972:975 <> aexp_rec
+scheme 972:975 <> aexp_sind
+ind 1126:1129 <> bexp
+constr 1175:1179 <> Btrue
+constr 1192:1197 <> Bfalse
+constr 1210:1213 <> Band
+constr 1242:1245 <> Bnot
+constr 1266:1268 <> Beq
+constr 1297:1299 <> Ble
+R1183:1186 Library.PIMP.Syntax <> bexp:3 ind
+R1201:1204 Library.PIMP.Syntax <> bexp:3 ind
+R1221:1224 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1217:1220 Library.PIMP.Syntax <> bexp:3 ind
+R1229:1232 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1225:1228 Library.PIMP.Syntax <> bexp:3 ind
+R1233:1236 Library.PIMP.Syntax <> bexp:3 ind
+R1253:1256 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1249:1252 Library.PIMP.Syntax <> bexp:3 ind
+R1257:1260 Library.PIMP.Syntax <> bexp:3 ind
+R1276:1279 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1272:1275 Library.PIMP.Syntax <> aexp ind
+R1284:1287 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1280:1283 Library.PIMP.Syntax <> aexp ind
+R1288:1291 Library.PIMP.Syntax <> bexp:3 ind
+R1307:1310 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1303:1306 Library.PIMP.Syntax <> aexp ind
+R1315:1318 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1311:1314 Library.PIMP.Syntax <> aexp ind
+R1319:1322 Library.PIMP.Syntax <> bexp:3 ind
+scheme 1126:1129 <> bexp_rect
+scheme 1126:1129 <> bexp_ind
+scheme 1126:1129 <> bexp_rec
+scheme 1126:1129 <> bexp_sind
+R1577:1579 Library.PIMP.Syntax <> Apl constr
+not 1564:1564 <> ::imp_scope:x_'+'_x
+R1655:1657 Library.PIMP.Syntax <> Amu constr
+not 1642:1642 <> ::imp_scope:x_'*'_x
+R1733:1735 Library.PIMP.Syntax <> Asu constr
+not 1720:1720 <> ::imp_scope:x_'-'_x
+R1811:1814 Library.PIMP.Syntax <> Band constr
+not 1798:1798 <> ::imp_scope:x_'&&'_x
+R1890:1893 Library.PIMP.Syntax <> Bnot constr
+not 1877:1877 <> ::imp_scope:'~'_x
+R1968:1970 Library.PIMP.Syntax <> Beq constr
+not 1955:1955 <> ::imp_scope:x_'='_x
+R2044:2046 Library.PIMP.Syntax <> Ble constr
+not 2031:2031 <> ::imp_scope:x_'<='_x
+def 2109:2111 <> Blt
+R2120:2123 Library.PIMP.Syntax <> aexp ind
+binder 2114:2114 <> a:5
+binder 2116:2116 <> b:6
+R2128:2131 Library.PIMP.Syntax <> bexp ind
+R2136:2139 Library.PIMP.Syntax <> Bnot constr
+R2142:2144 Library.PIMP.Syntax <> Ble constr
+R2146:2146 Library.PIMP.Syntax <> b:6 var
+R2148:2148 Library.PIMP.Syntax <> a:5 var
+R2173:2175 Library.PIMP.Syntax <> Blt def
+not 2161:2161 <> ::imp_scope:x_'<'_x
+def 2258:2272 <> valid_dist_aexp
+R2277:2278 Corelib.Init.Specif <> ::type_scope:'{'_x_':'_x_'|'_x_'}' not
+R2281:2283 Corelib.Init.Specif <> ::type_scope:'{'_x_':'_x_'|'_x_'}' not
+R2293:2295 Corelib.Init.Specif <> ::type_scope:'{'_x_':'_x_'|'_x_'}' not
+R2335:2336 Corelib.Init.Specif <> ::type_scope:'{'_x_':'_x_'|'_x_'}' not
+R2284:2287 Library.DistState.CoreDef <> dist def
+R2289:2292 Library.PIMP.Syntax <> aexp ind
+binder 2279:2280 <> da:7
+R2313:2316 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R2296:2309 Library.DistState.CoreDef <> positive_probs def
+R2311:2312 Library.PIMP.Syntax <> da:7 var
+R2329:2331 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R2317:2325 Library.DistState.CoreDef <> sum_probs def
+R2327:2328 Library.PIMP.Syntax <> da:7 var
+ind 2349:2354 <> winstr
+constr 2399:2402 <> Skip
+constr 2419:2425 <> DAssign
+constr 2454:2460 <> RAssign
+constr 2505:2507 <> Seq
+constr 2545:2546 <> If
+constr 2593:2597 <> While
+R2408:2413 Library.PIMP.Syntax <> winstr:8 ind
+R2431:2434 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R2428:2430 Corelib.Init.Datatypes <> nat ind
+R2439:2442 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R2435:2438 Library.PIMP.Syntax <> aexp ind
+R2443:2448 Library.PIMP.Syntax <> winstr:8 ind
+R2466:2469 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R2463:2465 Corelib.Init.Datatypes <> nat ind
+R2485:2488 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R2470:2484 Library.PIMP.Syntax <> valid_dist_aexp def
+R2489:2494 Library.PIMP.Syntax <> winstr:8 ind
+R2520:2523 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R2514:2519 Library.PIMP.Syntax <> winstr:8 ind
+R2530:2533 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R2524:2529 Library.PIMP.Syntax <> winstr:8 ind
+R2534:2539 Library.PIMP.Syntax <> winstr:8 ind
+R2558:2561 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R2554:2557 Library.PIMP.Syntax <> bexp ind
+R2568:2571 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R2562:2567 Library.PIMP.Syntax <> winstr:8 ind
+R2578:2581 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R2572:2577 Library.PIMP.Syntax <> winstr:8 ind
+R2582:2587 Library.PIMP.Syntax <> winstr:8 ind
+R2606:2609 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R2602:2605 Library.PIMP.Syntax <> bexp ind
+R2616:2619 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R2610:2615 Library.PIMP.Syntax <> winstr:8 ind
+R2620:2625 Library.PIMP.Syntax <> winstr:8 ind
+scheme 2349:2354 <> winstr_rect
+scheme 2349:2354 <> winstr_ind
+scheme 2349:2354 <> winstr_rec
+scheme 2349:2354 <> winstr_sind
+R2688:2691 Library.PIMP.Syntax <> Skip constr
+not 2672:2672 <> ::imp_scope:'SKIP'
+R2731:2737 Library.PIMP.Syntax <> DAssign constr
+not 2715:2715 <> ::imp_scope:x_'::='_x
+R2795:2801 Library.PIMP.Syntax <> RAssign constr
+not 2779:2779 <> ::imp_scope:x_'$='_x
+R2881:2883 Library.PIMP.Syntax <> Seq constr
+not 2864:2864 <> ::imp_scope:x_';;'_x
+R3026:3027 Library.PIMP.Syntax <> If constr
+not 2988:2988 <> ::imp_scope:'IF'_x_'THEN'_x_'ELSE'_x_'FI'
+R3123:3127 Library.PIMP.Syntax <> While constr
+not 3094:3094 <> ::imp_scope:'WHILE'_x_'DO'_x_'END'
+def 3253:3271 <> singleton_bool_list
+R3278:3280 Corelib.Init.Datatypes <> nat ind
+binder 3274:3274 <> n:10
+R3285:3290 Library.DistState.CoreDef <> domain def
+R3303:3303 Library.PIMP.Syntax <> n:10 var
+R3323:3323 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R3328:3328 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R3324:3327 Corelib.Init.Datatypes <> true constr
+R3334:3334 Corelib.Init.Datatypes <> S constr
+R3346:3349 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3341:3345 Corelib.Init.Datatypes <> false constr
+R3350:3368 Library.PIMP.Syntax <> singleton_bool_list:11 def
+def 3388:3408 <> get_variables_in_aexp
+R3413:3416 Library.PIMP.Syntax <> aexp ind
+binder 3411:3411 <> a:13
+R3420:3425 Library.DistState.CoreDef <> domain def
+R3479:3479 Library.PIMP.Syntax <> a:13 var
+R3491:3493 Library.PIMP.Syntax <> Aco constr
+R3500:3501 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R3507:3509 Library.PIMP.Syntax <> Ava constr
+R3518:3536 Library.PIMP.Syntax <> singleton_bool_list def
+R3544:3546 Library.PIMP.Syntax <> Apl constr
+R3563:3572 Library.DistState.CoreDef <> orb_domain def
+R3575:3595 Library.PIMP.Syntax <> get_variables_in_aexp:14 def
+R3605:3625 Library.PIMP.Syntax <> get_variables_in_aexp:14 def
+R3638:3640 Library.PIMP.Syntax <> Amu constr
+R3657:3666 Library.DistState.CoreDef <> orb_domain def
+R3669:3689 Library.PIMP.Syntax <> get_variables_in_aexp:14 def
+R3699:3719 Library.PIMP.Syntax <> get_variables_in_aexp:14 def
+R3732:3734 Library.PIMP.Syntax <> Asu constr
+R3751:3760 Library.DistState.CoreDef <> orb_domain def
+R3763:3783 Library.PIMP.Syntax <> get_variables_in_aexp:14 def
+R3793:3813 Library.PIMP.Syntax <> get_variables_in_aexp:14 def
+def 3838:3863 <> get_variables_in_dist_aexp
+R3870:3873 Library.DistState.CoreDef <> dist def
+R3875:3878 Library.PIMP.Syntax <> aexp ind
+binder 3866:3867 <> da:16
+R3882:3887 Library.DistState.CoreDef <> domain def
+R3941:3942 Library.PIMP.Syntax <> da:16 var
+R3954:3955 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R3960:3961 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R3973:3975 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3967:3967 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3970:3970 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3972:3972 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3976:3978 Corelib.Init.Datatypes <> nil constr
+R3984:4004 Library.PIMP.Syntax <> get_variables_in_aexp def
+R4019:4021 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4013:4013 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4016:4016 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4018:4018 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4029:4038 Library.DistState.CoreDef <> orb_domain def
+R4041:4061 Library.PIMP.Syntax <> get_variables_in_aexp def
+R4068:4093 Library.PIMP.Syntax <> get_variables_in_dist_aexp:17 def
+def 4117:4137 <> get_variables_in_bexp
+R4142:4145 Library.PIMP.Syntax <> bexp ind
+binder 4140:4140 <> b:19
+R4149:4154 Library.DistState.CoreDef <> domain def
+R4168:4168 Library.PIMP.Syntax <> b:19 var
+R4179:4183 Library.PIMP.Syntax <> Btrue constr
+R4189:4191 Corelib.Init.Datatypes <> nil constr
+R4197:4202 Library.PIMP.Syntax <> Bfalse constr
+R4207:4209 Corelib.Init.Datatypes <> nil constr
+R4215:4218 Library.PIMP.Syntax <> Band constr
+R4235:4244 Library.DistState.CoreDef <> orb_domain def
+R4247:4267 Library.PIMP.Syntax <> get_variables_in_bexp:20 def
+R4277:4297 Library.PIMP.Syntax <> get_variables_in_bexp:20 def
+R4310:4313 Library.PIMP.Syntax <> Bnot constr
+R4331:4351 Library.PIMP.Syntax <> get_variables_in_bexp:20 def
+R4363:4365 Library.PIMP.Syntax <> Beq constr
+R4383:4392 Library.DistState.CoreDef <> orb_domain def
+R4395:4415 Library.PIMP.Syntax <> get_variables_in_aexp def
+R4425:4445 Library.PIMP.Syntax <> get_variables_in_aexp def
+R4458:4460 Library.PIMP.Syntax <> Ble constr
+R4478:4487 Library.DistState.CoreDef <> orb_domain def
+R4490:4510 Library.PIMP.Syntax <> get_variables_in_aexp def
+R4520:4540 Library.PIMP.Syntax <> get_variables_in_aexp def
+def 4579:4601 <> get_variables_in_winstr
+R4606:4611 Library.PIMP.Syntax <> winstr ind
+binder 4604:4604 <> i:22
+R4615:4620 Library.DistState.CoreDef <> domain def
+R4646:4646 Library.PIMP.Syntax <> i:22 var
+R4658:4661 Library.PIMP.Syntax <> Skip constr
+R4668:4669 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R4675:4681 Library.PIMP.Syntax <> DAssign constr
+R4694:4694 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R4716:4722 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R4749:4749 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R4695:4713 Library.PIMP.Syntax <> singleton_bool_list def
+R4723:4743 Library.PIMP.Syntax <> get_variables_in_aexp def
+R4755:4761 Library.PIMP.Syntax <> RAssign constr
+R4772:4772 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R4794:4800 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R4862:4862 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R4773:4791 Library.PIMP.Syntax <> singleton_bool_list def
+R4807:4811 Corelib.Init.Specif <> exist constr
+R4832:4857 Library.PIMP.Syntax <> get_variables_in_dist_aexp def
+R4926:4928 Library.PIMP.Syntax <> Seq constr
+R4939:4939 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R4966:4972 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R4999:4999 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R4940:4962 Library.PIMP.Syntax <> get_variables_in_winstr:23 def
+R4973:4995 Library.PIMP.Syntax <> get_variables_in_winstr:23 def
+R5005:5006 Library.PIMP.Syntax <> If constr
+R5022:5022 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5049:5055 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5117:5117 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5023:5043 Library.PIMP.Syntax <> get_variables_in_bexp def
+R5056:5056 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5083:5089 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5116:5116 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5057:5079 Library.PIMP.Syntax <> get_variables_in_winstr:23 def
+R5090:5112 Library.PIMP.Syntax <> get_variables_in_winstr:23 def
+R5123:5127 Library.PIMP.Syntax <> While constr
+R5140:5140 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5167:5173 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5200:5200 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5141:5161 Library.PIMP.Syntax <> get_variables_in_bexp def
+R5174:5196 Library.PIMP.Syntax <> get_variables_in_winstr:23 def
+def 5219:5238 <> get_modvar_in_winstr
+R5243:5248 Library.PIMP.Syntax <> winstr ind
+binder 5241:5241 <> i:26
+R5252:5257 Library.DistState.CoreDef <> domain def
+R5284:5284 Library.PIMP.Syntax <> i:26 var
+R5296:5299 Library.PIMP.Syntax <> Skip constr
+R5306:5307 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R5313:5319 Library.PIMP.Syntax <> DAssign constr
+R5333:5351 Library.PIMP.Syntax <> singleton_bool_list def
+R5360:5366 Library.PIMP.Syntax <> RAssign constr
+R5378:5396 Library.PIMP.Syntax <> singleton_bool_list def
+R5406:5408 Library.PIMP.Syntax <> Seq constr
+R5419:5419 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5443:5449 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5473:5473 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5420:5439 Library.PIMP.Syntax <> get_modvar_in_winstr:27 def
+R5450:5469 Library.PIMP.Syntax <> get_modvar_in_winstr:27 def
+R5479:5480 Library.PIMP.Syntax <> If constr
+R5496:5496 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5520:5526 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5550:5550 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5497:5516 Library.PIMP.Syntax <> get_modvar_in_winstr:27 def
+R5527:5546 Library.PIMP.Syntax <> get_modvar_in_winstr:27 def
+R5556:5560 Library.PIMP.Syntax <> While constr
+R5574:5593 Library.PIMP.Syntax <> get_modvar_in_winstr:27 def
+def 5616:5636 <> get_readvar_in_winstr
+R5641:5646 Library.PIMP.Syntax <> winstr ind
+binder 5639:5639 <> i:29
+R5650:5655 Library.DistState.CoreDef <> domain def
+R5669:5669 Library.PIMP.Syntax <> i:29 var
+R5681:5684 Library.PIMP.Syntax <> Skip constr
+R5691:5692 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R5698:5704 Library.PIMP.Syntax <> DAssign constr
+R5718:5738 Library.PIMP.Syntax <> get_variables_in_aexp def
+R5750:5756 Library.PIMP.Syntax <> RAssign constr
+R5775:5779 Corelib.Init.Specif <> exist constr
+R5800:5825 Library.PIMP.Syntax <> get_variables_in_dist_aexp def
+R5836:5838 Library.PIMP.Syntax <> Seq constr
+R5849:5849 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5874:5880 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5905:5905 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5850:5870 Library.PIMP.Syntax <> get_readvar_in_winstr:30 def
+R5881:5901 Library.PIMP.Syntax <> get_readvar_in_winstr:30 def
+R5911:5912 Library.PIMP.Syntax <> If constr
+R5928:5928 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5955:5961 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R6019:6019 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5929:5949 Library.PIMP.Syntax <> get_variables_in_bexp def
+R5962:5962 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5987:5993 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R6018:6018 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R5963:5983 Library.PIMP.Syntax <> get_readvar_in_winstr:30 def
+R5994:6014 Library.PIMP.Syntax <> get_readvar_in_winstr:30 def
+R6025:6029 Library.PIMP.Syntax <> While constr
+R6042:6042 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R6069:6075 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R6100:6100 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R6043:6063 Library.PIMP.Syntax <> get_variables_in_bexp def
+R6076:6096 Library.PIMP.Syntax <> get_readvar_in_winstr:30 def
+prf 6116:6138 <> Win_Var_eq_orb_mod_read
+R6150:6155 Library.PIMP.Syntax <> winstr ind
+binder 6148:6148 <> i:33
+R6187:6190 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R6162:6184 Library.PIMP.Syntax <> get_variables_in_winstr def
+R6186:6186 Library.PIMP.Syntax <> i:33 var
+R6191:6191 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R6214:6220 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R6244:6244 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R6192:6211 Library.PIMP.Syntax <> get_modvar_in_winstr def
+R6213:6213 Library.PIMP.Syntax <> i:33 var
+R6221:6241 Library.PIMP.Syntax <> get_readvar_in_winstr def
+R6243:6243 Library.PIMP.Syntax <> i:33 var
+R6294:6307 Library.DistState.Domain <> dom_equiv_refl thm
+R6294:6307 Library.DistState.Domain <> dom_equiv_refl thm
+R6294:6307 Library.DistState.Domain <> dom_equiv_refl thm
+R6294:6307 Library.DistState.Domain <> dom_equiv_refl thm
+R6294:6307 Library.DistState.Domain <> dom_equiv_refl thm
+R6294:6307 Library.DistState.Domain <> dom_equiv_refl thm
+R6294:6307 Library.DistState.Domain <> dom_equiv_refl thm
+R6348:6348 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R6401:6446 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R6499:6499 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R6372:6376 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R6349:6368 Library.PIMP.Syntax <> get_modvar_in_winstr def
+R6377:6397 Library.PIMP.Syntax <> get_readvar_in_winstr def
+R6470:6474 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R6447:6466 Library.PIMP.Syntax <> get_modvar_in_winstr def
+R6475:6495 Library.PIMP.Syntax <> get_readvar_in_winstr def
+R6320:6334 Library.DistState.Domain <> dom_equiv_trans thm
+R6348:6348 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R6401:6446 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R6499:6499 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R6372:6376 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R6349:6368 Library.PIMP.Syntax <> get_modvar_in_winstr def
+R6377:6397 Library.PIMP.Syntax <> get_readvar_in_winstr def
+R6470:6474 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R6447:6466 Library.PIMP.Syntax <> get_modvar_in_winstr def
+R6475:6495 Library.PIMP.Syntax <> get_readvar_in_winstr def
+R6320:6334 Library.DistState.Domain <> dom_equiv_trans thm
+R6523:6539 Library.DistState.Domain <> dom_eq_orb_compat thm
+R6523:6539 Library.DistState.Domain <> dom_eq_orb_compat thm
+R6579:6594 Library.DistState.Domain <> orb_domain_assoc thm
+R6579:6594 Library.DistState.Domain <> orb_domain_assoc thm
+R6579:6594 Library.DistState.Domain <> orb_domain_assoc thm
+R6579:6594 Library.DistState.Domain <> orb_domain_assoc thm
+R6579:6594 Library.DistState.Domain <> orb_domain_assoc thm
+R6579:6594 Library.DistState.Domain <> orb_domain_assoc thm
+R6603:6625 Library.DistState.Domain <> dom_eq_orb_compat_right thm
+R6603:6625 Library.DistState.Domain <> dom_eq_orb_compat_right thm
+R6653:6668 Library.DistState.Domain <> orb_domain_assoc thm
+R6653:6668 Library.DistState.Domain <> orb_domain_assoc thm
+R6653:6668 Library.DistState.Domain <> orb_domain_assoc thm
+R6653:6668 Library.DistState.Domain <> orb_domain_assoc thm
+R6653:6668 Library.DistState.Domain <> orb_domain_assoc thm
+R6653:6668 Library.DistState.Domain <> orb_domain_assoc thm
+R6677:6698 Library.DistState.Domain <> dom_eq_orb_compat_left thm
+R6677:6698 Library.DistState.Domain <> dom_eq_orb_compat_left thm
+R6715:6729 Library.DistState.Domain <> orb_domain_comm thm
+R6715:6729 Library.DistState.Domain <> orb_domain_comm thm
+R6715:6729 Library.DistState.Domain <> orb_domain_comm thm
+R6738:6751 Library.DistState.Domain <> dom_equiv_refl thm
+R6738:6751 Library.DistState.Domain <> dom_equiv_refl thm
+R6794:6814 Library.PIMP.Syntax <> get_variables_in_bexp def
+R6766:6781 Library.DistState.Domain <> orb_domain_assoc thm
+R6794:6814 Library.PIMP.Syntax <> get_variables_in_bexp def
+R6766:6781 Library.DistState.Domain <> orb_domain_assoc thm
+R6794:6814 Library.PIMP.Syntax <> get_variables_in_bexp def
+R6766:6781 Library.DistState.Domain <> orb_domain_assoc thm
+R6860:6880 Library.PIMP.Syntax <> get_variables_in_bexp def
+R6833:6847 Library.DistState.Domain <> orb_domain_comm thm
+R6860:6880 Library.PIMP.Syntax <> get_variables_in_bexp def
+R6833:6847 Library.DistState.Domain <> orb_domain_comm thm
+R6860:6880 Library.PIMP.Syntax <> get_variables_in_bexp def
+R6833:6847 Library.DistState.Domain <> orb_domain_comm thm
+R6930:6950 Library.PIMP.Syntax <> get_variables_in_bexp def
+R6902:6917 Library.DistState.Domain <> orb_domain_assoc thm
+R6930:6950 Library.PIMP.Syntax <> get_variables_in_bexp def
+R6902:6917 Library.DistState.Domain <> orb_domain_assoc thm
+R6930:6950 Library.PIMP.Syntax <> get_variables_in_bexp def
+R6902:6917 Library.DistState.Domain <> orb_domain_assoc thm
+R6967:6988 Library.DistState.Domain <> dom_eq_orb_compat_left thm
+R6967:6988 Library.DistState.Domain <> dom_eq_orb_compat_left thm
+R7028:7028 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R7081:7125 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R7052:7056 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R7029:7048 Library.PIMP.Syntax <> get_modvar_in_winstr def
+R7057:7077 Library.PIMP.Syntax <> get_readvar_in_winstr def
+R7150:7154 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R7127:7146 Library.PIMP.Syntax <> get_modvar_in_winstr def
+R7155:7175 Library.PIMP.Syntax <> get_readvar_in_winstr def
+R7001:7015 Library.DistState.Domain <> dom_equiv_trans thm
+R7028:7028 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R7081:7125 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R7052:7056 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R7029:7048 Library.PIMP.Syntax <> get_modvar_in_winstr def
+R7057:7077 Library.PIMP.Syntax <> get_readvar_in_winstr def
+R7150:7154 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R7127:7146 Library.PIMP.Syntax <> get_modvar_in_winstr def
+R7155:7175 Library.PIMP.Syntax <> get_readvar_in_winstr def
+R7001:7015 Library.DistState.Domain <> dom_equiv_trans thm
+R7202:7218 Library.DistState.Domain <> dom_eq_orb_compat thm
+R7202:7218 Library.DistState.Domain <> dom_eq_orb_compat thm
+R7258:7273 Library.DistState.Domain <> orb_domain_assoc thm
+R7258:7273 Library.DistState.Domain <> orb_domain_assoc thm
+R7258:7273 Library.DistState.Domain <> orb_domain_assoc thm
+R7258:7273 Library.DistState.Domain <> orb_domain_assoc thm
+R7258:7273 Library.DistState.Domain <> orb_domain_assoc thm
+R7258:7273 Library.DistState.Domain <> orb_domain_assoc thm
+R7282:7304 Library.DistState.Domain <> dom_eq_orb_compat_right thm
+R7282:7304 Library.DistState.Domain <> dom_eq_orb_compat_right thm
+R7332:7347 Library.DistState.Domain <> orb_domain_assoc thm
+R7332:7347 Library.DistState.Domain <> orb_domain_assoc thm
+R7332:7347 Library.DistState.Domain <> orb_domain_assoc thm
+R7332:7347 Library.DistState.Domain <> orb_domain_assoc thm
+R7332:7347 Library.DistState.Domain <> orb_domain_assoc thm
+R7332:7347 Library.DistState.Domain <> orb_domain_assoc thm
+R7356:7377 Library.DistState.Domain <> dom_eq_orb_compat_left thm
+R7356:7377 Library.DistState.Domain <> dom_eq_orb_compat_left thm
+R7394:7408 Library.DistState.Domain <> orb_domain_comm thm
+R7394:7408 Library.DistState.Domain <> orb_domain_comm thm
+R7394:7408 Library.DistState.Domain <> orb_domain_comm thm
+R7417:7430 Library.DistState.Domain <> dom_equiv_refl thm
+R7417:7430 Library.DistState.Domain <> dom_equiv_refl thm
+R7445:7459 Library.DistState.Domain <> orb_domain_comm thm
+R7445:7459 Library.DistState.Domain <> orb_domain_comm thm
+R7445:7459 Library.DistState.Domain <> orb_domain_comm thm
+R7499:7519 Library.PIMP.Syntax <> get_readvar_in_winstr def
+R7473:7487 Library.DistState.Domain <> orb_domain_comm thm
+R7499:7519 Library.PIMP.Syntax <> get_readvar_in_winstr def
+R7473:7487 Library.DistState.Domain <> orb_domain_comm thm
+R7499:7519 Library.PIMP.Syntax <> get_readvar_in_winstr def
+R7473:7487 Library.DistState.Domain <> orb_domain_comm thm
+R7537:7552 Library.DistState.Domain <> orb_domain_assoc thm
+R7537:7552 Library.DistState.Domain <> orb_domain_assoc thm
+R7537:7552 Library.DistState.Domain <> orb_domain_assoc thm
+R7561:7583 Library.DistState.Domain <> dom_eq_orb_compat_right thm
+R7561:7583 Library.DistState.Domain <> dom_eq_orb_compat_right thm
+prf 7610:7624 <> Win_mod_sub_var
+R7636:7641 Library.PIMP.Syntax <> winstr ind
+binder 7634:7634 <> i:34
+R7670:7674 Library.DistState.CoreDef <> ::domain_scope:x_'⊆'_x not
+R7648:7667 Library.PIMP.Syntax <> get_modvar_in_winstr def
+R7669:7669 Library.PIMP.Syntax <> i:34 var
+R7675:7697 Library.PIMP.Syntax <> get_variables_in_winstr def
+R7699:7699 Library.PIMP.Syntax <> i:34 var
+R7764:7776 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R7739:7761 Library.PIMP.Syntax <> get_variables_in_winstr def
+R7777:7777 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R7800:7806 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R7830:7830 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R7778:7797 Library.PIMP.Syntax <> get_modvar_in_winstr def
+R7807:7827 Library.PIMP.Syntax <> get_readvar_in_winstr def
+R7850:7872 Library.PIMP.Syntax <> Win_Var_eq_orb_mod_read thm
+R7764:7776 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R7739:7761 Library.PIMP.Syntax <> get_variables_in_winstr def
+R7777:7777 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R7800:7806 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R7830:7830 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R7778:7797 Library.PIMP.Syntax <> get_modvar_in_winstr def
+R7807:7827 Library.PIMP.Syntax <> get_readvar_in_winstr def
+R7850:7872 Library.PIMP.Syntax <> Win_Var_eq_orb_mod_read thm
+R7895:7916 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R7895:7916 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+prf 7962:7977 <> Win_read_sub_var
+R7989:7994 Library.PIMP.Syntax <> winstr ind
+binder 7987:7987 <> i:35
+R8024:8028 Library.DistState.CoreDef <> ::domain_scope:x_'⊆'_x not
+R8001:8021 Library.PIMP.Syntax <> get_readvar_in_winstr def
+R8023:8023 Library.PIMP.Syntax <> i:35 var
+R8029:8051 Library.PIMP.Syntax <> get_variables_in_winstr def
+R8053:8053 Library.PIMP.Syntax <> i:35 var
+R8118:8130 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R8093:8115 Library.PIMP.Syntax <> get_variables_in_winstr def
+R8131:8131 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R8154:8160 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R8184:8184 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R8132:8151 Library.PIMP.Syntax <> get_modvar_in_winstr def
+R8161:8181 Library.PIMP.Syntax <> get_readvar_in_winstr def
+R8204:8226 Library.PIMP.Syntax <> Win_Var_eq_orb_mod_read thm
+R8118:8130 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R8093:8115 Library.PIMP.Syntax <> get_variables_in_winstr def
+R8131:8131 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R8154:8160 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R8184:8184 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R8132:8151 Library.PIMP.Syntax <> get_modvar_in_winstr def
+R8161:8181 Library.PIMP.Syntax <> get_readvar_in_winstr def
+R8204:8226 Library.PIMP.Syntax <> Win_Var_eq_orb_mod_read thm
+R8249:8270 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R8249:8270 Library.DistState.Domain <> dom_subset_orb_fst_iff thm

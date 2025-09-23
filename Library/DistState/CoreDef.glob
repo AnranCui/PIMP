@@ -1,0 +1,896 @@
+DIGEST f3cec682423b9e379f2c3ce1eb09ecd6
+FLibrary.DistState.CoreDef
+R27:39 Stdlib.QArith.QArith <> <> lib
+R69:81 Stdlib.QArith.Qround <> <> lib
+R111:128 Stdlib.QArith.QArith_base <> <> lib
+R158:166 Stdlib.Bool.Bool <> <> lib
+R196:207 Stdlib.Reals.R_sqrt <> <> lib
+R237:240 Stdlib.Lists.List <> <> lib
+R270:280 Stdlib.Reals.Reals <> <> lib
+R310:312 Stdlib.micromega.Lia <> <> lib
+R342:371 Stdlib.Logic.FunctionalExtensionality <> <> lib
+R401:421 Stdlib.Logic.ClassicalChoice <> <> lib
+R451:463 Stdlib.ZArith.ZArith <> <> lib
+R481:497 Library.UtilityQR <> <> lib
+R508:520 Stdlib.Lists.List ListNotations <> mod
+def 631:634 <> dist
+binder 637:637 <> A:1
+R657:660 Corelib.Init.Datatypes <> list ind
+R664:666 Corelib.Init.Datatypes <> ::type_scope:x_'*'_x not
+R663:663 Library.DistState.CoreDef <> A:1 var
+R667:667 Stdlib.Reals.Rdefinitions RbaseSymbolsImpl R defax
+def 684:699 <> prob_is_positive
+R705:705 Stdlib.Reals.Rdefinitions RbaseSymbolsImpl R defax
+binder 702:702 <> p:2
+R720:722 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'<'_x_'<='_x not
+R724:727 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'<'_x_'<='_x not
+R723:723 Library.DistState.CoreDef <> p:2 var
+R723:723 Library.DistState.CoreDef <> p:2 var
+def 744:757 <> positive_probs
+binder 760:760 <> A:3
+R772:775 Library.DistState.CoreDef <> dist def
+R777:777 Library.DistState.CoreDef <> A:3 var
+binder 769:769 <> d:4
+R855:855 Library.DistState.CoreDef <> d:4 var
+R867:868 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R873:876 Corelib.Init.Logic <> True ind
+R887:890 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R882:882 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R884:884 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R886:886 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R915:918 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R897:912 Library.DistState.CoreDef <> prob_is_positive def
+R919:932 Library.DistState.CoreDef <> positive_probs:5 def
+def 953:961 <> sum_probs
+binder 964:964 <> A:7
+R977:980 Library.DistState.CoreDef <> dist def
+R982:982 Library.DistState.CoreDef <> A:7 var
+binder 973:973 <> d:8
+R987:987 Stdlib.Reals.Rdefinitions RbaseSymbolsImpl R defax
+R1070:1070 Library.DistState.CoreDef <> d:8 var
+R1083:1084 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R1105:1108 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1099:1099 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1101:1102 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1104:1104 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1117:1120 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'+'_x not
+R1133:1133 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'+'_x not
+R1121:1129 Library.DistState.CoreDef <> sum_probs:9 def
+def 1156:1165 <> Valid_dist
+binder 1168:1168 <> A:11
+R1181:1184 Library.DistState.CoreDef <> dist def
+R1186:1186 Library.DistState.CoreDef <> A:11 var
+binder 1177:1177 <> d:12
+R1361:1365 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R1382:1382 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R1338:1341 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'<='_x_'<='_x not
+R1353:1356 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'<='_x_'<='_x not
+R1342:1350 Library.DistState.CoreDef <> sum_probs def
+R1352:1352 Library.DistState.CoreDef <> d:12 var
+R1342:1350 Library.DistState.CoreDef <> sum_probs def
+R1352:1352 Library.DistState.CoreDef <> d:12 var
+R1366:1379 Library.DistState.CoreDef <> positive_probs def
+R1381:1381 Library.DistState.CoreDef <> d:12 var
+def 1398:1405 <> add_dist
+binder 1408:1408 <> A:13
+R1426:1429 Library.DistState.CoreDef <> dist def
+R1431:1431 Library.DistState.CoreDef <> A:13 var
+binder 1418:1419 <> d0:14
+binder 1421:1422 <> d1:15
+R1436:1439 Library.DistState.CoreDef <> dist def
+R1441:1441 Library.DistState.CoreDef <> A:13 var
+R1449:1452 Corelib.Init.Datatypes <> ::list_scope:x_'++'_x not
+R1447:1448 Library.DistState.CoreDef <> d0:14 var
+R1453:1454 Library.DistState.CoreDef <> d1:15 var
+def 1532:1540 <> mult_dist
+binder 1543:1543 <> A:16
+R1555:1555 Stdlib.Reals.Rdefinitions RbaseSymbolsImpl R defax
+binder 1553:1553 <> p:17
+R1562:1565 Library.DistState.CoreDef <> dist def
+R1567:1567 Library.DistState.CoreDef <> A:16 var
+binder 1559:1559 <> d:18
+R1572:1575 Library.DistState.CoreDef <> dist def
+R1577:1577 Library.DistState.CoreDef <> A:16 var
+R1704:1704 Library.DistState.CoreDef <> d:18 var
+R1716:1717 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R1722:1723 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R1736:1739 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1729:1729 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1731:1732 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1735:1735 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1749:1756 Stdlib.Reals.RIneq <> Req_EM_T abbrev
+R1758:1758 Library.DistState.CoreDef <> p:17 var
+R1812:1815 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1797:1797 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1799:1800 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1811:1811 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1803:1805 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'*'_x not
+R1802:1802 Library.DistState.CoreDef <> p:17 var
+R1816:1824 Library.DistState.CoreDef <> mult_dist:19 def
+R1826:1826 Library.DistState.CoreDef <> p:17 var
+R1767:1768 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+prf 1846:1859 <> sum_ge0_mult_p
+binder 1870:1870 <> A:21
+binder 1879:1879 <> p:22
+binder 1881:1882 <> mu:23
+R1912:1915 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1890:1893 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'<='_x not
+R1895:1903 Library.DistState.CoreDef <> sum_probs def
+R1905:1905 Library.DistState.CoreDef <> A:21 var
+R1907:1908 Library.DistState.CoreDef <> mu:23 var
+R1925:1928 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1918:1920 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'<'_x not
+R1921:1921 Library.DistState.CoreDef <> p:22 var
+R1931:1934 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'<='_x not
+R1936:1938 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'*'_x not
+R1935:1935 Library.DistState.CoreDef <> p:22 var
+R1940:1948 Library.DistState.CoreDef <> sum_probs def
+R1950:1950 Library.DistState.CoreDef <> A:21 var
+R1952:1953 Library.DistState.CoreDef <> mu:23 var
+R1982:1993 Stdlib.Reals.RIneq <> Rmult_le_pos thm
+R1982:1993 Stdlib.Reals.RIneq <> Rmult_le_pos thm
+R2018:2023 Stdlib.Reals.RIneq <> Rlt_le thm
+R2018:2023 Stdlib.Reals.RIneq <> Rlt_le thm
+def 2467:2471 <> state
+R2476:2479 Corelib.Init.Datatypes <> list ind
+R2481:2481 Stdlib.QArith.QArith_base <> Q rec
+def 2496:2503 <> local_st
+R2507:2510 Corelib.Init.Datatypes <> list ind
+R2513:2518 Corelib.Init.Datatypes <> option ind
+R2520:2520 Stdlib.QArith.QArith_base <> Q rec
+def 2535:2543 <> default_Q
+R2547:2547 Stdlib.QArith.QArith_base <> Q rec
+def 2648:2658 <> Empty_State
+R2661:2668 Library.DistState.CoreDef <> local_st def
+R2673:2674 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+def 2688:2693 <> domain
+R2698:2701 Corelib.Init.Datatypes <> list ind
+R2703:2706 Corelib.Init.Datatypes <> bool ind
+def 2873:2879 <> is_none
+binder 2882:2882 <> A:24
+R2897:2902 Corelib.Init.Datatypes <> option ind
+R2904:2904 Library.DistState.CoreDef <> A:24 var
+binder 2893:2893 <> v:25
+R2909:2912 Corelib.Init.Datatypes <> bool ind
+R2925:2925 Library.DistState.CoreDef <> v:25 var
+R2936:2939 Corelib.Init.Datatypes <> None constr
+R2944:2947 Corelib.Init.Datatypes <> true constr
+R2953:2956 Corelib.Init.Datatypes <> Some constr
+R2963:2967 Corelib.Init.Datatypes <> false constr
+def 2987:2997 <> st_all_none
+R3003:3010 Library.DistState.CoreDef <> local_st def
+binder 3000:3000 <> s:27
+R3016:3022 Stdlib.Lists.List <> forallb def
+R3045:3045 Library.DistState.CoreDef <> s:27 var
+binder 3029:3029 <> v:28
+R3034:3040 Library.DistState.CoreDef <> is_none def
+R3042:3042 Library.DistState.CoreDef <> v:28 var
+def 3104:3112 <> beq_state
+R3123:3130 Library.DistState.CoreDef <> local_st def
+binder 3115:3116 <> s0:29
+binder 3118:3119 <> s1:30
+R3135:3138 Corelib.Init.Datatypes <> bool ind
+R3165:3166 Library.DistState.CoreDef <> s1:30 var
+R3161:3162 Library.DistState.CoreDef <> s0:29 var
+R3178:3179 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R3187:3197 Library.DistState.CoreDef <> st_all_none def
+R3199:3200 Library.DistState.CoreDef <> s1:30 var
+R3209:3210 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R3215:3225 Library.DistState.CoreDef <> st_all_none def
+R3227:3228 Library.DistState.CoreDef <> s0:29 var
+R3241:3244 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3234:3237 Corelib.Init.Datatypes <> Some constr
+R3257:3260 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3250:3253 Corelib.Init.Datatypes <> Some constr
+R3274:3281 Stdlib.QArith.QArith_base <> Qcompare def
+R3334:3335 Corelib.Init.Datatypes <> Eq constr
+R3340:3348 Library.DistState.CoreDef <> beq_state:31 def
+R3403:3407 Corelib.Init.Datatypes <> false constr
+R3459:3462 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3455:3458 Corelib.Init.Datatypes <> None constr
+R3472:3475 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3468:3471 Corelib.Init.Datatypes <> None constr
+R3483:3491 Library.DistState.CoreDef <> beq_state:31 def
+R3513:3517 Corelib.Init.Datatypes <> false constr
+def 3538:3546 <> ble_state
+R3556:3563 Library.DistState.CoreDef <> local_st def
+binder 3549:3550 <> s0:34
+binder 3552:3553 <> s1:35
+R3567:3570 Corelib.Init.Datatypes <> bool ind
+R3597:3598 Library.DistState.CoreDef <> s1:35 var
+R3593:3594 Library.DistState.CoreDef <> s0:34 var
+R3610:3611 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R3619:3622 Corelib.Init.Datatypes <> true constr
+R3631:3632 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R3638:3648 Library.DistState.CoreDef <> st_all_none def
+R3650:3651 Library.DistState.CoreDef <> s0:34 var
+R3665:3668 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3658:3661 Corelib.Init.Datatypes <> Some constr
+R3680:3681 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3673:3676 Corelib.Init.Datatypes <> Some constr
+R3694:3701 Stdlib.QArith.QArith_base <> Qcompare def
+R3750:3751 Corelib.Init.Datatypes <> Eq constr
+R3756:3764 Library.DistState.CoreDef <> ble_state:36 def
+R3808:3809 Corelib.Init.Datatypes <> Lt constr
+R3814:3817 Corelib.Init.Datatypes <> true constr
+R3855:3856 Corelib.Init.Datatypes <> Gt constr
+R3861:3865 Corelib.Init.Datatypes <> false constr
+R3916:3919 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3909:3912 Corelib.Init.Datatypes <> Some constr
+R3929:3932 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3925:3928 Corelib.Init.Datatypes <> None constr
+R3940:3944 Corelib.Init.Datatypes <> false constr
+R3954:3957 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3950:3953 Corelib.Init.Datatypes <> None constr
+R3967:3970 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3963:3966 Corelib.Init.Datatypes <> None constr
+R3978:3986 Library.DistState.CoreDef <> ble_state:36 def
+R4004:4007 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4000:4003 Corelib.Init.Datatypes <> None constr
+R4020:4023 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4013:4016 Corelib.Init.Datatypes <> Some constr
+R4031:4034 Corelib.Init.Datatypes <> true constr
+R4083:4085 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R4068:4076 Library.DistState.CoreDef <> beq_state def
+R4086:4089 Corelib.Init.Datatypes <> true constr
+not 4051:4051 <> ::state_scope:x_'=='_x
+R4161:4163 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R4146:4154 Library.DistState.CoreDef <> ble_state def
+R4164:4167 Corelib.Init.Datatypes <> true constr
+not 4129:4129 <> ::state_scope:x_'<='_x
+R4239:4241 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R4224:4232 Library.DistState.CoreDef <> beq_state def
+R4242:4246 Corelib.Init.Datatypes <> false constr
+not 4207:4207 <> ::state_scope:x_'!='_x
+def 4287:4297 <> union_state
+R4307:4314 Library.DistState.CoreDef <> local_st def
+binder 4300:4301 <> s1:39
+binder 4303:4304 <> s2:40
+R4319:4326 Library.DistState.CoreDef <> local_st def
+R4421:4422 Library.DistState.CoreDef <> s2:40 var
+R4417:4418 Library.DistState.CoreDef <> s1:39 var
+R4433:4434 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R4442:4443 Library.DistState.CoreDef <> s2:40 var
+R4452:4453 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R4458:4459 Library.DistState.CoreDef <> s1:39 var
+R4472:4475 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4465:4468 Corelib.Init.Datatypes <> Some constr
+R4487:4490 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4480:4483 Corelib.Init.Datatypes <> Some constr
+R4497:4498 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R4511:4514 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4504:4507 Corelib.Init.Datatypes <> Some constr
+R4523:4526 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4519:4522 Corelib.Init.Datatypes <> None constr
+R4540:4543 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4533:4536 Corelib.Init.Datatypes <> Some constr
+R4544:4554 Library.DistState.CoreDef <> union_state:41 def
+R4570:4573 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4566:4569 Corelib.Init.Datatypes <> None constr
+R4585:4588 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4578:4581 Corelib.Init.Datatypes <> Some constr
+R4602:4605 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4595:4598 Corelib.Init.Datatypes <> Some constr
+R4606:4616 Library.DistState.CoreDef <> union_state:41 def
+R4632:4635 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4628:4631 Corelib.Init.Datatypes <> None constr
+R4644:4647 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4640:4643 Corelib.Init.Datatypes <> None constr
+R4658:4661 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4654:4657 Corelib.Init.Datatypes <> None constr
+R4662:4672 Library.DistState.CoreDef <> union_state:41 def
+def 4697:4707 <> res_st_to_X
+R4713:4720 Library.DistState.CoreDef <> local_st def
+binder 4710:4710 <> s:44
+R4727:4732 Library.DistState.CoreDef <> domain def
+binder 4724:4724 <> X:45
+R4736:4743 Library.DistState.CoreDef <> local_st def
+R4814:4814 Library.DistState.CoreDef <> X:45 var
+R4811:4811 Library.DistState.CoreDef <> s:44 var
+R4825:4826 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R4834:4835 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R4844:4845 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R4850:4851 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R4863:4866 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4857:4860 Corelib.Init.Datatypes <> Some constr
+R4872:4875 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4931:4935 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4953:4953 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4927:4930 Corelib.Init.Datatypes <> None constr
+R4936:4946 Library.DistState.CoreDef <> res_st_to_X:46 def
+R4898:4902 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4920:4920 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4892:4895 Corelib.Init.Datatypes <> Some constr
+R4903:4913 Library.DistState.CoreDef <> res_st_to_X:46 def
+R4963:4966 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4959:4962 Corelib.Init.Datatypes <> None constr
+R4972:4975 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4986:4990 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R5008:5008 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4982:4985 Corelib.Init.Datatypes <> None constr
+R4991:5001 Library.DistState.CoreDef <> res_st_to_X:46 def
+def 5157:5169 <> return_domain
+R5175:5182 Library.DistState.CoreDef <> local_st def
+binder 5172:5172 <> s:49
+R5186:5191 Library.DistState.CoreDef <> domain def
+R5196:5198 Corelib.Lists.ListDef <> map def
+R5228:5228 Library.DistState.CoreDef <> s:49 var
+binder 5205:5205 <> v:50
+R5210:5213 Corelib.Init.Datatypes <> negb def
+R5216:5222 Library.DistState.CoreDef <> is_none def
+R5224:5224 Library.DistState.CoreDef <> v:50 var
+def 5281:5289 <> all_false
+R5296:5301 Library.DistState.CoreDef <> domain def
+binder 5292:5292 <> l:51
+R5306:5309 Corelib.Init.Datatypes <> bool ind
+R5314:5320 Stdlib.Lists.List <> forallb def
+R5340:5340 Library.DistState.CoreDef <> l:51 var
+binder 5327:5327 <> b:52
+R5332:5335 Corelib.Init.Datatypes <> negb def
+R5337:5337 Library.DistState.CoreDef <> b:52 var
+def 5385:5400 <> is_domain_subset
+R5410:5415 Library.DistState.CoreDef <> domain def
+binder 5403:5404 <> l1:53
+binder 5406:5407 <> l2:54
+R5419:5422 Corelib.Init.Datatypes <> bool ind
+R5440:5441 Library.DistState.CoreDef <> l2:54 var
+R5436:5437 Library.DistState.CoreDef <> l1:53 var
+R5452:5453 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R5461:5464 Corelib.Init.Datatypes <> true constr
+R5475:5476 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R5481:5489 Library.DistState.CoreDef <> all_false def
+R5491:5492 Library.DistState.CoreDef <> l1:53 var
+R5500:5503 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R5510:5513 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R5520:5520 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R5537:5542 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R5565:5565 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R5521:5523 Corelib.Init.Datatypes <> orb def
+R5526:5529 Corelib.Init.Datatypes <> negb def
+R5543:5558 Library.DistState.CoreDef <> is_domain_subset:55 def
+def 5584:5602 <> is_domain_intersect
+R5613:5618 Library.DistState.CoreDef <> domain def
+binder 5605:5606 <> l1:58
+binder 5608:5609 <> l2:59
+R5623:5626 Corelib.Init.Datatypes <> bool ind
+R5639:5640 Library.DistState.CoreDef <> l1:58 var
+R5651:5652 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R5657:5661 Corelib.Init.Datatypes <> false constr
+R5668:5671 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R5685:5686 Library.DistState.CoreDef <> l2:59 var
+R5711:5712 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R5717:5721 Corelib.Init.Datatypes <> false constr
+R5743:5746 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R5758:5761 Corelib.Init.Datatypes <> andb def
+R5818:5836 Library.DistState.CoreDef <> is_domain_intersect:60 def
+R5774:5777 Corelib.Init.Datatypes <> true constr
+def 5886:5895 <> orb_domain
+R5905:5910 Library.DistState.CoreDef <> domain def
+binder 5898:5899 <> l1:63
+binder 5901:5902 <> l2:64
+R5915:5920 Library.DistState.CoreDef <> domain def
+R5933:5934 Library.DistState.CoreDef <> l1:63 var
+R5945:5946 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R5951:5952 Library.DistState.CoreDef <> l2:64 var
+R5959:5962 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R5976:5977 Library.DistState.CoreDef <> l2:64 var
+R6002:6003 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R6008:6009 Library.DistState.CoreDef <> l1:63 var
+R6031:6034 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R6042:6042 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R6051:6056 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R6075:6075 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R6043:6045 Corelib.Init.Datatypes <> orb def
+R6057:6066 Library.DistState.CoreDef <> orb_domain:65 def
+def 6115:6124 <> and_domain
+R6134:6139 Library.DistState.CoreDef <> domain def
+binder 6127:6128 <> l1:68
+binder 6130:6131 <> l2:69
+R6144:6149 Library.DistState.CoreDef <> domain def
+R6162:6163 Library.DistState.CoreDef <> l1:68 var
+R6174:6175 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R6180:6181 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R6188:6191 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R6205:6206 Library.DistState.CoreDef <> l2:69 var
+R6231:6232 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R6237:6238 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R6260:6263 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R6271:6271 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R6281:6286 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R6305:6305 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R6272:6275 Corelib.Init.Datatypes <> andb def
+R6287:6296 Library.DistState.CoreDef <> and_domain:70 def
+def 6347:6358 <> domain_equiv
+R6369:6374 Library.DistState.CoreDef <> domain def
+binder 6361:6362 <> l1:73
+binder 6364:6365 <> l2:74
+R6419:6422 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6412:6414 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R6390:6405 Library.DistState.CoreDef <> is_domain_subset def
+R6407:6408 Library.DistState.CoreDef <> l1:73 var
+R6410:6411 Library.DistState.CoreDef <> l2:74 var
+R6415:6418 Corelib.Init.Datatypes <> true constr
+R6445:6447 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R6423:6438 Library.DistState.CoreDef <> is_domain_subset def
+R6440:6441 Library.DistState.CoreDef <> l2:74 var
+R6443:6444 Library.DistState.CoreDef <> l1:73 var
+R6448:6451 Corelib.Init.Datatypes <> true constr
+R6504:6506 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R6482:6497 Library.DistState.CoreDef <> is_domain_subset def
+R6507:6510 Corelib.Init.Datatypes <> true constr
+not 6464:6464 <> ::domain_scope:x_'⊆'_x
+R6568:6579 Library.DistState.CoreDef <> domain_equiv def
+not 6551:6551 <> ::domain_scope:x_'=='_x
+R6644:6653 Library.DistState.CoreDef <> and_domain def
+not 6626:6626 <> ::domain_scope:x_'∩'_x
+R6718:6727 Library.DistState.CoreDef <> orb_domain def
+not 6700:6700 <> ::domain_scope:x_'∪'_x
+R6822:6824 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R6797:6815 Library.DistState.CoreDef <> is_domain_intersect def
+R6825:6829 Corelib.Init.Datatypes <> false constr
+not 6776:6776 <> ::domain_scope:x_'∩∅'_x
+def 7018:7027 <> dist_state
+R7039:7042 Library.DistState.CoreDef <> dist def
+R7044:7051 Library.DistState.CoreDef <> local_st def
+def 7095:7108 <> insert_st_pair
+R7113:7120 Library.DistState.CoreDef <> local_st def
+binder 7111:7111 <> s:75
+R7126:7126 Stdlib.Reals.Rdefinitions RbaseSymbolsImpl R defax
+binder 7124:7124 <> p:76
+R7134:7143 Library.DistState.CoreDef <> dist_state def
+binder 7130:7131 <> mu:77
+R7148:7157 Library.DistState.CoreDef <> dist_state def
+R7170:7171 Library.DistState.CoreDef <> mu:77 var
+R7183:7184 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R7189:7189 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R7195:7195 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R7190:7190 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7192:7192 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7194:7194 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7191:7191 Library.DistState.CoreDef <> s:75 var
+R7193:7193 Library.DistState.CoreDef <> p:76 var
+R7208:7211 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R7201:7201 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7204:7204 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7207:7207 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7222:7230 Library.DistState.CoreDef <> beq_state def
+R7232:7232 Library.DistState.CoreDef <> s:75 var
+R7297:7305 Library.DistState.CoreDef <> ble_state def
+R7307:7307 Library.DistState.CoreDef <> s:75 var
+R7382:7386 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R7409:7409 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R7375:7375 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7378:7378 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7381:7381 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7387:7400 Library.DistState.CoreDef <> insert_st_pair:78 def
+R7404:7404 Library.DistState.CoreDef <> p:76 var
+R7402:7402 Library.DistState.CoreDef <> s:75 var
+R7323:7326 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R7318:7318 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7320:7320 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7322:7322 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7319:7319 Library.DistState.CoreDef <> s:75 var
+R7321:7321 Library.DistState.CoreDef <> p:76 var
+R7334:7337 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R7327:7327 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7330:7330 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7333:7333 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7258:7261 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R7242:7242 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7245:7246 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7257:7257 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7249:7251 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'+'_x not
+R7248:7248 Library.DistState.CoreDef <> p:76 var
+def 7427:7434 <> sort_dst
+R7441:7450 Library.DistState.CoreDef <> dist_state def
+binder 7437:7438 <> mu:80
+R7455:7464 Library.DistState.CoreDef <> dist_state def
+R7548:7549 Library.DistState.CoreDef <> mu:80 var
+R7561:7562 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R7567:7568 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R7581:7584 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R7574:7574 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7577:7577 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7580:7580 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7592:7605 Library.DistState.CoreDef <> insert_st_pair def
+R7614:7621 Library.DistState.CoreDef <> sort_dst:81 def
+def 7645:7648 <> supp
+R7659:7662 Corelib.Init.Datatypes <> list ind
+R7664:7671 Library.DistState.CoreDef <> local_st def
+def 7752:7758 <> supp_mu
+R7765:7774 Library.DistState.CoreDef <> dist_state def
+binder 7761:7762 <> mu:83
+R7778:7781 Library.DistState.CoreDef <> supp def
+R7806:7813 Library.DistState.CoreDef <> sort_dst def
+R7815:7816 Library.DistState.CoreDef <> mu:83 var
+binder 7793:7801 <> sorted_mu:84
+R7822:7824 Corelib.Lists.ListDef <> map def
+R7830:7838 Library.DistState.CoreDef <> sorted_mu:84 var
+R7826:7828 Corelib.Init.Datatypes <> fst def
+def 7852:7861 <> is_in_supp
+R7867:7874 Library.DistState.CoreDef <> local_st def
+binder 7864:7864 <> s:85
+R7882:7885 Library.DistState.CoreDef <> supp def
+binder 7878:7878 <> A:86
+R7890:7893 Corelib.Init.Datatypes <> bool ind
+R7955:7955 Library.DistState.CoreDef <> A:86 var
+R7966:7967 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R7972:7976 Corelib.Init.Datatypes <> false constr
+R7984:7987 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R7994:7994 Corelib.Init.Datatypes <> ::bool_scope:x_'||'_x not
+R8009:8014 Corelib.Init.Datatypes <> ::bool_scope:x_'||'_x not
+R8030:8030 Corelib.Init.Datatypes <> ::bool_scope:x_'||'_x not
+R7995:8003 Library.DistState.CoreDef <> beq_state def
+R8005:8005 Library.DistState.CoreDef <> s:85 var
+R8015:8024 Library.DistState.CoreDef <> is_in_supp:87 def
+R8026:8026 Library.DistState.CoreDef <> s:85 var
+def 8049:8057 <> insert_st
+R8062:8069 Library.DistState.CoreDef <> local_st def
+binder 8060:8060 <> s:89
+R8077:8080 Library.DistState.CoreDef <> supp def
+binder 8073:8073 <> A:90
+R8085:8088 Library.DistState.CoreDef <> supp def
+R8101:8101 Library.DistState.CoreDef <> A:90 var
+R8113:8114 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R8119:8119 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R8121:8121 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R8120:8120 Library.DistState.CoreDef <> s:89 var
+R8129:8132 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8142:8150 Library.DistState.CoreDef <> beq_state def
+R8152:8152 Library.DistState.CoreDef <> s:89 var
+R8196:8204 Library.DistState.CoreDef <> ble_state def
+R8206:8206 Library.DistState.CoreDef <> s:89 var
+R8260:8264 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8279:8279 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8265:8273 Library.DistState.CoreDef <> insert_st:91 def
+R8275:8275 Library.DistState.CoreDef <> s:89 var
+R8218:8221 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8217:8217 Library.DistState.CoreDef <> s:89 var
+R8224:8227 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8164:8167 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+def 8318:8325 <> beq_supp
+R8337:8340 Library.DistState.CoreDef <> supp def
+binder 8328:8330 <> sp0:93
+binder 8332:8334 <> sp1:94
+R8344:8347 Corelib.Init.Datatypes <> bool ind
+R8366:8368 Library.DistState.CoreDef <> sp1:94 var
+R8361:8363 Library.DistState.CoreDef <> sp0:93 var
+R8380:8381 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R8384:8385 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R8390:8393 Corelib.Init.Datatypes <> true constr
+R8401:8404 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8415:8418 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8429:8429 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R8445:8450 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R8473:8473 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R8430:8438 Library.DistState.CoreDef <> beq_state def
+R8451:8458 Library.DistState.CoreDef <> beq_supp:95 def
+R8487:8491 Corelib.Init.Datatypes <> false constr
+def 8511:8524 <> is_supp_subset
+R8536:8539 Library.DistState.CoreDef <> supp def
+binder 8527:8529 <> ls0:98
+binder 8531:8533 <> ls1:99
+R8544:8547 Corelib.Init.Datatypes <> bool ind
+R8566:8568 Library.DistState.CoreDef <> ls1:99 var
+R8561:8563 Library.DistState.CoreDef <> ls0:98 var
+R8579:8580 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R8588:8591 Corelib.Init.Datatypes <> true constr
+R8664:8665 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R8670:8674 Corelib.Init.Datatypes <> false constr
+R8683:8686 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8694:8697 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8714:8722 Library.DistState.CoreDef <> beq_state def
+R8782:8790 Library.DistState.CoreDef <> ble_state def
+R8857:8870 Library.DistState.CoreDef <> is_supp_subset:100 def
+R8875:8878 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8812:8816 Corelib.Init.Datatypes <> false constr
+R8743:8756 Library.DistState.CoreDef <> is_supp_subset:100 def
+R8937:8939 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R8923:8930 Library.DistState.CoreDef <> beq_supp def
+R8940:8943 Corelib.Init.Datatypes <> true constr
+not 8906:8906 <> ::supp_scope:x_'=='_x
+R9020:9022 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R9000:9013 Library.DistState.CoreDef <> is_supp_subset def
+R9023:9026 Corelib.Init.Datatypes <> true constr
+not 8982:8982 <> ::supp_scope:x_'⊆'_x
+def 9114:9131 <> get_prob_in_dstate
+R9138:9147 Library.DistState.CoreDef <> dist_state def
+binder 9134:9135 <> mu:103
+R9154:9161 Library.DistState.CoreDef <> local_st def
+binder 9151:9151 <> s:104
+R9165:9165 Stdlib.Reals.Rdefinitions RbaseSymbolsImpl R defax
+R9178:9179 Library.DistState.CoreDef <> mu:103 var
+R9191:9192 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R9214:9217 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9207:9207 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9210:9211 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9213:9213 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9228:9236 Library.DistState.CoreDef <> beq_state def
+R9238:9238 Library.DistState.CoreDef <> s:104 var
+R9311:9328 Library.DistState.CoreDef <> get_prob_in_dstate:105 def
+R9334:9334 Library.DistState.CoreDef <> s:104 var
+R9250:9253 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'+'_x not
+R9278:9278 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'+'_x not
+R9254:9271 Library.DistState.CoreDef <> get_prob_in_dstate:105 def
+R9277:9277 Library.DistState.CoreDef <> s:104 var
+def 9356:9364 <> dst_equiv
+R9377:9386 Library.DistState.CoreDef <> dist_state def
+binder 9367:9369 <> mu0:107
+binder 9371:9373 <> mu1:108
+binder 9409:9409 <> s:109
+R9436:9438 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R9412:9429 Library.DistState.CoreDef <> get_prob_in_dstate def
+R9431:9433 Library.DistState.CoreDef <> mu0:107 var
+R9435:9435 Library.DistState.CoreDef <> s:109 var
+R9439:9456 Library.DistState.CoreDef <> get_prob_in_dstate def
+R9458:9460 Library.DistState.CoreDef <> mu1:108 var
+R9462:9462 Library.DistState.CoreDef <> s:109 var
+R9493:9501 Library.DistState.CoreDef <> dst_equiv def
+not 9474:9474 <> ::dstate_scope:x_'=='_x
+R9566:9573 Library.DistState.CoreDef <> add_dist def
+not 9550:9550 <> ::dstate_scope:x_'+'_x
+R9656:9664 Library.DistState.CoreDef <> mult_dist def
+not 9643:9643 <> ::dstate_scope:x_'*'_x
+def 9732:9738 <> beq_dst
+binder 9740:9742 <> mu0:110
+binder 9744:9746 <> mu1:111
+R9749:9752 Corelib.Init.Datatypes <> bool ind
+R9807:9809 Library.DistState.CoreDef <> mu1:111 var
+R9802:9804 Library.DistState.CoreDef <> mu0:110 var
+R9821:9822 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R9825:9826 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R9831:9834 Corelib.Init.Datatypes <> true constr
+R9848:9851 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9840:9840 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9843:9844 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9847:9847 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9866:9869 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9858:9858 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9861:9862 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9865:9865 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9885:9885 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R9923:9928 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R9946:9946 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R9886:9886 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R9902:9907 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R9922:9922 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R9887:9895 Library.DistState.CoreDef <> beq_state def
+R9908:9915 Library.UtilityQR <> Req_bool def
+R9929:9935 Library.DistState.CoreDef <> beq_dst:112 def
+R9962:9966 Corelib.Init.Datatypes <> false constr
+def 9985:9995 <> combine_dst
+R10007:10016 Library.DistState.CoreDef <> dist_state def
+binder 9998:10000 <> mu1:115
+binder 10002:10004 <> mu2:116
+R10021:10030 Library.DistState.CoreDef <> dist_state def
+R10044:10046 Library.DistState.CoreDef <> mu1:115 var
+R10058:10059 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R10064:10065 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R10079:10082 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R10071:10071 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10074:10075 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10078:10078 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10126:10135 Library.DistState.CoreDef <> dist_state def
+binder 10122:10124 <> mu2:119
+R10140:10149 Library.DistState.CoreDef <> dist_state def
+R10166:10168 Library.DistState.CoreDef <> mu2:119 var
+R10183:10184 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R10189:10190 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R10208:10211 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R10200:10200 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10203:10204 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10207:10207 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10256:10258 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R10220:10220 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R10255:10255 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R10221:10222 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10240:10242 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10254:10254 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10223:10233 Library.DistState.CoreDef <> union_state def
+R10246:10248 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'*'_x not
+R10259:10275 Library.DistState.CoreDef <> combine_op_helper:120 var
+binder 10103:10119 <> combine_op_helper:122
+R10332:10335 Corelib.Init.Datatypes <> ::list_scope:x_'++'_x not
+R10311:10327 Library.DistState.CoreDef <> combine_op_helper:122 var
+R10329:10331 Library.DistState.CoreDef <> mu2:116 var
+R10336:10346 Library.DistState.CoreDef <> combine_dst:117 def
+R10352:10354 Library.DistState.CoreDef <> mu2:116 var
+def 10372:10383 <> res_dst_to_X
+R10390:10399 Library.DistState.CoreDef <> dist_state def
+binder 10386:10387 <> mu:123
+R10406:10411 Library.DistState.CoreDef <> domain def
+binder 10403:10403 <> X:124
+R10416:10425 Library.DistState.CoreDef <> dist_state def
+R10447:10448 Library.DistState.CoreDef <> mu:123 var
+R10460:10461 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R10466:10467 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R10478:10481 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R10473:10473 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10475:10475 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10477:10477 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10509:10512 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R10489:10489 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10505:10506 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10508:10508 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10490:10500 Library.DistState.CoreDef <> res_st_to_X def
+R10504:10504 Library.DistState.CoreDef <> X:124 var
+R10513:10524 Library.DistState.CoreDef <> res_dst_to_X:125 def
+R10530:10530 Library.DistState.CoreDef <> X:124 var
+R10569:10579 Library.DistState.CoreDef <> combine_dst def
+not 10550:10550 <> ::dstate_scope:x_'⊗'_x
+R10643:10654 Library.DistState.CoreDef <> res_dst_to_X def
+not 10627:10627 <> ::dstate_scope:x_'\|'_x
+def 10701:10712 <> bulid_helper
+R10719:10726 Library.DistState.CoreDef <> local_st def
+binder 10715:10716 <> ss:127
+binder 10729:10730 <> ps:128
+R10737:10746 Library.DistState.CoreDef <> dist_state def
+binder 10733:10734 <> mu:129
+R10753:10758 Library.DistState.CoreDef <> domain def
+binder 10750:10750 <> X:130
+R10763:10772 Library.DistState.CoreDef <> dist_state def
+R10785:10786 Library.DistState.CoreDef <> mu:129 var
+R10797:10798 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R10803:10804 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R10816:10819 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R10810:10810 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10812:10813 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10815:10815 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10836:10844 Library.DistState.CoreDef <> beq_state def
+R10846:10847 Library.DistState.CoreDef <> ss:127 var
+R10850:10860 Library.DistState.CoreDef <> res_st_to_X def
+R10864:10864 Library.DistState.CoreDef <> X:130 var
+R10933:10944 Library.DistState.CoreDef <> bulid_helper:131 def
+R10956:10956 Library.DistState.CoreDef <> X:130 var
+R10949:10950 Library.DistState.CoreDef <> ps:128 var
+R10946:10947 Library.DistState.CoreDef <> ss:127 var
+R10893:10896 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R10878:10878 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10880:10881 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10892:10892 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R10885:10887 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'*'_x not
+R10883:10884 Library.DistState.CoreDef <> ps:128 var
+R10897:10908 Library.DistState.CoreDef <> bulid_helper:131 def
+R10920:10920 Library.DistState.CoreDef <> X:130 var
+R10913:10914 Library.DistState.CoreDef <> ps:128 var
+R10910:10911 Library.DistState.CoreDef <> ss:127 var
+def 10975:10987 <> bulid_dst_sub
+R11001:11010 Library.DistState.CoreDef <> dist_state def
+binder 10990:10995 <> mu_sub:133
+binder 10997:10998 <> mu:134
+R11017:11022 Library.DistState.CoreDef <> domain def
+binder 11014:11014 <> X:135
+R11026:11035 Library.DistState.CoreDef <> dist_state def
+R11049:11054 Library.DistState.CoreDef <> mu_sub:133 var
+R11065:11066 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R11071:11072 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R11086:11089 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R11079:11079 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11082:11082 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11085:11085 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11163:11193 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R11101:11101 Library.DistState.CoreDef <> ::dstate_scope:x_'*'_x not
+R11134:11138 Library.DistState.CoreDef <> ::dstate_scope:x_'*'_x not
+R11162:11162 Library.DistState.CoreDef <> ::dstate_scope:x_'*'_x not
+R11102:11102 Stdlib.Reals.Rdefinitions <> ::R_scope:'/'_x not
+R11103:11120 Library.DistState.CoreDef <> get_prob_in_dstate def
+R11125:11128 Library.DistState.CoreDef <> ::dstate_scope:x_'\|'_x not
+R11123:11124 Library.DistState.CoreDef <> mu:134 var
+R11129:11129 Library.DistState.CoreDef <> X:135 var
+R11139:11150 Library.DistState.CoreDef <> bulid_helper def
+R11158:11159 Library.DistState.CoreDef <> mu:134 var
+R11161:11161 Library.DistState.CoreDef <> X:135 var
+R11194:11206 Library.DistState.CoreDef <> bulid_dst_sub:136 def
+R11219:11219 Library.DistState.CoreDef <> X:135 var
+R11216:11217 Library.DistState.CoreDef <> mu:134 var
+def 11270:11280 <> Identify_mu
+R11283:11292 Library.DistState.CoreDef <> dist_state def
+R11297:11297 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11313:11313 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11298:11298 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11310:11310 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11312:11312 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11299:11309 Library.DistState.CoreDef <> Empty_State def
+ind 11327:11342 <> partial_dst_Prop
+constr 11455:11460 <> PD_nil
+constr 11490:11496 <> PD_cons
+R11349:11354 Library.DistState.CoreDef <> domain def
+binder 11345:11345 <> X:138
+R11369:11372 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R11359:11368 Library.DistState.CoreDef <> dist_state def
+R11464:11479 Library.DistState.CoreDef <> partial_dst_Prop:139 ind
+R11483:11484 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R11481:11481 Library.DistState.CoreDef <> X:138 var
+R11511:11518 Library.DistState.CoreDef <> local_st def
+binder 11508:11508 <> s:141
+R11525:11525 Stdlib.Reals.Rdefinitions RbaseSymbolsImpl R defax
+binder 11522:11522 <> p:142
+binder 11528:11529 <> mu:143
+R11538:11538 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R11571:11581 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R11539:11550 Library.DistState.CoreDef <> domain_equiv def
+R11552:11552 Library.DistState.CoreDef <> X:138 var
+R11555:11567 Library.DistState.CoreDef <> return_domain def
+R11569:11569 Library.DistState.CoreDef <> s:141 var
+R11603:11612 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R11582:11597 Library.DistState.CoreDef <> partial_dst_Prop:139 ind
+R11601:11602 Library.DistState.CoreDef <> mu:143 var
+R11599:11599 Library.DistState.CoreDef <> X:138 var
+R11613:11628 Library.DistState.CoreDef <> partial_dst_Prop:139 ind
+R11639:11642 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R11633:11633 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11635:11636 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11638:11638 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R11634:11634 Library.DistState.CoreDef <> s:141 var
+R11637:11637 Library.DistState.CoreDef <> p:142 var
+R11643:11644 Library.DistState.CoreDef <> mu:143 var
+R11630:11630 Library.DistState.CoreDef <> X:138 var
+scheme 11327:11342 <> partial_dst_Prop_ind
+scheme 11327:11342 <> partial_dst_Prop_sind
+rec 11656:11667 <> partial_dist
+proj 11676:11678 <> dom
+proj 11692:11693 <> mu
+proj 11711:11721 <> all_partial
+R11682:11687 Library.DistState.CoreDef <> domain def
+R11697:11706 Library.DistState.CoreDef <> dist_state def
+R11725:11740 Library.DistState.CoreDef <> partial_dst_Prop ind
+R11742:11744 Library.DistState.CoreDef <> dom:145 meth
+R11746:11747 Library.DistState.CoreDef <> mu:146 meth
+def 11764:11780 <> partial_dst_equiv
+R11793:11804 Library.DistState.CoreDef <> partial_dist rec
+binder 11783:11785 <> pd1:148
+binder 11787:11789 <> pd2:149
+R11850:11853 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R11829:11832 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R11825:11827 Library.DistState.CoreDef <> dom proj
+R11820:11822 Library.DistState.CoreDef <> pd1:148 var
+R11838:11840 Library.DistState.CoreDef <> dom proj
+R11833:11835 Library.DistState.CoreDef <> pd2:149 var
+R11863:11866 Library.DistState.CoreDef <> ::dstate_scope:x_'=='_x not
+R11860:11861 Library.DistState.CoreDef <> mu proj
+R11855:11857 Library.DistState.CoreDef <> pd1:148 var
+R11872:11873 Library.DistState.CoreDef <> mu proj
+R11867:11869 Library.DistState.CoreDef <> pd2:149 var
+R11916:11932 Library.DistState.CoreDef <> partial_dst_equiv def
+not 11898:11898 <> :::x_'≡'_x
+def 11970:11987 <> partial_dst_subset
+R12003:12006 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R11991:12002 Library.DistState.CoreDef <> partial_dist rec
+R12019:12022 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R12007:12018 Library.DistState.CoreDef <> partial_dist rec
+binder 12038:12040 <> pd1:150
+binder 12042:12044 <> pd2:151
+R12092:12113 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R12085:12087 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R12049:12064 Library.DistState.CoreDef <> is_domain_subset def
+R12071:12073 Library.DistState.CoreDef <> dom proj
+R12066:12068 Library.DistState.CoreDef <> pd1:150 var
+R12081:12083 Library.DistState.CoreDef <> dom proj
+R12076:12078 Library.DistState.CoreDef <> pd2:151 var
+R12088:12091 Corelib.Init.Datatypes <> true constr
+R12114:12114 Library.DistState.CoreDef <> ::dstate_scope:x_'=='_x not
+R12136:12140 Library.DistState.CoreDef <> ::dstate_scope:x_'=='_x not
+R12123:12126 Library.DistState.CoreDef <> ::dstate_scope:x_'\|'_x not
+R12120:12121 Library.DistState.CoreDef <> mu proj
+R12115:12117 Library.DistState.CoreDef <> pd2:151 var
+R12132:12134 Library.DistState.CoreDef <> dom proj
+R12127:12129 Library.DistState.CoreDef <> pd1:150 var
+R12146:12147 Library.DistState.CoreDef <> mu proj
+R12141:12143 Library.DistState.CoreDef <> pd1:150 var
+R12180:12197 Library.DistState.CoreDef <> partial_dst_subset def
+not 12160:12160 <> ::dstate_scope:x_'⊑'_x
+def 12249:12254 <> pd_emp
+R12260:12265 Library.DistState.CoreDef <> domain def
+binder 12257:12257 <> X:152
+R12269:12280 Library.DistState.CoreDef <> partial_dist rec
+R12331:12333 Library.DistState.CoreDef <> dom proj
+R12331:12333 Library.DistState.CoreDef <> dom proj
+R12331:12333 Library.DistState.CoreDef <> dom proj
+R12345:12346 Library.DistState.CoreDef <> mu proj
+R12345:12346 Library.DistState.CoreDef <> mu proj
+R12371:12381 Library.DistState.CoreDef <> all_partial proj
+R12371:12381 Library.DistState.CoreDef <> all_partial proj
+R12337:12337 Library.DistState.CoreDef <> X:152 var
+R12350:12352 Corelib.Init.Datatypes <> nil constr
+R12385:12390 Library.DistState.CoreDef <> PD_nil constr
+R12392:12392 Library.DistState.CoreDef <> X:152 var

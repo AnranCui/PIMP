@@ -1,0 +1,1532 @@
+DIGEST cf957043daf27da727949064bd28384e
+FLibrary.DistState.Domain
+R27:39 Stdlib.QArith.QArith <> <> lib
+R69:81 Stdlib.QArith.Qround <> <> lib
+R111:128 Stdlib.QArith.QArith_base <> <> lib
+R158:166 Stdlib.Bool.Bool <> <> lib
+R196:207 Stdlib.Reals.R_sqrt <> <> lib
+R237:240 Stdlib.Lists.List <> <> lib
+R270:280 Stdlib.Reals.Reals <> <> lib
+R310:312 Stdlib.micromega.Lia <> <> lib
+R342:371 Stdlib.Logic.FunctionalExtensionality <> <> lib
+R401:421 Stdlib.Logic.ClassicalChoice <> <> lib
+R451:463 Stdlib.ZArith.ZArith <> <> lib
+R474:486 Stdlib.Lists.List ListNotations <> mod
+R535:559 Library.DistState.CoreDef <> <> lib
+prf 686:696 <> orb_iff_nil
+binder 706:706 <> l:1
+binder 708:709 <> l':2
+R735:739 Corelib.Init.Logic <> ::type_scope:x_'<->'_x not
+R730:732 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R715:724 Library.DistState.CoreDef <> orb_domain def
+R726:726 Library.DistState.Domain <> l:1 var
+R728:729 Library.DistState.Domain <> l':2 var
+R733:734 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R746:749 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R741:743 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R740:740 Library.DistState.Domain <> l:1 var
+R744:745 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R752:754 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R750:751 Library.DistState.Domain <> l':2 var
+R755:756 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+prf 1077:1092 <> orb_domain_nil_r
+binder 1102:1102 <> l:3
+R1120:1122 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R1105:1114 Library.DistState.CoreDef <> orb_domain def
+R1116:1116 Library.DistState.Domain <> l:3 var
+R1118:1119 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R1123:1123 Library.DistState.Domain <> l:3 var
+prf 1211:1226 <> orb_domain_nil_l
+binder 1236:1236 <> l:4
+R1254:1256 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R1239:1248 Library.DistState.CoreDef <> orb_domain def
+R1250:1251 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R1253:1253 Library.DistState.Domain <> l:4 var
+R1257:1257 Library.DistState.Domain <> l:4 var
+prf 1345:1359 <> orb_domain_refl
+binder 1369:1369 <> l:5
+R1386:1388 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R1372:1381 Library.DistState.CoreDef <> orb_domain def
+R1383:1383 Library.DistState.Domain <> l:5 var
+R1385:1385 Library.DistState.Domain <> l:5 var
+R1389:1389 Library.DistState.Domain <> l:5 var
+R1478:1485 Stdlib.Bool.Bool <> orb_diag thm
+R1478:1485 Stdlib.Bool.Bool <> orb_diag thm
+R1478:1485 Stdlib.Bool.Bool <> orb_diag thm
+prf 1521:1535 <> orb_domain_comm
+R1552:1557 Library.DistState.CoreDef <> domain def
+binder 1546:1546 <> l:6
+binder 1548:1549 <> l':7
+R1579:1581 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R1564:1573 Library.DistState.CoreDef <> orb_domain def
+R1575:1575 Library.DistState.Domain <> l:6 var
+R1577:1578 Library.DistState.Domain <> l':7 var
+R1582:1591 Library.DistState.CoreDef <> orb_domain def
+R1593:1594 Library.DistState.Domain <> l':7 var
+R1596:1596 Library.DistState.Domain <> l:6 var
+R1846:1853 Stdlib.Bool.Bool <> orb_comm thm
+R1846:1853 Stdlib.Bool.Bool <> orb_comm thm
+prf 1870:1885 <> orb_domain_assoc
+binder 1895:1896 <> l0:8
+binder 1898:1899 <> l1:9
+binder 1901:1902 <> l2:10
+R1940:1942 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R1908:1917 Library.DistState.CoreDef <> orb_domain def
+R1919:1920 Library.DistState.Domain <> l0:8 var
+R1923:1932 Library.DistState.CoreDef <> orb_domain def
+R1934:1935 Library.DistState.Domain <> l1:9 var
+R1937:1938 Library.DistState.Domain <> l2:10 var
+R1943:1952 Library.DistState.CoreDef <> orb_domain def
+R1955:1964 Library.DistState.CoreDef <> orb_domain def
+R1966:1967 Library.DistState.Domain <> l0:8 var
+R1969:1970 Library.DistState.Domain <> l1:9 var
+R1973:1974 Library.DistState.Domain <> l2:10 var
+R2393:2401 Stdlib.Bool.Bool <> orb_assoc thm
+R2393:2401 Stdlib.Bool.Bool <> orb_assoc thm
+prf 2433:2447 <> intersect_nil_r
+binder 2457:2457 <> l:11
+R2484:2486 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R2460:2478 Library.DistState.CoreDef <> is_domain_intersect def
+R2480:2480 Library.DistState.Domain <> l:11 var
+R2482:2483 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R2487:2491 Corelib.Init.Datatypes <> false constr
+prf 2602:2615 <> intersect_comm
+binder 2625:2626 <> l0:12
+binder 2628:2629 <> l1:13
+R2660:2662 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R2635:2653 Library.DistState.CoreDef <> is_domain_intersect def
+R2655:2656 Library.DistState.Domain <> l0:12 var
+R2658:2659 Library.DistState.Domain <> l1:13 var
+R2663:2681 Library.DistState.CoreDef <> is_domain_intersect def
+R2683:2684 Library.DistState.Domain <> l1:13 var
+R2686:2687 Library.DistState.Domain <> l0:12 var
+R2795:2809 Library.DistState.Domain <> intersect_nil_r thm
+R2795:2809 Library.DistState.Domain <> intersect_nil_r thm
+R2795:2809 Library.DistState.Domain <> intersect_nil_r thm
+R2897:2905 Stdlib.Bool.Bool <> andb_comm thm
+R2897:2905 Stdlib.Bool.Bool <> andb_comm thm
+R2897:2905 Stdlib.Bool.Bool <> andb_comm thm
+R2920:2921 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R2920:2921 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+prf 2971:2992 <> intersect_orb_snd_left
+binder 3002:3003 <> l0:14
+binder 3005:3006 <> l1:15
+binder 3008:3009 <> l2:16
+R3063:3069 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R3055:3057 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R3014:3032 Library.DistState.CoreDef <> is_domain_intersect def
+R3034:3035 Library.DistState.Domain <> l0:14 var
+R3038:3047 Library.DistState.CoreDef <> orb_domain def
+R3049:3050 Library.DistState.Domain <> l1:15 var
+R3052:3053 Library.DistState.Domain <> l2:16 var
+R3058:3062 Corelib.Init.Datatypes <> false constr
+R3095:3097 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R3070:3088 Library.DistState.CoreDef <> is_domain_intersect def
+R3090:3091 Library.DistState.Domain <> l0:14 var
+R3093:3094 Library.DistState.Domain <> l1:15 var
+R3098:3102 Corelib.Init.Datatypes <> false constr
+R3429:3433 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R3442:3442 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R3436:3439 Corelib.Init.Datatypes <> ::bool_scope:x_'||'_x not
+R3429:3433 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R3442:3442 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R3436:3439 Corelib.Init.Datatypes <> ::bool_scope:x_'||'_x not
+R3494:3497 Corelib.Init.Datatypes <> andb def
+prf 3644:3665 <> intersect_orb_fst_left
+binder 3675:3676 <> l0:17
+binder 3678:3679 <> l1:18
+binder 3681:3682 <> l2:19
+R3736:3742 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R3728:3730 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R3687:3705 Library.DistState.CoreDef <> is_domain_intersect def
+R3708:3717 Library.DistState.CoreDef <> orb_domain def
+R3719:3720 Library.DistState.Domain <> l0:17 var
+R3722:3723 Library.DistState.Domain <> l1:18 var
+R3726:3727 Library.DistState.Domain <> l2:19 var
+R3731:3735 Corelib.Init.Datatypes <> false constr
+R3768:3770 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R3743:3761 Library.DistState.CoreDef <> is_domain_intersect def
+R3763:3764 Library.DistState.Domain <> l0:17 var
+R3766:3767 Library.DistState.Domain <> l2:19 var
+R3771:3775 Corelib.Init.Datatypes <> false constr
+R4100:4100 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R4109:4113 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R4103:4106 Corelib.Init.Datatypes <> ::bool_scope:x_'||'_x not
+R4100:4100 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R4109:4113 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R4103:4106 Corelib.Init.Datatypes <> ::bool_scope:x_'||'_x not
+R4166:4179 Stdlib.Bool.Bool <> andb_false_iff thm
+R4166:4179 Stdlib.Bool.Bool <> andb_false_iff thm
+R4223:4235 Stdlib.Bool.Bool <> orb_false_iff thm
+R4223:4235 Stdlib.Bool.Bool <> orb_false_iff thm
+R4355:4366 Stdlib.Bool.Bool <> andb_false_r thm
+R4355:4366 Stdlib.Bool.Bool <> andb_false_r thm
+R4355:4366 Stdlib.Bool.Bool <> andb_false_r thm
+prf 4424:4446 <> intersect_orb_fst_right
+binder 4456:4457 <> l0:20
+binder 4459:4460 <> l1:21
+binder 4462:4463 <> l2:22
+R4517:4523 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R4509:4511 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R4468:4486 Library.DistState.CoreDef <> is_domain_intersect def
+R4489:4498 Library.DistState.CoreDef <> orb_domain def
+R4500:4501 Library.DistState.Domain <> l0:20 var
+R4503:4504 Library.DistState.Domain <> l1:21 var
+R4507:4508 Library.DistState.Domain <> l2:22 var
+R4512:4516 Corelib.Init.Datatypes <> false constr
+R4549:4551 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R4524:4542 Library.DistState.CoreDef <> is_domain_intersect def
+R4544:4545 Library.DistState.Domain <> l1:21 var
+R4547:4548 Library.DistState.Domain <> l2:22 var
+R4552:4556 Corelib.Init.Datatypes <> false constr
+R4881:4881 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R4890:4894 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R4884:4887 Corelib.Init.Datatypes <> ::bool_scope:x_'||'_x not
+R4881:4881 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R4890:4894 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R4884:4887 Corelib.Init.Datatypes <> ::bool_scope:x_'||'_x not
+R4947:4960 Stdlib.Bool.Bool <> andb_false_iff thm
+R4947:4960 Stdlib.Bool.Bool <> andb_false_iff thm
+R5004:5016 Stdlib.Bool.Bool <> orb_false_iff thm
+R5004:5016 Stdlib.Bool.Bool <> orb_false_iff thm
+R5139:5150 Stdlib.Bool.Bool <> andb_false_r thm
+R5139:5150 Stdlib.Bool.Bool <> andb_false_r thm
+R5139:5150 Stdlib.Bool.Bool <> andb_false_r thm
+prf 5209:5230 <> intersect_orb_snd_conj
+binder 5240:5241 <> l0:23
+binder 5243:5244 <> l1:24
+binder 5246:5247 <> l2:25
+R5302:5308 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R5294:5296 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R5253:5271 Library.DistState.CoreDef <> is_domain_intersect def
+R5273:5274 Library.DistState.Domain <> l0:23 var
+R5277:5286 Library.DistState.CoreDef <> orb_domain def
+R5288:5289 Library.DistState.Domain <> l1:24 var
+R5291:5292 Library.DistState.Domain <> l2:25 var
+R5297:5301 Corelib.Init.Datatypes <> false constr
+R5342:5345 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R5334:5336 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R5309:5327 Library.DistState.CoreDef <> is_domain_intersect def
+R5329:5330 Library.DistState.Domain <> l0:23 var
+R5332:5333 Library.DistState.Domain <> l1:24 var
+R5337:5341 Corelib.Init.Datatypes <> false constr
+R5371:5373 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R5346:5364 Library.DistState.CoreDef <> is_domain_intersect def
+R5366:5367 Library.DistState.Domain <> l0:23 var
+R5369:5370 Library.DistState.Domain <> l2:25 var
+R5374:5378 Corelib.Init.Datatypes <> false constr
+R5415:5436 Library.DistState.Domain <> intersect_orb_snd_left thm
+R5415:5436 Library.DistState.Domain <> intersect_orb_snd_left thm
+R5468:5482 Library.DistState.Domain <> orb_domain_comm thm
+R5468:5482 Library.DistState.Domain <> orb_domain_comm thm
+R5468:5482 Library.DistState.Domain <> orb_domain_comm thm
+R5496:5517 Library.DistState.Domain <> intersect_orb_snd_left thm
+R5496:5517 Library.DistState.Domain <> intersect_orb_snd_left thm
+prf 5549:5567 <> intersect_orb_l_iff
+binder 5577:5578 <> l0:26
+binder 5580:5581 <> l1:27
+binder 5583:5583 <> l:28
+R5621:5624 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R5613:5615 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R5589:5607 Library.DistState.CoreDef <> is_domain_intersect def
+R5609:5610 Library.DistState.Domain <> l0:26 var
+R5612:5612 Library.DistState.Domain <> l:28 var
+R5616:5620 Corelib.Init.Datatypes <> false constr
+R5657:5662 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R5649:5651 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R5625:5643 Library.DistState.CoreDef <> is_domain_intersect def
+R5645:5646 Library.DistState.Domain <> l1:27 var
+R5648:5648 Library.DistState.Domain <> l:28 var
+R5652:5656 Corelib.Init.Datatypes <> false constr
+R5703:5705 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R5663:5681 Library.DistState.CoreDef <> is_domain_intersect def
+R5684:5693 Library.DistState.CoreDef <> orb_domain def
+R5695:5696 Library.DistState.Domain <> l0:26 var
+R5698:5699 Library.DistState.Domain <> l1:27 var
+R5702:5702 Library.DistState.Domain <> l:28 var
+R5706:5710 Corelib.Init.Datatypes <> false constr
+prf 6197:6215 <> intersect_orb_r_iff
+binder 6225:6226 <> l0:29
+binder 6228:6229 <> l1:30
+binder 6231:6232 <> l2:31
+R6271:6274 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R6263:6265 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R6238:6256 Library.DistState.CoreDef <> is_domain_intersect def
+R6258:6259 Library.DistState.Domain <> l0:29 var
+R6261:6262 Library.DistState.Domain <> l1:30 var
+R6266:6270 Corelib.Init.Datatypes <> false constr
+R6308:6313 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R6300:6302 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R6275:6293 Library.DistState.CoreDef <> is_domain_intersect def
+R6295:6296 Library.DistState.Domain <> l0:29 var
+R6298:6299 Library.DistState.Domain <> l2:31 var
+R6303:6307 Corelib.Init.Datatypes <> false constr
+R6355:6357 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R6314:6332 Library.DistState.CoreDef <> is_domain_intersect def
+R6334:6335 Library.DistState.Domain <> l0:29 var
+R6338:6347 Library.DistState.CoreDef <> orb_domain def
+R6349:6350 Library.DistState.Domain <> l1:30 var
+R6352:6353 Library.DistState.Domain <> l2:31 var
+R6358:6362 Corelib.Init.Datatypes <> false constr
+prf 6858:6890 <> all_false_implies_intersect_false
+binder 6900:6900 <> l:32
+binder 6902:6903 <> l':33
+R6927:6930 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R6920:6922 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R6909:6917 Library.DistState.CoreDef <> all_false def
+R6919:6919 Library.DistState.Domain <> l:32 var
+R6923:6926 Corelib.Init.Datatypes <> true constr
+R6955:6957 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R6931:6949 Library.DistState.CoreDef <> is_domain_intersect def
+R6951:6952 Library.DistState.Domain <> l':33 var
+R6954:6954 Library.DistState.Domain <> l:32 var
+R6958:6962 Corelib.Init.Datatypes <> false constr
+R7121:7133 Stdlib.Bool.Bool <> andb_true_iff thm
+R7121:7133 Stdlib.Bool.Bool <> andb_true_iff thm
+R7161:7173 Stdlib.Bool.Bool <> negb_true_iff thm
+R7161:7173 Stdlib.Bool.Bool <> negb_true_iff thm
+R7203:7214 Stdlib.Bool.Bool <> andb_false_r thm
+R7203:7214 Stdlib.Bool.Bool <> andb_false_r thm
+R7203:7214 Stdlib.Bool.Bool <> andb_false_r thm
+prf 7251:7271 <> intersect_subst_trans
+binder 7281:7282 <> l0:34
+binder 7284:7285 <> l1:35
+binder 7287:7288 <> l2:36
+R7327:7332 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R7319:7321 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R7294:7312 Library.DistState.CoreDef <> is_domain_intersect def
+R7314:7315 Library.DistState.Domain <> l0:34 var
+R7317:7318 Library.DistState.Domain <> l2:36 var
+R7322:7326 Corelib.Init.Datatypes <> false constr
+R7362:7368 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R7355:7357 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R7333:7348 Library.DistState.CoreDef <> is_domain_subset def
+R7350:7351 Library.DistState.Domain <> l1:35 var
+R7353:7354 Library.DistState.Domain <> l2:36 var
+R7358:7361 Corelib.Init.Datatypes <> true constr
+R7394:7396 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R7369:7387 Library.DistState.CoreDef <> is_domain_intersect def
+R7389:7390 Library.DistState.Domain <> l0:34 var
+R7392:7393 Library.DistState.Domain <> l1:35 var
+R7397:7401 Corelib.Init.Datatypes <> false constr
+R7690:7702 Stdlib.Bool.Bool <> andb_true_iff thm
+R7690:7702 Stdlib.Bool.Bool <> andb_true_iff thm
+R7736:7748 Stdlib.Bool.Bool <> negb_true_iff thm
+R7736:7748 Stdlib.Bool.Bool <> negb_true_iff thm
+R7777:7788 Stdlib.Bool.Bool <> andb_false_r thm
+R7777:7788 Stdlib.Bool.Bool <> andb_false_r thm
+R7777:7788 Stdlib.Bool.Bool <> andb_false_r thm
+R7804:7836 Library.DistState.Domain <> all_false_implies_intersect_false thm
+R7804:7836 Library.DistState.Domain <> all_false_implies_intersect_false thm
+R7875:7887 Stdlib.Bool.Bool <> andb_true_iff thm
+R7875:7887 Stdlib.Bool.Bool <> andb_true_iff thm
+R7921:7932 Stdlib.Bool.Bool <> orb_true_iff thm
+R7921:7932 Stdlib.Bool.Bool <> orb_true_iff thm
+R7975:7987 Stdlib.Bool.Bool <> negb_true_iff thm
+R7975:7987 Stdlib.Bool.Bool <> negb_true_iff thm
+R8016:8027 Stdlib.Bool.Bool <> andb_false_r thm
+R8016:8027 Stdlib.Bool.Bool <> andb_false_r thm
+R8016:8027 Stdlib.Bool.Bool <> andb_false_r thm
+R8265:8275 Stdlib.Bool.Bool <> andb_true_r thm
+R8265:8275 Stdlib.Bool.Bool <> andb_true_r thm
+R8265:8275 Stdlib.Bool.Bool <> andb_true_r thm
+R8329:8340 Stdlib.Bool.Bool <> andb_false_l thm
+R8329:8340 Stdlib.Bool.Bool <> andb_false_l thm
+R8329:8340 Stdlib.Bool.Bool <> andb_false_l thm
+prf 8416:8430 <> dom_subset_refl
+binder 8440:8440 <> l:37
+R8463:8465 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R8443:8458 Library.DistState.CoreDef <> is_domain_subset def
+R8460:8460 Library.DistState.Domain <> l:37 var
+R8462:8462 Library.DistState.Domain <> l:37 var
+R8466:8469 Corelib.Init.Datatypes <> true constr
+prf 8599:8627 <> all_false_implies_subset_bool
+binder 8637:8637 <> l:38
+binder 8639:8640 <> l':39
+R8664:8667 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R8657:8659 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R8646:8654 Library.DistState.CoreDef <> all_false def
+R8656:8656 Library.DistState.Domain <> l:38 var
+R8660:8663 Corelib.Init.Datatypes <> true constr
+R8689:8691 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R8668:8683 Library.DistState.CoreDef <> is_domain_subset def
+R8685:8685 Library.DistState.Domain <> l:38 var
+R8687:8688 Library.DistState.Domain <> l':39 var
+R8692:8695 Corelib.Init.Datatypes <> true constr
+R8930:8942 Stdlib.Bool.Bool <> andb_true_iff thm
+R8930:8942 Stdlib.Bool.Bool <> andb_true_iff thm
+prf 9016:9048 <> all_false_implies_subst_all_false
+binder 9058:9058 <> l:40
+binder 9060:9061 <> l':41
+R9086:9089 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R9079:9081 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R9067:9075 Library.DistState.CoreDef <> all_false def
+R9077:9078 Library.DistState.Domain <> l':41 var
+R9082:9085 Corelib.Init.Datatypes <> true constr
+R9118:9124 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R9111:9113 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R9090:9105 Library.DistState.CoreDef <> is_domain_subset def
+R9107:9107 Library.DistState.Domain <> l:40 var
+R9109:9110 Library.DistState.Domain <> l':41 var
+R9114:9117 Corelib.Init.Datatypes <> true constr
+R9136:9138 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R9125:9133 Library.DistState.CoreDef <> all_false def
+R9135:9135 Library.DistState.Domain <> l:40 var
+R9139:9142 Corelib.Init.Datatypes <> true constr
+R9345:9348 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R9339:9342 Corelib.Init.Datatypes <> negb def
+R9349:9357 Library.DistState.CoreDef <> all_false def
+R9345:9348 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R9339:9342 Corelib.Init.Datatypes <> negb def
+R9349:9357 Library.DistState.CoreDef <> all_false def
+R9426:9438 Stdlib.Bool.Bool <> andb_true_iff thm
+R9426:9438 Stdlib.Bool.Bool <> andb_true_iff thm
+R9467:9479 Stdlib.Bool.Bool <> andb_true_iff thm
+R9467:9479 Stdlib.Bool.Bool <> andb_true_iff thm
+R9510:9522 Stdlib.Bool.Bool <> andb_true_iff thm
+R9510:9522 Stdlib.Bool.Bool <> andb_true_iff thm
+R9534:9545 Stdlib.Bool.Bool <> orb_true_iff thm
+R9534:9545 Stdlib.Bool.Bool <> orb_true_iff thm
+prf 9689:9704 <> dom_subset_trans
+R9717:9722 Library.DistState.CoreDef <> domain def
+binder 9707:9708 <> l0:42
+binder 9710:9711 <> l1:43
+binder 9713:9714 <> l2:44
+R9758:9761 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R9751:9753 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R9729:9744 Library.DistState.CoreDef <> is_domain_subset def
+R9746:9747 Library.DistState.Domain <> l0:42 var
+R9749:9750 Library.DistState.Domain <> l1:43 var
+R9754:9757 Corelib.Init.Datatypes <> true constr
+R9791:9797 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R9784:9786 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R9762:9777 Library.DistState.CoreDef <> is_domain_subset def
+R9779:9780 Library.DistState.Domain <> l1:43 var
+R9782:9783 Library.DistState.Domain <> l2:44 var
+R9787:9790 Corelib.Init.Datatypes <> true constr
+R9820:9822 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R9798:9813 Library.DistState.CoreDef <> is_domain_subset def
+R9815:9816 Library.DistState.Domain <> l0:42 var
+R9818:9819 Library.DistState.Domain <> l2:44 var
+R9823:9826 Corelib.Init.Datatypes <> true constr
+R10105:10108 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R10098:10101 Corelib.Init.Datatypes <> negb def
+R10109:10117 Library.DistState.CoreDef <> all_false def
+R10105:10108 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R10098:10101 Corelib.Init.Datatypes <> negb def
+R10109:10117 Library.DistState.CoreDef <> all_false def
+R10164:10176 Stdlib.Bool.Bool <> andb_true_iff thm
+R10164:10176 Stdlib.Bool.Bool <> andb_true_iff thm
+R10210:10222 Stdlib.Bool.Bool <> andb_true_iff thm
+R10210:10222 Stdlib.Bool.Bool <> andb_true_iff thm
+R10288:10316 Library.DistState.Domain <> all_false_implies_subset_bool thm
+R10288:10316 Library.DistState.Domain <> all_false_implies_subset_bool thm
+R10406:10418 Stdlib.Bool.Bool <> andb_true_iff thm
+R10406:10418 Stdlib.Bool.Bool <> andb_true_iff thm
+R10455:10466 Stdlib.Bool.Bool <> orb_true_iff thm
+R10455:10466 Stdlib.Bool.Bool <> orb_true_iff thm
+R10545:10548 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R10538:10541 Corelib.Init.Datatypes <> negb def
+R10549:10557 Library.DistState.CoreDef <> all_false def
+R10545:10548 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R10538:10541 Corelib.Init.Datatypes <> negb def
+R10549:10557 Library.DistState.CoreDef <> all_false def
+R10603:10615 Stdlib.Bool.Bool <> andb_true_iff thm
+R10603:10615 Stdlib.Bool.Bool <> andb_true_iff thm
+R10649:10681 Library.DistState.Domain <> all_false_implies_subst_all_false thm
+R10649:10681 Library.DistState.Domain <> all_false_implies_subst_all_false thm
+R10734:10737 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R10725:10728 Corelib.Init.Datatypes <> negb def
+R10730:10733 Corelib.Init.Datatypes <> true constr
+R10738:10746 Library.DistState.CoreDef <> all_false def
+R10734:10737 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R10725:10728 Corelib.Init.Datatypes <> negb def
+R10730:10733 Corelib.Init.Datatypes <> true constr
+R10738:10746 Library.DistState.CoreDef <> all_false def
+R10794:10806 Stdlib.Bool.Bool <> andb_true_iff thm
+R10794:10806 Stdlib.Bool.Bool <> andb_true_iff thm
+R10843:10855 Stdlib.Bool.Bool <> andb_true_iff thm
+R10843:10855 Stdlib.Bool.Bool <> andb_true_iff thm
+R10891:10903 Stdlib.Bool.Bool <> andb_true_iff thm
+R10891:10903 Stdlib.Bool.Bool <> andb_true_iff thm
+R10928:10939 Stdlib.Bool.Bool <> orb_true_iff thm
+R10928:10939 Stdlib.Bool.Bool <> orb_true_iff thm
+R11014:11025 Stdlib.Bool.Bool <> orb_true_iff thm
+R11014:11025 Stdlib.Bool.Bool <> orb_true_iff thm
+R11127:11136 Stdlib.Bool.Bool <> orb_true_r thm
+R11127:11136 Stdlib.Bool.Bool <> orb_true_r thm
+prf 11205:11224 <> dom_subset_orb_dom_r
+binder 11234:11234 <> l:45
+binder 11236:11237 <> l0:46
+binder 11239:11240 <> l1:47
+R11273:11276 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R11266:11268 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R11245:11260 Library.DistState.CoreDef <> is_domain_subset def
+R11262:11262 Library.DistState.Domain <> l:45 var
+R11264:11265 Library.DistState.Domain <> l0:46 var
+R11269:11272 Corelib.Init.Datatypes <> true constr
+R11314:11316 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R11277:11292 Library.DistState.CoreDef <> is_domain_subset def
+R11294:11294 Library.DistState.Domain <> l:45 var
+R11297:11306 Library.DistState.CoreDef <> orb_domain def
+R11308:11309 Library.DistState.Domain <> l0:46 var
+R11311:11312 Library.DistState.Domain <> l1:47 var
+R11317:11320 Corelib.Init.Datatypes <> true constr
+R11559:11562 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R11553:11556 Corelib.Init.Datatypes <> negb def
+R11563:11571 Library.DistState.CoreDef <> all_false def
+R11559:11562 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R11553:11556 Corelib.Init.Datatypes <> negb def
+R11563:11571 Library.DistState.CoreDef <> all_false def
+R11618:11630 Stdlib.Bool.Bool <> andb_true_iff thm
+R11618:11630 Stdlib.Bool.Bool <> andb_true_iff thm
+R11665:11677 Stdlib.Bool.Bool <> andb_true_iff thm
+R11665:11677 Stdlib.Bool.Bool <> andb_true_iff thm
+R11741:11769 Library.DistState.Domain <> all_false_implies_subset_bool thm
+R11741:11769 Library.DistState.Domain <> all_false_implies_subset_bool thm
+R11796:11808 Stdlib.Bool.Bool <> andb_true_iff thm
+R11796:11808 Stdlib.Bool.Bool <> andb_true_iff thm
+R11841:11852 Stdlib.Bool.Bool <> orb_true_iff thm
+R11841:11852 Stdlib.Bool.Bool <> orb_true_iff thm
+R11953:11962 Stdlib.Bool.Bool <> orb_true_r thm
+R11953:11962 Stdlib.Bool.Bool <> orb_true_r thm
+R11953:11962 Stdlib.Bool.Bool <> orb_true_r thm
+prf 12012:12031 <> dom_subset_orb_dom_l
+binder 12041:12041 <> l:48
+binder 12043:12044 <> l0:49
+binder 12046:12047 <> l1:50
+R12080:12083 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R12073:12075 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R12052:12067 Library.DistState.CoreDef <> is_domain_subset def
+R12069:12069 Library.DistState.Domain <> l:48 var
+R12071:12072 Library.DistState.Domain <> l1:50 var
+R12076:12079 Corelib.Init.Datatypes <> true constr
+R12121:12123 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R12084:12099 Library.DistState.CoreDef <> is_domain_subset def
+R12101:12101 Library.DistState.Domain <> l:48 var
+R12104:12113 Library.DistState.CoreDef <> orb_domain def
+R12115:12116 Library.DistState.Domain <> l0:49 var
+R12118:12119 Library.DistState.Domain <> l1:50 var
+R12124:12127 Corelib.Init.Datatypes <> true constr
+R12155:12169 Library.DistState.Domain <> orb_domain_comm thm
+R12155:12169 Library.DistState.Domain <> orb_domain_comm thm
+R12155:12169 Library.DistState.Domain <> orb_domain_comm thm
+R12178:12197 Library.DistState.Domain <> dom_subset_orb_dom_r thm
+R12178:12197 Library.DistState.Domain <> dom_subset_orb_dom_r thm
+prf 12224:12245 <> dom_subset_orb_snd_l_r
+R12255:12260 Library.DistState.CoreDef <> domain def
+binder 12248:12249 <> l0:51
+binder 12251:12252 <> l1:52
+R12311:12314 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R12304:12306 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R12266:12281 Library.DistState.CoreDef <> is_domain_subset def
+R12283:12284 Library.DistState.Domain <> l0:51 var
+R12287:12296 Library.DistState.CoreDef <> orb_domain def
+R12298:12299 Library.DistState.Domain <> l0:51 var
+R12301:12302 Library.DistState.Domain <> l1:52 var
+R12307:12310 Corelib.Init.Datatypes <> true constr
+R12353:12355 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R12315:12330 Library.DistState.CoreDef <> is_domain_subset def
+R12332:12333 Library.DistState.Domain <> l1:52 var
+R12336:12345 Library.DistState.CoreDef <> orb_domain def
+R12347:12348 Library.DistState.Domain <> l0:51 var
+R12350:12351 Library.DistState.Domain <> l1:52 var
+R12356:12359 Corelib.Init.Datatypes <> true constr
+R12548:12560 Stdlib.Bool.Bool <> andb_true_iff thm
+R12548:12560 Stdlib.Bool.Bool <> andb_true_iff thm
+R12587:12596 Stdlib.Bool.Bool <> orb_negb_l thm
+R12587:12596 Stdlib.Bool.Bool <> orb_negb_l thm
+R12587:12596 Stdlib.Bool.Bool <> orb_negb_l thm
+R12605:12619 Library.DistState.Domain <> dom_subset_refl thm
+R12605:12619 Library.DistState.Domain <> dom_subset_refl thm
+R12648:12660 Stdlib.Bool.Bool <> andb_true_iff thm
+R12648:12660 Stdlib.Bool.Bool <> andb_true_iff thm
+R12688:12696 Stdlib.Bool.Bool <> orb_assoc thm
+R12688:12696 Stdlib.Bool.Bool <> orb_assoc thm
+R12688:12696 Stdlib.Bool.Bool <> orb_assoc thm
+R12707:12716 Stdlib.Bool.Bool <> orb_negb_l thm
+R12707:12716 Stdlib.Bool.Bool <> orb_negb_l thm
+R12707:12716 Stdlib.Bool.Bool <> orb_negb_l thm
+R12927:12939 Stdlib.Bool.Bool <> andb_true_iff thm
+R12927:12939 Stdlib.Bool.Bool <> andb_true_iff thm
+R12966:12975 Stdlib.Bool.Bool <> orb_negb_l thm
+R12966:12975 Stdlib.Bool.Bool <> orb_negb_l thm
+R12966:12975 Stdlib.Bool.Bool <> orb_negb_l thm
+R12984:12998 Library.DistState.Domain <> dom_subset_refl thm
+R12984:12998 Library.DistState.Domain <> dom_subset_refl thm
+R13027:13039 Stdlib.Bool.Bool <> andb_true_iff thm
+R13027:13039 Stdlib.Bool.Bool <> andb_true_iff thm
+R13074:13081 Stdlib.Bool.Bool <> orb_comm thm
+R13074:13081 Stdlib.Bool.Bool <> orb_comm thm
+R13074:13081 Stdlib.Bool.Bool <> orb_comm thm
+R13116:13124 Stdlib.Bool.Bool <> orb_assoc thm
+R13116:13124 Stdlib.Bool.Bool <> orb_assoc thm
+R13116:13124 Stdlib.Bool.Bool <> orb_assoc thm
+R13135:13144 Stdlib.Bool.Bool <> orb_negb_l thm
+R13135:13144 Stdlib.Bool.Bool <> orb_negb_l thm
+R13135:13144 Stdlib.Bool.Bool <> orb_negb_l thm
+prf 13202:13214 <> all_false_orb
+binder 13224:13224 <> l:53
+binder 13226:13227 <> l0:54
+R13252:13255 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R13245:13247 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R13233:13241 Library.DistState.CoreDef <> all_false def
+R13243:13244 Library.DistState.Domain <> l0:54 var
+R13248:13251 Corelib.Init.Datatypes <> true constr
+R13274:13280 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R13267:13269 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R13256:13264 Library.DistState.CoreDef <> all_false def
+R13266:13266 Library.DistState.Domain <> l:53 var
+R13270:13273 Corelib.Init.Datatypes <> true constr
+R13308:13310 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R13281:13289 Library.DistState.CoreDef <> all_false def
+R13292:13301 Library.DistState.CoreDef <> orb_domain def
+R13303:13303 Library.DistState.Domain <> l:53 var
+R13305:13306 Library.DistState.Domain <> l0:54 var
+R13311:13314 Corelib.Init.Datatypes <> true constr
+R13503:13515 Stdlib.Bool.Bool <> andb_true_iff thm
+R13503:13515 Stdlib.Bool.Bool <> andb_true_iff thm
+R13545:13557 Stdlib.Bool.Bool <> andb_true_iff thm
+R13545:13557 Stdlib.Bool.Bool <> andb_true_iff thm
+R13589:13601 Stdlib.Bool.Bool <> andb_true_iff thm
+R13589:13601 Stdlib.Bool.Bool <> andb_true_iff thm
+R13612:13619 Stdlib.Bool.Bool <> negb_orb thm
+R13612:13619 Stdlib.Bool.Bool <> negb_orb thm
+R13612:13619 Stdlib.Bool.Bool <> negb_orb thm
+prf 13728:13749 <> dom_subset_orb_fst_iff
+R13761:13766 Library.DistState.CoreDef <> domain def
+binder 13752:13753 <> l0:55
+binder 13755:13756 <> l1:56
+binder 13758:13758 <> X:57
+R13817:13824 Corelib.Init.Logic <> ::type_scope:x_'<->'_x not
+R13810:13812 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R13773:13788 Library.DistState.CoreDef <> is_domain_subset def
+R13791:13800 Library.DistState.CoreDef <> orb_domain def
+R13802:13803 Library.DistState.Domain <> l0:55 var
+R13805:13806 Library.DistState.Domain <> l1:56 var
+R13809:13809 Library.DistState.Domain <> X:57 var
+R13813:13816 Corelib.Init.Datatypes <> true constr
+R13853:13856 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R13846:13848 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R13825:13840 Library.DistState.CoreDef <> is_domain_subset def
+R13842:13843 Library.DistState.Domain <> l0:55 var
+R13845:13845 Library.DistState.Domain <> X:57 var
+R13849:13852 Corelib.Init.Datatypes <> true constr
+R13878:13880 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R13857:13872 Library.DistState.CoreDef <> is_domain_subset def
+R13874:13875 Library.DistState.Domain <> l1:56 var
+R13877:13877 Library.DistState.Domain <> X:57 var
+R13881:13884 Corelib.Init.Datatypes <> true constr
+R14107:14116 Library.DistState.CoreDef <> orb_domain def
+R14121:14124 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R14078:14093 Library.DistState.Domain <> dom_subset_trans thm
+R14107:14116 Library.DistState.CoreDef <> orb_domain def
+R14121:14124 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R14078:14093 Library.DistState.Domain <> dom_subset_trans thm
+R14162:14183 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R14162:14183 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R14380:14389 Library.DistState.CoreDef <> orb_domain def
+R14397:14400 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R14351:14366 Library.DistState.Domain <> dom_subset_trans thm
+R14380:14389 Library.DistState.CoreDef <> orb_domain def
+R14397:14400 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R14351:14366 Library.DistState.Domain <> dom_subset_trans thm
+R14435:14456 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R14435:14456 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R14653:14668 Library.DistState.Domain <> orb_domain_nil_r thm
+R14653:14668 Library.DistState.Domain <> orb_domain_nil_r thm
+R14653:14668 Library.DistState.Domain <> orb_domain_nil_r thm
+R14761:14764 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R14754:14757 Corelib.Init.Datatypes <> negb def
+R14765:14773 Library.DistState.CoreDef <> all_false def
+R14815:14818 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R14808:14811 Corelib.Init.Datatypes <> negb def
+R14819:14827 Library.DistState.CoreDef <> all_false def
+R14761:14764 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R14754:14757 Corelib.Init.Datatypes <> negb def
+R14765:14773 Library.DistState.CoreDef <> all_false def
+R14815:14818 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R14808:14811 Corelib.Init.Datatypes <> negb def
+R14819:14827 Library.DistState.CoreDef <> all_false def
+R14815:14818 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R14808:14811 Corelib.Init.Datatypes <> negb def
+R14819:14827 Library.DistState.CoreDef <> all_false def
+R14874:14886 Stdlib.Bool.Bool <> andb_true_iff thm
+R14874:14886 Stdlib.Bool.Bool <> andb_true_iff thm
+R14921:14933 Stdlib.Bool.Bool <> andb_true_iff thm
+R14921:14933 Stdlib.Bool.Bool <> andb_true_iff thm
+R14972:14979 Stdlib.Bool.Bool <> negb_orb thm
+R14972:14979 Stdlib.Bool.Bool <> negb_orb thm
+R14972:14979 Stdlib.Bool.Bool <> negb_orb thm
+R15020:15032 Library.DistState.Domain <> all_false_orb thm
+R15020:15032 Library.DistState.Domain <> all_false_orb thm
+R15020:15032 Library.DistState.Domain <> all_false_orb thm
+R15020:15032 Library.DistState.Domain <> all_false_orb thm
+R15020:15032 Library.DistState.Domain <> all_false_orb thm
+R15084:15096 Stdlib.Bool.Bool <> andb_true_iff thm
+R15084:15096 Stdlib.Bool.Bool <> andb_true_iff thm
+R15129:15141 Stdlib.Bool.Bool <> andb_true_iff thm
+R15129:15141 Stdlib.Bool.Bool <> andb_true_iff thm
+R15175:15187 Stdlib.Bool.Bool <> andb_true_iff thm
+R15175:15187 Stdlib.Bool.Bool <> andb_true_iff thm
+R15198:15205 Stdlib.Bool.Bool <> negb_orb thm
+R15198:15205 Stdlib.Bool.Bool <> negb_orb thm
+R15198:15205 Stdlib.Bool.Bool <> negb_orb thm
+R15237:15248 Stdlib.Bool.Bool <> orb_true_iff thm
+R15237:15248 Stdlib.Bool.Bool <> orb_true_iff thm
+R15262:15273 Stdlib.Bool.Bool <> orb_true_iff thm
+R15262:15273 Stdlib.Bool.Bool <> orb_true_iff thm
+R15414:15423 Stdlib.Bool.Bool <> orb_true_r thm
+R15414:15423 Stdlib.Bool.Bool <> orb_true_r thm
+R15465:15474 Stdlib.Bool.Bool <> orb_true_r thm
+R15465:15474 Stdlib.Bool.Bool <> orb_true_r thm
+R15499:15508 Stdlib.Bool.Bool <> orb_true_r thm
+R15499:15508 Stdlib.Bool.Bool <> orb_true_r thm
+prf 15559:15579 <> dom_subset_orb_compat
+binder 15589:15590 <> l0:58
+binder 15592:15593 <> l1:59
+binder 15595:15596 <> X0:60
+binder 15598:15599 <> X1:61
+R15635:15638 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R15628:15630 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R15606:15621 Library.DistState.CoreDef <> is_domain_subset def
+R15623:15624 Library.DistState.Domain <> l0:58 var
+R15626:15627 Library.DistState.Domain <> X0:60 var
+R15631:15634 Corelib.Init.Datatypes <> true constr
+R15668:15673 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R15661:15663 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R15639:15654 Library.DistState.CoreDef <> is_domain_subset def
+R15656:15657 Library.DistState.Domain <> l1:59 var
+R15659:15660 Library.DistState.Domain <> X1:61 var
+R15664:15667 Corelib.Init.Datatypes <> true constr
+R15728:15730 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R15674:15689 Library.DistState.CoreDef <> is_domain_subset def
+R15692:15701 Library.DistState.CoreDef <> orb_domain def
+R15703:15704 Library.DistState.Domain <> l0:58 var
+R15706:15707 Library.DistState.Domain <> l1:59 var
+R15711:15720 Library.DistState.CoreDef <> orb_domain def
+R15722:15723 Library.DistState.Domain <> X0:60 var
+R15725:15726 Library.DistState.Domain <> X1:61 var
+R15731:15734 Corelib.Init.Datatypes <> true constr
+R15760:15781 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R15760:15781 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R15801:15820 Library.DistState.Domain <> dom_subset_orb_dom_r thm
+R15801:15820 Library.DistState.Domain <> dom_subset_orb_dom_r thm
+R15846:15865 Library.DistState.Domain <> dom_subset_orb_dom_l thm
+R15846:15865 Library.DistState.Domain <> dom_subset_orb_dom_l thm
+prf 15893:15906 <> dom_equiv_refl
+binder 15917:15917 <> l:62
+R15921:15924 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R15920:15920 Library.DistState.Domain <> l:62 var
+R15925:15925 Library.DistState.Domain <> l:62 var
+R16056:16068 Stdlib.Bool.Bool <> andb_true_iff thm
+R16056:16068 Stdlib.Bool.Bool <> andb_true_iff thm
+R16100:16109 Stdlib.Bool.Bool <> orb_negb_l thm
+R16100:16109 Stdlib.Bool.Bool <> orb_negb_l thm
+R16124:16136 Stdlib.Bool.Bool <> andb_true_iff thm
+R16124:16136 Stdlib.Bool.Bool <> andb_true_iff thm
+R16168:16177 Stdlib.Bool.Bool <> orb_negb_l thm
+R16168:16177 Stdlib.Bool.Bool <> orb_negb_l thm
+prf 16192:16204 <> dom_equiv_sym
+binder 16214:16215 <> l0:63
+binder 16217:16218 <> l1:64
+R16229:16232 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R16223:16226 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R16221:16222 Library.DistState.Domain <> l0:63 var
+R16227:16228 Library.DistState.Domain <> l1:64 var
+R16235:16238 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R16233:16234 Library.DistState.Domain <> l1:64 var
+R16239:16240 Library.DistState.Domain <> l0:63 var
+prf 16519:16533 <> dom_equiv_trans
+binder 16543:16544 <> l0:65
+binder 16546:16547 <> l1:66
+binder 16549:16550 <> l2:67
+R16561:16564 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R16555:16558 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R16553:16554 Library.DistState.Domain <> l0:65 var
+R16559:16560 Library.DistState.Domain <> l1:66 var
+R16573:16576 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R16567:16570 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R16565:16566 Library.DistState.Domain <> l1:66 var
+R16571:16572 Library.DistState.Domain <> l2:67 var
+R16579:16582 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R16577:16578 Library.DistState.Domain <> l0:65 var
+R16583:16584 Library.DistState.Domain <> l2:67 var
+R16662:16677 Library.DistState.Domain <> dom_subset_trans thm
+R16662:16677 Library.DistState.Domain <> dom_subset_trans thm
+R16721:16736 Library.DistState.Domain <> dom_subset_trans thm
+R16721:16736 Library.DistState.Domain <> dom_subset_trans thm
+prf 16783:16799 <> all_false_iff_nil
+binder 16809:16809 <> l:68
+R16830:16834 Corelib.Init.Logic <> ::type_scope:x_'<->'_x not
+R16823:16825 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R16812:16820 Library.DistState.CoreDef <> all_false def
+R16822:16822 Library.DistState.Domain <> l:68 var
+R16826:16829 Corelib.Init.Datatypes <> true constr
+R16836:16839 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R16835:16835 Library.DistState.Domain <> l:68 var
+R16840:16841 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R16964:16976 Stdlib.Bool.Bool <> andb_true_iff thm
+R16964:16976 Stdlib.Bool.Bool <> andb_true_iff thm
+R17007:17019 Stdlib.Bool.Bool <> negb_true_iff thm
+R17007:17019 Stdlib.Bool.Bool <> negb_true_iff thm
+prf 17211:17239 <> dom_cons_nil_implies_tail_nil
+binder 17249:17249 <> h:69
+binder 17251:17251 <> l:70
+R17269:17272 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R17263:17266 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R17258:17261 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R17257:17257 Library.DistState.Domain <> h:69 var
+R17262:17262 Library.DistState.Domain <> l:70 var
+R17267:17268 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R17274:17277 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R17273:17273 Library.DistState.Domain <> l:70 var
+R17278:17279 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R17332:17344 Stdlib.Bool.Bool <> andb_true_iff thm
+R17332:17344 Stdlib.Bool.Bool <> andb_true_iff thm
+R17372:17388 Library.DistState.Domain <> all_false_iff_nil thm
+R17372:17388 Library.DistState.Domain <> all_false_iff_nil thm
+prf 17419:17433 <> all_false_orb_l
+binder 17443:17443 <> l:71
+binder 17445:17446 <> l1:72
+R17467:17470 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R17460:17462 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R17449:17457 Library.DistState.CoreDef <> all_false def
+R17459:17459 Library.DistState.Domain <> l:71 var
+R17463:17466 Corelib.Init.Datatypes <> true constr
+R17486:17489 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R17471:17480 Library.DistState.CoreDef <> orb_domain def
+R17482:17482 Library.DistState.Domain <> l:71 var
+R17484:17485 Library.DistState.Domain <> l1:72 var
+R17490:17491 Library.DistState.Domain <> l1:72 var
+R17589:17602 Library.DistState.Domain <> dom_equiv_refl thm
+R17589:17602 Library.DistState.Domain <> dom_equiv_refl thm
+R17627:17639 Stdlib.Bool.Bool <> andb_true_iff thm
+R17627:17639 Stdlib.Bool.Bool <> andb_true_iff thm
+R17730:17746 Library.DistState.Domain <> all_false_iff_nil thm
+R17730:17746 Library.DistState.Domain <> all_false_iff_nil thm
+R17762:17774 Stdlib.Bool.Bool <> andb_true_iff thm
+R17762:17774 Stdlib.Bool.Bool <> andb_true_iff thm
+R17813:17825 Stdlib.Bool.Bool <> negb_true_iff thm
+R17813:17825 Stdlib.Bool.Bool <> negb_true_iff thm
+R17937:17949 Stdlib.Bool.Bool <> andb_true_iff thm
+R17937:17949 Stdlib.Bool.Bool <> andb_true_iff thm
+R17981:17990 Stdlib.Bool.Bool <> orb_negb_l thm
+R17981:17990 Stdlib.Bool.Bool <> orb_negb_l thm
+R18007:18019 Stdlib.Bool.Bool <> andb_true_iff thm
+R18007:18019 Stdlib.Bool.Bool <> andb_true_iff thm
+R18051:18060 Stdlib.Bool.Bool <> orb_negb_l thm
+R18051:18060 Stdlib.Bool.Bool <> orb_negb_l thm
+prf 18075:18097 <> dom_eq_orb_compat_right
+binder 18107:18108 <> l0:73
+binder 18110:18111 <> l1:74
+binder 18113:18114 <> l2:75
+R18137:18143 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R18123:18126 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R18121:18122 Library.DistState.Domain <> l0:73 var
+R18127:18128 Library.DistState.Domain <> l1:74 var
+R18161:18164 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R18145:18154 Library.DistState.CoreDef <> orb_domain def
+R18156:18157 Library.DistState.Domain <> l0:73 var
+R18159:18160 Library.DistState.Domain <> l2:75 var
+R18165:18174 Library.DistState.CoreDef <> orb_domain def
+R18176:18177 Library.DistState.Domain <> l1:74 var
+R18179:18180 Library.DistState.Domain <> l2:75 var
+R18327:18339 Library.DistState.Domain <> dom_equiv_sym thm
+R18327:18339 Library.DistState.Domain <> dom_equiv_sym thm
+R18353:18369 Library.DistState.Domain <> all_false_iff_nil thm
+R18353:18369 Library.DistState.Domain <> all_false_iff_nil thm
+R18388:18400 Library.DistState.Domain <> dom_equiv_sym thm
+R18388:18400 Library.DistState.Domain <> dom_equiv_sym thm
+R18409:18423 Library.DistState.Domain <> all_false_orb_l thm
+R18409:18423 Library.DistState.Domain <> all_false_orb_l thm
+R18551:18554 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R18555:18556 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R18551:18554 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R18555:18556 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R18568:18596 Library.DistState.Domain <> dom_cons_nil_implies_tail_nil thm
+R18568:18596 Library.DistState.Domain <> dom_cons_nil_implies_tail_nil thm
+R18639:18640 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R18639:18640 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R18723:18735 Stdlib.Bool.Bool <> andb_true_iff thm
+R18723:18735 Stdlib.Bool.Bool <> andb_true_iff thm
+R18775:18787 Stdlib.Bool.Bool <> andb_true_iff thm
+R18775:18787 Stdlib.Bool.Bool <> andb_true_iff thm
+R18823:18830 Stdlib.Bool.Bool <> negb_orb thm
+R18823:18830 Stdlib.Bool.Bool <> negb_orb thm
+R18823:18830 Stdlib.Bool.Bool <> negb_orb thm
+R18857:18866 Stdlib.Bool.Bool <> orb_negb_l thm
+R18857:18866 Stdlib.Bool.Bool <> orb_negb_l thm
+R18883:18895 Stdlib.Bool.Bool <> andb_true_iff thm
+R18883:18895 Stdlib.Bool.Bool <> andb_true_iff thm
+R18935:18947 Stdlib.Bool.Bool <> andb_true_iff thm
+R18935:18947 Stdlib.Bool.Bool <> andb_true_iff thm
+R18982:18994 Stdlib.Bool.Bool <> negb_true_iff thm
+R18982:18994 Stdlib.Bool.Bool <> negb_true_iff thm
+R19026:19035 Stdlib.Bool.Bool <> orb_negb_l thm
+R19026:19035 Stdlib.Bool.Bool <> orb_negb_l thm
+R19094:19106 Stdlib.Bool.Bool <> andb_true_iff thm
+R19094:19106 Stdlib.Bool.Bool <> andb_true_iff thm
+R19138:19150 Stdlib.Bool.Bool <> andb_true_iff thm
+R19138:19150 Stdlib.Bool.Bool <> andb_true_iff thm
+R19193:19196 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R19193:19196 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R19290:19301 Stdlib.Bool.Bool <> orb_true_iff thm
+R19290:19301 Stdlib.Bool.Bool <> orb_true_iff thm
+R19315:19326 Stdlib.Bool.Bool <> orb_true_iff thm
+R19315:19326 Stdlib.Bool.Bool <> orb_true_iff thm
+R19369:19381 Stdlib.Bool.Bool <> andb_true_iff thm
+R19369:19381 Stdlib.Bool.Bool <> andb_true_iff thm
+R19479:19491 Stdlib.Bool.Bool <> negb_true_iff thm
+R19479:19491 Stdlib.Bool.Bool <> negb_true_iff thm
+R19525:19537 Stdlib.Bool.Bool <> negb_true_iff thm
+R19525:19537 Stdlib.Bool.Bool <> negb_true_iff thm
+R19575:19584 Stdlib.Bool.Bool <> orb_negb_l thm
+R19575:19584 Stdlib.Bool.Bool <> orb_negb_l thm
+R19630:19642 Stdlib.Bool.Bool <> andb_true_iff thm
+R19630:19642 Stdlib.Bool.Bool <> andb_true_iff thm
+R19740:19752 Stdlib.Bool.Bool <> negb_true_iff thm
+R19740:19752 Stdlib.Bool.Bool <> negb_true_iff thm
+R19786:19798 Stdlib.Bool.Bool <> negb_true_iff thm
+R19786:19798 Stdlib.Bool.Bool <> negb_true_iff thm
+R19836:19845 Stdlib.Bool.Bool <> orb_negb_l thm
+R19836:19845 Stdlib.Bool.Bool <> orb_negb_l thm
+prf 19888:19909 <> dom_eq_orb_compat_left
+binder 19919:19920 <> l0:76
+binder 19922:19923 <> l1:77
+binder 19925:19926 <> l2:78
+R19949:19955 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R19935:19938 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R19933:19934 Library.DistState.Domain <> l0:76 var
+R19939:19940 Library.DistState.Domain <> l1:77 var
+R19973:19976 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R19957:19966 Library.DistState.CoreDef <> orb_domain def
+R19968:19969 Library.DistState.Domain <> l2:78 var
+R19971:19972 Library.DistState.Domain <> l0:76 var
+R19977:19986 Library.DistState.CoreDef <> orb_domain def
+R19988:19989 Library.DistState.Domain <> l2:78 var
+R19991:19992 Library.DistState.Domain <> l1:77 var
+R20026:20048 Library.DistState.Domain <> dom_eq_orb_compat_right thm
+R20026:20048 Library.DistState.Domain <> dom_eq_orb_compat_right thm
+R20097:20111 Library.DistState.Domain <> orb_domain_comm thm
+R20097:20111 Library.DistState.Domain <> orb_domain_comm thm
+R20097:20111 Library.DistState.Domain <> orb_domain_comm thm
+R20155:20164 Library.DistState.CoreDef <> orb_domain def
+R20128:20142 Library.DistState.Domain <> dom_equiv_trans thm
+R20155:20164 Library.DistState.CoreDef <> orb_domain def
+R20128:20142 Library.DistState.Domain <> dom_equiv_trans thm
+R20200:20214 Library.DistState.Domain <> orb_domain_comm thm
+R20200:20214 Library.DistState.Domain <> orb_domain_comm thm
+R20200:20214 Library.DistState.Domain <> orb_domain_comm thm
+R20223:20236 Library.DistState.Domain <> dom_equiv_refl thm
+R20223:20236 Library.DistState.Domain <> dom_equiv_refl thm
+prf 20251:20267 <> dom_eq_orb_compat
+binder 20277:20278 <> l0:79
+binder 20280:20281 <> l1:80
+binder 20283:20284 <> l2:81
+binder 20286:20287 <> l3:82
+R20310:20316 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R20296:20299 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R20294:20295 Library.DistState.Domain <> l0:79 var
+R20300:20301 Library.DistState.Domain <> l1:80 var
+R20334:20340 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R20320:20323 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R20318:20319 Library.DistState.Domain <> l2:81 var
+R20324:20325 Library.DistState.Domain <> l3:82 var
+R20358:20361 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R20342:20351 Library.DistState.CoreDef <> orb_domain def
+R20353:20354 Library.DistState.Domain <> l0:79 var
+R20356:20357 Library.DistState.Domain <> l2:81 var
+R20362:20371 Library.DistState.CoreDef <> orb_domain def
+R20373:20374 Library.DistState.Domain <> l1:80 var
+R20376:20377 Library.DistState.Domain <> l3:82 var
+R20440:20444 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R20411:20425 Library.DistState.Domain <> dom_equiv_trans thm
+R20440:20444 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R20411:20425 Library.DistState.Domain <> dom_equiv_trans thm
+R20460:20481 Library.DistState.Domain <> dom_eq_orb_compat_left thm
+R20460:20481 Library.DistState.Domain <> dom_eq_orb_compat_left thm
+R20510:20532 Library.DistState.Domain <> dom_eq_orb_compat_right thm
+R20510:20532 Library.DistState.Domain <> dom_eq_orb_compat_right thm
+prf 20563:20590 <> dom_eq_intersect_compat_left
+binder 20600:20601 <> l0:83
+binder 20603:20604 <> l1:84
+binder 20606:20606 <> l:85
+R20619:20625 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R20613:20616 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R20611:20612 Library.DistState.Domain <> l0:83 var
+R20617:20618 Library.DistState.Domain <> l1:84 var
+R20650:20652 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R20626:20644 Library.DistState.CoreDef <> is_domain_intersect def
+R20646:20646 Library.DistState.Domain <> l:85 var
+R20648:20649 Library.DistState.Domain <> l0:83 var
+R20653:20671 Library.DistState.CoreDef <> is_domain_intersect def
+R20673:20673 Library.DistState.Domain <> l:85 var
+R20675:20676 Library.DistState.Domain <> l1:84 var
+R20935:20947 Library.DistState.Domain <> dom_equiv_sym thm
+R20935:20947 Library.DistState.Domain <> dom_equiv_sym thm
+R20979:20982 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R20983:20984 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R20979:20982 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R20983:20984 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R20996:21024 Library.DistState.Domain <> dom_cons_nil_implies_tail_nil thm
+R20996:21024 Library.DistState.Domain <> dom_cons_nil_implies_tail_nil thm
+R21071:21072 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R21071:21072 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R21097:21111 Library.DistState.Domain <> intersect_nil_r thm
+R21097:21111 Library.DistState.Domain <> intersect_nil_r thm
+R21097:21111 Library.DistState.Domain <> intersect_nil_r thm
+R21157:21169 Stdlib.Bool.Bool <> andb_true_iff thm
+R21157:21169 Stdlib.Bool.Bool <> andb_true_iff thm
+R21201:21213 Stdlib.Bool.Bool <> negb_true_iff thm
+R21201:21213 Stdlib.Bool.Bool <> negb_true_iff thm
+R21250:21253 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R21254:21258 Corelib.Init.Datatypes <> false constr
+R21250:21253 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R21254:21258 Corelib.Init.Datatypes <> false constr
+R21286:21297 Stdlib.Bool.Bool <> andb_false_r thm
+R21286:21297 Stdlib.Bool.Bool <> andb_false_r thm
+R21286:21297 Stdlib.Bool.Bool <> andb_false_r thm
+R21365:21377 Library.DistState.Domain <> dom_equiv_sym thm
+R21365:21377 Library.DistState.Domain <> dom_equiv_sym thm
+R21409:21412 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R21413:21414 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R21409:21412 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R21413:21414 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R21435:21447 Library.DistState.Domain <> dom_equiv_sym thm
+R21435:21447 Library.DistState.Domain <> dom_equiv_sym thm
+R21471:21499 Library.DistState.Domain <> dom_cons_nil_implies_tail_nil thm
+R21471:21499 Library.DistState.Domain <> dom_cons_nil_implies_tail_nil thm
+R21546:21547 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R21546:21547 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R21572:21586 Library.DistState.Domain <> intersect_nil_r thm
+R21572:21586 Library.DistState.Domain <> intersect_nil_r thm
+R21572:21586 Library.DistState.Domain <> intersect_nil_r thm
+R21632:21644 Stdlib.Bool.Bool <> andb_true_iff thm
+R21632:21644 Stdlib.Bool.Bool <> andb_true_iff thm
+R21678:21690 Stdlib.Bool.Bool <> negb_true_iff thm
+R21678:21690 Stdlib.Bool.Bool <> negb_true_iff thm
+R21729:21732 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R21733:21737 Corelib.Init.Datatypes <> false constr
+R21729:21732 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R21733:21737 Corelib.Init.Datatypes <> false constr
+R21765:21776 Stdlib.Bool.Bool <> andb_false_r thm
+R21765:21776 Stdlib.Bool.Bool <> andb_false_r thm
+R21765:21776 Stdlib.Bool.Bool <> andb_false_r thm
+R21874:21884 Stdlib.Bool.Bool <> andb_true_l thm
+R21874:21884 Stdlib.Bool.Bool <> andb_true_l thm
+R21874:21884 Stdlib.Bool.Bool <> andb_true_l thm
+R21874:21884 Stdlib.Bool.Bool <> andb_true_l thm
+R21874:21884 Stdlib.Bool.Bool <> andb_true_l thm
+R21874:21884 Stdlib.Bool.Bool <> andb_true_l thm
+R21944:21956 Stdlib.Bool.Bool <> andb_true_iff thm
+R21944:21956 Stdlib.Bool.Bool <> andb_true_iff thm
+R21990:22002 Stdlib.Bool.Bool <> andb_true_iff thm
+R21990:22002 Stdlib.Bool.Bool <> andb_true_iff thm
+R22151:22162 Stdlib.Bool.Bool <> andb_false_l thm
+R22151:22162 Stdlib.Bool.Bool <> andb_false_l thm
+R22151:22162 Stdlib.Bool.Bool <> andb_false_l thm
+R22151:22162 Stdlib.Bool.Bool <> andb_false_l thm
+R22151:22162 Stdlib.Bool.Bool <> andb_false_l thm
+R22151:22162 Stdlib.Bool.Bool <> andb_false_l thm
+R22222:22234 Stdlib.Bool.Bool <> andb_true_iff thm
+R22222:22234 Stdlib.Bool.Bool <> andb_true_iff thm
+R22268:22280 Stdlib.Bool.Bool <> andb_true_iff thm
+R22268:22280 Stdlib.Bool.Bool <> andb_true_iff thm
+prf 22418:22446 <> dom_eq_intersect_compat_right
+binder 22456:22457 <> l0:86
+binder 22459:22460 <> l1:87
+binder 22462:22462 <> l:88
+R22475:22481 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R22469:22472 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R22467:22468 Library.DistState.Domain <> l0:86 var
+R22473:22474 Library.DistState.Domain <> l1:87 var
+R22506:22507 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R22482:22500 Library.DistState.CoreDef <> is_domain_intersect def
+R22502:22503 Library.DistState.Domain <> l0:86 var
+R22505:22505 Library.DistState.Domain <> l:88 var
+R22508:22526 Library.DistState.CoreDef <> is_domain_intersect def
+R22528:22529 Library.DistState.Domain <> l1:87 var
+R22531:22531 Library.DistState.Domain <> l:88 var
+R22559:22572 Library.DistState.Domain <> intersect_comm thm
+R22559:22572 Library.DistState.Domain <> intersect_comm thm
+R22559:22572 Library.DistState.Domain <> intersect_comm thm
+R22583:22596 Library.DistState.Domain <> intersect_comm thm
+R22583:22596 Library.DistState.Domain <> intersect_comm thm
+R22583:22596 Library.DistState.Domain <> intersect_comm thm
+R22622:22649 Library.DistState.Domain <> dom_eq_intersect_compat_left thm
+R22622:22649 Library.DistState.Domain <> dom_eq_intersect_compat_left thm
+prf 22676:22707 <> dom_eq_intersect_preserves_equiv
+binder 22717:22718 <> l0:89
+binder 22720:22721 <> l1:90
+binder 22723:22724 <> l2:91
+binder 22726:22727 <> l3:92
+R22740:22743 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R22734:22737 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R22732:22733 Library.DistState.Domain <> l0:89 var
+R22738:22739 Library.DistState.Domain <> l1:90 var
+R22752:22757 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R22746:22749 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R22744:22745 Library.DistState.Domain <> l2:91 var
+R22750:22751 Library.DistState.Domain <> l3:92 var
+R22783:22785 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R22758:22776 Library.DistState.CoreDef <> is_domain_intersect def
+R22778:22779 Library.DistState.Domain <> l0:89 var
+R22781:22782 Library.DistState.Domain <> l2:91 var
+R22786:22804 Library.DistState.CoreDef <> is_domain_intersect def
+R22806:22807 Library.DistState.Domain <> l1:90 var
+R22809:22810 Library.DistState.Domain <> l3:92 var
+R22839:22866 Library.DistState.Domain <> dom_eq_intersect_compat_left thm
+R22839:22866 Library.DistState.Domain <> dom_eq_intersect_compat_left thm
+R22896:22923 Library.DistState.Domain <> dom_eq_intersect_compat_left thm
+R22896:22923 Library.DistState.Domain <> dom_eq_intersect_compat_left thm
+R22956:22969 Library.DistState.Domain <> intersect_comm thm
+R22956:22969 Library.DistState.Domain <> intersect_comm thm
+R22956:22969 Library.DistState.Domain <> intersect_comm thm
+R23011:23024 Library.DistState.Domain <> intersect_comm thm
+R23011:23024 Library.DistState.Domain <> intersect_comm thm
+prf 23039:23054 <> dom_eq_orb_dis_l
+binder 23064:23065 <> l0:93
+binder 23067:23068 <> l1:94
+binder 23070:23070 <> l:95
+R23103:23106 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R23078:23078 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R23088:23093 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R23081:23085 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R23079:23080 Library.DistState.Domain <> l0:93 var
+R23086:23087 Library.DistState.Domain <> l1:94 var
+R23094:23094 Library.DistState.Domain <> l:95 var
+R23108:23108 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R23117:23123 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R23132:23132 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R23111:23115 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R23109:23110 Library.DistState.Domain <> l0:93 var
+R23116:23116 Library.DistState.Domain <> l:95 var
+R23126:23130 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R23124:23125 Library.DistState.Domain <> l1:94 var
+R23131:23131 Library.DistState.Domain <> l:95 var
+R23178:23199 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R23178:23199 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R23222:23243 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R23222:23243 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R23298:23302 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R23268:23283 Library.DistState.Domain <> dom_subset_trans thm
+R23298:23302 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R23268:23283 Library.DistState.Domain <> dom_subset_trans thm
+R23340:23361 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R23340:23361 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R23380:23400 Library.DistState.Domain <> dom_subset_orb_compat thm
+R23409:23430 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R23380:23400 Library.DistState.Domain <> dom_subset_orb_compat thm
+R23409:23430 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R23409:23430 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R23477:23481 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R23447:23462 Library.DistState.Domain <> dom_subset_trans thm
+R23477:23481 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R23447:23462 Library.DistState.Domain <> dom_subset_trans thm
+R23519:23540 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R23519:23540 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R23559:23579 Library.DistState.Domain <> dom_subset_orb_compat thm
+R23588:23609 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R23559:23579 Library.DistState.Domain <> dom_subset_orb_compat thm
+R23588:23609 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R23588:23609 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R23654:23658 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R23624:23639 Library.DistState.Domain <> dom_subset_trans thm
+R23654:23658 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R23624:23639 Library.DistState.Domain <> dom_subset_trans thm
+R23695:23716 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R23695:23716 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R23735:23756 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R23735:23756 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R23769:23790 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R23769:23790 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R23813:23834 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R23813:23834 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R23889:23893 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R23859:23874 Library.DistState.Domain <> dom_subset_trans thm
+R23889:23893 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R23859:23874 Library.DistState.Domain <> dom_subset_trans thm
+R23930:23951 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R23930:23951 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R23969:23990 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R23969:23990 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R24007:24028 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R24007:24028 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R24043:24063 Library.DistState.Domain <> dom_subset_orb_compat thm
+R24076:24097 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R24043:24063 Library.DistState.Domain <> dom_subset_orb_compat thm
+R24076:24097 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R24076:24097 Library.DistState.Domain <> dom_subset_orb_snd_l_r thm
+R24112:24126 Library.DistState.Domain <> dom_subset_refl thm
+R24112:24126 Library.DistState.Domain <> dom_subset_refl thm
+prf 24141:24156 <> dom_eq_orb_dis_r
+binder 24166:24167 <> l0:96
+binder 24169:24170 <> l1:97
+binder 24172:24172 <> l:98
+R24205:24208 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R24181:24186 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R24196:24196 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R24180:24180 Library.DistState.Domain <> l:98 var
+R24189:24193 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R24187:24188 Library.DistState.Domain <> l0:96 var
+R24194:24195 Library.DistState.Domain <> l1:97 var
+R24210:24210 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R24219:24225 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R24234:24234 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R24212:24216 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R24211:24211 Library.DistState.Domain <> l:98 var
+R24217:24218 Library.DistState.Domain <> l0:96 var
+R24227:24231 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R24226:24226 Library.DistState.Domain <> l:98 var
+R24232:24233 Library.DistState.Domain <> l1:97 var
+R24296:24296 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R24306:24311 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R24299:24303 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R24269:24283 Library.DistState.Domain <> dom_equiv_trans thm
+R24296:24296 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R24306:24311 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R24299:24303 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R24269:24283 Library.DistState.Domain <> dom_equiv_trans thm
+R24330:24344 Library.DistState.Domain <> orb_domain_comm thm
+R24330:24344 Library.DistState.Domain <> orb_domain_comm thm
+R24330:24344 Library.DistState.Domain <> orb_domain_comm thm
+R24353:24366 Library.DistState.Domain <> dom_equiv_refl thm
+R24353:24366 Library.DistState.Domain <> dom_equiv_refl thm
+R24381:24395 Library.DistState.Domain <> orb_domain_comm thm
+R24381:24395 Library.DistState.Domain <> orb_domain_comm thm
+R24381:24395 Library.DistState.Domain <> orb_domain_comm thm
+R24426:24440 Library.DistState.Domain <> orb_domain_comm thm
+R24426:24440 Library.DistState.Domain <> orb_domain_comm thm
+R24426:24440 Library.DistState.Domain <> orb_domain_comm thm
+R24476:24491 Library.DistState.Domain <> dom_eq_orb_dis_l thm
+R24476:24491 Library.DistState.Domain <> dom_eq_orb_dis_l thm
+prf 24554:24571 <> dom_subset_nil_iff
+binder 24581:24581 <> X:99
+R24615:24619 Corelib.Init.Logic <> ::type_scope:x_'<->'_x not
+R24608:24610 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R24587:24602 Library.DistState.CoreDef <> is_domain_subset def
+R24604:24604 Library.DistState.Domain <> X:99 var
+R24606:24607 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R24611:24614 Corelib.Init.Datatypes <> true constr
+R24621:24624 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R24620:24620 Library.DistState.Domain <> X:99 var
+R24625:24626 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R24706:24719 Library.DistState.Domain <> dom_equiv_refl thm
+R24706:24719 Library.DistState.Domain <> dom_equiv_refl thm
+prf 24878:24902 <> dom_subset_eq_compat_left
+binder 24912:24912 <> X:100
+binder 24914:24914 <> Y:101
+binder 24916:24916 <> Z:102
+R24928:24931 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R24923:24926 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R24922:24922 Library.DistState.Domain <> X:100 var
+R24927:24927 Library.DistState.Domain <> Y:101 var
+R24959:24962 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R24952:24954 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R24932:24947 Library.DistState.CoreDef <> is_domain_subset def
+R24949:24949 Library.DistState.Domain <> Z:102 var
+R24951:24951 Library.DistState.Domain <> X:100 var
+R24955:24958 Corelib.Init.Datatypes <> true constr
+R24983:24985 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R24963:24978 Library.DistState.CoreDef <> is_domain_subset def
+R24980:24980 Library.DistState.Domain <> Z:102 var
+R24982:24982 Library.DistState.Domain <> Y:101 var
+R24986:24989 Corelib.Init.Datatypes <> true constr
+R25018:25033 Library.DistState.Domain <> dom_subset_trans thm
+R25018:25033 Library.DistState.Domain <> dom_subset_trans thm
+prf 25104:25129 <> dom_subset_eq_compat_right
+binder 25139:25139 <> X:103
+binder 25141:25141 <> Y:104
+binder 25143:25143 <> Z:105
+R25155:25158 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R25150:25153 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R25149:25149 Library.DistState.Domain <> X:103 var
+R25154:25154 Library.DistState.Domain <> Y:104 var
+R25186:25189 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R25179:25181 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R25159:25174 Library.DistState.CoreDef <> is_domain_subset def
+R25176:25176 Library.DistState.Domain <> X:103 var
+R25178:25178 Library.DistState.Domain <> Z:105 var
+R25182:25185 Corelib.Init.Datatypes <> true constr
+R25210:25211 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R25190:25205 Library.DistState.CoreDef <> is_domain_subset def
+R25207:25207 Library.DistState.Domain <> Y:104 var
+R25209:25209 Library.DistState.Domain <> Z:105 var
+R25212:25215 Corelib.Init.Datatypes <> true constr
+R25244:25259 Library.DistState.Domain <> dom_subset_trans thm
+R25244:25259 Library.DistState.Domain <> dom_subset_trans thm
+prf 25330:25357 <> dom_subset_implies_orb_equiv
+binder 25359:25359 <> X:106
+binder 25361:25361 <> Y:107
+R25396:25404 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R25389:25391 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R25369:25384 Library.DistState.CoreDef <> is_domain_subset def
+R25386:25386 Library.DistState.Domain <> X:106 var
+R25388:25388 Library.DistState.Domain <> Y:107 var
+R25392:25395 Corelib.Init.Datatypes <> true constr
+R25407:25410 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R25406:25406 Library.DistState.Domain <> Y:107 var
+R25411:25420 Library.DistState.CoreDef <> orb_domain def
+R25422:25422 Library.DistState.Domain <> Y:107 var
+R25424:25424 Library.DistState.Domain <> X:106 var
+R25511:25526 Library.DistState.Domain <> orb_domain_nil_r thm
+R25511:25526 Library.DistState.Domain <> orb_domain_nil_r thm
+R25511:25526 Library.DistState.Domain <> orb_domain_nil_r thm
+R25535:25548 Library.DistState.Domain <> dom_equiv_refl thm
+R25535:25548 Library.DistState.Domain <> dom_equiv_refl thm
+R25598:25615 Library.DistState.Domain <> dom_subset_nil_iff thm
+R25598:25615 Library.DistState.Domain <> dom_subset_nil_iff thm
+R25629:25641 Library.DistState.Domain <> dom_equiv_sym thm
+R25629:25641 Library.DistState.Domain <> dom_equiv_sym thm
+R25680:25692 Stdlib.Bool.Bool <> andb_true_iff thm
+R25680:25692 Stdlib.Bool.Bool <> andb_true_iff thm
+R25725:25736 Stdlib.Bool.Bool <> orb_true_iff thm
+R25725:25736 Stdlib.Bool.Bool <> orb_true_iff thm
+R25814:25826 Stdlib.Bool.Bool <> negb_true_iff thm
+R25814:25826 Stdlib.Bool.Bool <> negb_true_iff thm
+R25877:25887 Stdlib.Bool.Bool <> orb_false_r thm
+R25877:25887 Stdlib.Bool.Bool <> orb_false_r thm
+R25877:25887 Stdlib.Bool.Bool <> orb_false_r thm
+R25898:25907 Stdlib.Bool.Bool <> orb_negb_l thm
+R25898:25907 Stdlib.Bool.Bool <> orb_negb_l thm
+R25898:25907 Stdlib.Bool.Bool <> orb_negb_l thm
+R25946:25956 Stdlib.Bool.Bool <> orb_false_r thm
+R25946:25956 Stdlib.Bool.Bool <> orb_false_r thm
+R25946:25956 Stdlib.Bool.Bool <> orb_false_r thm
+R25967:25976 Stdlib.Bool.Bool <> orb_negb_l thm
+R25967:25976 Stdlib.Bool.Bool <> orb_negb_l thm
+R25967:25976 Stdlib.Bool.Bool <> orb_negb_l thm
+prf 26112:26140 <> st_all_none_implies_all_false
+binder 26150:26150 <> s:108
+R26176:26179 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R26169:26171 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R26156:26166 Library.DistState.CoreDef <> st_all_none def
+R26168:26168 Library.DistState.Domain <> s:108 var
+R26172:26175 Corelib.Init.Datatypes <> true constr
+R26207:26209 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R26180:26188 Library.DistState.CoreDef <> all_false def
+R26191:26203 Library.DistState.CoreDef <> return_domain def
+R26205:26205 Library.DistState.Domain <> s:108 var
+R26210:26213 Corelib.Init.Datatypes <> true constr
+R26324:26336 Stdlib.Bool.Bool <> andb_true_iff thm
+R26324:26336 Stdlib.Bool.Bool <> andb_true_iff thm
+R26380:26392 Stdlib.Bool.Bool <> andb_true_iff thm
+R26380:26392 Stdlib.Bool.Bool <> andb_true_iff thm
+R26428:26442 Stdlib.Bool.Bool <> negb_involutive thm
+R26428:26442 Stdlib.Bool.Bool <> negb_involutive thm
+R26428:26442 Stdlib.Bool.Bool <> negb_involutive thm
+prf 26469:26491 <> st_eq_implies_dom_equiv
+binder 26501:26502 <> s0:109
+binder 26504:26505 <> s1:110
+R26533:26539 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R26526:26528 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R26511:26519 Library.DistState.CoreDef <> beq_state def
+R26521:26522 Library.DistState.Domain <> s0:109 var
+R26524:26525 Library.DistState.Domain <> s1:110 var
+R26529:26532 Corelib.Init.Datatypes <> true constr
+R26556:26559 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R26540:26552 Library.DistState.CoreDef <> return_domain def
+R26554:26555 Library.DistState.Domain <> s0:109 var
+R26560:26572 Library.DistState.CoreDef <> return_domain def
+R26574:26575 Library.DistState.Domain <> s1:110 var
+R26705:26718 Library.DistState.Domain <> dom_equiv_refl thm
+R26705:26718 Library.DistState.Domain <> dom_equiv_refl thm
+R26743:26755 Stdlib.Bool.Bool <> andb_true_iff thm
+R26743:26755 Stdlib.Bool.Bool <> andb_true_iff thm
+R26834:26862 Library.DistState.Domain <> st_all_none_implies_all_false thm
+R26834:26862 Library.DistState.Domain <> st_all_none_implies_all_false thm
+R26970:26998 Library.DistState.Domain <> st_all_none_implies_all_false thm
+R26970:26998 Library.DistState.Domain <> st_all_none_implies_all_false thm
+R27091:27094 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R27091:27094 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+prf 27276:27293 <> domain_orbT_contra
+binder 27303:27305 <> dom:111
+R27339:27342 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R27334:27336 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R27315:27319 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R27312:27314 Library.DistState.Domain <> dom:111 var
+R27320:27320 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R27325:27325 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R27321:27324 Corelib.Init.Datatypes <> true constr
+R27337:27338 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R27343:27347 Corelib.Init.Logic <> False ind
+R27435:27444 Stdlib.Bool.Bool <> orb_true_r thm
+R27435:27444 Stdlib.Bool.Bool <> orb_true_r thm
+R27435:27444 Stdlib.Bool.Bool <> orb_true_r thm
+prf 27479:27495 <> orb_domain_elim_r
+binder 27505:27505 <> l:112
+binder 27507:27508 <> l':113
+R27542:27547 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R27535:27537 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R27514:27529 Library.DistState.CoreDef <> is_domain_subset def
+R27531:27532 Library.DistState.Domain <> l':113 var
+R27534:27534 Library.DistState.Domain <> l:112 var
+R27538:27541 Corelib.Init.Datatypes <> true constr
+R27549:27552 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R27548:27548 Library.DistState.Domain <> l:112 var
+R27553:27562 Library.DistState.CoreDef <> orb_domain def
+R27564:27564 Library.DistState.Domain <> l:112 var
+R27566:27567 Library.DistState.Domain <> l':113 var
+R27670:27687 Library.DistState.Domain <> dom_subset_nil_iff thm
+R27670:27687 Library.DistState.Domain <> dom_subset_nil_iff thm
+R27701:27713 Library.DistState.Domain <> dom_equiv_sym thm
+R27701:27713 Library.DistState.Domain <> dom_equiv_sym thm
+R27778:27791 Library.DistState.Domain <> dom_equiv_refl thm
+R27778:27791 Library.DistState.Domain <> dom_equiv_refl thm
+R27818:27830 Stdlib.Bool.Bool <> andb_true_iff thm
+R27818:27830 Stdlib.Bool.Bool <> andb_true_iff thm
+R27930:27942 Stdlib.Bool.Bool <> andb_true_iff thm
+R27930:27942 Stdlib.Bool.Bool <> andb_true_iff thm
+R27976:27984 Stdlib.Bool.Bool <> orb_assoc thm
+R27976:27984 Stdlib.Bool.Bool <> orb_assoc thm
+R27976:27984 Stdlib.Bool.Bool <> orb_assoc thm
+R27995:28004 Stdlib.Bool.Bool <> orb_negb_l thm
+R27995:28004 Stdlib.Bool.Bool <> orb_negb_l thm
+R27995:28004 Stdlib.Bool.Bool <> orb_negb_l thm
+R28041:28053 Stdlib.Bool.Bool <> andb_true_iff thm
+R28041:28053 Stdlib.Bool.Bool <> andb_true_iff thm
+R28087:28094 Stdlib.Bool.Bool <> negb_orb thm
+R28087:28094 Stdlib.Bool.Bool <> negb_orb thm
+R28087:28094 Stdlib.Bool.Bool <> negb_orb thm
+R28112:28129 Stdlib.Bool.Bool <> orb_andb_distrib_l thm
+R28112:28129 Stdlib.Bool.Bool <> orb_andb_distrib_l thm
+R28112:28129 Stdlib.Bool.Bool <> orb_andb_distrib_l thm
+R28151:28160 Stdlib.Bool.Bool <> orb_negb_l thm
+R28151:28160 Stdlib.Bool.Bool <> orb_negb_l thm
+R28151:28160 Stdlib.Bool.Bool <> orb_negb_l thm
+prf 28220:28237 <> dom_cons_equiv_iff
+binder 28247:28247 <> X:114
+binder 28249:28249 <> Y:115
+binder 28251:28251 <> a:116
+binder 28253:28253 <> b:117
+R28259:28259 Corelib.Init.Logic <> ::type_scope:x_'<->'_x not
+R28272:28278 Corelib.Init.Logic <> ::type_scope:x_'<->'_x not
+R28294:28294 Corelib.Init.Logic <> ::type_scope:x_'<->'_x not
+R28264:28267 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R28261:28262 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R28260:28260 Library.DistState.Domain <> a:116 var
+R28263:28263 Library.DistState.Domain <> X:114 var
+R28269:28270 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R28268:28268 Library.DistState.Domain <> b:117 var
+R28271:28271 Library.DistState.Domain <> Y:115 var
+R28284:28287 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R28280:28282 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R28279:28279 Library.DistState.Domain <> a:116 var
+R28283:28283 Library.DistState.Domain <> b:117 var
+R28289:28292 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R28288:28288 Library.DistState.Domain <> X:114 var
+R28293:28293 Library.DistState.Domain <> Y:115 var
+R28463:28476 Library.DistState.Domain <> dom_equiv_refl thm
+R28463:28476 Library.DistState.Domain <> dom_equiv_refl thm
+R28463:28476 Library.DistState.Domain <> dom_equiv_refl thm
+R28493:28503 Stdlib.Bool.Bool <> andb_true_r thm
+R28493:28503 Stdlib.Bool.Bool <> andb_true_r thm
+R28493:28503 Stdlib.Bool.Bool <> andb_true_r thm
+R28519:28529 Stdlib.Bool.Bool <> andb_true_r thm
+R28519:28529 Stdlib.Bool.Bool <> andb_true_r thm
+R28519:28529 Stdlib.Bool.Bool <> andb_true_r thm
+R28642:28652 Stdlib.Bool.Bool <> andb_true_r thm
+R28642:28652 Stdlib.Bool.Bool <> andb_true_r thm
+R28642:28652 Stdlib.Bool.Bool <> andb_true_r thm
+R28674:28686 Stdlib.Bool.Bool <> andb_true_iff thm
+R28674:28686 Stdlib.Bool.Bool <> andb_true_iff thm
+R28810:28826 Library.DistState.Domain <> all_false_iff_nil thm
+R28810:28826 Library.DistState.Domain <> all_false_iff_nil thm
+R28886:28902 Library.DistState.Domain <> all_false_iff_nil thm
+R28886:28902 Library.DistState.Domain <> all_false_iff_nil thm
+R28960:28972 Stdlib.Bool.Bool <> andb_true_iff thm
+R28960:28972 Stdlib.Bool.Bool <> andb_true_iff thm
+R29008:29018 Stdlib.Bool.Bool <> andb_true_r thm
+R29008:29018 Stdlib.Bool.Bool <> andb_true_r thm
+R29008:29018 Stdlib.Bool.Bool <> andb_true_r thm
+R29131:29143 Library.DistState.Domain <> dom_equiv_sym thm
+R29131:29143 Library.DistState.Domain <> dom_equiv_sym thm
+R29152:29168 Library.DistState.Domain <> all_false_iff_nil thm
+R29152:29168 Library.DistState.Domain <> all_false_iff_nil thm
+R29228:29240 Library.DistState.Domain <> dom_equiv_sym thm
+R29228:29240 Library.DistState.Domain <> dom_equiv_sym thm
+R29249:29265 Library.DistState.Domain <> all_false_iff_nil thm
+R29249:29265 Library.DistState.Domain <> all_false_iff_nil thm
+R29323:29335 Stdlib.Bool.Bool <> andb_true_iff thm
+R29323:29335 Stdlib.Bool.Bool <> andb_true_iff thm
+R29369:29381 Stdlib.Bool.Bool <> andb_true_iff thm
+R29369:29381 Stdlib.Bool.Bool <> andb_true_iff thm
+R29407:29419 Stdlib.Bool.Bool <> andb_true_iff thm
+R29407:29419 Stdlib.Bool.Bool <> andb_true_iff thm
+R29453:29465 Stdlib.Bool.Bool <> andb_true_iff thm
+R29453:29465 Stdlib.Bool.Bool <> andb_true_iff thm
+R29956:29969 Library.DistState.Domain <> dom_equiv_refl thm
+R29956:29969 Library.DistState.Domain <> dom_equiv_refl thm
+R29993:30005 Library.DistState.Domain <> dom_equiv_sym thm
+R29993:30005 Library.DistState.Domain <> dom_equiv_sym thm
+R30020:30036 Library.DistState.Domain <> all_false_iff_nil thm
+R30020:30036 Library.DistState.Domain <> all_false_iff_nil thm
+R30083:30093 Stdlib.Bool.Bool <> andb_true_r thm
+R30083:30093 Stdlib.Bool.Bool <> andb_true_r thm
+R30083:30093 Stdlib.Bool.Bool <> andb_true_r thm
+R30102:30111 Stdlib.Bool.Bool <> orb_negb_l thm
+R30102:30111 Stdlib.Bool.Bool <> orb_negb_l thm
+R30129:30138 Stdlib.Bool.Bool <> orb_negb_l thm
+R30129:30138 Stdlib.Bool.Bool <> orb_negb_l thm
+R30129:30138 Stdlib.Bool.Bool <> orb_negb_l thm
+R30180:30196 Library.DistState.Domain <> all_false_iff_nil thm
+R30180:30196 Library.DistState.Domain <> all_false_iff_nil thm
+R30243:30252 Stdlib.Bool.Bool <> orb_negb_l thm
+R30243:30252 Stdlib.Bool.Bool <> orb_negb_l thm
+R30243:30252 Stdlib.Bool.Bool <> orb_negb_l thm
+R30287:30296 Stdlib.Bool.Bool <> orb_negb_l thm
+R30287:30296 Stdlib.Bool.Bool <> orb_negb_l thm
+R30287:30296 Stdlib.Bool.Bool <> orb_negb_l thm
+R30367:30376 Stdlib.Bool.Bool <> orb_negb_l thm
+R30367:30376 Stdlib.Bool.Bool <> orb_negb_l thm
+R30367:30376 Stdlib.Bool.Bool <> orb_negb_l thm
+R30411:30420 Stdlib.Bool.Bool <> orb_negb_l thm
+R30411:30420 Stdlib.Bool.Bool <> orb_negb_l thm
+R30411:30420 Stdlib.Bool.Bool <> orb_negb_l thm
+prf 30453:30473 <> res_dom_eq_iff_subset
+binder 30483:30483 <> s:118
+binder 30485:30485 <> X:119
+R30534:30540 Corelib.Init.Logic <> ::type_scope:x_'<->'_x not
+R30528:30529 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R30491:30506 Library.DistState.CoreDef <> is_domain_subset def
+R30508:30508 Library.DistState.Domain <> X:119 var
+R30512:30524 Library.DistState.CoreDef <> return_domain def
+R30526:30526 Library.DistState.Domain <> s:118 var
+R30530:30533 Corelib.Init.Datatypes <> true constr
+R30541:30541 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R30573:30577 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R30542:30554 Library.DistState.CoreDef <> return_domain def
+R30557:30567 Library.DistState.CoreDef <> res_st_to_X def
+R30569:30569 Library.DistState.Domain <> s:118 var
+R30571:30571 Library.DistState.Domain <> X:119 var
+R30578:30578 Library.DistState.Domain <> X:119 var
+R30711:30728 Library.DistState.Domain <> dom_subset_nil_iff thm
+R30711:30728 Library.DistState.Domain <> dom_subset_nil_iff thm
+R30748:30760 Library.DistState.Domain <> dom_equiv_sym thm
+R30748:30760 Library.DistState.Domain <> dom_equiv_sym thm
+R30855:30868 Library.DistState.Domain <> dom_equiv_refl thm
+R30855:30868 Library.DistState.Domain <> dom_equiv_refl thm
+R30855:30868 Library.DistState.Domain <> dom_equiv_refl thm
+R30855:30868 Library.DistState.Domain <> dom_equiv_refl thm
+R30855:30868 Library.DistState.Domain <> dom_equiv_refl thm
+R30855:30868 Library.DistState.Domain <> dom_equiv_refl thm
+R30855:30868 Library.DistState.Domain <> dom_equiv_refl thm
+R30918:30935 Library.DistState.Domain <> dom_cons_equiv_iff thm
+R30918:30935 Library.DistState.Domain <> dom_cons_equiv_iff thm
+R31005:31022 Library.DistState.Domain <> dom_cons_equiv_iff thm
+R31005:31022 Library.DistState.Domain <> dom_cons_equiv_iff thm
+R31090:31107 Library.DistState.Domain <> dom_cons_equiv_iff thm
+R31090:31107 Library.DistState.Domain <> dom_cons_equiv_iff thm
+R31242:31259 Library.DistState.Domain <> dom_subset_nil_iff thm
+R31242:31259 Library.DistState.Domain <> dom_subset_nil_iff thm
+R31273:31285 Library.DistState.Domain <> dom_equiv_sym thm
+R31273:31285 Library.DistState.Domain <> dom_equiv_sym thm
+R31450:31467 Library.DistState.Domain <> dom_cons_equiv_iff thm
+R31450:31467 Library.DistState.Domain <> dom_cons_equiv_iff thm
+R31523:31540 Library.DistState.Domain <> dom_cons_equiv_iff thm
+R31523:31540 Library.DistState.Domain <> dom_cons_equiv_iff thm
+R31586:31603 Library.DistState.Domain <> dom_cons_equiv_iff thm
+R31586:31603 Library.DistState.Domain <> dom_cons_equiv_iff thm
+R31661:31678 Library.DistState.Domain <> dom_cons_equiv_iff thm
+R31661:31678 Library.DistState.Domain <> dom_cons_equiv_iff thm
