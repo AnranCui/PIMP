@@ -1,39 +1,27 @@
-# Introduction 
+# Probabilistic Hoare Logic Formalization in Coq
 
-This is a project about a Hoare Logic for Local reasoning about classical-quantum programs. 
+## Overview
 
-# Installation 
+This project provides a formalization of Probabilistic Hoare Logic using the Coq theorem prover, enabling machine-verified correctness proofs for probabilistic programs. The system includes a probabilistic assertion language, program semantics, and verification rules.
 
-CoqQLR is currently compatible with Coq 8.16.
+## Key Features
 
-First, download the project: 
+- **Probabilistic Assertion Language**: Supports deterministic formulas and probabilistic combinations
+- **Probabilistic Program Semantics**: Formal denotational semantics for probabilistic programs  
+- **Theorem Proving Support**: Rich library of proof tactics and lemmas for probabilistic reasoning
 
-```git clone https://github.com/fox9909/CoqQLR.git```
+## Quick Start
 
-After that, enter ```make``` in the commandline. If no error message occurs, the installation is complete.
-# Structure
+### Prerequisites
 
-* **QState**: A folder about states.
+- The Rocq Prover, version 9.1+alpha compiled with OCaml 4.14.0
+- CoqIDE or Proof General
 
-  + **Basic**:  Definition of basis vector and corresponding lemmas.
+### Compilation
 
-  + **Mixed_State**: Definitions of partial density operator and corresponding lemmas.
+```bash
+coq_makefile -f _CoqProject *.v -o Makefile
+make
 
-  + **QState_L**:  Definitions of classical states, quantum states, states, and distribution states, along with associated lemmas.
-
-* **QIMP**: A folder about classical-quantum languages.
-
-    + **QIMP_L**: A docutment about the syntax and semantics of classical-quantum languages.
-
-    + **Ceval_Prop**: Some lemmas about the semantics of languages.
-
-* **QAssert**: A folder about assertions.
-
-    + **QAssert_L**: A docutment about the syntax and semantics of assertion languages, along with associated lemmas.
-
-    + **QSepar**: Additional lemmas for assertions.
-
-* **QRule**:  Documentation on various reasoning rules.
-
-* **Examples**:  A folder containing various examples. 
-
+## Contact
+Email: arcui@stu.ecnu.edu.cn
