@@ -22,6 +22,7 @@ This project provides a formalization of Probabilistic Hoare Logic using the Coq
 ```bash
 coq_makefile -f _CoqProject *.v -o Makefile
 make
+```
 
 ## Contact
 Email: arcui@stu.ecnu.edu.cn
