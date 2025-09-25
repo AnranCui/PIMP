@@ -388,6 +388,11 @@ inversion Hhoare; subst.
 assumption.
 Qed.
 (**********************************)
+(** *** Evaluation *)
+Definition DAssertion_sub_Q (P:DAssertion) (X:nat) (r: Q) : DAssertion := 
+  fun (st : local_st) => P (update st X r).  
+Definition DAssertion_sub_aexp (P:DAssertion) (X:nat) (a: aexp) : DAssertion := 
+  fun (st : local_st) => P (update st X (evalA_st a st)). 
 Definition PAssertion_sub (P : PAssertion) (X : nat) (a : aexp) : PAssertion := 
   fun (pd : partial_dist) => 
     forall (HWFa : WF_aexp_with_pd a pd),
@@ -2001,9 +2006,66 @@ Proof.
         inversion HWD0; subst. assumption.
 Qed.
 (*************************)
-Theorem hoare_exists: forall (A:Type) (P Q: A-> Prop), (ex P) -> (forall x:A, P x-> Q x) -> (ex Q).
+Theorem hoare_exists: forall x df c phi, 
+  well_defined_Df (Dexist x df) -> well_defined_Pf phi -> exclude_odot phi ->
+  (get_var_in_Pformular phi ⊆ get_var_in_Dformular df)%domain ->
+  (forall r, {{[[(Pdeter df)]] [x |-> (Aco r)]}} c {{[[phi]]}}) -> 
+  {{[[Pdeter (Dexist x df)]]}} c {{[[phi]]}}.
 Proof.
-intros. elim H. intros. exists x. apply H0. exact H1.
+  intros x df c phi WD_df WD_phi HEX Hsub Hall.
+  unfold hoare_triple in *. intros. generalize dependent pd'.
+  destruct pd as [dom mu HPD]. induction mu as [|(s,p) mu' IH]; intros.
+  - apply NS_pd_implies_nil in H2. destruct H2. 
+    apply pd_equiv_preserves_sem with (pd0:= (pd_emp (dom ∪ get_modvar_in_winstr c)%domain)); intuition.
+    + rewrite H2. apply Valid_dist_nil.
+    + split; simpl; try assumption. rewrite H2. apply dst_equiv_refl.
+    + apply emp_dst_satisfies_phi; intuition. 
+      apply satisfy_implies_dom_sub in H3; intuition.
+      * simpl in H3. 
+        apply dom_subset_trans with (l1:= get_var_in_Dformular df); try assumption.
+        apply dom_subset_trans with (l1:= dom); try assumption. 
+        apply dom_subset_orb_snd_l_r.
+      * apply WD_Pdeter. assumption. 
+  - inversion HPD; subst. 
+    assert (HPD0: partial_dst_Prop dom [(s,p)]). {
+      assert (H': partial_dst_Prop dom ((s,p)::mu')) by assumption.
+      rewrite dst_cons_eq_add in H'. apply PD_decom in H'. destruct H'. assumption.
+    }
+    pose (pd0:= {| dom := dom; mu := [(s, p)]; all_partial := HPD0|}).
+    pose (pd1:= {| dom := dom; mu := mu'; all_partial := H8|}).
+    assert (Hv0: Valid_dist (mu pd0)). { apply Valid_dist_conj in H. intuition. }
+    assert (Hv1: Valid_dist (mu pd1)). { apply Valid_dist_conj in H. intuition. }
+    assert (Hv': Valid_dist (mu pd')). { apply Valid_forall_NS in H2; intuition. }
+    assert (Hsum': sum_probs (mu {| dom := dom; mu := (s, p) :: mu'; all_partial := HPD |}) =
+        sum_probs (mu pd') ).
+      { apply NS_preserve_sum_eq in H2; intuition. }
+    apply add_NS with (pd0:= pd0) (pd1:= pd1) in H2; intuition; 
+      try apply dom_equiv_refl; try apply dst_equiv_refl.
+    + destruct H2. destruct H2. intuition. 
+      apply phi_sem_add with (phi:= phi) in H5; intuition.
+      * apply Valid_forall_NS in H4; intuition.
+      * apply Valid_forall_NS in H2; intuition.
+      * apply dom_equiv_sym. assumption.
+      * apply dom_equiv_sym. assumption.
+      * apply NS_preserve_sum_eq in H4; intuition. 
+        apply NS_preserve_sum_eq in H2; intuition.
+        rewrite <- Hsum'. rewrite <- H2. rewrite <- H4. simpl. rewrite Rplus_0_r. reflexivity.
+      * destruct H3. 
+        assert(H': is_in_supp s (supp_mu (mu {| dom := dom; mu := (s, p) :: mu'; all_partial := HPD |})) =
+  true). { simpl. apply in_supp_mu_cons_head. }
+        specialize (H9 s H'). destruct H9. destruct H11. 
+        apply Hall with (r:= x2) (pd:= pd0); intuition. 
+        ** simpl in H0. simpl. intuition.
+        ** simpl. split; intuition. 
+        -- simpl. apply dom_subset_trans with (l1:= return_domain s); intuition. 
+          apply dom_subset_eq_compat_right with (X:= dom); intuition.
+          apply dom_subset_orb_snd_l_r.
+        -- simpl in H12. apply orb_true_iff in H12. destruct H12; try discriminate. 
+          rewrite state_eq_sym in H12.
+          apply st_eq_implies_df_sem with (df:= df) in H12; try assumption.
+    * apply IH with (HPD:= H8); try assumption; intuition. 
+      ** simpl in H0. simpl. intuition.
+      ** apply df_sem_conj_mu in H3; intuition.
 Qed.
 (******************************)
 Theorem hoare_post_true : forall (P Q : PAssertion) c, (*PT *)
@@ -3789,8 +3851,7 @@ Proof.
     left. split. 
       + apply Rp_lt1_minus_p_bounds with (p:= 1 / 2). assumption.
       + exists x, x0. intuition. 
-        replace (1 - 1/2)%R with (1/2)%R; try assumption.
-        (* admit.  *) lra.
+        replace (1 - 1/2)%R with (1/2)%R; try assumption. lra.
     - destruct H as [H | H]. 
       + right. left. 
       replace (1 - 1/2)%R with (1/2)%R by lra. assumption.

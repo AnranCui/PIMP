@@ -758,7 +758,6 @@ Proof.
       apply st_eq_implies_evalB with (b:= b) in H. assumption. } 
     rewrite <- Hbs. assumption.
   - simpl in *. inversion H0.
-    + left. destruct H1. 
       assert (Hdom': is_domain_subset (get_var_in_Dformular df) (return_domain s') = true). {
         apply st_eq_implies_dom_equiv in H. 
         apply dom_subset_eq_compat_left with (Z:= (get_var_in_Dformular df)) in H; try assumption. }
@@ -767,7 +766,6 @@ Proof.
       apply st_eq_implies_update_eq with (x:= n) (n1:= x) (n2:= x) in H; 
       try reflexivity.
       apply IHdf with (s:= (update s n x)); assumption.
-    + right. apply IHdf with (s:= s); try assumption.
 Qed.
 
 Lemma df_sem_iff_res_st: forall s df, 
@@ -789,14 +787,13 @@ Proof.
         * rewrite <- evalB_eq_res_st in Hs. rewrite Hs. assumption.
         * rewrite <- evalB_eq_res_st in Hs. rewrite Hs. assumption.
     - inversion HWD; subst. destruct Hsem. 
-      + destruct H. destruct H0. 
-        simpl. left.  
+      destruct H0. 
+        simpl. 
         split. { apply res_dom_eq_iff_subset in H. destruct H. try assumption. }
         exists x. 
         apply update_eq_res_st with (s:=s) (q:=x) in H1.
         apply st_eq_implies_df_sem with (df:= df) in H1; try assumption.
-        apply IHdf; assumption.
-      + right. apply IHdf with (s:= s); try assumption. }
+        apply IHdf; assumption. }
   intros Hsem. generalize dependent s.
   induction df; intros. 
   - simpl in *. destruct Hsem. split; try assumption.
@@ -804,7 +801,7 @@ Proof.
       try assumption. apply res_dom_subst.
     + rewrite evalB_eq_res_st in H0. assumption. 
   - inversion HWD; subst. inversion Hsem. 
-    + left. destruct H. destruct H0. 
+    destruct H0. 
       split; try assumption. { 
         apply dom_subset_trans with (l1:= (return_domain (res_st_to_X s (get_var_in_Dformular df))));
           try apply res_dom_subst; try assumption. }
@@ -813,7 +810,6 @@ Proof.
     apply update_eq_res_st with (s:=s) (q:=x) in H1.
     rewrite state_eq_sym in H1.
     apply st_eq_implies_df_sem with (df:= df) in H1; try assumption.
-    + right. apply IHdf with (s:= s); try assumption.
 Qed.
 
 Lemma df_sem_res_df_iff_res_V: forall df V s,
@@ -834,8 +830,9 @@ Proof.
       + apply dom_subset_eq_compat_left with (X:= V); try assumption.
         apply dom_equiv_sym. apply res_dom_eq_iff_subset. assumption.
       + rewrite <- evalB_st_preserve_bool; try assumption.
-    - inversion HWD; subst. inversion H1 as [H1_l| H1_r]. 
-      * simpl. left. destruct H1_l as [Hsub_ndf Hx]. destruct Hx as [x Hsem_up]. 
+    - inversion HWD; subst. 
+      * simpl. 
+        destruct H1 as [Hsub_ndf Hx]. destruct Hx as [x Hsem_up]. 
         split. { 
           simpl in *. 
           apply dom_subset_trans with 
@@ -858,7 +855,6 @@ Proof.
               apply update_eq_res_st with (s:= s) (q:= x) in H4. assumption. }
           rewrite state_eq_sym in Heq'.
           apply st_eq_implies_df_sem with (df:= df) in Heq'; try assumption.
-      * right. apply IHdf; try assumption. 
   }
   intros Hsem_res. generalize dependent s. generalize dependent V.
   induction df; intros.
@@ -869,9 +865,8 @@ Proof.
       rewrite state_eq_sym. try assumption. }
     apply st_eq_implies_df_sem with (s:= res_st_to_X (res_st_to_X s V) (get_var_in_Dformular (Dpred b))); try assumption.
   - inversion HWD; subst. inversion Hsem_res. 
-    + left. 
-      destruct H1 as [Hsub H1]. destruct H1 as [x Hdf]. 
-      split. { simpl. simpl in H.
+    destruct H2 as [x Hdf].
+    split. { simpl. simpl in H.
         assert (H': is_domain_subset (get_var_in_Dformular df) (return_domain s) = true). {
           apply dom_subset_trans with (l1:= V); try assumption. }
         apply res_dom_eq_iff_subset in H'. destruct H'. assumption. 
@@ -892,7 +887,6 @@ Proof.
         apply update_eq_res_st with (s:= s) (q:= x) in Hsub'. assumption. }
       rewrite state_eq_sym in Heq.
       apply st_eq_implies_df_sem with (df:= df) in Heq; try assumption.
-      + right. simpl in H. apply IHdf with (V:= V); try assumption.
 Qed.  
 Lemma df_sem_iff_res_V: forall df V s, 
   well_defined_Df df ->
@@ -1361,7 +1355,7 @@ Proof.
         apply Hsem0 in Hin. rewrite state_eq_sym in H. 
         apply st_eq_implies_df_sem with (df:= (Dexist n df)) in H; try assumption.
         destruct Hin.
-      ** inversion HWD; subst. inversion H4; subst. destruct H0. destruct H2. left. 
+      ** inversion HWD; subst. destruct H2. inversion H5; subst. 
       split; try assumption. 
       -- apply dom_subset_eq_compat_left with (Z:= V) in H1; try assumption. 
         apply res_dom_eq_iff_subset in H1. apply dom_equiv_sym in H1.
@@ -1377,7 +1371,6 @@ Proof.
         apply df_sem_iff_res_V; try assumption.
         apply dom_subset_trans with (l1:= (return_domain s)); try assumption.
         apply update_subst_implies_dom_eq.
-      ** right. apply df_sem_iff_res_V; try assumption. inversion HWD; subst. inversion H4; subst. assumption. 
     * clear Hsem0. apply Valid_dist_conj in HWF. destruct HWF. 
         specialize (IH H3 H2 Hsem1). 
         apply IH; try assumption. 
@@ -4145,7 +4138,6 @@ Proof.
       destruct H as [HWF01 H]. destruct H as [HWF02 H]. 
       destruct H as [Hdom01 H]. destruct H as [Hdom02 H].
       destruct H as [Hsem01 H]. destruct H as [Hsem02 H].
-      (* destruct Hsem01 as [_ Hsem01]. destruct Hsem02 as [_ Hsem02]. *)
       destruct H as [Hsum0 H]. destruct H as [Hsum1 Hmu].
       assert (Hvalid': Valid_dist (p1 * mu pd01 + p2 * mu pd02)%dist_state). { 
           apply Valid_linear; try assumption. 

@@ -9,6 +9,7 @@ From Stdlib Require Import Lia.
 From Stdlib Require Import Logic.FunctionalExtensionality.
 From Stdlib Require Import Logic.ClassicalChoice.
 From Stdlib Require Import ZArith.ZArith.
+From Stdlib Require Import micromega.Lra.
 Import ListNotations.
 Set Default Goal Selector "!".
 Require Import Library.UtilityQR.
@@ -2102,6 +2103,23 @@ Proof.
         ** apply dom_subset_eq_compat_left with (X:= dom pd); try assumption.  
 Qed.
 
+Lemma pd_decom_l_preserves_WD_win: forall c pd pd0 pd1, 
+  Valid_dist (mu pd) -> Valid_dist (mu pd0) -> Valid_dist (mu pd1) ->
+  Valid_dist (mu pd0 + mu pd1)%dist_state ->
+  (mu pd == mu pd0 + mu pd1)%dist_state ->
+  (dom pd == dom pd0)%domain /\ (dom pd == dom pd1)%domain -> 
+  well_defined_winstr_with_pd c pd -> 
+  well_defined_winstr_with_pd c pd1.
+Proof.
+  intros c pd pd0 pd1. intros Hv Hv0 Hv1 Hvadd Heq Hdom HWD. 
+  apply dst_equiv_trans with (mu0:= mu pd) (mu2:= (mu pd1 + mu pd0)%dist_state) in Heq; try apply dst_add_comm; try apply dst_equiv_refl.
+  apply pd_decom_r_preserves_WD_win with (c:= c) in Heq; try assumption; intuition.
+  rewrite <- dst_mult_1_l. rewrite dst_mult_plus_distr_r_eq. 
+  apply Valid_linear_under_eq_prob; try assumption; try apply Rle_0_1.
+  repeat rewrite Rmult_1_l. rewrite Rplus_comm. rewrite <- dst_sum_prob_decom.
+  destruct Hvadd. assumption. 
+Qed.
+
 Lemma pd_mult_coef_dom_r_preserves_WD_win: forall c pd p, 
   Valid_dist (mu pd) -> 0 < p < 1 ->
   well_defined_winstr_with_pd c pd <->
@@ -2790,6 +2808,2469 @@ Proof.
       * apply dst_Valid_get_b; assumption.
       * apply dst_Valid_get_b; assumption.
 Qed. 
+
+Lemma add_NS: forall c (pd0 pd1 pd pd': partial_dist),
+  Valid_dist (mu pd0) -> Valid_dist (mu pd1) -> Valid_dist (mu pd) -> 
+  Valid_dist (mu pd0 + mu pd1)%dist_state -> NS c pd pd' ->
+  mu pd == (mu pd0 + mu pd1)%dist_state -> 
+  ((dom pd) == (dom pd0))%domain /\ ((dom pd) == (dom pd1))%domain ->
+    (exists pd0' pd1', NS c pd0 pd0' /\ NS c pd1 pd1' /\
+      mu pd' == ((mu pd0') + (mu pd1'))%dist_state /\
+      ((dom pd') == (dom pd0'))%domain /\ ((dom pd') == (dom pd1'))%domain).
+Proof. 
+  intros c pd0 pd1 pd pd' Hvalid0 Hvalid1 Hvalid Hvl HNS Hadd Hdom.
+  generalize dependent pd'. generalize dependent pd.
+  generalize dependent pd1. generalize dependent pd0. 
+  induction c as [| | | | |]; intros. 
+  - inversion HNS; subst. exists pd0, pd1. 
+    split; try apply NS_Skip. 
+    split; try apply NS_Skip. 
+    split; assumption.
+  - inversion HNS; subst; simpl in *. 
+    destruct Hdom. 
+    assert (HWFa0: WF_aexp_with_pd a pd0). {
+      apply dom_equiv_preserves_WF_aexp with (pd:= pd); try assumption. }
+    assert (HWFa1: WF_aexp_with_pd a pd1). {
+      apply dom_equiv_preserves_WF_aexp with (pd:= pd); try assumption. }
+    exists (DAssn_under_pd n a pd0 HWFa0), (DAssn_under_pd n a pd1 HWFa1).
+    split; try apply NS_DAssign. 
+    split; try apply NS_DAssign.
+    simpl in *. rewrite <- dst_mult_1_l with (mu:= DAssn_under_dstate (mu pd0) n a).
+    rewrite <- dst_mult_1_l with (mu:= DAssn_under_dstate (mu pd1) n a).
+    rewrite <- DAss_eq_under_addAndmult. 
+    split. { repeat rewrite dst_mult_1_l. apply DA_step_deter; try assumption. }
+    split; apply dom_eq_orb_compat_right; assumption.
+  - inversion HNS; subst. destruct Hdom. 
+    assert (HWFa0': WF_distaexp_with_pd (proj1_sig v) pd0). {
+     apply dom_equiv_preserves_WF_distaexp with (pd:= pd); try assumption. }
+    assert (HWFa1': WF_distaexp_with_pd (proj1_sig v) pd1). {
+      apply dom_equiv_preserves_WF_distaexp with (pd:= pd); try assumption. }
+    exists (RAssn_under_pd n v pd0 HWFa0'), (RAssn_under_pd n v pd1 HWFa1').
+    split; try apply NS_RAssign. 
+    split; try apply NS_RAssign. simpl. 
+    rewrite <- dst_mult_1_l with (mu:= RAssn_under_dstate (mu pd0) n (proj1_sig v)).
+    rewrite <- dst_mult_1_l with (mu:= RAssn_under_dstate (mu pd1) n (proj1_sig v)).
+    rewrite <- RAss_equiv_under_addAndmult.
+    split. 
+    + repeat rewrite dst_mult_1_l. apply RA_step_deter with (x:=n) (da:=(proj1_sig v)) in Hadd; try assumption.
+    + split; apply dom_eq_orb_compat_right; try assumption.
+  - inversion HNS; subst. 
+    specialize IHc1 with (pd0:= pd0) (pd1:= pd1) (pd:= pd) (pd':= pd3); try assumption.
+    specialize (IHc1 Hvalid0  Hvalid1 Hvl  Hvalid Hadd Hdom H3).
+    destruct IHc1 as [mu01 Htemp]. destruct Htemp as [mu11 Htemp]. 
+    destruct Htemp as [HNSmu0 Htemp]. destruct Htemp as [HNSmu1 Hmu3].
+    destruct Hmu3 as [Hmu3 Hdom3].
+    assert (Hmu3': mu pd3 == (mu mu01 + mu mu11)%dist_state) by assumption.
+    assert (Hv01: Valid_dist (mu mu01)). {apply Valid_forall_NS in HNSmu0; assumption. }
+    assert (Hv11: Valid_dist (mu mu11)). {apply Valid_forall_NS in HNSmu1; assumption. }
+    assert (Hv3: Valid_dist (mu pd3)). {apply Valid_forall_NS in H3; assumption. }
+    assert (Hv': Valid_dist (mu pd')). {apply Valid_forall_NS in H6; assumption. }
+    assert (Hvmu: Valid_dist (mu mu01 + mu mu11)%dist_state). {
+      rewrite <- dst_mult_1_l. rewrite dst_mult_plus_distr_r_eq.
+      apply Valid_linear_under_eq_prob; try assumption; try lra. 
+      rewrite <- Rmult_plus_distr_l. rewrite Rmult_1_l. 
+      apply NS_preserve_sum_eq in HNSmu0; try assumption. rewrite <- HNSmu0.
+      apply NS_preserve_sum_eq in HNSmu1; try assumption. rewrite <- HNSmu1.
+      rewrite <- dst_sum_prob_decom. destruct Hvl. assumption. } 
+    apply IHc2 with (pd0:= mu01) (pd1:= mu11) (pd:= pd3) (pd':= pd') in Hmu3; try assumption.
+    destruct Hmu3 as [mu02 Htemp]. destruct Htemp as [mu12 Htemp]. 
+    destruct Htemp as [HNSmu02 Htemp]. destruct Htemp as [HNSmu12 Hmu2].
+    destruct Hmu2 as [ Hmu2 Hdom2].
+    exists (mu02), (mu12). split.
+    * eapply NS_Seq; try assumption. 
+      ** destruct Hdom3. 
+      apply pd_decom_r_preserves_WD_win with (c:= c1) in Hadd; try assumption. 
+      ** apply pd_decom_r_preserves_WD_win with (c:= c2) in Hmu3'; try assumption. apply Hmu3'.
+      ** apply HNSmu0. 
+      ** apply HNSmu02.
+    * split. 
+      ** eapply NS_Seq; try assumption.
+      -- destruct Hdom3. 
+        apply dst_equiv_trans with (mu2:= (mu pd1 + mu pd0)%dist_state) in Hadd; try apply dst_add_comm. 
+        apply pd_decom_r_preserves_WD_win with (c:= c1) in Hadd; try assumption.
+        +++ rewrite <- dst_mult_1_l. rewrite dst_mult_plus_distr_r_eq.
+        apply Valid_linear_under_eq_prob; try assumption; try lra. 
+        rewrite <- Rmult_plus_distr_l. rewrite Rmult_1_l. rewrite Rplus_comm. 
+        rewrite <- dst_sum_prob_decom. destruct Hvl. assumption. 
+        +++ destruct Hdom. split; try assumption. 
+      -- apply dst_equiv_trans with (mu2:= (mu mu11 + mu mu01)%dist_state) in Hmu3'. 
+        ++ apply pd_decom_r_preserves_WD_win with (c:= c2) in Hmu3'; try assumption.
+        +++ apply Hmu3'.
+        +++ rewrite <- dst_mult_1_l. rewrite dst_mult_plus_distr_r_eq.
+        apply Valid_linear_under_eq_prob; try assumption; try lra. 
+        rewrite <- Rmult_plus_distr_l. rewrite Rmult_1_l. rewrite Rplus_comm. 
+        rewrite <- dst_sum_prob_decom. destruct Hvmu. assumption. 
+        +++ destruct Hdom3. split; try assumption.
+        ++ apply dst_add_comm.
+      -- apply HNSmu1. 
+      -- apply HNSmu12.
+      ** split; try assumption.
+  - destruct pd0 as [dom0 mu0 HPD0]. destruct pd1 as [dom1 mu1 HPD1].
+    destruct mu0 as [|(s0,p0) mu0']; destruct mu1 as [|(s1,p1) mu1'].
+    { assert (Hmu: mu pd = []). { apply dst_eq_nil_iff. split; try assumption.  }
+      inversion HNS; subst.
+      - assert (HWD10: well_defined_winstr_with_pd c1 {| dom := dom0; mu := []; all_partial := HPD0 |}). 
+        { apply pd_decom_r_preserves_WD_win with (c:= c1) in Hadd; try assumption. }
+        assert (HWD20: well_defined_winstr_with_pd c2 {| dom := dom0; mu := []; all_partial := HPD0 |}). 
+        { apply pd_decom_r_preserves_WD_win with (c:= c2) in Hadd; try assumption. }
+        assert (HWD11: well_defined_winstr_with_pd c1 {| dom := dom1; mu := []; all_partial := HPD1 |}). 
+        { 
+          apply dst_equiv_trans with (mu0:= mu pd) (mu2:= (mu {| dom := dom1; mu := []; all_partial := HPD1 |} +
+            mu {| dom := dom0; mu := []; all_partial := HPD0 |})%dist_state) in Hadd; try apply dst_add_comm; try apply dst_equiv_refl.
+          apply pd_decom_r_preserves_WD_win with (c:= c1) in Hadd; try assumption. destruct Hdom. split; try assumption.  }
+        assert (HWD21: well_defined_winstr_with_pd c2 {| dom := dom1; mu := []; all_partial := HPD1 |}). 
+        { apply pd_decom_l_preserves_WD_win with (c:= c2) in Hadd; try assumption. }
+        unfold b_supp_classify in H3. rewrite Hmu in H3. 
+        exists (pd_emp (dom0 ∪ get_modvar_in_winstr (IF b THEN c1 ELSE c2 FI))), 
+          (pd_emp (dom1 ∪ get_modvar_in_winstr (IF b THEN c1 ELSE c2 FI))).  
+        split. { 
+          apply (@NS_IF_Nil b c1 c2 {| dom := dom0; mu := []; all_partial := HPD0 |}); try assumption.
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - destruct H8. destruct H. apply IHc1 with (pd':= x) in Hadd; try assumption. 
+            destruct Hadd. destruct H1. destruct H1. exists x0. split; try assumption.
+            split; simpl. 
+            + apply orbdom_after_NS in H1. simpl in H1. apply dom_equiv_sym. assumption.
+            + apply NS_pd_implies_nil in H1. destruct H1. rewrite H1. apply dst_equiv_refl.
+          - destruct H9. destruct H. apply IHc2 with (pd':= x) in Hadd; try assumption. 
+            destruct Hadd. destruct H1. destruct H1. exists x0. split; try assumption.
+            split; simpl. 
+            + apply orbdom_after_NS in H1. simpl in H1. apply dom_equiv_sym. assumption.
+            + apply NS_pd_implies_nil in H1. destruct H1. rewrite H1. apply dst_equiv_refl. }
+        split. { 
+          apply (@NS_IF_Nil b c1 c2 {| dom := dom1; mu := []; all_partial := HPD1 |}); try assumption.
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - destruct H8. destruct H. apply IHc1 with (pd':= x) in Hadd; try assumption. 
+            destruct Hadd. destruct H1. destruct H1. destruct H6. exists x1. split; try assumption.
+            split; simpl. 
+            + apply orbdom_after_NS in H6. simpl in H6. apply dom_equiv_sym. assumption.
+            + apply NS_pd_implies_nil in H6. destruct H6. rewrite H6. apply dst_equiv_refl.
+          - destruct H9. destruct H. apply IHc2 with (pd':= x) in Hadd; try assumption. 
+            destruct Hadd. destruct H1. destruct H1. destruct H6. exists x1. split; try assumption.
+            split; simpl. 
+            + apply orbdom_after_NS in H6. simpl in H6. apply dom_equiv_sym. assumption.
+            + apply NS_pd_implies_nil in H6. destruct H6. rewrite H6. apply dst_equiv_refl. }
+        simpl. split; try apply dst_equiv_refl. destruct Hdom. 
+        split; apply dom_eq_orb_compat_right; assumption.
+      - unfold b_supp_classify in H3. rewrite Hmu in H3. discriminate.
+      - unfold b_supp_classify in H3. rewrite Hmu in H3. discriminate.
+      - unfold b_supp_classify in H3. rewrite Hmu in H3. discriminate.
+    } 
+    {
+      inversion HNS; subst. 
+      - rewrite dst_add_0_l in Hadd. apply pd_Nil_mu in H3. rewrite H3 in Hadd.
+        apply dst_equiv_sym in Hadd.
+        simpl in Hadd. 
+        apply dst_cons_valid_contra in Hadd; try assumption; try contradiction. 
+      - assert (HWD10: well_defined_winstr_with_pd c1 {| dom := dom0; mu := []; all_partial := HPD0 |}). 
+          { apply pd_decom_r_preserves_WD_win with (c:= c1) in Hadd; try assumption. }
+        assert (HWD20: well_defined_winstr_with_pd c2 {| dom := dom0; mu := []; all_partial := HPD0 |}). 
+          { apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption.
+          destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl.  }
+        assert (HWD11: well_defined_winstr_with_pd c1 {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |}). 
+          { apply pd_decom_l_preserves_WD_win with (c:= c1) in Hadd; try assumption. } 
+        assert (HWD21: well_defined_winstr_with_pd c2 (pd_emp (dom {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |}))). 
+          { apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption.
+          destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl. }
+        assert (HNS1: NS c1 pd pd'); try assumption.
+        apply IHc1 with (pd0:= {| dom := dom0; mu := []; all_partial := HPD0 |}) 
+                        (pd1:= {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |}) in H9; try assumption.
+        destruct H9. destruct H. destruct H. destruct H0.
+        apply NS_pd_implies_nil in H. destruct H as [Hmux Hdomx]. rewrite Hmux in H1. simpl in H1. 
+        exists (pd_emp (dom0 ∪ get_modvar_in_winstr (IF b THEN c1 ELSE c2 FI))), x0. 
+        split. { 
+          apply (@NS_IF_Nil b c1 c2 {| dom := dom0; mu := []; all_partial := HPD0 |}); try assumption.
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - unfold b_supp_classify. simpl. reflexivity.
+          - apply IHc1 with (pd':= pd') in Hadd; try assumption. 
+            destruct Hadd. destruct H. destruct H. exists x1. split; try assumption.
+            split; simpl. 
+            + apply orbdom_after_NS in H. simpl in H. apply dom_equiv_sym. assumption.
+            + apply NS_pd_implies_nil in H. destruct H. rewrite H. apply dst_equiv_refl.
+          - destruct H10. destruct H. 
+            apply step_deterministic with (pd1:= {| dom := dom0; mu := []; all_partial := HPD0 |}) in H7; try assumption.
+            + destruct H7. destruct H7. exists x2. split; try assumption. split; simpl.
+              ++ apply orbdom_after_NS in H8. simpl in H8. apply dom_equiv_sym. assumption.
+              ++ apply NS_pd_implies_nil in H8. destruct H8. rewrite H8. apply dst_equiv_refl. 
+            + destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl.
+          }
+        split. { 
+          apply NS_IF_All_True; try assumption. 
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - rewrite dst_equiv_implies_b_classify with (pd1:= pd); try assumption.
+            apply pd_equiv_sym. 
+            destruct Hdom. split; simpl; try assumption.
+          - simpl. apply dom_subset_eq_compat_left with (X:= dom pd ∪ get_modvar_in_winstr c1); try assumption.
+            apply dom_eq_orb_compat_right. destruct Hdom. assumption.
+          - destruct H10. destruct H. 
+            apply step_deterministic with (pd1:= (pd_emp (dom {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |}))) in H7; try assumption.
+            + destruct H7. destruct H7. exists x2. split; try assumption. split; simpl. 
+              ++ apply orbdom_after_NS in H8. simpl in H8. apply dom_equiv_sym. assumption.
+              ++ apply NS_pd_implies_nil in H8. destruct H8. rewrite H8. apply dst_equiv_refl.
+            + split; simpl; try apply dst_equiv_refl. destruct Hdom. assumption.
+           }
+        split. { rewrite dst_add_0_l. simpl. destruct H1. assumption. }
+        destruct H1. destruct H1.
+        split; simpl; try assumption. 
+        apply dom_equiv_trans with (l1:= dom x); try assumption.
+        apply dom_equiv_trans with (l1:= (dom0 ∪ get_modvar_in_winstr c1)%domain); try assumption.
+        apply dom_equiv_trans with (l1:= dom0 ∪ get_modvar_in_winstr c1); try apply dom_equiv_refl.
+        rewrite orb_domain_assoc. apply orb_domain_elim_r.
+        destruct Hdom. simpl in H6.
+        apply dom_subset_eq_compat_left with (X := dom pd ∪ get_modvar_in_winstr c1); try assumption.
+        apply dom_eq_orb_compat_right. assumption.
+      - assert (HNS2: NS c2 pd pd'); try assumption.
+        apply IHc2 with (pd0:= {| dom := dom0; mu := []; all_partial := HPD0 |}) 
+                        (pd1:= {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |}) in H9; try assumption.
+        destruct H9. destruct H. destruct H. destruct H0.
+        apply NS_pd_implies_nil in H. destruct H as [Hmux Hdomx]. rewrite Hmux in H1. simpl in H1. 
+        exists (pd_emp (dom0 ∪ get_modvar_in_winstr (IF b THEN c1 ELSE c2 FI))), x0. 
+        split. { apply (@NS_IF_Nil b c1 c2 {| dom := dom0; mu := []; all_partial := HPD0 |}). 
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - unfold b_supp_classify. simpl. reflexivity.
+          - apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption. 
+            split; simpl; try apply dst_equiv_refl. destruct Hdom. assumption.
+          - apply pd_decom_r_preserves_WD_win with (c:= c2) in Hadd; try assumption.
+          - destruct H10. destruct H. 
+            apply step_deterministic with (pd1:= ({| dom := dom0; mu := []; all_partial := HPD0 |})) in H7; try assumption.
+            + destruct H7. destruct H7. exists x2. split; try assumption. split; simpl. 
+              ++ apply orbdom_after_NS in H8. simpl in H8. apply dom_equiv_sym. assumption.
+              ++ apply NS_pd_implies_nil in H8. destruct H8. rewrite H8. apply dst_equiv_refl.
+            + apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption.
+              split; simpl; try apply dst_equiv_refl. destruct Hdom. assumption.
+            + split; simpl; try apply dst_equiv_refl. destruct Hdom. assumption.
+          - apply IHc2 with (pd':= pd') in Hadd; try assumption. 
+            destruct Hadd. destruct H. destruct H. exists x1. split; try assumption. split; simpl.
+            + apply orbdom_after_NS in H. simpl in H. apply dom_equiv_sym. assumption.
+            + apply NS_pd_implies_nil in H. destruct H. rewrite H. apply dst_equiv_refl.
+          }
+        split. { apply NS_IF_All_False; try assumption. 
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - rewrite dst_equiv_implies_b_classify with (pd1:= pd); try assumption.
+            apply pd_equiv_sym. destruct Hdom. split; simpl; try assumption.
+          - apply pd_equiv_preserves_WD_win with (pd:= pd_emp (dom pd)); try assumption. 
+            destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl.
+          - apply pd_decom_l_preserves_WD_win with (c:=c2) in Hadd; try assumption.  
+          - simpl. apply dom_subset_eq_compat_left with (X:= dom pd ∪ get_modvar_in_winstr c2); try assumption.
+            apply dom_eq_orb_compat_right. destruct Hdom. assumption.
+          - destruct H10. destruct H. 
+            apply step_deterministic with (pd1:= (pd_emp (dom {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |}))) in H7; try assumption.
+            + destruct H7. destruct H7. exists x2. split; try assumption. split; simpl. 
+              ++ apply orbdom_after_NS in H8. simpl in H8. apply dom_equiv_sym. assumption.
+              ++ apply NS_pd_implies_nil in H8. destruct H8. rewrite H8. apply dst_equiv_refl.
+            + apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption.
+              split; simpl; try apply dst_equiv_refl. destruct Hdom. assumption.
+            + split; simpl; try apply dst_equiv_refl. destruct Hdom. assumption.
+           }
+        split. { rewrite dst_add_0_l. simpl. destruct H1. assumption. }
+        destruct H1. destruct H1.
+        split; simpl; try assumption. 
+        apply dom_equiv_trans with (l1:= dom x); try assumption.
+        apply dom_equiv_trans with (l1:= (dom0 ∪ get_modvar_in_winstr c2)%domain); try assumption.
+        apply dom_equiv_trans with (l1:= dom0 ∪ get_modvar_in_winstr c2); try apply dom_equiv_refl.
+        rewrite orb_domain_comm with (l:= get_modvar_in_winstr c1). 
+        rewrite orb_domain_assoc. apply orb_domain_elim_r.
+        destruct Hdom. simpl in H6.
+        apply dom_subset_eq_compat_left with (X := dom pd ∪ get_modvar_in_winstr c2); try assumption.
+        apply dom_eq_orb_compat_right. assumption.
+      - rewrite dst_add_0_l in Hadd.
+        assert (Heq': pd ≡ {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |}). {
+          destruct Hdom. split; simpl; try assumption. }
+        pose(pd1_ori := {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |}).
+        assert (HVb1: Valid_dist (mu (extract_b_pd b pd1_ori))). { apply dst_Valid_get_b; assumption. }
+        assert (HVnb1: Valid_dist (mu (extract_notb_pd b pd1_ori))). { apply dst_Valid_get_notb; assumption. }
+        assert (HVb: Valid_dist (mu pd_b)). { apply dst_Valid_get_b; assumption. }
+        assert (HVnb: Valid_dist (mu pd_notb)).  { apply dst_Valid_get_notb; assumption. }
+        assert (Hb_eq: mu pd_b == (mu {| dom := dom0; mu := []; all_partial := HPD0 |} +
+                                  mu (extract_b_pd b pd1_ori))%dist_state). {  
+                        rewrite dst_add_0_l. 
+                        apply Peq_implies_get_b_Peq with (b:= b) in Hadd; try assumption. }
+        assert (Hnotb_eq: mu pd_notb == (mu {| dom := dom0; mu := []; all_partial := HPD0 |} +
+                                        mu (extract_notb_pd b pd1_ori))%dist_state). {
+                        rewrite dst_add_0_l. 
+                        apply Peq_implies_get_notb_Peq with (b:= b) in Hadd; try assumption. }
+        apply IHc1 with (pd0:= {| dom := dom0; mu := []; all_partial := HPD0 |}) 
+                        (pd1:= extract_b_pd b pd1_ori) in H7; try assumption; 
+        apply IHc2 with (pd0:= {| dom := dom0; mu := []; all_partial := HPD0 |}) 
+                        (pd1:= extract_notb_pd b pd1_ori) in H8; try assumption.
+        + destruct H8. destruct H. destruct H. destruct H0. destruct H1.
+          destruct H7. destruct H7. destruct H7. destruct H10. destruct H11.
+          assert (Htmp: (dom x0 == dom x2)%domain). { destruct H8. destruct H14.
+            apply orbdom_after_NS in H10. apply orbdom_after_NS in H0. 
+            apply dom_equiv_trans with (l1:= (dom (extract_notb_pd b pd1_ori) ∪ get_modvar_in_winstr c2)%domain); try assumption.
+            apply dom_equiv_sym.
+            apply dom_equiv_trans with (l1:= (dom (extract_b_pd b pd1_ori) ∪ get_modvar_in_winstr c1)%domain); try assumption.
+            simpl. destruct H6.
+            - apply dom_eq_orb_compat_left. assumption.
+            - destruct H6. destruct Hdom. simpl in H16. 
+              apply dom_equiv_trans with (l1:= dom pd ∪ get_modvar_in_winstr c2); try assumption.
+              + apply dom_equiv_trans with (l1:= dom pd ∪ get_modvar_in_winstr c1); try assumption. 
+                * apply dom_eq_orb_compat_right. apply dom_equiv_sym. assumption.
+                * apply orb_domain_elim_r in H6. apply orb_domain_elim_r in H17.
+                apply dom_equiv_sym in H6. apply dom_equiv_trans with (l1:= dom pd); try assumption.
+              + apply dom_eq_orb_compat_right. assumption. }
+          assert (Hdom02: (dom x2 == dom x0)%domain). { apply dom_equiv_sym. assumption. }
+          exists (pd_emp (dom0 ∪ get_modvar_in_winstr (IF b THEN c1 ELSE c2 FI))), (pd_add x2 x0 (Hdom02)). 
+          split. { apply (@NS_IF_Nil b c1 c2 {| dom := dom0; mu := []; all_partial := HPD0 |}). 
+            - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+            - unfold b_supp_classify. simpl. reflexivity.
+            - apply pd_decom_r_preserves_WD_win with (c:= c1) in Hb_eq; try assumption. 
+            - apply pd_decom_r_preserves_WD_win with (c:= c2) in Hnotb_eq; try assumption.
+            - exists x1. split; try assumption. split; simpl. 
+              + apply orbdom_after_NS in H7. apply dom_equiv_sym. assumption.
+              + apply NS_pd_implies_nil in H7. destruct H7. rewrite H7. apply dst_equiv_refl.
+            - exists x. split; try assumption. split; simpl. 
+              + apply orbdom_after_NS in H. apply dom_equiv_sym. assumption.
+              + apply NS_pd_implies_nil in H. destruct H. rewrite H. apply dst_equiv_refl. }
+          split. { eapply NS_IF_Mixed; try assumption.
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption. 
+              - apply dst_equiv_implies_b_classify with (b:= b) in Heq'; try assumption. 
+                rewrite H3 in Heq'. symmetry in Heq'. assumption.  
+              - apply pd_equiv_preserves_WD_win with (pd:= pd_b); try assumption. split.
+                + destruct Hdom. try assumption.
+                +  try apply dst_Valid_get_b; try assumption.
+              - apply pd_equiv_preserves_WD_win with (pd:= pd_notb); try assumption.
+                destruct Hdom. split; simpl; try assumption.
+              - destruct H6. 
+                + left. assumption.
+                + destruct H6. right. simpl. destruct Hdom. 
+                  split; apply dom_subset_eq_compat_left with (X:= dom pd); try assumption.
+              - apply H10.
+              - apply H0.
+              - simpl. reflexivity.
+              - simpl. apply dom_equiv_refl.
+              - simpl. assumption. }
+          split. { simpl. 
+              apply NS_pd_implies_nil in H7. destruct H7. rewrite H7 in H11. simpl in H11.
+              apply NS_pd_implies_nil in H. destruct H. rewrite H in H1. simpl in H1.
+              rewrite H9.
+              apply dst_add_preserves_equiv; try assumption. }
+          simpl. split; try assumption.
+          * apply orbdom_after_NS in HNS. simpl in HNS. 
+            apply dom_equiv_trans with (l1:= dom pd ∪ get_modvar_in_winstr (IF b THEN c1 ELSE c2 FI)); try assumption.
+            apply dom_eq_orb_compat_right. destruct Hdom. assumption.
+          * destruct H8. apply orbdom_after_NS in HNS. simpl in HNS.  
+            apply dom_equiv_trans with (l1:= (dom pd ∪ (get_modvar_in_winstr c1 ∪ get_modvar_in_winstr c2))%domain); try assumption.
+            apply orbdom_after_NS in H10. simpl in H10. apply dom_equiv_sym in H10.
+            apply dom_equiv_trans with (l1:= (dom1 ∪ get_modvar_in_winstr c1)%domain); try assumption.
+            destruct Hdom. simpl in H16. 
+            apply dom_equiv_trans with (l1:= dom pd ∪ get_modvar_in_winstr c1); try assumption.
+              ** destruct H6. 
+                -- apply dom_eq_orb_compat_left. apply dom_equiv_sym.
+                apply orb_domain_elim_r. destruct H6. assumption.
+                -- destruct H6. apply dom_equiv_trans with (l1:= 
+                    (dom pd ∪ get_modvar_in_winstr c1) ∪ (dom pd ∪ get_modvar_in_winstr c2)); try apply dom_eq_orb_dis_r.
+                apply dom_equiv_sym. apply orb_domain_elim_r. 
+                apply orb_domain_elim_r in H6. apply orb_domain_elim_r in H18. 
+                apply dom_equiv_trans with (l1:= dom pd); try assumption.
+                apply dom_equiv_sym. assumption.
+              ** apply dom_eq_orb_compat_right. assumption. 
+    }
+    {
+      assert (HVl: Valid_dist
+                (mu {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |} +
+                mu {| dom := dom1; mu := []; all_partial := HPD1 |})%dist_state). {
+          simpl. rewrite dst_add_0_r. assumption. }
+      inversion HNS; subst. 
+      - rewrite dst_add_0_r in Hadd. apply pd_Nil_mu in H3. rewrite H3 in Hadd.
+        apply dst_equiv_sym in Hadd.
+        simpl in Hadd. 
+        apply dst_cons_valid_contra in Hadd; try assumption; try contradiction. 
+      - assert (Heq': pd ≡ {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}). {
+          destruct Hdom. rewrite dst_add_0_r in Hadd. split; simpl; try assumption. }
+        assert (HNS1: NS c1 pd pd') by assumption.
+        apply IHc1 with (pd1:= {| dom := dom1; mu := []; all_partial := HPD1 |}) 
+                        (pd0:= {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}) in H9; try assumption.
+        rewrite dst_add_0_r in Hvl.         
+        destruct H9. destruct H. destruct H. destruct H0.
+        apply NS_pd_implies_nil in H0. destruct H0 as [Hmux0 Hdomx0]. 
+        rewrite Hmux0 in H1. simpl in H1. rewrite dst_add_0_r in H1. 
+        exists x, (pd_emp (dom1 ∪ get_modvar_in_winstr (IF b THEN c1 ELSE c2 FI))). 
+        split. { apply NS_IF_All_True; try assumption. 
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - rewrite dst_equiv_implies_b_classify with (pd1:= pd); try assumption.
+            apply pd_equiv_sym. 
+            destruct Hdom. rewrite dst_add_0_r in Hadd. split; simpl; try assumption. 
+          - apply pd_equiv_preserves_WD_win with (pd:= pd); try assumption.
+          - apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption. 
+            destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl.
+          - simpl. apply dom_subset_eq_compat_left with (X:= dom pd ∪ get_modvar_in_winstr c1); try assumption.
+            apply dom_eq_orb_compat_right. destruct Hdom. assumption.
+          - destruct H10. destruct H0. 
+            apply step_deterministic with (pd1:= (pd_emp (dom {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}))) in H7; try assumption.
+            + destruct H7. destruct H7. exists x2. split; try assumption. 
+              split; simpl.
+              * apply orbdom_after_NS in H8; try assumption. simpl in H8. apply dom_equiv_sym. assumption.
+              * apply NS_pd_implies_nil in H8; try assumption. destruct H8. rewrite H8. apply dst_equiv_refl.
+            + apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption. 
+              destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl.
+            + destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl.
+           }
+        split. { apply (@NS_IF_Nil b c1 c2 {| dom := dom1; mu := []; all_partial := HPD1 |}). 
+            - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+            - unfold b_supp_classify. simpl. reflexivity.
+            - apply pd_decom_l_preserves_WD_win with (c:= c1) in Hadd; try assumption. 
+            - apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption. 
+              destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl.
+            - apply IHc1 with (pd':= pd') in Hadd; try assumption.
+              destruct Hadd. destruct H0. destruct H0. destruct H7. 
+              exists x2. split; try assumption. split; simpl. 
+              + apply orbdom_after_NS in H7; try assumption. simpl in H7. apply dom_equiv_sym. assumption.
+              + apply NS_pd_implies_nil in H7; try assumption. destruct H7. rewrite H7. apply dst_equiv_refl.
+            - destruct H10. destruct H0. 
+              apply step_deterministic with (pd1:= {| dom := dom1; mu := []; all_partial := HPD1 |}) in H7; try assumption.
+              + destruct H7. destruct H7. exists x2. split; try assumption. split; simpl. 
+                * apply orbdom_after_NS in H8; try assumption. simpl in H8. apply dom_equiv_sym. assumption.
+                * apply NS_pd_implies_nil in H8; try assumption. destruct H8. rewrite H8. apply dst_equiv_refl.
+              + apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption. 
+                destruct Hdom. split; simpl; try apply dst_equiv_refl. assumption.
+              + destruct Hdom. split; simpl; try apply dst_equiv_refl. assumption.
+            }
+        split. { rewrite dst_add_0_r. simpl. destruct H1. assumption. }
+        destruct H1. destruct H1.
+        split; simpl; try assumption. 
+        apply dom_equiv_trans with (l1:= dom x0); try assumption.
+        apply dom_equiv_trans with (l1:= (dom1 ∪ get_modvar_in_winstr c1)%domain); try assumption.
+        apply dom_equiv_trans with (l1:= dom1 ∪ get_modvar_in_winstr c1); try apply dom_equiv_refl.
+        rewrite orb_domain_assoc. apply orb_domain_elim_r.
+        destruct Hdom. simpl in H6.
+        apply dom_subset_eq_compat_left with (X := dom pd ∪ get_modvar_in_winstr c1); try assumption.
+        apply dom_eq_orb_compat_right. assumption.
+      - assert (Heq': pd ≡ {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}). {
+          destruct Hdom. rewrite dst_add_0_r in Hadd. split; simpl; try assumption. }
+        assert (HNS2: NS c2 pd pd') by assumption.
+        apply IHc2 with (pd1:= {| dom := dom1; mu := []; all_partial := HPD1 |}) 
+                        (pd0:= {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}) in H9; try assumption.
+        destruct H9. destruct H. destruct H. destruct H0.
+        rewrite dst_add_0_r in Hvl.
+        apply NS_pd_implies_nil in H0. destruct H0 as [Hmux0 Hdomx0]. rewrite Hmux0 in H1. simpl in H1.
+        rewrite dst_add_0_r in H1.
+        exists x, (pd_emp (dom1 ∪ get_modvar_in_winstr (IF b THEN c1 ELSE c2 FI))). 
+        split. { apply NS_IF_All_False; try assumption. 
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - rewrite dst_equiv_implies_b_classify with (pd1:= pd); try assumption.
+            apply pd_equiv_sym. destruct Hdom.
+            rewrite dst_add_0_r in Hadd. split; simpl; try assumption. 
+          - apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption. 
+            destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl.
+          - apply pd_decom_r_preserves_WD_win with (c:= c2) in Hadd; try assumption.
+          - simpl. apply dom_subset_eq_compat_left with (X:= dom pd ∪ get_modvar_in_winstr c2); try assumption.
+            apply dom_eq_orb_compat_right. destruct Hdom. assumption.
+          - destruct H10. destruct H0. 
+            apply step_deterministic with (pd1:= (pd_emp (dom {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}))) in H7; try assumption.
+            + destruct H7. destruct H7. exists x2. split; try assumption. split; simpl.
+              * apply orbdom_after_NS in H8; try assumption. simpl in H8. apply dom_equiv_sym. assumption.
+              * apply NS_pd_implies_nil in H8; try assumption. destruct H8. rewrite H8. apply dst_equiv_refl.
+            + apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption. 
+              destruct Hdom. split; simpl; try apply dst_equiv_refl. assumption.
+            + destruct Hdom. split; simpl; try apply dst_equiv_refl. assumption.
+           }
+        split. { apply (@NS_IF_Nil b c1 c2 {| dom := dom1; mu := []; all_partial := HPD1 |}).
+            - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+            - unfold b_supp_classify. simpl. reflexivity.
+            - apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption. 
+              destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl.
+            - apply pd_decom_l_preserves_WD_win with (c:= c2) in Hadd; try assumption.
+            - destruct H10. destruct H0. 
+              apply step_deterministic with (pd1:= {| dom := dom1; mu := []; all_partial := HPD1 |}) in H7; try assumption.
+              + destruct H7. destruct H7. exists x2. split; try assumption. split; simpl.
+                * apply orbdom_after_NS in H8; try assumption. simpl in H8. apply dom_equiv_sym. assumption.
+                * apply NS_pd_implies_nil in H8; try assumption. destruct H8. rewrite H8. apply dst_equiv_refl.
+              + apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption. 
+                destruct Hdom. split; simpl; try apply dst_equiv_refl. assumption.
+              + destruct Hdom. split; simpl; try apply dst_equiv_refl. assumption.
+            - apply IHc2 with (pd':= pd') in Hadd; try assumption. 
+              destruct Hadd. destruct H0. destruct H0. destruct H7.
+              exists x2. split; try assumption. split; simpl. 
+              + apply orbdom_after_NS in H7; try assumption. simpl in H7. apply dom_equiv_sym. assumption.
+              + apply NS_pd_implies_nil in H7; try assumption. destruct H7. rewrite H7. apply dst_equiv_refl.
+             }
+        split. { rewrite dst_add_0_r. simpl. destruct H1. assumption. }
+        destruct H1. destruct H1.
+        split; simpl; try assumption. 
+        apply dom_equiv_trans with (l1:= dom x0); try assumption.
+        apply dom_equiv_trans with (l1:= (dom1 ∪ get_modvar_in_winstr c2)%domain); try assumption.
+        apply dom_equiv_trans with (l1:= dom1 ∪ get_modvar_in_winstr c2); try apply dom_equiv_refl.
+        rewrite orb_domain_comm with (l:= get_modvar_in_winstr c1). 
+        rewrite orb_domain_assoc. apply orb_domain_elim_r.
+        destruct Hdom. simpl in H6.
+        apply dom_subset_eq_compat_left with (X := dom pd ∪ get_modvar_in_winstr c2); try assumption.
+        apply dom_eq_orb_compat_right. assumption.
+      - assert (Heq': pd ≡ {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}). {
+          destruct Hdom. rewrite dst_add_0_r in Hadd. split; simpl; try assumption. }
+        pose(pd1_ori := {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}).
+        assert (HVb1: Valid_dist (mu (extract_b_pd b pd1_ori))). { apply dst_Valid_get_b; assumption. }
+        assert (HVnb1: Valid_dist (mu (extract_notb_pd b pd1_ori))). { apply dst_Valid_get_notb; assumption. }
+        assert (HVb: Valid_dist (mu pd_b)). { apply dst_Valid_get_b; assumption. }
+        assert (HVnb: Valid_dist (mu pd_notb)).  { apply dst_Valid_get_notb; assumption. }
+        rewrite dst_add_0_r in Hadd. rewrite dst_add_0_r in Hvl.
+        assert (Hb_eq: mu pd_b == (mu (extract_b_pd b pd1_ori)  +
+                                   mu {| dom := dom1; mu := []; all_partial := HPD1 |})%dist_state). {  
+                        rewrite dst_add_0_r. 
+                        apply Peq_implies_get_b_Peq with (b:= b) in Hadd; try assumption. }
+        assert (Hnotb_eq: mu pd_notb == (mu (extract_notb_pd b pd1_ori)  +
+                                         mu {| dom := dom1; mu := []; all_partial := HPD1 |})%dist_state). {
+                        rewrite dst_add_0_r. 
+                        apply Peq_implies_get_notb_Peq with (b:= b) in Hadd; try assumption. }
+        apply IHc1 with (pd1:= {| dom := dom1; mu := []; all_partial := HPD1 |}) 
+                        (pd0:= extract_b_pd b pd1_ori) in H7; try assumption; 
+        apply IHc2 with (pd1:= {| dom := dom1; mu := []; all_partial := HPD1 |}) 
+                        (pd0:= extract_notb_pd b pd1_ori) in H8; try assumption.
+        + destruct H8. destruct H. destruct H. destruct H0. destruct H1.
+          destruct H7. destruct H7. destruct H7. destruct H10. destruct H11.
+          assert (Hdom02: (dom x1 == dom x)%domain). { destruct H8. destruct H14.
+            apply orbdom_after_NS in H7. apply orbdom_after_NS in H. 
+            apply dom_equiv_trans with (l1:= (dom (extract_b_pd b pd1_ori) ∪ get_modvar_in_winstr c1)%domain); try assumption.
+            apply dom_equiv_sym.
+            apply dom_equiv_trans with (l1:= (dom (extract_notb_pd b pd1_ori) ∪ get_modvar_in_winstr c2)%domain); try assumption.
+            simpl. destruct H6.
+            - apply dom_eq_orb_compat_left. apply dom_equiv_sym. assumption.
+            - destruct H6. destruct Hdom. simpl in H17. 
+              apply dom_equiv_trans with (l1:= dom pd ∪ get_modvar_in_winstr c2); try assumption.
+              + apply dom_eq_orb_compat_right. apply dom_equiv_sym. assumption.
+              + apply dom_equiv_trans with (l1:= dom pd ∪ get_modvar_in_winstr c1); try assumption. 
+                * apply orb_domain_elim_r in H6. apply orb_domain_elim_r in H17.
+                  apply dom_equiv_sym in H17. apply dom_equiv_trans with (l1:= dom pd); try assumption.
+                * apply dom_eq_orb_compat_right. assumption. }
+          exists (pd_add x1 x (Hdom02)), (pd_emp (dom1 ∪ get_modvar_in_winstr (IF b THEN c1 ELSE c2 FI))). 
+          split. { eapply NS_IF_Mixed; try assumption.
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption. 
+              - apply dst_equiv_implies_b_classify with (b:= b) in Heq'; try assumption. 
+                rewrite H3 in Heq'. symmetry in Heq'. assumption. 
+              - apply pd_equiv_preserves_WD_win with (pd:= pd_b); try assumption.
+                destruct Hdom. rewrite dst_add_0_r in Hb_eq. split; simpl; try assumption.
+              - apply pd_equiv_preserves_WD_win with (pd:= pd_notb); try assumption.
+                destruct Hdom. rewrite dst_add_0_r in Hnotb_eq. split; simpl; try assumption.
+              - destruct H6. 
+                + left. assumption.
+                + destruct H6. right. simpl. destruct Hdom. 
+                  split; apply dom_subset_eq_compat_left with (X:= dom pd); try assumption.
+              - apply H7.
+              - apply H.
+              - simpl. reflexivity.
+              - simpl. apply dom_equiv_refl.
+              - simpl. assumption. }
+          split. { apply (@NS_IF_Nil b c1 c2 {| dom := dom1; mu := []; all_partial := HPD1 |}).
+            - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+            - unfold b_supp_classify. simpl. reflexivity.
+            - apply pd_decom_l_preserves_WD_win with (c:= c1) in Hb_eq; try assumption. 
+              rewrite dst_add_0_r. assumption.
+            - apply pd_decom_l_preserves_WD_win with (c:= c2) in Hnotb_eq; try assumption.
+              rewrite dst_add_0_r. try assumption. 
+            - exists x2. split; try assumption. split; simpl. 
+              + apply orbdom_after_NS in H10. apply dom_equiv_sym. assumption.
+              + apply NS_pd_implies_nil in H10. destruct H10. rewrite H10. apply dst_equiv_refl.
+            - exists x0. split; try assumption. split; simpl. 
+              + apply orbdom_after_NS in H0. apply dom_equiv_sym. assumption.
+              + apply NS_pd_implies_nil in H0. destruct H0. rewrite H0. apply dst_equiv_refl. }
+          split. { simpl. rewrite H9.
+              apply NS_pd_implies_nil in H10. destruct H10. rewrite H10 in H11. rewrite dst_add_0_r in H11.
+              apply NS_pd_implies_nil in H0. destruct H0. rewrite H0 in H1. rewrite dst_add_0_r in H1.
+              rewrite dst_add_0_r. 
+              apply dst_add_preserves_equiv; assumption. }
+          simpl. split; try assumption.
+          * destruct H14. apply orbdom_after_NS in HNS. simpl in HNS.  
+            apply orbdom_after_NS in H7. simpl in H7. apply dom_equiv_sym in H7.
+            apply dom_equiv_trans with (l1:= (dom pd ∪ (get_modvar_in_winstr c1 ∪ get_modvar_in_winstr c2))%domain); try assumption.
+            apply dom_equiv_trans with (l1:= (dom0 ∪ get_modvar_in_winstr c1)%domain); try assumption.
+            destruct Hdom. 
+            apply dom_equiv_trans with (l1:= dom pd ∪ get_modvar_in_winstr c1); try assumption.
+              ** destruct H6. 
+                -- apply dom_eq_orb_compat_left. apply dom_equiv_sym.
+                apply orb_domain_elim_r. destruct H6. assumption.
+                -- destruct H6. apply dom_equiv_trans with (l1:= 
+                    (dom pd ∪ get_modvar_in_winstr c1) ∪ (dom pd ∪ get_modvar_in_winstr c2)); try apply dom_eq_orb_dis_r.
+                apply dom_equiv_sym. 
+                apply orb_domain_elim_r. apply orb_domain_elim_r in H6. apply orb_domain_elim_r in H18. 
+                apply dom_equiv_trans with (l1:= dom pd); try assumption.
+                apply dom_equiv_sym. assumption.
+              ** apply dom_eq_orb_compat_right. assumption. 
+          * apply orbdom_after_NS in HNS. simpl in HNS. 
+            apply dom_equiv_trans with (l1:= dom pd ∪ get_modvar_in_winstr (IF b THEN c1 ELSE c2 FI)); try assumption.
+            apply dom_eq_orb_compat_right. destruct Hdom. assumption.
+        + rewrite dst_add_0_r. try assumption. 
+        + rewrite dst_add_0_r. try assumption. 
+        + rewrite dst_add_0_r. try assumption. 
+    }
+    { 
+      pose (pd0:= {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}).
+      pose (pd1:= {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |}).
+      assert (Hadd_sym: mu pd == (mu pd1 + mu pd0)%dist_state). {
+        apply dst_equiv_trans with (mu1:= (mu {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |} +
+                     mu {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |})%dist_state); try assumption.
+        apply dst_add_comm. }
+      assert (HVl_sym: Valid_dist (mu pd1 + mu pd0)%dist_state). {
+        rewrite <- dst_mult_1_l. rewrite dst_mult_plus_distr_r_eq.
+          apply Valid_linear_under_eq_prob; try assumption; try apply Valid_mult_cofe; try assumption; try apply Rle_0_1.
+         rewrite Rplus_comm. repeat rewrite Rmult_1_l. rewrite <- dst_sum_prob_decom.
+          destruct Hvl. assumption. }
+      inversion HNS; subst.
+      - apply pd_Nil_mu in H3. rewrite H3 in Hadd. apply dst_equiv_sym in Hadd. 
+        simpl in Hadd. 
+        + apply dst_cons_valid_contra in Hadd; try assumption; try contradiction. 
+      - apply IHc1 with (pd0:= pd0) (pd1:= pd1) in H9; try assumption.
+        destruct H9. destruct H. destruct H. destruct H0. destruct H1.
+        exists x, x0.
+        split. { apply NS_IF_All_True; try assumption. 
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - apply bT_classify_decom_r with (pd0:= pd0) (pd1:= pd1) in H3; try assumption.
+              * unfold not. intros. discriminate.
+              * simpl. destruct Hdom. assumption.
+              * simpl. destruct Hdom. assumption.
+          - apply pd_decom_r_preserves_WD_win with (pd0:= pd0) (pd1:= pd1) in H4; try assumption.
+          - apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption. 
+            + apply Valid_dist_nil.
+            + apply Valid_dist_nil.
+            + destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl. 
+          - simpl. apply dom_subset_eq_compat_left with (X:= dom pd ∪ get_modvar_in_winstr c1); try assumption.
+            apply dom_eq_orb_compat_right. destruct Hdom. assumption.
+          - destruct H10. destruct H8. 
+            apply step_deterministic with (pd1:= (pd_emp (dom {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}))) in H9; try assumption.
+            + destruct H9. destruct H9. exists x2. split; try assumption. split; simpl.
+              * apply orbdom_after_NS in H10. simpl in H10. apply dom_equiv_sym. assumption.
+              * apply NS_mu_implies_nil in H10; try reflexivity. rewrite H10. apply dst_equiv_refl.
+            + apply Valid_dist_nil.
+            + apply Valid_dist_nil.
+            + apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption. 
+              * apply Valid_dist_nil.
+              * apply Valid_dist_nil.
+              * destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl.
+            + destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl.
+           }
+        split. {
+          apply NS_IF_All_True; try assumption. 
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - apply bT_classify_decom_r with (pd0:= pd1) (pd1:= pd0) in H3; try assumption.
+              * simpl. unfold not. intros. discriminate.
+              * simpl. destruct Hdom. assumption.
+              * simpl. destruct Hdom. assumption.
+          - apply pd_decom_r_preserves_WD_win with (pd0:= pd1) (pd1:= pd0) in H4; try assumption.
+            simpl in Hdom. destruct Hdom. split; assumption.
+          - apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption. 
+            + apply Valid_dist_nil.
+            + apply Valid_dist_nil.
+            + destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl.
+          - simpl. apply dom_subset_eq_compat_left with (X:= dom pd ∪ get_modvar_in_winstr c1); try assumption.
+            apply dom_eq_orb_compat_right. destruct Hdom. assumption.
+          - destruct H10. destruct H8. 
+            apply step_deterministic with (pd1:= (pd_emp (dom {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |}))) in H9; try assumption.
+            + destruct H9. destruct H9. exists x2. split; try assumption. split; simpl. 
+              * apply orbdom_after_NS in H10. simpl in H10. apply dom_equiv_sym. assumption.
+              * apply NS_mu_implies_nil in H10; try reflexivity. rewrite H10. apply dst_equiv_refl.
+            + apply Valid_dist_nil.
+            + apply Valid_dist_nil.
+            + apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption. 
+              * apply Valid_dist_nil.
+              * apply Valid_dist_nil.
+              * destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl.
+            + destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl.
+          }
+        split; try assumption.
+      - apply IHc2 with (pd0:= pd0) (pd1:= pd1) in H9; try assumption.
+        destruct H9. destruct H. destruct H. destruct H0. destruct H1.
+        exists x, x0.
+        split. { apply NS_IF_All_False; try assumption. 
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - apply bF_classify_decom_r with (pd0:= pd0) (pd1:=pd1) in H3; try assumption.
+              * simpl. unfold not. intros. discriminate.
+              * simpl. destruct Hdom. assumption.
+              * simpl. destruct Hdom. assumption.
+          - apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption. 
+            + apply Valid_dist_nil.
+            + apply Valid_dist_nil.
+            + destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl.
+          - apply pd_decom_r_preserves_WD_win with (pd0:= pd0) (pd1:= pd1) in H5; try assumption.
+          - simpl. apply dom_subset_eq_compat_left with (X:= dom pd ∪ get_modvar_in_winstr c2); try assumption.
+            apply dom_eq_orb_compat_right. destruct Hdom. assumption.
+          - destruct H10. destruct H8.
+            apply step_deterministic with (pd1:= (pd_emp (dom {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}))) in H9; try assumption.
+            + destruct H9. destruct H9. exists x2. split; try assumption. split; simpl. 
+              * apply orbdom_after_NS in H10. simpl in H10. apply dom_equiv_sym. assumption.
+              * apply NS_mu_implies_nil in H10; try reflexivity. rewrite H10. apply dst_equiv_refl.
+            + apply Valid_dist_nil.
+            + apply Valid_dist_nil.
+            + apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption. 
+              * apply Valid_dist_nil.
+              * apply Valid_dist_nil.
+              * destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl.
+            + destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl.
+           }
+        split. { apply NS_IF_All_False; try assumption. 
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - apply bF_classify_decom_r with (pd0:= pd1) (pd1:= pd0) in H3; try assumption.
+              * simpl. unfold not. intros. discriminate.
+              * simpl. destruct Hdom. assumption.
+              * simpl. destruct Hdom. assumption.
+          - apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption. 
+            + apply Valid_dist_nil.
+            + apply Valid_dist_nil.
+            + destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl.
+          - apply pd_decom_r_preserves_WD_win with (pd0:= pd1) (pd1:= pd0) in H5; try assumption.
+            simpl. simpl in Hdom. destruct Hdom. split; assumption.
+          - simpl. apply dom_subset_eq_compat_left with (X:= dom pd ∪ get_modvar_in_winstr c2); try assumption.
+            apply dom_eq_orb_compat_right. destruct Hdom. assumption.
+          - destruct H10. destruct H8.
+            apply step_deterministic with (pd1:= (pd_emp (dom {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |}))) in H9; try assumption.
+            + destruct H9. destruct H9. exists x2. split; try assumption. split; simpl. 
+              * apply orbdom_after_NS in H10. simpl in H10. apply dom_equiv_sym. assumption.
+              * apply NS_mu_implies_nil in H10; try reflexivity. rewrite H10. apply dst_equiv_refl.
+            + apply Valid_dist_nil.
+            + apply Valid_dist_nil.
+            + apply pd_equiv_preserves_WD_win with (pd:= (pd_emp (dom pd))); try assumption. 
+              * apply Valid_dist_nil.
+              * apply Valid_dist_nil.
+              * destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl.
+            + destruct Hdom. split; simpl; try assumption. apply dst_equiv_refl. }
+        split; try assumption.
+      - specialize IHc1 with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) (pd:= pd_b) (pd':= pd3); try assumption.
+        assert (Hvalid_mub0: Valid_dist (get_b_in_mu b (mu pd0))). { apply dst_Valid_get_b; assumption. }
+        assert (Hvalid_mub1: Valid_dist (get_b_in_mu b (mu pd1))). { apply dst_Valid_get_b; assumption. }
+        assert (Hvalid_mub: Valid_dist (mu pd_b)). { apply dst_Valid_get_b; assumption. }
+        assert (Hvlb': Valid_dist (mu (extract_b_pd b pd0) + mu (extract_b_pd b pd1))%dist_state). {
+          rewrite <- dst_mult_1_l. rewrite dst_mult_plus_distr_r_eq.
+          apply Valid_linear_under_eq_prob; try assumption; try lra. 
+          rewrite <- Rmult_plus_distr_l. rewrite Rmult_1_l. 
+          destruct Hvl. rewrite dst_sum_prob_decom in H.
+          split. 
+          - rewrite <- Rplus_0_r with (r:= 0). destruct Hvalid_mub0; destruct Hvalid_mub1. apply Rplus_le_compat; intuition.
+          - destruct H. apply Rle_trans with (r2:= sum_probs (mu {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}) +
+              sum_probs (mu {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |})); try assumption.
+            apply Rplus_le_compat; try apply sum_prob_get_b_le; try assumption.
+          }
+        assert (Hvalid_munb0: Valid_dist (get_notb_in_mu b (mu pd0))). { apply dst_Valid_get_notb; assumption. }
+        assert (Hvalid_munb1: Valid_dist (get_notb_in_mu b (mu pd1))). { apply dst_Valid_get_notb; assumption. }
+        assert (Hvalid_munb: Valid_dist (mu pd_notb)). { apply dst_Valid_get_notb; assumption. }
+        assert (Hvlnotb': Valid_dist (mu (extract_notb_pd b pd0) + mu (extract_notb_pd b pd1))%dist_state). { 
+          rewrite <- dst_mult_1_l. rewrite dst_mult_plus_distr_r_eq.
+          apply Valid_linear_under_eq_prob; try assumption; try lra. 
+          rewrite <- Rmult_plus_distr_l. rewrite Rmult_1_l. 
+          destruct Hvl. rewrite dst_sum_prob_decom in H.
+          split. 
+          - rewrite <- Rplus_0_r with (r:= 0). destruct Hvalid_munb0; destruct Hvalid_munb1. apply Rplus_le_compat; intuition.
+          - destruct H. apply Rle_trans with (r2:= sum_probs (mu {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}) +
+              sum_probs (mu {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |})); try assumption.
+            apply Rplus_le_compat; try apply sum_prob_get_notb_le; try assumption. }
+        assert (Hmub: (mu pd_b == get_b_in_mu b (mu pd0) + get_b_in_mu b (mu pd1))%dist_state). { 
+          repeat rewrite <- dst_get_b_coef_mult. rewrite <- get_b_assoc.
+          apply Peq_implies_get_b_Peq; try assumption. }
+        specialize (IHc1 Hvalid_mub0 Hvalid_mub1 Hvlb' Hvalid_mub Hmub).
+        apply IHc1 in H7; try assumption.
+        destruct H7 as [mu01 Htemp]. destruct Htemp as [mu11 Htemp]. 
+        destruct Htemp as [HNSmu0 Htemp]. destruct Htemp as [HNSmu1 Hmu1]. 
+        destruct Hmu1 as [Hmu1 Hdom1].
+        specialize IHc2 with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) (pd:= pd_notb) (pd':= pd4); try assumption.
+        assert (Hmunb: (mu pd_notb == get_notb_in_mu b (mu pd0) + get_notb_in_mu b (mu pd1))%dist_state). { 
+          repeat rewrite <- dst_get_notb_coef_mult. rewrite <- get_notb_assoc.
+          apply Peq_implies_get_notb_Peq; try assumption. } 
+        apply IHc2 in H8; try assumption.
+        destruct H8 as [mu02 Htemp]. destruct Htemp as [mu12 Htemp]. 
+        destruct Htemp as [HNSmu01 Htemp]. destruct Htemp as [HNSmu11 Hmu2].
+        destruct Hmu2 as [Hmu2 Hdom2].
+
+        destruct (b_supp_classify b {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}) eqn: HB0. {
+            unfold b_supp_classify in HB0. simpl in HB0. 
+            destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu ((s0, p0) :: mu0')));
+            destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu ((s0, p0) :: mu0'))); try discriminate. }
+        { destruct (b_supp_classify b {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |}) eqn: HB1.
+          - unfold b_supp_classify in HB1. simpl in HB1. 
+            destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu ((s1, p1) :: mu1')));
+            destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu ((s1, p1) :: mu1'))); try discriminate.
+          - assert (Heq0: (extract_b_pd b pd0) ≡ pd0). { apply bT_supp_implies_getb_eq; try assumption. }
+            assert (Heq1: (extract_b_pd b pd1) ≡ pd1). { apply bT_supp_implies_getb_eq; try assumption. }
+            assert (HWDb11: well_defined_winstr_with_pd c1 (extract_b_pd b pd1)). { 
+              apply pd_decom_l_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) in H4; try assumption. }
+            assert (HWDb10: well_defined_winstr_with_pd c1 (extract_b_pd b pd0)). { 
+              apply pd_decom_r_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1))in H4; try assumption. } 
+            assert (HWD11: well_defined_winstr_with_pd c1 pd1). { 
+              apply pd_equiv_preserves_WD_win with (pd':= pd1) in HWDb11; try assumption. }
+            assert (HWD10: well_defined_winstr_with_pd c1 pd0). { 
+              apply pd_equiv_preserves_WD_win with (pd':= pd0) in HWDb10; try assumption. }
+            apply step_deterministic with (pd1:= pd0) in HNSmu0; try assumption; 
+            apply step_deterministic with (pd1:= pd1) in HNSmu1; try assumption.
+            destruct HNSmu0 as [mu01' Htemp0]. destruct Htemp0. 
+            destruct HNSmu1 as [mu11' Htemp1]. destruct Htemp1.
+              exists mu01', mu11'. 
+              split. { apply NS_IF_All_True; try assumption. 
+                - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+                - apply pd_decom_r_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1))in H5; try assumption.
+                  apply pd_equiv_preserves_WD_win with (pd:= (extract_notb_pd b pd0)) ; try assumption.
+                  + apply Valid_dist_nil.
+                  + simpl. apply bT_getnotb_nil in HB0. simpl in HB0. split; simpl; try apply dom_equiv_refl.
+                  rewrite HB0. apply dst_equiv_refl.
+                - simpl. destruct H6. 
+                  + destruct H6. apply dom_subset_orb_dom_l with (l0:= dom0) in H8. assumption.
+                  + destruct H6. 
+                    apply dom_subset_trans with (l1:= (dom pd∪ get_modvar_in_winstr c1)%domain) .
+                    * apply dom_subset_orb_dom_r. assumption.
+                    * apply dom_subset_orb_compat; try apply dom_subset_refl.
+                    destruct Hdom. destruct H10. assumption.
+                - apply step_deterministic with (pd1:= (pd_emp (dom {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}))) in HNSmu01; try assumption. 
+                  + destruct HNSmu01. destruct H8. exists x. split; try assumption. 
+                    split; simpl; try assumption. 
+                    * apply orbdom_after_NS in H10. simpl in H10. apply dom_equiv_sym. assumption.
+                    * apply NS_pd_implies_nil in H10. destruct H10. rewrite H10. apply dst_equiv_refl.
+                  + apply Valid_dist_nil.
+                  + apply pd_decom_r_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption.
+                  + apply pd_decom_r_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption.
+                    apply pd_equiv_preserves_WD_win with (pd:= (extract_notb_pd b pd0)) ; try assumption.
+                    * apply Valid_dist_nil.
+                    * simpl. apply bT_getnotb_nil in HB0. simpl in HB0. split; simpl; try apply dom_equiv_refl. 
+                    rewrite HB0. apply dst_equiv_refl.
+                  + apply bT_getnotb_nil in HB0. simpl in HB0. split; simpl; try apply dom_equiv_refl. 
+                    rewrite HB0. apply dst_equiv_refl.
+                 }
+              split. { apply NS_IF_All_True; try assumption.
+                - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+                - apply pd_decom_l_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption.
+                  apply pd_equiv_preserves_WD_win with (pd:= (extract_notb_pd b pd1)); try assumption.
+                  + apply Valid_dist_nil.
+                  + simpl. apply bT_getnotb_nil in HB1. simpl in HB1. split; simpl; try apply dom_equiv_refl.
+                  rewrite HB1. apply dst_equiv_refl.
+                - simpl. destruct H6. 
+                  + destruct H6. apply dom_subset_orb_dom_l with (l0:= dom1) in H8. assumption.
+                  + destruct H6. 
+                    apply dom_subset_trans with (l1:= (dom pd∪ get_modvar_in_winstr c1)%domain) .
+                    * apply dom_subset_orb_dom_r. assumption.
+                    * apply dom_subset_orb_compat; try apply dom_subset_refl.
+                    destruct Hdom. destruct H11. assumption.
+                - apply step_deterministic with (pd1:= (pd_emp (dom {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |}))) in HNSmu11; try assumption. 
+                  + destruct HNSmu11. destruct H8. exists x. split; try assumption. 
+                    split; simpl; try assumption. 
+                    * apply orbdom_after_NS in H10. simpl in H10. apply dom_equiv_sym. assumption.
+                    * apply NS_pd_implies_nil in H10. destruct H10. rewrite H10. apply dst_equiv_refl.
+                  + apply Valid_dist_nil.
+                  + apply pd_decom_l_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption.
+                  + apply pd_decom_l_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption.
+                    apply pd_equiv_preserves_WD_win with (pd:= (extract_notb_pd b pd1)) ; try assumption.
+                    * apply Valid_dist_nil.
+                    * simpl. apply bT_getnotb_nil in HB1. simpl in HB1. split; simpl; try apply dom_equiv_refl. 
+                    rewrite HB1. apply dst_equiv_refl.
+                  + apply bT_getnotb_nil in HB1. simpl in HB1. split; simpl; try apply dom_equiv_refl. 
+                    rewrite HB1. apply dst_equiv_refl.
+                }
+              split; simpl; try assumption. { 
+                rewrite H9.
+                apply dst_equiv_trans with (mu1:= ((mu mu01 + mu mu11) + (mu mu02 + mu mu12))%dist_state).
+                - apply dst_add_preserves_equiv; try assumption.
+                - apply bT_getnotb_nil in HB0. 
+                  apply NS_mu_implies_nil in HNSmu01; try assumption. rewrite HNSmu01.
+                  apply bT_getnotb_nil in HB1. 
+                  apply NS_mu_implies_nil in HNSmu11; try assumption. rewrite HNSmu11.
+                  simpl. rewrite dst_add_0_r. destruct H. destruct H1.
+                  apply dst_add_preserves_equiv; try apply dst_mult_preserves_equiv; assumption. }
+              simpl. split; try assumption. 
+              * apply dom_equiv_trans with (l1:= dom pd3); try assumption.  
+                destruct Hdom1. apply dom_equiv_trans with (l1:= dom mu01); try assumption.
+                destruct H. assumption.
+              * apply dom_equiv_trans with (l1:= dom pd3); try assumption.  
+                destruct Hdom1. apply dom_equiv_trans with (l1:= dom mu11); try assumption.
+                destruct H1. assumption.
+          - assert (Heq0: (extract_b_pd b pd0) ≡ pd0). { apply bT_supp_implies_getb_eq; try assumption. }
+            assert (Heq1: (extract_notb_pd b pd1) ≡ pd1). { apply bF_supp_implies_getnotb_eq; try assumption.  }
+            assert (HWDb11: well_defined_winstr_with_pd c2 (extract_notb_pd b pd1)). { 
+              apply pd_decom_l_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption. }
+            assert (HWDb10: well_defined_winstr_with_pd c1 (extract_b_pd b pd0)). { 
+              apply pd_decom_r_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) in H4; try assumption. } 
+            assert (HWD11: well_defined_winstr_with_pd c2 pd1). { 
+              apply pd_equiv_preserves_WD_win with (pd':= pd1) in HWDb11; try assumption. }
+            assert (HWD10: well_defined_winstr_with_pd c1 pd0). { 
+              apply pd_equiv_preserves_WD_win with (pd':= pd0) in HWDb10; try assumption. }
+            apply step_deterministic with (pd1:= pd0) in HNSmu0; try assumption; 
+            apply step_deterministic with (pd1:= pd1) in HNSmu11; try assumption.
+            destruct HNSmu0 as [mu01' Htemp0]. destruct Htemp0. 
+            destruct HNSmu11 as [mu12' Htemp1]. destruct Htemp1.
+            exists mu01', mu12'. 
+              split. { apply NS_IF_All_True; try assumption. 
+                - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+                - apply pd_decom_r_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption.
+                  apply pd_equiv_preserves_WD_win with (pd:= (extract_notb_pd b pd0)) ; try assumption.
+                  + apply Valid_dist_nil.
+                  + simpl. apply bT_getnotb_nil in HB0. simpl in HB0. split; simpl; try apply dom_equiv_refl.
+                  rewrite HB0. apply dst_equiv_refl.
+                - simpl. destruct H6. 
+                  + destruct H6. apply dom_subset_orb_dom_l with (l0:= dom0) in H8. assumption.
+                  + destruct H6. 
+                    apply dom_subset_trans with (l1:= (dom pd∪ get_modvar_in_winstr c1)%domain) .
+                    * apply dom_subset_orb_dom_r. assumption.
+                    * apply dom_subset_orb_compat; try apply dom_subset_refl.
+                    destruct Hdom. destruct H10. assumption.
+                - apply step_deterministic with (pd1:= (pd_emp (dom {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}))) in HNSmu01; try assumption. 
+                  + destruct HNSmu01. destruct H8. exists x. split; try assumption. 
+                    split; simpl; try assumption. 
+                    * apply orbdom_after_NS in H10. simpl in H10. apply dom_equiv_sym. assumption.
+                    * apply NS_pd_implies_nil in H10. destruct H10. rewrite H10. apply dst_equiv_refl.
+                  + apply Valid_dist_nil.
+                  + apply pd_decom_r_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption.
+                  + apply pd_decom_r_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption.
+                    apply pd_equiv_preserves_WD_win with (pd:= (extract_notb_pd b pd0)) ; try assumption.
+                    * apply Valid_dist_nil.
+                    * simpl. apply bT_getnotb_nil in HB0. simpl in HB0. split; simpl; try apply dom_equiv_refl. 
+                    rewrite HB0. apply dst_equiv_refl.
+                  + apply bT_getnotb_nil in HB0. simpl in HB0. split; simpl; try apply dom_equiv_refl. 
+                    rewrite HB0. apply dst_equiv_refl. }
+              split. { apply NS_IF_All_False; try assumption.
+                - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+                - apply pd_decom_l_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) in H4; try assumption.
+                  apply pd_equiv_preserves_WD_win with (pd:= (extract_b_pd b pd1)) ; try assumption.
+                    * apply Valid_dist_nil.
+                    * simpl. apply bF_getnotb_nil in HB1. simpl in HB1. split; simpl; try apply dom_equiv_refl. 
+                    rewrite HB1. apply dst_equiv_refl.
+                - simpl. destruct H6. 
+                  + destruct H6. apply dom_subset_orb_dom_l with (l0:= dom1) in H6. assumption.
+                  + destruct H6. 
+                    apply dom_subset_trans with (l1:= (dom pd∪ get_modvar_in_winstr c2)%domain) .
+                    * apply dom_subset_orb_dom_r. assumption.
+                    * apply dom_subset_orb_compat; try apply dom_subset_refl.
+                    destruct Hdom. destruct H11. assumption.
+                - apply step_deterministic with (pd1:= (pd_emp (dom {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |}))) in HNSmu1; try assumption.
+                  + destruct HNSmu1. destruct H8. exists x. split; try assumption. 
+                    simpl. split; simpl; try assumption. 
+                    * apply orbdom_after_NS in H10. simpl in H10. apply dom_equiv_sym. assumption.
+                    * apply NS_pd_implies_nil in H10. destruct H10. rewrite H10. apply dst_equiv_refl.
+                  + apply Valid_dist_nil.
+                  + apply pd_decom_l_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) in H4; try assumption.
+                  + apply pd_decom_l_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) in H4; try assumption.
+                    apply pd_equiv_preserves_WD_win with (pd:= (extract_b_pd b pd1)) ; try assumption.
+                    * apply Valid_dist_nil.
+                    * simpl. apply bF_getnotb_nil in HB1. simpl in HB1. split; simpl; try apply dom_equiv_refl. 
+                    rewrite HB1. apply dst_equiv_refl.
+                  + apply bF_getnotb_nil in HB1. simpl in HB1. split; simpl; try apply dom_equiv_refl. 
+                    rewrite HB1. apply dst_equiv_refl.
+                }
+              split; simpl; try assumption. { 
+                rewrite H9.
+                apply dst_equiv_trans with (mu1:= ((mu mu01 + mu mu11) + (mu mu02 + mu mu12))%dist_state).
+                - apply dst_add_preserves_equiv; try assumption.
+                - apply bT_getnotb_nil in HB0. 
+                  apply NS_mu_implies_nil in HNSmu01; try assumption. rewrite HNSmu01.
+                  apply bF_getnotb_nil in HB1. 
+                  apply NS_mu_implies_nil in HNSmu1; try assumption. rewrite HNSmu1.
+                  simpl. rewrite dst_add_0_r. destruct H. destruct H1.
+                  apply dst_add_preserves_equiv; try apply dst_mult_preserves_equiv; assumption.
+                }
+              simpl. split; try assumption. 
+              * apply dom_equiv_trans with (l1:= dom pd3); try assumption.  
+                destruct Hdom1. apply dom_equiv_trans with (l1:= dom mu01); try assumption.
+                destruct H. assumption.
+              * apply orbdom_after_NS in HNS. simpl in HNS.
+                apply dom_equiv_trans with (l1:= (dom pd ∪ (get_modvar_in_winstr c1 ∪ get_modvar_in_winstr c2))%domain); try assumption.
+                apply orbdom_after_NS in H7. simpl in H7. apply dom_equiv_sym in H7.
+                apply dom_equiv_trans with (l1:= (dom1 ∪ get_modvar_in_winstr c2)%domain); try assumption.
+                apply dom_equiv_trans with (l1:= (dom pd ∪ get_modvar_in_winstr c2)%domain) .
+              ** destruct H6. 
+                -- apply dom_eq_orb_compat_left. rewrite orb_domain_comm. apply dom_equiv_sym.
+                apply orb_domain_elim_r. destruct H6. assumption.
+                -- destruct H6. apply dom_equiv_trans with (l1:= 
+                    (dom pd ∪ get_modvar_in_winstr c1) ∪ (dom pd ∪ get_modvar_in_winstr c2)); try apply dom_eq_orb_dis_r.
+                apply dom_equiv_sym. rewrite orb_domain_comm with (l:= (dom pd ∪ get_modvar_in_winstr c1) ). 
+                apply orb_domain_elim_r. apply orb_domain_elim_r in H6. apply orb_domain_elim_r in H8. 
+                apply dom_equiv_trans with (l1:= dom pd); try assumption.
+                apply dom_equiv_sym. assumption.
+              ** destruct Hdom. apply dom_eq_orb_compat_right. assumption. 
+          - assert (Heq0: (extract_b_pd b pd0) ≡ pd0). { apply bT_supp_implies_getb_eq; try assumption. }
+            assert (Heqn0: (extract_notb_pd b pd0) ≡ pd_emp (dom pd0)). { 
+              apply bT_getnotb_nil in HB0. simpl in HB0. split; simpl; try apply dom_equiv_refl.
+              rewrite HB0. apply dst_equiv_refl.  }
+            assert (HWDnb21: well_defined_winstr_with_pd c2 (extract_notb_pd b pd1)). { 
+              apply pd_decom_l_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption. }
+            assert (HWDb10: well_defined_winstr_with_pd c1 (extract_b_pd b pd0)). { 
+              apply pd_decom_r_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) in H4; try assumption. } 
+            assert (HWDb11: well_defined_winstr_with_pd c1 (extract_b_pd b pd1)). { 
+               apply pd_decom_l_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) in H4; try assumption. } 
+            assert (HWDnb20: well_defined_winstr_with_pd c2 (extract_notb_pd b pd0)). { 
+              apply pd_decom_r_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption. }
+            assert (HWD20: well_defined_winstr_with_pd c2
+                        (pd_emp (dom {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}))). {
+                apply pd_equiv_preserves_WD_win with (pd:= (extract_notb_pd b pd0)); try assumption.
+                apply Valid_dist_nil. }
+            assert (HWD10: well_defined_winstr_with_pd c1 pd0). { 
+              apply pd_equiv_preserves_WD_win with (pd':= pd0) in HWDb10; try assumption. }
+            apply step_deterministic with (pd1:= pd0) in HNSmu0; try assumption; 
+            apply step_deterministic with (pd1:= (extract_b_pd b pd1)) in HNSmu1; try assumption;
+            apply step_deterministic with (pd1:= (extract_notb_pd b pd1)) in HNSmu11; try assumption; try apply pd_equiv_refl.
+            destruct HNSmu0 as [mu01' Htemp0]. destruct Htemp0. 
+            destruct HNSmu11 as [mu12' Htemp1]. destruct Htemp1.
+            destruct HNSmu1 as [mu11' Htemp2]. destruct Htemp2.
+            assert (Hdom02: (dom mu11' == dom mu12')%domain). { 
+              apply orbdom_after_NS in H7. apply orbdom_after_NS in H10. 
+              apply dom_equiv_trans with (l1:= (dom (extract_b_pd b pd1) ∪ get_modvar_in_winstr c1)%domain); try assumption.
+              apply dom_equiv_sym.
+              apply dom_equiv_trans with (l1:= (dom (extract_notb_pd b pd1) ∪ get_modvar_in_winstr c2)%domain); try assumption.
+              simpl. destruct H6.
+              - apply dom_eq_orb_compat_left. apply dom_equiv_sym. assumption.
+              - destruct H6. destruct Hdom. simpl in H14. 
+                apply dom_equiv_trans with (l1:= dom pd ∪ get_modvar_in_winstr c2); try assumption.
+                + apply dom_eq_orb_compat_right. apply dom_equiv_sym. assumption.
+                + apply dom_equiv_trans with (l1:= dom pd ∪ get_modvar_in_winstr c1); try assumption. 
+                  * apply orb_domain_elim_r in H6. apply orb_domain_elim_r in H11.
+                    apply dom_equiv_sym in H11. apply dom_equiv_trans with (l1:= dom pd); try assumption.
+                  * apply dom_eq_orb_compat_right. assumption. }
+            exists mu01', (pd_add mu11' mu12' (Hdom02)). 
+            split. { apply NS_IF_All_True; try assumption. 
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - simpl. destruct H6. 
+                + destruct H6. apply dom_subset_orb_dom_l with (l0:= dom0) in H11. assumption.
+                + destruct H6. 
+                  apply dom_subset_trans with (l1:= (dom pd∪ get_modvar_in_winstr c1)%domain) .
+                  * apply dom_subset_orb_dom_r. assumption.
+                  * apply dom_subset_orb_compat; try apply dom_subset_refl.
+                  destruct Hdom. destruct H14. assumption.
+              - apply step_deterministic with (pd1:= pd_emp (dom pd0)) in HNSmu01; try assumption; try apply Valid_dist_nil.
+                destruct HNSmu01. destruct H11. exists x. split; try assumption. 
+                split; simpl. 
+                * apply orbdom_after_NS in H14. apply dom_equiv_sym. assumption.
+                * apply NS_pd_implies_nil in H14. destruct H14. rewrite H14. apply dst_equiv_refl. }
+            split. { eapply NS_IF_Mixed; try assumption.
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - simpl. destruct H6. 
+                + left. assumption.
+                + right. destruct H6. destruct Hdom. 
+                split; apply dom_subset_eq_compat_left with (X:= dom pd); try assumption.
+              - apply H10.
+              - apply H7.
+              - simpl. reflexivity.
+              - simpl. apply dom_equiv_refl.
+              - simpl. assumption. }
+            split; simpl; try assumption. { 
+              rewrite H9.
+              apply dst_equiv_trans with (mu1:= ((mu mu01 + mu mu11) + (mu mu02 + mu mu12))%dist_state).
+              - apply dst_add_preserves_equiv; try assumption.
+              - apply bT_getnotb_nil in HB0. 
+                apply NS_mu_implies_nil in HNSmu01; try assumption. rewrite HNSmu01. simpl. 
+                rewrite dst_add_assoc_eq. 
+                destruct H. destruct H1. destruct H8.
+                apply dst_add_preserves_equiv; try apply dst_add_preserves_equiv; try try apply dst_mult_preserves_equiv; try assumption.
+              }
+            simpl. split; try assumption. 
+            * apply dom_equiv_trans with (l1:= dom pd3); try assumption.  
+              destruct Hdom1. apply dom_equiv_trans with (l1:= dom mu01); try assumption.
+              destruct H. assumption.
+            * apply orbdom_after_NS in HNS. simpl in HNS.
+              apply dom_equiv_trans with (l1:= (dom pd ∪ (get_modvar_in_winstr c1 ∪ get_modvar_in_winstr c2))%domain); try assumption.
+              apply orbdom_after_NS in H10. simpl in H10. apply dom_equiv_sym in H10.
+              apply dom_equiv_trans with (l1:= (dom1 ∪ get_modvar_in_winstr c1)%domain); try assumption.
+              apply dom_equiv_trans with (l1:= (dom pd ∪ get_modvar_in_winstr c1)%domain) .
+              ** destruct H6. 
+                -- apply dom_eq_orb_compat_left. apply dom_equiv_sym.
+                apply orb_domain_elim_r. destruct H6. assumption.
+                -- destruct H6. apply dom_equiv_trans with (l1:= 
+                    (dom pd ∪ get_modvar_in_winstr c1) ∪ (dom pd ∪ get_modvar_in_winstr c2)); try apply dom_eq_orb_dis_r.
+                apply dom_equiv_sym. 
+                apply orb_domain_elim_r. apply orb_domain_elim_r in H6. apply orb_domain_elim_r in H11. 
+                apply dom_equiv_trans with (l1:= dom pd); try assumption.
+                apply dom_equiv_sym. assumption.
+              ** destruct Hdom. apply dom_eq_orb_compat_right. assumption. 
+        }
+        { destruct (b_supp_classify b {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |}) eqn: HB1.
+          - unfold b_supp_classify in HB1. simpl in HB1. 
+            destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu ((s1, p1) :: mu1')));
+            destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu ((s1, p1) :: mu1'))); try discriminate.
+          - assert (Heq0: (extract_notb_pd b pd0) ≡ pd0). { apply bF_supp_implies_getnotb_eq; try assumption.  }
+            assert (Heq1: (extract_b_pd b pd1) ≡ pd1). { apply bT_supp_implies_getb_eq; try assumption. }
+            assert (Heqb0: extract_b_pd b pd0 ≡ pd_emp (dom pd0)). { 
+              apply bF_getnotb_nil in HB0; try assumption. 
+              split; simpl; try apply dom_equiv_refl.
+              simpl in HB0. rewrite HB0. apply dst_equiv_refl.  }
+            assert (Heqb1: extract_notb_pd b pd1 ≡ pd_emp (dom pd1)). { 
+              apply bT_getnotb_nil in HB1; try assumption. 
+              split; simpl; try apply dom_equiv_refl.
+              simpl in HB1. rewrite HB1. apply dst_equiv_refl.  }
+            assert (HWDb11: well_defined_winstr_with_pd c1 (extract_b_pd b pd1)). { 
+              apply pd_decom_l_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) in H4; try assumption. }
+            assert (HWDb10: well_defined_winstr_with_pd c1 (extract_b_pd b pd0)). { 
+              apply pd_decom_r_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) in H4; try assumption. } 
+            assert (HWD1: well_defined_winstr_with_pd c1 (pd_emp (dom0))). { 
+              apply pd_equiv_preserves_WD_win with (pd:= extract_b_pd b pd0); try assumption.
+              apply Valid_dist_nil. }
+            assert (HWD11: well_defined_winstr_with_pd c1 pd1). { 
+              apply pd_equiv_preserves_WD_win with (pd':= pd1) in HWDb11; try assumption. }
+            assert (HWDnb20: well_defined_winstr_with_pd c2 (extract_notb_pd b pd0)). {
+              apply pd_decom_r_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption. }
+            assert (HWD2: well_defined_winstr_with_pd c2 (pd_emp (dom1))). {
+              apply pd_decom_l_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption.
+              apply pd_equiv_preserves_WD_win with (pd:= extract_notb_pd b pd1); try assumption.
+              apply Valid_dist_nil. }
+            assert (HWDnb21: well_defined_winstr_with_pd c2 (extract_notb_pd b pd1)). {
+              apply pd_equiv_preserves_WD_win with (pd:= pd_emp (dom pd1)); try assumption.
+              - apply Valid_dist_nil.
+              - apply pd_equiv_sym. assumption.  }
+            assert (HWD20: well_defined_winstr_with_pd c2 pd0). { 
+              apply pd_equiv_preserves_WD_win with (pd':= pd0) in HWDnb20; try assumption. }
+            apply step_deterministic with (pd1:= pd0) in HNSmu01; try assumption; 
+            apply step_deterministic with (pd1:= pd1) in HNSmu1; try assumption.
+            destruct HNSmu01 as [mu02' Htemp0]. destruct Htemp0. 
+            destruct HNSmu1 as [mu11' Htemp1]. destruct Htemp1.
+            exists mu02', mu11'. 
+            split. { apply NS_IF_All_False; try assumption. 
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - simpl. destruct H6. 
+                + destruct H6. apply dom_subset_orb_dom_l with (l0:= dom0) in H6. assumption.
+                + destruct H6. 
+                  apply dom_subset_trans with (l1:= (dom pd∪ get_modvar_in_winstr c2)%domain) .
+                  * apply dom_subset_orb_dom_r. assumption.
+                  * apply dom_subset_orb_compat; try apply dom_subset_refl.
+                  destruct Hdom. destruct H10. assumption.
+              - apply step_deterministic with (pd1:= pd_emp (dom pd0)) in HNSmu0; try assumption; try apply Valid_dist_nil.
+                destruct HNSmu0. destruct H8. exists x. split; try assumption.
+                apply NS_pd_implies_nil in H10. destruct H10. apply dom_equiv_sym in H11.
+                split; simpl; try assumption. rewrite H10. apply dst_equiv_refl. }
+            split. { apply NS_IF_All_True; try assumption.
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - simpl. destruct H6. 
+                + destruct H6. apply dom_subset_orb_dom_l with (l0:= dom1) in H8. assumption.
+                + destruct H6. 
+                  apply dom_subset_trans with (l1:= (dom pd∪ get_modvar_in_winstr c1)%domain) .
+                  * apply dom_subset_orb_dom_r. assumption.
+                  * apply dom_subset_orb_compat; try apply dom_subset_refl.
+                  destruct Hdom. destruct H11. assumption.
+              - apply step_deterministic with (pd1:= pd_emp (dom pd1)) in HNSmu11; try assumption; try apply Valid_dist_nil.
+                destruct HNSmu11. destruct H8. exists x. split; try assumption.
+                apply NS_pd_implies_nil in H10. destruct H10. apply dom_equiv_sym in H11.
+                split; simpl; try assumption. rewrite H10. apply dst_equiv_refl. 
+                }
+            split; simpl; try assumption. { 
+              rewrite H9.
+              apply dst_equiv_trans with (mu1:= ((mu mu01 + mu mu11) + (mu mu02 + mu mu12))%dist_state).
+              - apply dst_add_preserves_equiv; try assumption.
+              - apply bF_getnotb_nil in HB0. 
+                apply NS_mu_implies_nil in HNSmu0; try assumption. rewrite HNSmu0.
+                apply bT_getnotb_nil in HB1. 
+                apply NS_mu_implies_nil in HNSmu11; try assumption. rewrite HNSmu11.
+                simpl. rewrite dst_add_0_r. destruct H. destruct H1.
+                apply dst_equiv_trans with (mu1:= (mu mu02 + mu mu11)%dist_state); try apply dst_add_comm.
+                apply dst_add_preserves_equiv; try apply dst_mult_preserves_equiv; assumption. }
+            simpl. split; try assumption. 
+            * apply dom_equiv_trans with (l1:= dom pd4); try assumption.
+              destruct Hdom2. destruct H. 
+              apply dom_equiv_trans with (l1:= dom mu02); try assumption.
+            * apply dom_equiv_trans with (l1:= dom pd3); try assumption.   
+              destruct Hdom1. apply dom_equiv_trans with (l1:= dom mu11); try assumption.
+              destruct H1. assumption.
+          - assert (Heq0: (extract_notb_pd b pd0) ≡ pd0). { apply bF_supp_implies_getnotb_eq; try assumption.  }
+            assert (Heq1: (extract_notb_pd b pd1) ≡ pd1). { apply bF_supp_implies_getnotb_eq; try assumption.  }
+            assert (Heqb0: extract_b_pd b pd0 ≡ pd_emp (dom pd0)). { 
+              apply bF_getnotb_nil in HB0; try assumption.
+              split; simpl; try apply dom_equiv_refl.
+              simpl in HB0. rewrite HB0. apply dst_equiv_refl.  }
+            assert (Heqb1: extract_b_pd b pd1 ≡ pd_emp (dom pd1)). { 
+              apply bF_getnotb_nil in HB1; try assumption.
+              split; simpl; try apply dom_equiv_refl.
+              simpl in HB1. rewrite HB1. apply dst_equiv_refl.  }
+            assert (HWDb21: well_defined_winstr_with_pd c2 (extract_notb_pd b pd1)). { 
+              apply pd_decom_l_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption. }
+            assert (HWDb20: well_defined_winstr_with_pd c2 (extract_notb_pd b pd0)). { 
+              apply pd_decom_r_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption. } 
+            assert (HWD21: well_defined_winstr_with_pd c2 pd1). { 
+              apply pd_equiv_preserves_WD_win with (pd':= pd1) in HWDb21; try assumption. }
+            assert (HWD20: well_defined_winstr_with_pd c2 pd0). { 
+              apply pd_equiv_preserves_WD_win with (pd':= pd0) in HWDb20; try assumption. }
+            assert (HWDb10: well_defined_winstr_with_pd c1 (extract_b_pd b pd0)). {
+              apply pd_decom_r_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) in H4; try assumption. } 
+            assert (HWDb11: well_defined_winstr_with_pd c1 (extract_b_pd b pd1)). {
+              apply pd_decom_l_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) in H4; try assumption. } 
+            assert (HWD10nil: well_defined_winstr_with_pd c1 (pd_emp (dom0))). { 
+              apply pd_equiv_preserves_WD_win with (pd:= extract_b_pd b pd0); try assumption.
+              apply Valid_dist_nil. }
+            assert (HWD11nil: well_defined_winstr_with_pd c1 (pd_emp (dom1))). { 
+              apply pd_equiv_preserves_WD_win with (pd:= extract_b_pd b pd1); try assumption.
+              apply Valid_dist_nil. }
+            apply step_deterministic with (pd1:= pd0) in HNSmu01; try assumption; 
+            apply step_deterministic with (pd1:= pd1) in HNSmu11; try assumption.
+            destruct HNSmu01 as [mu02' Htemp0]. destruct Htemp0. 
+            destruct HNSmu11 as [mu12' Htemp1]. destruct Htemp1.
+            exists mu02', mu12'. 
+              split. { apply NS_IF_All_False; try assumption. 
+                - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+                - simpl. destruct H6. 
+                  + destruct H6. apply dom_subset_orb_dom_l with (l0:= dom0) in H6. assumption.
+                  + destruct H6. 
+                    apply dom_subset_trans with (l1:= (dom pd∪ get_modvar_in_winstr c2)%domain) .
+                    * apply dom_subset_orb_dom_r. assumption.
+                    * apply dom_subset_orb_compat; try apply dom_subset_refl.
+                    destruct Hdom. destruct H10. assumption.
+                - apply step_deterministic with (pd1:= pd_emp (dom pd0)) in HNSmu0; try assumption; try apply Valid_dist_nil.
+                  destruct HNSmu0. destruct H8. exists x. split; try assumption.
+                  apply NS_pd_implies_nil in H10. destruct H10. apply dom_equiv_sym in H11.
+                  split; simpl; try assumption. rewrite H10. apply dst_equiv_refl.  }
+              split. { apply NS_IF_All_False; try assumption.
+                - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+                - simpl. destruct H6. 
+                  + destruct H6. apply dom_subset_orb_dom_l with (l0:= dom1) in H6. assumption.
+                  + destruct H6. 
+                    apply dom_subset_trans with (l1:= (dom pd∪ get_modvar_in_winstr c2)%domain) .
+                    * apply dom_subset_orb_dom_r. assumption.
+                    * apply dom_subset_orb_compat; try apply dom_subset_refl.
+                    destruct Hdom. destruct H11. assumption.
+                - apply step_deterministic with (pd1:= (pd_emp (dom {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |}))) in HNSmu1; try assumption.
+                  + destruct HNSmu1. destruct H8. exists x. split; try assumption. 
+                    simpl. split; simpl; try assumption. 
+                    * apply orbdom_after_NS in H10. simpl in H10. apply dom_equiv_sym. assumption.
+                    * apply NS_pd_implies_nil in H10. destruct H10. rewrite H10. apply dst_equiv_refl.
+                  + apply Valid_dist_nil. }
+              split; simpl; try assumption. { 
+                rewrite H9.
+                apply dst_equiv_trans with (mu1:= ((mu mu01 + mu mu11) + (mu mu02 + mu mu12))%dist_state).
+                - apply dst_add_preserves_equiv; try assumption.
+                - apply bF_getnotb_nil in HB0. 
+                  apply NS_mu_implies_nil in HNSmu0; try assumption. rewrite HNSmu0.
+                  apply bF_getnotb_nil in HB1. 
+                  apply NS_mu_implies_nil in HNSmu1; try assumption. rewrite HNSmu1.
+                  simpl. destruct H. destruct H1.
+                  apply dst_add_preserves_equiv; try apply dst_mult_preserves_equiv; assumption.
+                }
+              simpl. split; try assumption. 
+              * apply dom_equiv_trans with (l1:= dom pd4); try assumption.  
+                destruct Hdom2. apply dom_equiv_trans with (l1:= dom mu02); try assumption.
+                destruct H. assumption.
+              * apply orbdom_after_NS in HNS. simpl in HNS.
+                apply dom_equiv_trans with (l1:= (dom pd ∪ (get_modvar_in_winstr c1 ∪ get_modvar_in_winstr c2))%domain); try assumption.
+                apply orbdom_after_NS in H7. simpl in H7. apply dom_equiv_sym in H7.
+                apply dom_equiv_trans with (l1:= (dom1 ∪ get_modvar_in_winstr c2)%domain); try assumption.
+                apply dom_equiv_trans with (l1:= (dom pd ∪ get_modvar_in_winstr c2)%domain) .
+              ** destruct H6. 
+                -- apply dom_eq_orb_compat_left. rewrite orb_domain_comm. apply dom_equiv_sym.
+                apply orb_domain_elim_r. destruct H6. assumption.
+                -- destruct H6. apply dom_equiv_trans with (l1:= 
+                    (dom pd ∪ get_modvar_in_winstr c1) ∪ (dom pd ∪ get_modvar_in_winstr c2)); try apply dom_eq_orb_dis_r.
+                apply dom_equiv_sym. rewrite orb_domain_comm with (l:= (dom pd ∪ get_modvar_in_winstr c1) ). 
+                apply orb_domain_elim_r. apply orb_domain_elim_r in H6. apply orb_domain_elim_r in H8. 
+                apply dom_equiv_trans with (l1:= dom pd); try assumption.
+                apply dom_equiv_sym. assumption.
+              ** destruct Hdom. apply dom_eq_orb_compat_right. assumption. 
+          - assert (Heq0: (extract_notb_pd b pd0) ≡ pd0). { apply bF_supp_implies_getnotb_eq; try assumption. }
+            assert (Heqb0: extract_b_pd b pd0 ≡ pd_emp (dom pd0)). { 
+              apply bF_getnotb_nil in HB0; try assumption. 
+              split; simpl; try apply dom_equiv_refl.
+              simpl in HB0. rewrite HB0. apply dst_equiv_refl.  }
+
+            assert (HWDb21: well_defined_winstr_with_pd c2 (extract_notb_pd b pd1)). { 
+              apply pd_decom_l_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption. }
+            assert (HWDb10: well_defined_winstr_with_pd c1 (extract_b_pd b pd0)). { 
+              apply pd_decom_r_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) in H4; try assumption. } 
+            assert (HWD11: well_defined_winstr_with_pd c1 (extract_b_pd b pd1)). { 
+               apply pd_decom_l_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) in H4; try assumption. } 
+            assert (HWDnb20: well_defined_winstr_with_pd c2 (extract_notb_pd b pd0)). {
+              apply pd_decom_r_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption. }
+            assert (HWD20: well_defined_winstr_with_pd c2 pd0). { 
+              apply pd_equiv_preserves_WD_win with (pd':= pd0) in HWDnb20; try assumption. } 
+            assert (HWD10nil: well_defined_winstr_with_pd c1 (pd_emp (dom0))). { 
+              apply pd_equiv_preserves_WD_win with (pd:= extract_b_pd b pd0); try assumption.
+              apply Valid_dist_nil. }
+
+            apply step_deterministic with (pd1:= pd0) in HNSmu01; try assumption; 
+            apply step_deterministic with (pd1:= (extract_b_pd b pd1)) in HNSmu1; try assumption;
+            apply step_deterministic with (pd1:= (extract_notb_pd b pd1)) in HNSmu11; try assumption; try apply pd_equiv_refl.
+            destruct HNSmu01 as [mu02' Htemp0]. destruct Htemp0. 
+            destruct HNSmu11 as [mu12' Htemp1]. destruct Htemp1.
+            destruct HNSmu1 as [mu11' Htemp2]. destruct Htemp2.
+            assert (Hdom02: (dom mu11' == dom mu12')%domain). {
+              destruct Hdom1. destruct Hdom2. 
+              destruct H8. destruct H1.
+              apply dom_equiv_trans with (l1:= (dom mu12)); try assumption.
+              apply dom_equiv_trans with (l1:= (dom pd4)); try assumption.
+              apply dom_equiv_sym. 
+              apply dom_equiv_trans with (l1:= (dom mu11)); try assumption.
+              apply dom_equiv_trans with (l1:= (dom pd3)); try assumption.
+              apply dom_equiv_sym in H13.
+              apply dom_equiv_trans with (l1:= (dom pd')); try assumption. }
+            exists mu02', (pd_add mu11' mu12' (Hdom02)). 
+              split. { apply NS_IF_All_False; try assumption. 
+                - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+                - simpl. destruct H6. 
+                  + destruct H6. apply dom_subset_orb_dom_l with (l0:= dom0) in H6. assumption.
+                  + destruct H6. 
+                    apply dom_subset_trans with (l1:= (dom pd∪ get_modvar_in_winstr c2)%domain) .
+                    * apply dom_subset_orb_dom_r. assumption.
+                    * apply dom_subset_orb_compat; try apply dom_subset_refl.
+                    destruct Hdom. destruct H14. assumption.
+                - apply step_deterministic with (pd1:= pd_emp (dom pd0)) in HNSmu0; try assumption; try apply Valid_dist_nil.
+                  destruct HNSmu0. destruct H11. exists x. split; try assumption.
+                  apply NS_pd_implies_nil in H14. destruct H14. apply dom_equiv_sym in H15.
+                  split; simpl; try assumption. rewrite H14. apply dst_equiv_refl.  }
+              split. { eapply NS_IF_Mixed; try assumption.
+                - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+                - simpl. destruct H6. 
+                  + left. assumption.
+                  + right. destruct H6. destruct Hdom. 
+                  split; apply dom_subset_eq_compat_left with (X:= dom pd); try assumption.
+                - apply H10.
+                - apply H7.
+                - simpl. reflexivity.
+                - simpl. apply dom_equiv_refl.
+                - simpl. assumption. }
+              split; simpl; try assumption. { 
+                rewrite H9.
+                apply dst_equiv_trans with (mu1:= ((mu mu01 + mu mu11) + (mu mu02 + mu mu12))%dist_state).
+                - apply dst_add_preserves_equiv; try assumption.
+                - apply bF_getnotb_nil in HB0. 
+                  apply NS_mu_implies_nil in HNSmu0; try assumption. rewrite HNSmu0. simpl.
+                  apply dst_equiv_trans with (mu1:= (mu mu02 + (mu mu11 + mu mu12))%dist_state).
+                  + 
+                  rewrite dst_add_assoc_eq. rewrite dst_add_assoc_eq with (mu0:= (mu mu02)%dist_state).
+                  apply dst_add_inj_r. apply dst_add_comm.
+                  + destruct H. destruct H1. destruct H8. repeat rewrite dst_mult_plus_distr_r_eq. 
+                  apply dst_add_preserves_equiv; try apply dst_add_preserves_equiv; try try apply dst_mult_preserves_equiv; try assumption.
+                }
+              simpl. split; try assumption. 
+              * apply dom_equiv_trans with (l1:= dom pd4); try assumption.  
+                destruct Hdom2. apply dom_equiv_trans with (l1:= dom mu02); try assumption.
+                destruct H. assumption.
+              * apply orbdom_after_NS in HNS. simpl in HNS.
+                apply dom_equiv_trans with (l1:= (dom pd ∪ (get_modvar_in_winstr c1 ∪ get_modvar_in_winstr c2))%domain); try assumption.
+                apply orbdom_after_NS in H10. simpl in H10. apply dom_equiv_sym in H10.
+                apply dom_equiv_trans with (l1:= (dom1 ∪ get_modvar_in_winstr c1)%domain); try assumption.
+                apply dom_equiv_trans with (l1:= (dom pd ∪ get_modvar_in_winstr c1)%domain) .
+              ** destruct H6. 
+                -- apply dom_eq_orb_compat_left. apply dom_equiv_sym.
+                apply orb_domain_elim_r. destruct H6. assumption.
+                -- destruct H6. apply dom_equiv_trans with (l1:= 
+                    (dom pd ∪ get_modvar_in_winstr c1) ∪ (dom pd ∪ get_modvar_in_winstr c2)); try apply dom_eq_orb_dis_r.
+                apply dom_equiv_sym. 
+                apply orb_domain_elim_r. apply orb_domain_elim_r in H6. apply orb_domain_elim_r in H11. 
+                apply dom_equiv_trans with (l1:= dom pd); try assumption.
+                apply dom_equiv_sym. assumption.
+              ** destruct Hdom. apply dom_eq_orb_compat_right. assumption. 
+        }
+        { destruct (b_supp_classify b {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |}) eqn: HB1.
+          - unfold b_supp_classify in HB1. simpl in HB1. 
+            destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu ((s1, p1) :: mu1')));
+            destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu ((s1, p1) :: mu1'))); try discriminate.
+          - assert (Heqb1: (extract_b_pd b pd1) ≡ pd1). { apply bT_supp_implies_getb_eq; try assumption. }
+            assert (Heqnb1: (extract_notb_pd b pd1) ≡ pd_emp (dom pd1)). { 
+              apply bT_getnotb_nil in HB1; try assumption.
+              split; simpl; try apply dom_equiv_refl.
+              simpl in HB1. rewrite HB1. apply dst_equiv_refl. }
+            assert (HWDb20: well_defined_winstr_with_pd c2 (extract_notb_pd b pd0)). { 
+              apply pd_decom_r_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption. }
+            assert (HWDb21: well_defined_winstr_with_pd c2 (extract_notb_pd b pd1)). { 
+              apply pd_decom_l_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption. }
+            assert (HWDb10: well_defined_winstr_with_pd c1 (extract_b_pd b pd0)). { 
+              apply pd_decom_r_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) in H4; try assumption. } 
+            assert (HWDb11: well_defined_winstr_with_pd c1 (extract_b_pd b pd1)). { 
+               apply pd_decom_l_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) in H4; try assumption. } 
+            assert (HWD11: well_defined_winstr_with_pd c1 pd1). { 
+              apply pd_equiv_preserves_WD_win with (pd':= pd1) in HWDb11; try assumption. }
+            assert (HWD21nil: well_defined_winstr_with_pd c2 (pd_emp (dom pd1))). {
+              apply pd_equiv_preserves_WD_win with (pd:= (extract_notb_pd b pd1)); try assumption. 
+              apply Valid_dist_nil. }
+            apply step_deterministic with (pd1:= pd1) in HNSmu1; try assumption; 
+            apply step_deterministic with (pd1:= (extract_b_pd b pd0)) in HNSmu0; try assumption;
+            apply step_deterministic with (pd1:= (extract_notb_pd b pd0)) in HNSmu01; try assumption; try apply pd_equiv_refl.
+            destruct HNSmu0 as [mu01' Htemp0]. destruct Htemp0. 
+            destruct HNSmu1 as [mu11' Htemp2]. destruct Htemp2.
+            destruct HNSmu01 as [mu02' Htemp1]. destruct Htemp1.
+            assert (Hdom02: (dom mu01' == dom mu02')%domain). { 
+              apply orbdom_after_NS in H0. apply orbdom_after_NS in H10. 
+              apply dom_equiv_trans with (l1:= (dom (extract_b_pd b pd0) ∪ get_modvar_in_winstr c1)%domain); try assumption.
+              apply dom_equiv_sym.
+              apply dom_equiv_trans with (l1:= (dom (extract_notb_pd b pd0) ∪ get_modvar_in_winstr c2)%domain); try assumption.
+              simpl. destruct H6.
+              - apply dom_eq_orb_compat_left. apply dom_equiv_sym. assumption.
+              - destruct H6. destruct Hdom. simpl in H14. 
+                apply dom_equiv_trans with (l1:= dom pd ∪ get_modvar_in_winstr c2); try assumption.
+                + apply dom_eq_orb_compat_right. apply dom_equiv_sym. assumption.
+                + apply dom_equiv_trans with (l1:= dom pd ∪ get_modvar_in_winstr c1); try assumption. 
+                  * apply orb_domain_elim_r in H6. apply orb_domain_elim_r in H11.
+                    apply dom_equiv_sym in H11. apply dom_equiv_trans with (l1:= dom pd); try assumption.
+                  * apply dom_eq_orb_compat_right. assumption. }
+            exists (pd_add mu01' mu02' (Hdom02)), mu11'. 
+            split. { eapply NS_IF_Mixed; try assumption.
+                - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+                - simpl. destruct H6. 
+                  + left. assumption.
+                  + right. destruct H6. destruct Hdom. 
+                  split; apply dom_subset_eq_compat_left with (X:= dom pd); try assumption.
+                - apply H0.
+                - apply H10.
+                - simpl. reflexivity.
+                - simpl. apply dom_equiv_refl.
+                - simpl. assumption. }
+            split. { apply NS_IF_All_True; try assumption. 
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - simpl. destruct H6. 
+                + destruct H6. apply dom_subset_orb_dom_l with (l0:= dom1) in H11. assumption.
+                + destruct H6. 
+                  apply dom_subset_trans with (l1:= (dom pd∪ get_modvar_in_winstr c1)%domain) .
+                  * apply dom_subset_orb_dom_r. assumption.
+                  * apply dom_subset_orb_compat; try apply dom_subset_refl.
+                  destruct Hdom. destruct H15. assumption.
+              - apply step_deterministic with (pd1:= pd_emp (dom pd1)) in HNSmu11; try assumption; try apply Valid_dist_nil.
+                destruct HNSmu11. destruct H11. exists x. split; try assumption.
+                apply NS_pd_implies_nil in H14. destruct H14. apply dom_equiv_sym in H15.
+                split; simpl; try assumption. rewrite H14. apply dst_equiv_refl.  }
+            split; simpl; try assumption. { 
+              rewrite H9.
+              apply dst_equiv_trans with (mu1:= ((mu mu01 + mu mu11) + (mu mu02 + mu mu12))%dist_state).
+              - apply dst_add_preserves_equiv; try assumption.
+              - apply bT_getnotb_nil in HB1. 
+                apply NS_mu_implies_nil in HNSmu11; try assumption. rewrite HNSmu11. rewrite dst_add_0_r. 
+                repeat rewrite <- dst_add_assoc_eq. 
+                apply dst_add_preserves_equiv.
+                + destruct H. try apply dst_add_preserves_equiv; try try apply dst_mult_preserves_equiv; try assumption.
+                + destruct H1. destruct H8.
+                  apply dst_equiv_trans with (mu1:= (mu mu02 + mu mu11)%dist_state); try apply dst_add_comm.
+                  apply dst_add_preserves_equiv; try apply dst_add_preserves_equiv; try try apply dst_mult_preserves_equiv; try assumption.
+              }
+            simpl. split; try assumption. 
+            * apply dom_equiv_trans with (l1:= dom pd3); try assumption.  
+              destruct Hdom1. apply dom_equiv_trans with (l1:= dom mu01); try assumption.
+              destruct H. assumption.
+            * apply orbdom_after_NS in HNS. simpl in HNS.
+              apply dom_equiv_trans with (l1:= (dom pd ∪ (get_modvar_in_winstr c1 ∪ get_modvar_in_winstr c2))%domain); try assumption.
+              apply orbdom_after_NS in H7. simpl in H7. apply dom_equiv_sym in H7.
+              apply dom_equiv_trans with (l1:= (dom1 ∪ get_modvar_in_winstr c1)%domain); try assumption.
+              apply dom_equiv_trans with (l1:= (dom pd ∪ get_modvar_in_winstr c1)%domain) .
+            ** destruct H6. 
+              -- apply dom_eq_orb_compat_left. apply dom_equiv_sym.
+              apply orb_domain_elim_r. destruct H6. assumption.
+              -- destruct H6. apply dom_equiv_trans with (l1:= 
+                  (dom pd ∪ get_modvar_in_winstr c1) ∪ (dom pd ∪ get_modvar_in_winstr c2)); try apply dom_eq_orb_dis_r.
+              apply dom_equiv_sym. 
+              apply orb_domain_elim_r. apply orb_domain_elim_r in H6. apply orb_domain_elim_r in H11. 
+              apply dom_equiv_trans with (l1:= dom pd); try assumption.
+              apply dom_equiv_sym. assumption.
+            ** destruct Hdom. apply dom_eq_orb_compat_right. assumption.
+          - assert (Heqnb1: (extract_notb_pd b pd1) ≡ pd1). { apply bF_supp_implies_getnotb_eq; try assumption.  }
+            assert (Heqb1: (extract_b_pd b pd1) ≡ pd_emp (dom pd1)). { apply bF_getnotb_nil in HB1. 
+              split; simpl; try apply dom_equiv_refl. 
+              simpl in HB1. rewrite HB1. apply dst_equiv_refl. }
+            assert (HWDnb21: well_defined_winstr_with_pd c2 (extract_notb_pd b pd1)). { 
+              apply pd_decom_l_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption. }
+            assert (HWDb10: well_defined_winstr_with_pd c1 (extract_b_pd b pd0)). { 
+              apply pd_decom_r_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) in H4; try assumption. } 
+            assert (HWDb11: well_defined_winstr_with_pd c1 (extract_b_pd b pd1)). { 
+               apply pd_decom_l_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) in H4; try assumption. } 
+            assert (HWD11nil: well_defined_winstr_with_pd c1 (pd_emp (dom pd1))). {
+              apply pd_equiv_preserves_WD_win with (pd:= (extract_b_pd b pd1)); try assumption. apply Valid_dist_nil. }
+            assert (HWDnb20: well_defined_winstr_with_pd c2 (extract_notb_pd b pd0)). {
+              apply pd_decom_r_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption. }
+            assert (HWD11: well_defined_winstr_with_pd c2 pd1). { 
+              apply pd_equiv_preserves_WD_win with (pd':= pd1) in HWDnb21; try assumption. } 
+            apply step_deterministic with (pd1:= pd1) in HNSmu11; try assumption; 
+            apply step_deterministic with (pd1:= (extract_b_pd b pd0)) in HNSmu0; try assumption;
+            apply step_deterministic with (pd1:= (extract_notb_pd b pd0)) in HNSmu01; try assumption; try apply pd_equiv_refl.
+            destruct HNSmu01 as [mu02' Htemp0]. destruct Htemp0. 
+            destruct HNSmu11 as [mu12' Htemp1]. destruct Htemp1.
+            destruct HNSmu0 as [mu01' Htemp2]. destruct Htemp2.
+            assert (Hdom02: (dom mu01' == dom mu02')%domain). {
+              destruct Hdom1. destruct Hdom2. 
+              destruct H8. destruct H.
+              apply dom_equiv_trans with (l1:= (dom mu02)); try assumption.
+              apply dom_equiv_trans with (l1:= (dom pd4)); try assumption.
+              apply dom_equiv_sym. 
+              apply dom_equiv_trans with (l1:= (dom mu01)); try assumption.
+              apply dom_equiv_trans with (l1:= (dom pd3)); try assumption.
+              apply dom_equiv_sym in H13.
+              apply dom_equiv_trans with (l1:= (dom pd')); try assumption. }
+            exists (pd_add mu01' mu02' (Hdom02)), mu12'. 
+            split. { eapply NS_IF_Mixed; try assumption.
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - simpl. destruct H6. 
+                + left. assumption.
+                + right. destruct H6. destruct Hdom. 
+                split; apply dom_subset_eq_compat_left with (X:= dom pd); try assumption.
+              - apply H10.
+              - apply H0.
+              - simpl. reflexivity.
+              - simpl. apply dom_equiv_refl.
+              - simpl. assumption. }
+            split. { apply NS_IF_All_False; try assumption. 
+                - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+                - simpl. destruct H6. 
+                  + destruct H6. apply dom_subset_orb_dom_l with (l0:= dom1) in H6. assumption.
+                  + destruct H6. 
+                    apply dom_subset_trans with (l1:= (dom pd∪ get_modvar_in_winstr c2)%domain) .
+                    * apply dom_subset_orb_dom_r. assumption.
+                    * apply dom_subset_orb_compat; try apply dom_subset_refl.
+                    destruct Hdom. destruct H15. assumption.
+                - apply step_deterministic with (pd1:= (pd_emp (dom {| dom := dom1; mu := (s1, p1) :: mu1'; all_partial := HPD1 |}))) in HNSmu1; try assumption.
+                  + destruct HNSmu1. destruct H11. exists x. split; try assumption. 
+                    simpl. split; simpl; try assumption. 
+                    * apply orbdom_after_NS in H14. simpl in H14. apply dom_equiv_sym. assumption.
+                    * apply NS_pd_implies_nil in H14. destruct H14. rewrite H14. apply dst_equiv_refl.
+                  + apply Valid_dist_nil. }
+            split; simpl; try assumption. { 
+                rewrite H9.
+                apply dst_equiv_trans with (mu1:= ((mu mu01 + mu mu11) + (mu mu02 + mu mu12))%dist_state).
+                - apply dst_add_preserves_equiv; try assumption.
+                - apply bF_getnotb_nil in HB1. 
+                  apply NS_mu_implies_nil in HNSmu1; try assumption. rewrite HNSmu1. rewrite dst_add_0_r.
+                  destruct H. destruct H1. destruct H8. rewrite dst_add_assoc_eq.
+                  apply dst_add_preserves_equiv; try apply dst_add_preserves_equiv; try try apply dst_mult_preserves_equiv; try assumption.
+                }
+            simpl. split; try assumption. 
+              * apply dom_equiv_trans with (l1:= dom pd3); try assumption.  
+                destruct Hdom1. apply dom_equiv_trans with (l1:= dom mu01); try assumption.
+                destruct H8. assumption.
+              * apply orbdom_after_NS in HNS. simpl in HNS.
+                apply dom_equiv_trans with (l1:= (dom pd ∪ (get_modvar_in_winstr c1 ∪ get_modvar_in_winstr c2))%domain); try assumption.
+                apply orbdom_after_NS in H7. simpl in H7. apply dom_equiv_sym in H7.
+                apply dom_equiv_trans with (l1:= (dom1 ∪ get_modvar_in_winstr c2)%domain); try assumption.
+                apply dom_equiv_trans with (l1:= (dom pd ∪ get_modvar_in_winstr c2)%domain) .
+              ** destruct H6. 
+                -- apply dom_eq_orb_compat_left. rewrite orb_domain_comm. apply dom_equiv_sym.
+                apply orb_domain_elim_r. destruct H6. assumption.
+                -- destruct H6. apply dom_equiv_trans with (l1:= 
+                    (dom pd ∪ get_modvar_in_winstr c1) ∪ (dom pd ∪ get_modvar_in_winstr c2)); try apply dom_eq_orb_dis_r.
+                apply dom_equiv_sym.  rewrite orb_domain_comm with (l:= (dom pd ∪ get_modvar_in_winstr c1)).
+                apply orb_domain_elim_r. apply orb_domain_elim_r in H6. apply orb_domain_elim_r in H11. 
+                apply dom_equiv_trans with (l1:= dom pd); try assumption.
+                apply dom_equiv_sym. assumption.
+              ** destruct Hdom. apply dom_eq_orb_compat_right. assumption.
+          - assert (HWDnb21: well_defined_winstr_with_pd c2 (extract_notb_pd b pd1)). { 
+              apply pd_decom_l_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption. }
+            assert (HWDb10: well_defined_winstr_with_pd c1 (extract_b_pd b pd0)). { 
+              apply pd_decom_r_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) in H4; try assumption. } 
+            assert (HWDb11: well_defined_winstr_with_pd c1 (extract_b_pd b pd1)). { 
+               apply pd_decom_l_preserves_WD_win with (pd0:= (extract_b_pd b pd0)) (pd1:= (extract_b_pd b pd1)) in H4; try assumption. } 
+            assert (HWDnb20: well_defined_winstr_with_pd c2 (extract_notb_pd b pd0)). {
+              apply pd_decom_r_preserves_WD_win with (pd0:= (extract_notb_pd b pd0)) (pd1:= (extract_notb_pd b pd1)) in H5; try assumption. }
+            apply step_deterministic with (pd1:= (extract_b_pd b pd1)) in HNSmu1; try assumption; 
+            apply step_deterministic with (pd1:= (extract_notb_pd b pd1)) in HNSmu11; try assumption; 
+            apply step_deterministic with (pd1:= (extract_b_pd b pd0)) in HNSmu0; try assumption;
+            apply step_deterministic with (pd1:= (extract_notb_pd b pd0)) in HNSmu01; try assumption; try apply pd_equiv_refl.
+            destruct HNSmu01 as [mu02' Htemp0]. destruct Htemp0. 
+            destruct HNSmu11 as [mu12' Htemp1]. destruct Htemp1.
+            destruct HNSmu0 as [mu01' Htemp2]. destruct Htemp2.
+            destruct HNSmu1 as [mu11' Htemp2]. destruct Htemp2.
+            assert (Hdom02: (dom mu01' == dom mu02')%domain). {
+              destruct Hdom1. destruct Hdom2. 
+              destruct H8. destruct H.
+              apply dom_equiv_trans with (l1:= (dom mu02)); try assumption.
+              apply dom_equiv_trans with (l1:= (dom pd4)); try assumption.
+              apply dom_equiv_sym. 
+              apply dom_equiv_trans with (l1:= (dom mu01)); try assumption.
+              apply dom_equiv_trans with (l1:= (dom pd3)); try assumption.
+              apply dom_equiv_sym in H13.
+              apply dom_equiv_trans with (l1:= (dom pd')); try assumption. }
+            assert (Hdom12: (dom mu11' == dom mu12')%domain). {
+              destruct Hdom1. destruct Hdom2. 
+              destruct H8. destruct H1.
+              apply dom_equiv_trans with (l1:= (dom mu12)); try assumption.
+              apply dom_equiv_trans with (l1:= (dom pd4)); try assumption.
+              apply dom_equiv_sym. destruct H11.
+              apply dom_equiv_trans with (l1:= (dom mu11)); try assumption.
+              apply dom_equiv_trans with (l1:= (dom pd3)); try assumption.
+              apply dom_equiv_sym in H13.
+              apply dom_equiv_trans with (l1:= (dom pd')); try assumption. }
+            exists (pd_add mu01' mu02' (Hdom02)), (pd_add mu11' mu12' (Hdom12)). 
+            split. { eapply NS_IF_Mixed; try assumption.
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - simpl. destruct H6. 
+                + left. assumption.
+                + right. destruct H6. destruct Hdom. 
+                split; apply dom_subset_eq_compat_left with (X:= dom pd); try assumption.
+              - apply H10.
+              - apply H0.
+              - simpl. reflexivity.
+              - simpl. apply dom_equiv_refl.
+              - simpl. assumption. }
+            split. { eapply NS_IF_Mixed; try assumption.
+                - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+                - simpl. destruct H6. 
+                  + left. assumption.
+                  + right. destruct H6. destruct Hdom. 
+                  split; apply dom_subset_eq_compat_left with (X:= dom pd); try assumption.
+                - apply H14.
+                - apply H7.
+                - simpl. reflexivity.
+                - simpl. apply dom_equiv_refl.
+                - simpl. assumption. }
+            split; simpl; try assumption. { 
+                rewrite H9.
+                apply dst_equiv_trans with (mu1:= ((mu mu01 + mu mu11) + (mu mu02 + mu mu12))%dist_state).
+                - apply dst_add_preserves_equiv; try assumption.
+                - rewrite dst_add_assoc_eq. 
+                  rewrite dst_add_assoc_eq.   
+                  destruct H. destruct H1. destruct H8. destruct H11.
+                  apply dst_add_preserves_equiv; try assumption. 
+                  rewrite <- dst_add_assoc_eq. rewrite <- dst_add_assoc_eq. 
+                  try apply dst_add_preserves_equiv; try try apply dst_mult_preserves_equiv; try assumption.
+                  apply dst_equiv_trans with (mu1:= (mu mu02 + mu mu11)%dist_state); try apply dst_add_comm.
+                  try apply dst_add_preserves_equiv; try try apply dst_mult_preserves_equiv; try assumption.
+                }
+            simpl. split; try assumption. 
+              * apply dom_equiv_trans with (l1:= dom pd3); try assumption.  
+                destruct Hdom1. apply dom_equiv_trans with (l1:= dom mu01); try assumption.
+                destruct H8. assumption.
+              * apply orbdom_after_NS in HNS. simpl in HNS.
+                apply dom_equiv_trans with (l1:= (dom pd ∪ (get_modvar_in_winstr c1 ∪ get_modvar_in_winstr c2))%domain); try assumption.
+                apply orbdom_after_NS in H14. simpl in H14. apply dom_equiv_sym in H14.
+                apply dom_equiv_trans with (l1:= (dom1 ∪ get_modvar_in_winstr c1)%domain); try assumption.
+                apply dom_equiv_trans with (l1:= (dom pd ∪ get_modvar_in_winstr c1)%domain) .
+              ** destruct H6. 
+                -- apply dom_eq_orb_compat_left. apply dom_equiv_sym.
+                apply orb_domain_elim_r. destruct H6. assumption.
+                -- destruct H6. apply dom_equiv_trans with (l1:= 
+                    (dom pd ∪ get_modvar_in_winstr c1) ∪ (dom pd ∪ get_modvar_in_winstr c2)); try apply dom_eq_orb_dis_r.
+                apply dom_equiv_sym. 
+                apply orb_domain_elim_r. apply orb_domain_elim_r in H6. apply orb_domain_elim_r in H15. 
+                apply dom_equiv_trans with (l1:= dom pd); try assumption.
+                apply dom_equiv_sym. assumption.
+              ** destruct Hdom. apply dom_eq_orb_compat_right. assumption.
+        }
+    }
+  - assert (Hdom': (dom pd' == (orb_domain (dom pd) (get_modvar_in_winstr (While b c))))%domain) by 
+      (apply orbdom_after_NS; try assumption).
+    remember (While b c) as original_command eqn:Horig.
+    generalize dependent pd1. generalize dependent pd0. 
+    induction HNS; try inversion Horig; subst; intros.
+    { 
+      destruct pd0 as [dom0 mu0 HPD0]. destruct pd1 as [dom2 mu2 HPD2].
+      destruct mu0 as [|(s0,p0) mu0']; destruct mu2 as [|(s2,p2) mu2'].
+      - simpl in *.
+        assert (Hmu_nil: mu pd = []). { apply dst_eq_nil_iff; split; try assumption. }
+        exists (pd_emp (orb_domain (dom0) (get_modvar_in_winstr (While b c)))), 
+                (pd_emp (orb_domain (dom2) (get_modvar_in_winstr c))).
+        split. { apply (@NS_While_Nil b c {| dom := dom0; mu := []; all_partial := HPD0 |}). 
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - unfold b_supp_classify. simpl. reflexivity.  }
+        split. { apply (@NS_While_Nil b c {| dom := dom2; mu := []; all_partial := HPD2 |}).
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption. 
+          - unfold b_supp_classify. simpl. reflexivity.  }
+        simpl. split; try apply dst_equiv_refl.
+        destruct Hdom. 
+        apply dom_eq_orb_compat_right with (l2:= get_modvar_in_winstr c) in H1. 
+        apply dom_eq_orb_compat_right with (l2:= get_modvar_in_winstr c) in H2. 
+        split; try apply dom_equiv_trans with (l1:= (dom pd ∪ get_modvar_in_winstr c)%domain); try assumption.
+      - apply pd_Nil_mu in H0. 
+        rewrite H0 in Hadd. rewrite dst_add_0_l in Hadd. simpl in Hadd.  
+        + apply dst_equiv_sym in Hadd. 
+          apply dst_cons_valid_contra in Hadd; try assumption; try contradiction.
+      - apply pd_Nil_mu in H0. 
+        rewrite H0 in Hadd. rewrite dst_add_0_r in Hadd. simpl in Hadd.  
+        + apply dst_equiv_sym in Hadd. 
+          apply dst_cons_valid_contra in Hadd; try assumption; try contradiction.
+      - apply pd_Nil_mu in H0. 
+        rewrite H0 in Hadd. simpl in Hadd.  
+        + apply dst_equiv_sym in Hadd. 
+          apply dst_cons_valid_contra in Hadd; try assumption; try contradiction.
+    }
+    {
+      destruct pd0 as [dom0 mu0 HPD0]. destruct pd2 as [dom2 mu2 HPD2].
+      destruct mu0 as [|(s0,p0) mu0']; destruct mu2 as [|(s2,p2) mu2'].
+      - simpl in *. 
+        assert (Hmu_nil: mu pd = []). { apply dst_eq_nil_iff; split; try assumption. }
+        apply NS_mu_implies_nil in HNS1; try assumption.
+        apply NS_mu_implies_nil in HNS2; try assumption.
+        exists (pd_emp (orb_domain (dom0) (get_modvar_in_winstr (While b c)))), 
+                (pd_emp (orb_domain (dom2) (get_modvar_in_winstr c))).
+        split. { apply (@NS_While_Nil b c {| dom := dom0; mu := []; all_partial := HPD0 |}). 
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - unfold b_supp_classify. simpl. reflexivity.  }
+        split. { apply (@NS_While_Nil b c {| dom := dom2; mu := []; all_partial := HPD2 |}).
+            - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+            - unfold b_supp_classify. simpl. reflexivity.  }
+        simpl. rewrite HNS2. split; try apply dst_equiv_refl.
+        destruct Hdom. 
+        apply dom_eq_orb_compat_right with (l2:= get_modvar_in_winstr c) in H3. 
+        apply dom_eq_orb_compat_right with (l2:= get_modvar_in_winstr c) in H4. 
+        split; try apply dom_equiv_trans with (l1:= (dom pd ∪ get_modvar_in_winstr c)%domain); try assumption.
+      - pose (pd2_ori:= {| dom := dom2; mu := (s2, p2) :: mu2'; all_partial := HPD2 |}).
+        assert (Heq': pd ≡ pd2_ori). {
+          destruct Hdom. rewrite dst_add_0_l in Hadd. split; simpl; try assumption. }
+        assert (Hb: b_supp_classify b pd2_ori = All_True). {
+          rewrite dst_add_0_l in Hadd. 
+          apply dst_equiv_implies_b_classify with (b:= b) in Heq'; try assumption. 
+          rewrite H0 in Heq'. symmetry in Heq'. assumption. } 
+        apply IHc with (pd':= pd1) in Hadd; try assumption. 
+        destruct Hadd as [x Hx]. destruct Hx as [x0 Hx0]. 
+        destruct Hx0 as [HNSx Hx0]. destruct Hx0 as [HNSx0 Hmu].
+        destruct Hmu as [Hmu Hdomx].
+        assert (Hvx: Valid_dist (mu x)). { apply Valid_forall_NS in HNSx; try assumption. }
+        assert (Hvx0: Valid_dist (mu x0)). { apply Valid_forall_NS in HNSx0; try assumption. } 
+        assert (HVl: Valid_dist (mu x + mu x0)%dist_state). {
+          rewrite <- dst_mult_1_l. rewrite dst_mult_plus_distr_r_eq.
+          apply Valid_linear_under_eq_prob; try assumption; try lra. 
+          rewrite <- Rmult_plus_distr_l. rewrite Rmult_1_l.
+          apply NS_preserve_sum_eq in HNSx; try assumption.
+          apply NS_preserve_sum_eq in HNSx0; try assumption.
+          rewrite <- HNSx. rewrite <- HNSx0. simpl. rewrite Rplus_0_l.
+          destruct Hvl. simpl in H3. assumption. }
+        assert (Hv1: Valid_dist (mu pd1)). { apply Valid_forall_NS in HNS1; try assumption. }
+        assert (Hdom1': (dom pd' == dom pd1 ∪ get_modvar_in_winstr (WHILE b DO c END))%domain). {
+          apply orbdom_after_NS; try assumption. }
+        assert (HWDx0c: well_defined_winstr_with_pd (WHILE b DO c END) x0). { 
+          
+          apply pd_decom_l_preserves_WD_win with (c:= While b c) in Hmu; try assumption. }
+        apply IHHNS2 in Hmu; try assumption.
+        destruct Hmu as [x' Hx]. destruct Hx as [x0' Hx0]. 
+        destruct Hx0 as [HNSx' Hx0]. destruct Hx0 as [HNSx0' Hmu].
+        destruct Hmu as [Heq Hdomx'].
+        exists (pd_emp (orb_domain (dom0) (get_modvar_in_winstr (While b c)))), x0'.
+        split. { apply (@NS_While_Nil b c {| dom := dom0; mu := []; all_partial := HPD0 |}). 
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - unfold b_supp_classify. simpl. reflexivity. }
+        split. { eapply NS_While_All_True; try assumption.
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - apply pd_equiv_preserves_WD_win with (pd:= pd); try assumption.
+          - apply HWDx0c.
+          - apply HNSx0.
+          - assumption. }
+        simpl. apply NS_pd_implies_nil in HNSx. destruct HNSx. split.
+        + apply NS_mu_implies_nil in HNSx'; try assumption. rewrite HNSx' in Heq. simpl in Heq. assumption.
+        + destruct Hdomx'. split; try assumption. 
+          apply dom_equiv_trans with (l1:= dom x'); try assumption.
+          apply orbdom_after_NS in HNSx'. simpl in HNSx'.
+          apply dom_equiv_trans with (l1:= (dom x ∪ get_modvar_in_winstr c)%domain); try assumption.
+          apply dom_eq_orb_compat_right with (l2:= get_modvar_in_winstr c) in H4. 
+          apply dom_equiv_trans with (l1:= ((dom0 ∪ get_modvar_in_winstr c) ∪ get_modvar_in_winstr c)%domain); try assumption.
+          apply dom_equiv_sym. apply orb_domain_elim_r. apply dom_subset_orb_snd_l_r. 
+      - pose (pd0_ori:= {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}).
+        assert (Heq': pd ≡ pd0_ori). {
+          destruct Hdom. rewrite dst_add_0_r in Hadd. split; simpl; try assumption. }
+        assert (Hb: b_supp_classify b pd0_ori = All_True). {
+          rewrite dst_add_0_r in Hadd. 
+          apply dst_equiv_implies_b_classify with (b:= b) in Heq'; try assumption. 
+          rewrite H0 in Heq'. symmetry in Heq'. assumption. } 
+        apply IHc with (pd':= pd1) in Hadd; try assumption. 
+        destruct Hadd as [x Hx]. destruct Hx as [x0 Hx0]. 
+        destruct Hx0 as [HNSx Hx0]. destruct Hx0 as [HNSx0 Hmu].
+        destruct Hmu as [Hmu Hdomx].
+        assert (Hvx: Valid_dist (mu x)). { apply Valid_forall_NS in HNSx; try assumption. }
+        assert (Hvx0: Valid_dist (mu x0)). { apply Valid_forall_NS in HNSx0; try assumption. } 
+        assert (HVl: Valid_dist (mu x + mu x0)%dist_state). {
+          rewrite <- dst_mult_1_l. rewrite dst_mult_plus_distr_r_eq.
+          apply Valid_linear_under_eq_prob; try assumption; try lra. 
+          rewrite <- Rmult_plus_distr_l. rewrite Rmult_1_l.
+          apply NS_preserve_sum_eq in HNSx; try assumption.
+          apply NS_preserve_sum_eq in HNSx0; try assumption.
+          rewrite <- HNSx. rewrite <- HNSx0. simpl. rewrite Rplus_0_r.
+          destruct Hvl. simpl in H3. rewrite dst_add_0_r in H3.
+          assumption. }
+        assert (Hv1: Valid_dist (mu pd1)). { apply Valid_forall_NS in HNS1; try assumption. }
+        assert (Hdom1': (dom pd' == dom pd1 ∪ get_modvar_in_winstr (WHILE b DO c END))%domain). {
+          apply orbdom_after_NS; try assumption. }
+        assert (HWDxc: well_defined_winstr_with_pd (WHILE b DO c END) x). { 
+          apply pd_decom_r_preserves_WD_win with (c:= While b c) in Hmu; try assumption. }
+        apply IHHNS2 in Hmu; try assumption.
+        destruct Hmu as [x' Hx]. destruct Hx as [x0' Hx0]. 
+        destruct Hx0 as [HNSx' Hx0]. destruct Hx0 as [HNSx0' Hmu].
+        destruct Hmu as [Heq Hdomx'].
+        exists x', (pd_emp (orb_domain (dom2) (get_modvar_in_winstr (While b c)))).
+        split. { eapply NS_While_All_True; try assumption.
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - apply pd_equiv_preserves_WD_win with (pd:= pd); try assumption.
+          - apply HWDxc.
+          - apply HNSx.
+          - assumption. }
+        split. { apply (@NS_While_Nil b c {| dom := dom2; mu := []; all_partial := HPD2 |}). 
+            - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+            - unfold b_supp_classify. simpl. reflexivity. }
+        simpl. apply NS_pd_implies_nil in HNSx0. destruct HNSx0. split.
+        + apply NS_mu_implies_nil in HNSx0'; try assumption. rewrite HNSx0' in Heq. simpl in Heq. assumption.
+        + destruct Hdomx'. split; try assumption. 
+          apply dom_equiv_trans with (l1:= dom x0'); try assumption.
+          apply orbdom_after_NS in HNSx0'. simpl in HNSx0'.
+          apply dom_equiv_trans with (l1:= (dom x0 ∪ get_modvar_in_winstr c)%domain); try assumption.
+          apply dom_eq_orb_compat_right with (l2:= get_modvar_in_winstr c) in H4. 
+          apply dom_equiv_trans with (l1:= ((dom2 ∪ get_modvar_in_winstr c) ∪ get_modvar_in_winstr c)%domain); try assumption.
+          apply dom_equiv_sym. apply orb_domain_elim_r. apply dom_subset_orb_snd_l_r. 
+      - pose (pd0_ori:= {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}).
+        pose (pd2_ori:= {| dom := dom2; mu := (s2, p2) :: mu2'; all_partial := HPD2 |}).
+        assert (HWD0c: well_defined_winstr_with_pd c pd0_ori). { 
+          apply pd_decom_r_preserves_WD_win with (c:= c) in Hadd; try assumption. }
+        assert (HWD2c: well_defined_winstr_with_pd c pd2_ori). { 
+          apply pd_decom_l_preserves_WD_win with (c:= c) in Hadd; try assumption. }
+        assert (Hb0: b_supp_classify b pd0_ori = All_True). { 
+          apply bT_classify_decom_r with (b:= b) (pd0:= pd0_ori) (pd1:= pd2_ori) in H0; simpl; try assumption.
+          - unfold not. intros. discriminate.
+          - destruct Hdom. simpl in H3. assumption. 
+          - destruct Hdom. simpl in H3. assumption. }
+        assert (Hb2: b_supp_classify b pd2_ori = All_True). { 
+          destruct Hdom.  
+          apply bT_classify_decom_r with (b:= b) (pd0:= pd2_ori) (pd1:= pd0_ori) in H0; try assumption.
+          - apply Valid_add_comm. assumption.
+          - apply dst_equiv_trans with (mu1:= ( mu {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |} +
+              mu {| dom := dom2; mu := (s2, p2) :: mu2'; all_partial := HPD2 |})%dist_state); try assumption.
+            apply dst_add_comm.
+          - simpl. 
+            + unfold not. intros. discriminate. 
+         }
+        apply IHc with (pd':= pd1) in Hadd; try assumption. 
+        destruct Hadd as [x Hx]. destruct Hx as [x0 Hx0]. 
+        destruct Hx0 as [HNSx Hx0]. destruct Hx0 as [HNSx0 Hmu].
+        destruct Hmu as [Hmu Hdomx].
+        assert (Hvx: Valid_dist (mu x)). { apply Valid_forall_NS in HNSx; try assumption. }
+        assert (Hvx0: Valid_dist (mu x0)). { apply Valid_forall_NS in HNSx0; try assumption. } 
+        assert (HVl: Valid_dist (mu x + mu x0)%dist_state). {
+          rewrite <- dst_mult_1_l. rewrite dst_mult_plus_distr_r_eq.
+          apply Valid_linear_under_eq_prob; try assumption; try lra. 
+          rewrite <- Rmult_plus_distr_l. rewrite Rmult_1_l.
+          apply NS_preserve_sum_eq in HNSx; try assumption.
+          apply NS_preserve_sum_eq in HNSx0; try assumption.
+          rewrite <- HNSx. rewrite <- HNSx0. simpl. 
+          destruct Hvl. simpl in H3. 
+          rewrite dst_sum_prob_decom in H3. simpl in H3. rewrite Rplus_assoc. assumption. } 
+        assert (Hv1: Valid_dist (mu pd1)). { apply Valid_forall_NS in HNS1; try assumption. }
+        assert (Hdom1': (dom pd' == dom pd1 ∪ get_modvar_in_winstr (WHILE b DO c END))%domain). {
+          apply orbdom_after_NS; try assumption. }
+        assert (HWDxc: well_defined_winstr_with_pd (WHILE b DO c END) x). { 
+          apply pd_decom_r_preserves_WD_win with (c:= While b c) in Hmu; try assumption. }
+        assert (HWDx0c: well_defined_winstr_with_pd (WHILE b DO c END) x0). { 
+          apply pd_decom_l_preserves_WD_win with (c:= While b c) in Hmu; try assumption. }
+        apply IHHNS2 in Hmu; try assumption.
+        destruct Hmu as [x' Hx]. destruct Hx as [x0' Hx0]. 
+        destruct Hx0 as [HNSx' Hx0]. destruct Hx0 as [HNSx0' Hmu].
+        destruct Hmu as [Heq Hdomx'].
+        exists x', x0'.
+        split. { eapply NS_While_All_True; try assumption.
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - apply HWDxc.
+          - apply HNSx.
+          - assumption. }
+        split. { eapply NS_While_All_True; try assumption.
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - apply HWDx0c.
+          - apply HNSx0.
+          - assumption. }
+        simpl. split; try assumption.
+    }
+    {
+      destruct pd0 as [dom0 mu0 HPD0]. destruct pd1 as [dom2 mu2 HPD2].
+      destruct mu0 as [|(s0,p0) mu0']; destruct mu2 as [|(s2,p2) mu2'].
+      - simpl in *. 
+        assert (Hmu_nil: mu pd = []). { apply dst_eq_nil_iff; split; try assumption. }
+        unfold b_supp_classify in H0. rewrite Hmu_nil in H0. simpl. discriminate. 
+      - pose (pd2_ori:= {| dom := dom2; mu := (s2, p2) :: mu2'; all_partial := HPD2 |}).
+        destruct Hdom. 
+        assert (Heq': pd ≡ pd2_ori  ). {
+          rewrite dst_add_0_l in Hadd. split; simpl; try assumption. }
+        assert (Hb: b_supp_classify b pd2_ori = All_False). {
+          rewrite dst_add_0_l in Hadd. 
+          apply dst_equiv_implies_b_classify with (b:= b) in Heq'; try assumption. 
+          rewrite H0 in Heq'. symmetry in Heq'. assumption. }
+        exists (pd_emp (orb_domain (dom0) (get_modvar_in_winstr (While b c)))), pd2_ori.
+        split. { apply (@NS_While_Nil b c {| dom := dom0; mu := []; all_partial := HPD0 |}). 
+          - apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - unfold b_supp_classify. simpl. reflexivity. }
+        split. { eapply NS_While_All_False; try assumption.
+          - apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - simpl. apply dom_subset_eq_compat_left with (X:= dom pd); try assumption. }
+        rewrite dst_add_0_l. split; try assumption. simpl. 
+        split; try assumption. 
+        apply dom_equiv_trans with (l1:= (dom pd ∪ get_modvar_in_winstr (WHILE b DO c END))%domain); try assumption.
+            apply dom_eq_orb_compat_right. assumption.
+      - pose (pd0_ori:= {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}).
+        destruct Hdom. 
+        assert (Heq': pd ≡ pd0_ori). {
+          rewrite dst_add_0_r in Hadd. split; simpl; try assumption. }
+        assert (Hb: b_supp_classify b pd0_ori = All_False). {
+          rewrite dst_add_0_r in Hadd. 
+          apply dst_equiv_implies_b_classify with (b:= b) in Heq'; try assumption. 
+          rewrite H0 in Heq'. symmetry in Heq'. assumption. } 
+        exists pd0_ori, (pd_emp (orb_domain (dom2) (get_modvar_in_winstr (While b c)))).
+        split. { eapply NS_While_All_False; try assumption.
+          - apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - simpl. apply dom_subset_eq_compat_left with (X:= dom pd); try assumption. }
+        split. { apply (@NS_While_Nil b c {| dom := dom2; mu := []; all_partial := HPD2 |}).
+            - apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+            - unfold b_supp_classify. simpl. reflexivity. }
+        rewrite dst_add_0_r. rewrite dst_add_0_r in Hadd. split; try assumption. simpl. 
+        split; try assumption. 
+        apply dom_equiv_trans with (l1:= (dom pd ∪ get_modvar_in_winstr (WHILE b DO c END))%domain); try assumption.
+            apply dom_eq_orb_compat_right. assumption.
+      - pose (pd0_ori:= {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}).
+        pose (pd2_ori:= {| dom := dom2; mu := (s2, p2) :: mu2'; all_partial := HPD2 |}).
+        assert (Hb0: b_supp_classify b pd0_ori = All_False). { 
+          destruct Hdom.  
+          apply bF_classify_decom_r with (b:= b) (pd0:= ( pd0_ori )) (pd1:= ( pd2_ori  )) in H0; try assumption.
+          simpl. unfold not. intros. discriminate. }
+        assert (Hb: b_supp_classify b pd2_ori = All_False). {
+          destruct Hdom.  
+          apply bF_classify_decom_r with (b:= b) (pd0:= pd2_ori ) (pd1:= pd0_ori ) in H0; try assumption.
+          - apply Valid_add_comm. assumption.
+          - apply dst_equiv_trans with (mu1:= (  mu {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |} +
+                mu {| dom := dom2; mu := (s2, p2) :: mu2'; all_partial := HPD2 |})%dist_state); try assumption.
+            apply dst_add_comm.
+          - simpl. 
+            + unfold not. intros. discriminate.  }
+        destruct Hdom.
+        exists pd0_ori, pd2_ori.
+        split. { eapply NS_While_All_False; try assumption.
+          - apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - apply dom_subset_eq_compat_left with (X:= dom pd); try assumption. } 
+        split. { eapply NS_While_All_False; try assumption.
+          - apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - apply dom_subset_eq_compat_left with (X:= dom pd); try assumption. } 
+        simpl. split; try assumption. split; try assumption.
+    }
+    {
+      destruct pd2 as [dom0 mu0 HPD0]. destruct pd3 as [dom2 mu2 HPD2].
+      destruct mu0 as [|(s0,p0) mu0']; destruct mu2 as [|(s2,p2) mu2'].
+      - simpl in *. 
+        assert (Hmu_nil: mu pd = []). { apply dst_eq_nil_iff; split; try assumption. }
+        unfold b_supp_classify in H0. rewrite Hmu_nil in H0. simpl. discriminate. 
+      - pose (pd2_ori:= {| dom := dom2; mu := (s2, p2) :: mu2'; all_partial := HPD2 |}).
+        assert (Heq': pd ≡ pd2_ori  ). {
+          destruct Hdom. rewrite dst_add_0_l in Hadd. split; simpl; try assumption. }
+        assert (Hb_pdeq: pd_b ≡ extract_b_pd b ( pd2_ori  )). {
+          apply pd_eq_preserves_get_b with (b:= b); try assumption. } 
+        assert (Hnb_pdeq: pd_notb ≡ extract_notb_pd b ( pd2_ori  )). {
+          apply pd_eq_preserves_get_notb with (b:= b); try assumption. } 
+        assert (Hb: b_supp_classify b pd2_ori = Mixed). {
+          rewrite dst_add_0_l in Hadd. 
+          apply dst_equiv_implies_b_classify with (b:= b) in Heq'; try assumption. 
+          rewrite H0 in Heq'. symmetry in Heq'. assumption. }
+        assert (HVb1: Valid_dist (mu (extract_b_pd b pd2_ori))). { apply dst_Valid_get_b; assumption. }
+        assert (HVbp1: Valid_dist (mu {| dom := dom0; mu := []; all_partial := HPD0 |} + 
+            mu (extract_b_pd b pd2_ori))%dist_state). {
+              rewrite dst_add_0_l. assumption. }
+        assert (HVnb1: Valid_dist (mu (extract_notb_pd b pd2_ori))). { apply dst_Valid_get_notb; assumption. }
+        assert (HVb: Valid_dist (mu pd_b)). { apply dst_Valid_get_b; assumption. }
+        assert (HVnb: Valid_dist (mu pd_notb)).  { apply dst_Valid_get_notb; assumption. }
+        assert (Hb_eq: mu pd_b == (  mu {| dom := dom0; mu := []; all_partial := HPD0 |} +
+                                   mu (extract_b_pd b pd2_ori))%dist_state). {  
+                        rewrite dst_add_0_l. rewrite dst_add_0_l in Hadd.
+                        apply Peq_implies_get_b_Peq with (b:= b) in Hadd; try assumption. }
+        assert (Hnotb_eq:  mu pd_notb == (  mu {| dom := dom0; mu := []; all_partial := HPD0 |} +
+                                  mu (extract_notb_pd b pd2_ori))%dist_state). {
+                        rewrite dst_add_0_l. rewrite dst_add_0_l in Hadd.
+                        apply Peq_implies_get_notb_Peq with (b:= b) in Hadd; try assumption. }
+        assert (HWDb2: well_defined_winstr_with_pd c (extract_b_pd b pd2_ori)). { 
+          apply pd_decom_l_preserves_WD_win with (c:= c) in Hb_eq; try assumption. }
+        apply IHc with (pd':= pd0) in Hb_eq; try assumption. 
+        destruct Hb_eq as [x Hx]. destruct Hx as [x0 Hx0]. 
+        destruct Hx0 as [HNSx Hx0]. destruct Hx0 as [HNSx0 Hmu].
+        destruct Hmu as [Hmu Hdomx].
+        assert (Hvx: Valid_dist (mu x)). { apply Valid_forall_NS in HNSx; try assumption. }
+        assert (Hvx0: Valid_dist (mu x0)). { apply Valid_forall_NS in HNSx0; try assumption. } 
+        assert (HVl: Valid_dist (mu x +  mu x0)%dist_state). { 
+          rewrite <- dst_mult_1_l. rewrite dst_mult_plus_distr_r_eq.
+          apply Valid_linear_under_eq_prob; try assumption; try lra. 
+          rewrite <- Rmult_plus_distr_l. rewrite Rmult_1_l.
+          apply NS_preserve_sum_eq in HNSx; try assumption.
+          apply NS_preserve_sum_eq in HNSx0; try assumption.
+          rewrite <- HNSx. rewrite <- HNSx0. rewrite Rplus_0_l.
+          destruct HVb1. assumption. }
+        assert (Hv1: Valid_dist (mu pd0)). { apply Valid_forall_NS in HNS1; try assumption. }
+        assert (HWDx: well_defined_winstr_with_pd (WHILE b DO c END) x0). { 
+          apply pd_decom_l_preserves_WD_win with (c:= (While b c)) in Hmu; try assumption. }
+        assert (Hdom1': (dom pd1 == dom pd0 ∪ get_modvar_in_winstr (WHILE b DO c END))%domain). { 
+          apply orbdom_after_NS; try assumption. }
+        apply IHHNS2 in Hmu; try assumption.
+        destruct Hmu as [x' Hx]. destruct Hx as [x0' Hx0]. 
+        destruct Hx0 as [HNSx' Hx0]. destruct Hx0 as [HNSx0' Hmu].
+        destruct Hmu as [Heq Hdomx'].
+        assert (Hdomx2: (dom x0' == dom pd2_ori)%domain). { 
+          apply orbdom_after_NS in HNSx0; try assumption.
+          apply orbdom_after_NS in HNSx0'; try assumption.
+          apply dom_equiv_trans with (l1:= (dom x0 ∪ get_modvar_in_winstr (WHILE b DO c END))%domain); try assumption.
+          apply dom_eq_orb_compat_right with (l2:= get_modvar_in_winstr (WHILE b DO c END)) in HNSx0; try assumption.
+          simpl in HNSx0. simpl.
+          apply dom_equiv_trans with (l1:= ((dom2 ∪ get_modvar_in_winstr c) ∪ get_modvar_in_winstr c)%domain); try assumption.
+          rewrite <- orb_domain_assoc. rewrite orb_domain_refl.
+          apply dom_equiv_sym. apply orb_domain_elim_r.
+          destruct Hdom. 
+          apply dom_subset_eq_compat_left with (X:= dom pd); try assumption. }
+        exists (pd_emp (orb_domain (dom0) (get_modvar_in_winstr (While b c)))), 
+                (pd_add x0' (extract_notb_pd b pd2_ori) (Hdomx2)).
+        split. { apply (@NS_While_Nil b c {| dom := dom0; mu := []; all_partial := HPD0 |}). 
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - unfold b_supp_classify. simpl. reflexivity. }
+        split. { eapply NS_While_Mixed; try assumption.
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - apply HWDx.
+          - simpl. destruct Hdom. 
+            apply dom_subset_eq_compat_left with (X:= dom pd); try assumption.
+          - apply HNSx0.
+          - apply HNSx0'.
+          - simpl. reflexivity.
+          - simpl. apply dom_equiv_refl. }
+        split. { rewrite dst_add_0_l. rewrite H4. unfold pd_add.
+          simpl.
+          apply dst_add_preserves_equiv; try assumption.
+          apply NS_pd_implies_nil in HNSx. destruct HNSx. 
+          apply NS_mu_implies_nil in HNSx'; try assumption. 
+          rewrite HNSx' in Heq. simpl in Heq. assumption. } 
+        simpl. split; try assumption.
+          + simpl in Hdom'. 
+            apply dom_equiv_trans with (l1:= (dom pd ∪ get_modvar_in_winstr c)%domain); try assumption.
+            apply dom_eq_orb_compat_right. destruct Hdom. assumption.
+          + destruct Hdomx'. 
+            apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption. 
+      - pose (pd0_ori:= {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}).
+        assert (Hv0p: Valid_dist (mu ( pd0_ori ))). { try apply Valid_mult_cofe; try assumption. }
+        assert (Heq': pd ≡  pd0_ori ). {
+          destruct Hdom. rewrite dst_add_0_r in Hadd. split; simpl; try assumption. }
+        assert (Hb_pdeq: pd_b ≡ extract_b_pd b ( pd0_ori )). {
+          apply pd_eq_preserves_get_b with (b:= b); try assumption. } 
+        assert (Hnb_pdeq: pd_notb ≡ extract_notb_pd b ( pd0_ori )). {
+          apply pd_eq_preserves_get_notb with (b:= b); try assumption. } 
+        assert (Hb: b_supp_classify b pd0_ori = Mixed). {
+          rewrite dst_add_0_r in Hadd. 
+          apply dst_equiv_implies_b_classify with (b:= b) in Heq'; try assumption. 
+          rewrite H0 in Heq'. symmetry in Heq'. assumption. }
+        assert (HVb1: Valid_dist (mu (extract_b_pd b pd0_ori))). { apply dst_Valid_get_b; assumption. }
+        assert (HVbp1:Valid_dist (  mu (extract_b_pd b pd0_ori) + 
+                                  mu {| dom := dom2; mu := []; all_partial := HPD2 |})%dist_state). {
+          rewrite dst_add_0_r. try apply Valid_mult_cofe; try assumption.  }
+        assert (HVnb1: Valid_dist (mu (extract_notb_pd b pd0_ori))). { apply dst_Valid_get_notb; assumption. }
+        assert (HVb: Valid_dist (mu pd_b)). { apply dst_Valid_get_b; assumption. }
+        assert (HVnb: Valid_dist (mu pd_notb)).  { apply dst_Valid_get_notb; assumption. }
+        assert (Hb_eq: mu pd_b == (  mu (extract_b_pd b pd0_ori) +
+                                    mu {| dom := dom2; mu := []; all_partial := HPD2 |})%dist_state). {  
+                        rewrite dst_add_0_r. rewrite dst_add_0_r in Hadd.
+                        apply Peq_implies_get_b_Peq with (b:= b) in Hadd; try assumption. }
+        assert (Hnotb_eq:  mu pd_notb == (  mu (extract_notb_pd b pd0_ori) +
+                                    mu {| dom := dom2; mu := []; all_partial := HPD2 |})%dist_state). {
+                        rewrite dst_add_0_r. rewrite dst_add_0_r in Hadd.
+                        apply Peq_implies_get_notb_Peq with (b:= b) in Hadd; try assumption. }
+        assert (HWDb2: well_defined_winstr_with_pd c (extract_b_pd b pd0_ori)). { 
+          apply pd_decom_r_preserves_WD_win with (c:= c) in Hb_eq; try assumption. }
+        apply IHc with (pd':= pd0) in Hb_eq; try assumption. 
+        destruct Hb_eq as [x Hx]. destruct Hx as [x0 Hx0]. 
+        destruct Hx0 as [HNSx Hx0]. destruct Hx0 as [HNSx0 Hmu].
+        destruct Hmu as [Hmu Hdomx].
+        assert (Hvx: Valid_dist (mu x)). { apply Valid_forall_NS in HNSx; try assumption. }
+        assert (Hvx0: Valid_dist (mu x0)). { apply Valid_forall_NS in HNSx0; try assumption. } 
+        assert (HVl: Valid_dist (mu x + mu x0)%dist_state). { 
+          rewrite <- dst_mult_1_l. rewrite dst_mult_plus_distr_r_eq.
+          apply Valid_linear_under_eq_prob; try assumption; try lra. 
+          rewrite <- Rmult_plus_distr_l. rewrite Rmult_1_l.
+          apply NS_preserve_sum_eq in HNSx; try assumption.
+          apply NS_preserve_sum_eq in HNSx0; try assumption.
+          rewrite <- HNSx. rewrite <- HNSx0. rewrite Rplus_0_r.
+          destruct HVb1. assumption.
+         }
+        assert (Hv1: Valid_dist (mu pd0)). { apply Valid_forall_NS in HNS1; try assumption. }
+        assert (HWDx: well_defined_winstr_with_pd (WHILE b DO c END) x). { 
+          apply pd_decom_r_preserves_WD_win with (c:= (While b c)) in Hmu; try assumption. }
+        assert (Hdom1': (dom pd1 == dom pd0 ∪ get_modvar_in_winstr (WHILE b DO c END))%domain). { 
+          apply orbdom_after_NS; try assumption. }
+        apply IHHNS2 in Hmu; try assumption.
+        destruct Hmu as [x' Hx]. destruct Hx as [x0' Hx0]. 
+        destruct Hx0 as [HNSx' Hx0]. destruct Hx0 as [HNSx0' Hmu].
+        destruct Hmu as [Heq Hdomx'].
+        assert (Hdomx2: (dom x' == dom pd0_ori)%domain). { 
+          apply orbdom_after_NS in HNSx; try assumption.
+          apply orbdom_after_NS in HNSx'; try assumption.
+          apply dom_equiv_trans with (l1:= (dom x ∪ get_modvar_in_winstr (WHILE b DO c END))%domain); try assumption.
+          apply dom_eq_orb_compat_right with (l2:= get_modvar_in_winstr (WHILE b DO c END)) in HNSx; try assumption.
+          simpl in HNSx. simpl.
+          apply dom_equiv_trans with (l1:= ((dom0 ∪ get_modvar_in_winstr c) ∪ get_modvar_in_winstr c)%domain); try assumption.
+          rewrite <- orb_domain_assoc. rewrite orb_domain_refl.
+          apply dom_equiv_sym. apply orb_domain_elim_r.
+          destruct Hdom. 
+          apply dom_subset_eq_compat_left with (X:= dom pd); try assumption. }
+        exists (pd_add x' (extract_notb_pd b pd0_ori) (Hdomx2)),  
+                (pd_emp (orb_domain (dom2) (get_modvar_in_winstr (While b c)))).
+        split. { eapply NS_While_Mixed; try assumption.
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - apply HWDx.
+          - simpl. destruct Hdom. 
+            apply dom_subset_eq_compat_left with (X:= dom pd); try assumption.
+          - apply HNSx.
+          - apply HNSx'.
+          - simpl. reflexivity.
+          - simpl. apply dom_equiv_refl. }
+        split. { apply (@NS_While_Nil b c {| dom := dom2; mu := []; all_partial := HPD2 |}). 
+          - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+          - unfold b_supp_classify. simpl. reflexivity. }
+        split. { rewrite dst_add_0_r. rewrite H4. unfold pd_add.
+          simpl.  
+          rewrite dst_add_0_r in Hnotb_eq.
+          apply dst_add_preserves_equiv; try assumption.
+          apply NS_pd_implies_nil in HNSx0. destruct HNSx0. 
+          apply NS_mu_implies_nil in HNSx0'; try assumption. 
+          rewrite HNSx0' in Heq. rewrite dst_add_0_r in Heq. assumption. } 
+        simpl. split; try assumption.
+          + destruct Hdomx'. 
+            apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption.
+          + simpl in Hdom'. 
+            apply dom_equiv_trans with (l1:= (dom pd ∪ get_modvar_in_winstr c)%domain); try assumption.
+            apply dom_eq_orb_compat_right. destruct Hdom. assumption.
+      - pose (pd0_ori:= {| dom := dom0; mu := (s0, p0) :: mu0'; all_partial := HPD0 |}).
+        pose (pd2_ori:= {| dom := dom2; mu := (s2, p2) :: mu2'; all_partial := HPD2 |}).
+        assert (HVb: Valid_dist (mu pd_b)). { apply dst_Valid_get_b; assumption. }
+        assert (HVnb: Valid_dist (mu pd_notb)).  { apply dst_Valid_get_notb; assumption. }
+        assert (HVb0: Valid_dist (mu (extract_b_pd b pd0_ori))). { apply dst_Valid_get_b; assumption. }
+        assert (HVb1: Valid_dist (mu (extract_b_pd b pd2_ori))). { apply dst_Valid_get_b; assumption. }
+        assert (HVnb0: Valid_dist (mu (extract_notb_pd b pd0_ori))). { apply dst_Valid_get_notb; assumption. }
+        assert (HVnb1: Valid_dist (mu (extract_notb_pd b pd2_ori))). { apply dst_Valid_get_notb; assumption. }
+        assert (HVbp1:Valid_dist (mu (extract_b_pd b pd0_ori) + 
+                                  mu (extract_b_pd b pd2_ori))%dist_state). { 
+          rewrite <- dst_mult_1_l. rewrite dst_mult_plus_distr_r_eq.
+          apply Valid_linear_under_eq_prob; try assumption; try lra. 
+          rewrite <- Rmult_plus_distr_l. rewrite Rmult_1_l.
+          destruct Hvl. rewrite dst_sum_prob_decom in H6.
+          split. 
+          - rewrite <- Rplus_0_r with (r:= 0). destruct HVb0; destruct HVb1. apply Rplus_le_compat; intuition.
+          - destruct H6. 
+            apply Rle_trans with (r2:= sum_probs (mu pd0_ori) + sum_probs (mu pd2_ori)); try assumption.
+            apply Rplus_le_compat; try apply sum_prob_get_b_le; try assumption. }
+        assert (HVnbp1:Valid_dist (mu (extract_notb_pd b pd0_ori) + 
+                                   mu (extract_notb_pd b pd2_ori))%dist_state). { 
+          rewrite <- dst_mult_1_l. rewrite dst_mult_plus_distr_r_eq.
+          apply Valid_linear_under_eq_prob; try assumption; try lra. 
+          rewrite <- Rmult_plus_distr_l. rewrite Rmult_1_l.
+          destruct Hvl. rewrite dst_sum_prob_decom in H6.
+          split. 
+          - rewrite <- Rplus_0_r with (r:= 0). destruct HVnb0; destruct HVnb1. apply Rplus_le_compat; intuition.
+          - destruct H6. 
+            apply Rle_trans with (r2:= sum_probs (mu pd0_ori) + sum_probs (mu pd2_ori)); try assumption.
+            apply Rplus_le_compat; try apply sum_prob_get_notb_le; try assumption.
+                                    }
+        assert (Hmub: (mu pd_b ==   get_b_in_mu b (mu pd0_ori) + get_b_in_mu b (mu pd2_ori))%dist_state). { 
+          apply Peq_implies_get_b_Peq with (b:= b) in Hadd; try assumption.
+          rewrite <- get_b_assoc. assumption. }
+        assert (Hmunb: (mu pd_notb ==   get_notb_in_mu b (mu pd0_ori) +   get_notb_in_mu b (mu pd2_ori))%dist_state). { 
+          repeat rewrite <- dst_get_notb_coef_mult. rewrite <- get_notb_assoc.
+          apply Peq_implies_get_notb_Peq; try assumption. }
+        specialize (IHc (extract_b_pd b pd0_ori) HVb0 (extract_b_pd b pd2_ori) HVb1 HVbp1 pd_b HVb Hmub Hdom).
+        specialize (IHc pd0 HNS1). destruct IHc. destruct H6. 
+        destruct H6 as [HNSx Hx]. destruct Hx as [HNSx0 Hmu0]. destruct Hmu0 as [Hmu0 Hdom0].
+        assert (Hvx: Valid_dist (mu x)). { apply Valid_forall_NS in HNSx; try assumption. }
+        assert (Hvx0: Valid_dist (mu x0)). { apply Valid_forall_NS in HNSx0; try assumption. } 
+        assert (HVl: Valid_dist (mu x + mu x0)%dist_state). { 
+          rewrite <- dst_mult_1_l. rewrite dst_mult_plus_distr_r_eq.
+          apply Valid_linear_under_eq_prob; try assumption; try lra. 
+          rewrite <- Rmult_plus_distr_l. rewrite Rmult_1_l.
+          apply NS_preserve_sum_eq in HNSx; try assumption.
+          apply NS_preserve_sum_eq in HNSx0; try assumption.
+          rewrite <- HNSx. rewrite <- HNSx0. 
+          rewrite <- dst_sum_prob_decom. destruct HVbp1. assumption. } 
+        assert (Hv1: Valid_dist (mu pd0)). { apply Valid_forall_NS in HNS1; try assumption. }
+        assert (HWDx: well_defined_winstr_with_pd (WHILE b DO c END) x). { 
+          apply pd_decom_r_preserves_WD_win with (c:= (While b c)) in Hmu0; try assumption. }
+        assert (HWDx0: well_defined_winstr_with_pd (WHILE b DO c END) x0). { 
+          apply pd_decom_l_preserves_WD_win with (c:= (While b c)) in Hmu0; try assumption. } 
+        assert (HWD0b: well_defined_winstr_with_pd c (extract_b_pd b pd0_ori)). { 
+              apply pd_decom_r_preserves_WD_win with (c:= c)  
+                (pd0:= (extract_b_pd b pd0_ori)) (pd1:= (extract_b_pd b pd2_ori)) 
+                  in Hmub; try assumption. }
+        assert (HWD2b: well_defined_winstr_with_pd c (extract_b_pd b pd2_ori)). { 
+              apply pd_decom_l_preserves_WD_win with (c:= c)  
+                (pd0:= (extract_b_pd b pd0_ori)) (pd1:= (extract_b_pd b pd2_ori)) 
+                  in Hmub; try assumption. }
+        assert (Hdom1': (dom pd1 == dom pd0 ∪ get_modvar_in_winstr (WHILE b DO c END))%domain). { 
+          apply orbdom_after_NS; try assumption. }
+        apply IHHNS2 in Hmu0; try assumption.
+        destruct Hmu0 as [x' Hx]. destruct Hx as [x0' Hx0]. 
+        destruct Hx0 as [HNSx' Hx0]. destruct Hx0 as [HNSx0' Hmu].
+        destruct Hmu as [Heq Hdomx'].
+        assert (Hdomx0: (dom x' == dom pd0_ori)%domain). { 
+          apply orbdom_after_NS in HNSx; try assumption.
+          apply orbdom_after_NS in HNSx'; try assumption.
+          apply dom_equiv_trans with (l1:= (dom x ∪ get_modvar_in_winstr (WHILE b DO c END))%domain); try assumption.
+          apply dom_eq_orb_compat_right with (l2:= get_modvar_in_winstr (WHILE b DO c END)) in HNSx; try assumption.
+          simpl in HNSx. simpl.
+          apply dom_equiv_trans with (l1:= ((dom0 ∪ get_modvar_in_winstr c) ∪ get_modvar_in_winstr c)%domain); try assumption.
+          rewrite <- orb_domain_assoc. rewrite orb_domain_refl.
+          apply dom_equiv_sym. apply orb_domain_elim_r.
+          destruct Hdom. 
+          apply dom_subset_eq_compat_left with (X:= dom pd); try assumption. }
+        assert (Hdomx2: (dom x0' == dom pd2_ori)%domain). { 
+          apply orbdom_after_NS in HNSx0; try assumption.
+          apply orbdom_after_NS in HNSx0'; try assumption.
+          apply dom_equiv_trans with (l1:= (dom x0 ∪ get_modvar_in_winstr (WHILE b DO c END))%domain); try assumption.
+          apply dom_eq_orb_compat_right with (l2:= get_modvar_in_winstr (WHILE b DO c END)) in HNSx0; try assumption.
+          simpl in HNSx0. simpl.
+          apply dom_equiv_trans with (l1:= ((dom2 ∪ get_modvar_in_winstr c) ∪ get_modvar_in_winstr c)%domain); try assumption.
+          rewrite <- orb_domain_assoc. rewrite orb_domain_refl.
+          apply dom_equiv_sym. apply orb_domain_elim_r.
+          destruct Hdom. 
+          apply dom_subset_eq_compat_left with (X:= dom pd); try assumption. }
+        
+        destruct (b_supp_classify b pd0_ori) eqn: HB0. {
+            unfold b_supp_classify in HB0. simpl in HB0. 
+            destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu ((s0, p0) :: mu0')));
+            destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu ((s0, p0) :: mu0'))); try discriminate. }
+        {
+          destruct (b_supp_classify b pd2_ori) eqn: HB2.
+          - unfold b_supp_classify in HB2. simpl in HB2. 
+            destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu ((s2, p2) :: mu2')));
+            destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu ((s2, p2) :: mu2'))); try discriminate.
+          - apply bMixed_implies_neq_nil in H0. destruct H0 as [Hb Hnotb]. 
+            apply bT_getnotb_nil in HB0. apply bT_getnotb_nil in HB2. 
+            simpl in HB0, HB2. simpl in Hmunb.  
+            rewrite HB0, HB2 in Hmunb. simpl in Hmunb.
+            assert (get_notb_in_mu b (mu pd) = []). { apply dst_eq_nil_iff; split; assumption. }
+            rewrite H0 in Hnotb. contradiction.
+          - assert (Hpd0: extract_b_pd b pd0_ori ≡ pd0_ori). { apply bT_supp_implies_getb_eq in HB0; try assumption. }
+            assert (HWD0: well_defined_winstr_with_pd c pd0_ori). {
+              apply pd_equiv_preserves_WD_win with (pd:= extract_b_pd b pd0_ori); try assumption. }
+            apply step_deterministic with (c:= c) (pd1:= pd0_ori) in HNSx; try assumption. 
+            destruct HNSx as [pd0' HNS0']. destruct HNS0' as [Heqx0 HNS0'].
+            assert (Hv0': Valid_dist (mu pd0')). { apply Valid_forall_NS in HNS0'; try assumption. }
+            assert (Hpd2: extract_notb_pd b pd2_ori ≡ pd2_ori). { apply bF_supp_implies_getnotb_eq in HB2; try assumption. }
+            assert (HWD0': well_defined_winstr_with_pd (WHILE b DO c END) pd0'). {
+              apply pd_equiv_preserves_WD_win with (pd:= x); try assumption. }
+            apply step_deterministic with (c:= While b c) (pd1:= pd0') in HNSx'; try assumption. 
+            destruct HNSx' as [pd1' HNS1']. destruct HNS1' as [Heqx1 HNS1'].
+            exists pd1', pd2_ori. 
+            split. { eapply NS_While_All_True; try assumption. 
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - apply HWD0'.
+              - apply HNS0'.
+              - assumption. }
+            split. { apply NS_While_All_False; try assumption. 
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - destruct Hdom. simpl. simpl in H7. apply dom_subset_eq_compat_left with (X:= dom pd); try assumption. }
+            split. { 
+              rewrite H4.
+              apply dst_add_preserves_equiv. 
+              - apply bF_getnotb_nil in HB2. 
+                apply NS_mu_implies_nil in HNSx0; try assumption. 
+                apply NS_mu_implies_nil in HNSx0'; try assumption. simpl in Heq. 
+                rewrite HNSx0' in Heq. rewrite dst_add_0_r in Heq. 
+                apply dst_equiv_trans with (mu1:= (  mu x')%dist_state); try assumption.
+                destruct Heqx1.
+                try try apply dst_mult_preserves_equiv; try assumption.
+              - apply bT_getnotb_nil in HB0. simpl in HB0. 
+                simpl in Hmunb. rewrite HB0 in Hmunb. rewrite dst_add_0_l in Hmunb.
+                apply dst_equiv_trans with (mu1:= (  (if negb (evalB_st b s2) then (s2, p2) :: get_notb_in_mu b mu2' else get_notb_in_mu b mu2'))%dist_state); try assumption.
+                destruct Hpd2. try try apply dst_mult_preserves_equiv; try assumption. }
+            split; try assumption.
+            + apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption. 
+              destruct Hdomx'. apply dom_equiv_trans with (l1:= (dom x')%domain); try assumption.
+              destruct Heqx1. assumption.
+            + apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption. 
+              destruct Hdomx'. apply dom_equiv_trans with (l1:= (dom x0')%domain); try assumption.
+          - assert (Hpd0: extract_b_pd b pd0_ori ≡ pd0_ori). { apply bT_supp_implies_getb_eq in HB0; try assumption. }
+            assert (HWD0: well_defined_winstr_with_pd c pd0_ori). {
+              apply pd_equiv_preserves_WD_win with (pd:= extract_b_pd b pd0_ori); try assumption. }
+            apply step_deterministic with (c:= c) (pd1:= pd0_ori) in HNSx; try assumption. 
+            destruct HNSx as [pd0' HNS0']. destruct HNS0' as [Heqx0 HNS0'].
+            assert (Hv0': Valid_dist (mu pd0')). { apply Valid_forall_NS in HNS0'; try assumption. }
+            assert (HWD0': well_defined_winstr_with_pd (WHILE b DO c END) pd0'). {
+              apply pd_equiv_preserves_WD_win with (pd:= x); try assumption. }
+            apply step_deterministic with (c:= While b c) (pd1:= pd0') in HNSx'; try assumption. 
+            destruct HNSx' as [pd1' HNS1']. destruct HNS1' as [Heqx1 HNS1'].
+            exists pd1', (pd_add x0' (extract_notb_pd b pd2_ori) (Hdomx2)). 
+            split. { eapply NS_While_All_True; try assumption. 
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - apply HWD0'.
+              - apply HNS0'.
+              - assumption. }
+            split. { eapply NS_While_Mixed; try assumption. 
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - apply HWDx0.
+              - destruct Hdom. simpl. simpl in H7. apply dom_subset_eq_compat_left with (X:= dom pd); try assumption.
+              - apply HNSx0.
+              - apply HNSx0'.
+              - simpl. reflexivity.
+              - simpl. apply dom_equiv_refl. }
+            split. { 
+              rewrite H4. 
+              apply dst_equiv_trans with (mu1:= ((  mu x' +   mu x0') + mu pd_notb)%dist_state).
+              - apply dst_add_inj_r. assumption.
+              - rewrite <- dst_add_assoc_eq.  
+                apply dst_add_preserves_equiv.
+                + destruct Heqx1. try try apply dst_mult_preserves_equiv; try assumption.
+                + simpl.  apply dst_add_inj_l. 
+                  apply bT_getnotb_nil in HB0. simpl in HB0. 
+                  simpl in Hmunb. rewrite HB0 in Hmunb. rewrite dst_add_0_l in Hmunb. assumption. }
+            simpl. split; try assumption.
+            + apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption. 
+              destruct Hdomx'. apply dom_equiv_trans with (l1:= (dom x')%domain); try assumption.
+              destruct Heqx1. assumption.
+            + apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption. 
+              destruct Hdomx'. apply dom_equiv_trans with (l1:= (dom x0')%domain); try assumption.
+              apply dom_equiv_refl.
+        }
+        {
+          destruct (b_supp_classify b pd2_ori) eqn: HB2.
+          - unfold b_supp_classify in HB2. simpl in HB2. 
+            destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu ((s2, p2) :: mu2')));
+            destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu ((s2, p2) :: mu2'))); try discriminate.
+          - assert (Hpd2: extract_b_pd b pd2_ori ≡ pd2_ori). { apply bT_supp_implies_getb_eq in HB2; try assumption. }
+            assert (HWD2: well_defined_winstr_with_pd c pd2_ori). {
+              apply pd_equiv_preserves_WD_win with (pd:= extract_b_pd b pd2_ori); try assumption. }
+            apply step_deterministic with (c:= c) (pd1:= pd2_ori) in HNSx0; try assumption. 
+            destruct HNSx0 as [pd2' HNS2']. destruct HNS2' as [Heqx2 HNS2'].
+            assert (Hv2': Valid_dist (mu pd2')). { apply Valid_forall_NS in HNS2'; try assumption. }
+            assert (Hpd0: extract_notb_pd b pd0_ori ≡ pd0_ori). { apply bF_supp_implies_getnotb_eq in HB0; try assumption. }
+            assert (HWD2': well_defined_winstr_with_pd (WHILE b DO c END) pd2'). {
+              apply pd_equiv_preserves_WD_win with (pd:= x0); try assumption. }
+            apply step_deterministic with (c:= While b c) (pd1:= pd2') in HNSx0'; try assumption. 
+            destruct HNSx0' as [pd3' HNS3']. destruct HNS3' as [Heqx3 HNS3'].
+            exists pd0_ori, pd3'. 
+            split. { apply NS_While_All_False; try assumption. 
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - destruct Hdom. simpl. simpl in H7. apply dom_subset_eq_compat_left with (X:= dom pd); try assumption. }
+            split. { eapply NS_While_All_True; try assumption. 
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - apply HWD2'.
+              - apply HNS2'.
+              - assumption. }
+            split. { 
+              rewrite H4. apply dst_equiv_trans with (mu1:= (mu pd_notb + mu pd1)%dist_state); try apply dst_add_comm.
+              apply dst_add_preserves_equiv. 
+              - apply bT_getnotb_nil in HB2. simpl in HB2. 
+                simpl in Hmunb. rewrite HB2 in Hmunb. rewrite dst_add_0_r in Hmunb.
+                apply dst_equiv_trans with (mu1:= (  (if negb (evalB_st b s0) then (s0, p0) :: get_notb_in_mu b mu0' else get_notb_in_mu b mu0'))%dist_state); try assumption.
+                destruct Hpd0. try try apply dst_mult_preserves_equiv; try assumption.
+              - apply bF_getnotb_nil in HB0. 
+                apply NS_mu_implies_nil in HNSx; try assumption. 
+                apply NS_mu_implies_nil in HNSx'; try assumption. simpl in Heq. 
+                rewrite HNSx' in Heq. rewrite dst_add_0_l in Heq. 
+                apply dst_equiv_trans with (mu1:= (  mu x0')%dist_state); try assumption.
+                destruct Heqx3.
+                try apply dst_mult_preserves_equiv; try assumption.
+               }
+            split; try assumption.
+            + apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption. 
+              destruct Hdomx'. apply dom_equiv_trans with (l1:= (dom x')%domain); try assumption.
+            + apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption. 
+              destruct Hdomx'. apply dom_equiv_trans with (l1:= (dom x0')%domain); try assumption.
+              destruct Heqx3. assumption.
+          - apply bMixed_implies_neq_nil in H0. destruct H0 as [Hb Hnotb]. 
+            apply bF_getnotb_nil in HB0. apply bF_getnotb_nil in HB2. 
+            simpl in HB0, HB2. simpl in Hmub.  
+            rewrite HB0, HB2 in Hmub. simpl in Hmub.
+            assert (get_b_in_mu b (mu pd) = []). { apply dst_eq_nil_iff; split; assumption. }
+            rewrite H0 in Hb. contradiction.
+          - assert (Hpd0: extract_notb_pd b pd0_ori ≡ pd0_ori). { apply bF_supp_implies_getnotb_eq in HB0; try assumption. }
+            exists pd0_ori, (pd_add x0' (extract_notb_pd b pd2_ori) (Hdomx2)). 
+            split. { eapply NS_While_All_False; try assumption. 
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - simpl. destruct Hdom. apply dom_subset_eq_compat_left with (X:= dom pd); try assumption. }
+            split. { eapply NS_While_Mixed; try assumption. 
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - apply HWDx0.
+              - destruct Hdom. simpl. simpl in H7. apply dom_subset_eq_compat_left with (X:= dom pd); try assumption.
+              - apply HNSx0.
+              - apply HNSx0'.
+              - simpl. reflexivity.
+              - simpl. apply dom_equiv_refl. }
+            split. { 
+              rewrite H4. 
+              apply dst_equiv_trans with (mu1:= ((  mu x' +   mu x0') + mu pd_notb)%dist_state).
+              - apply dst_add_inj_r. assumption. 
+              - apply bF_getnotb_nil in HB0. 
+                apply NS_mu_implies_nil in HNSx; try assumption. 
+                apply NS_mu_implies_nil in HNSx'; try assumption. 
+                rewrite HNSx'. rewrite dst_add_0_l.
+                apply dst_equiv_trans with (mu1:= (  mu x0' + (  get_notb_in_mu b (mu pd0_ori) +   get_notb_in_mu b (mu pd2_ori))%dist_state)%dist_state); try assumption.
+                + apply dst_add_inj_l. assumption.
+                + apply dst_equiv_trans with (mu1:= (  get_notb_in_mu b (mu pd0_ori) + (  mu x0' +   get_notb_in_mu b (mu pd2_ori)))%dist_state).
+                  * repeat rewrite dst_add_assoc_eq. apply dst_add_inj_r. apply dst_add_comm.
+                  * apply dst_add_preserves_equiv. 
+                  ** destruct Hpd0. try apply dst_mult_preserves_equiv; try assumption.
+                  ** simpl.  apply dst_equiv_refl. }
+            simpl. split; try assumption.
+            + apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption. 
+              destruct Hdomx'. apply dom_equiv_trans with (l1:= (dom x')%domain); try assumption.
+            + apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption. 
+              destruct Hdomx'. apply dom_equiv_trans with (l1:= (dom x0')%domain); try assumption.
+              apply dom_equiv_refl.
+        }
+        { 
+          destruct (b_supp_classify b pd2_ori) eqn: HB2.
+          - unfold b_supp_classify in HB2. simpl in HB2. 
+            destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu ((s2, p2) :: mu2')));
+            destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu ((s2, p2) :: mu2'))); try discriminate.
+          - assert (Hpd2: extract_b_pd b pd2_ori ≡ pd2_ori). { apply bT_supp_implies_getb_eq in HB2; try assumption. }
+            assert (HWD0: well_defined_winstr_with_pd c pd2_ori). {
+              apply pd_equiv_preserves_WD_win with (pd:= extract_b_pd b pd2_ori); try assumption. }
+            apply step_deterministic with (c:= c) (pd1:= pd2_ori) in HNSx0; try assumption. 
+            destruct HNSx0 as [pd2' HNS2']. destruct HNS2' as [Heqx2 HNS2'].
+            assert (Hv2': Valid_dist (mu pd2')). { apply Valid_forall_NS in HNS2'; try assumption. }
+            assert (HWD2': well_defined_winstr_with_pd (WHILE b DO c END) pd2'). {
+              apply pd_equiv_preserves_WD_win with (pd:= x0); try assumption. }
+            apply step_deterministic with (c:= While b c) (pd1:= pd2') in HNSx0'; try assumption. 
+            destruct HNSx0' as [pd3' HNS3']. destruct HNS3' as [Heqx3 HNS3'].
+            exists (pd_add x' (extract_notb_pd b pd0_ori) (Hdomx0)), pd3'. 
+            split. { eapply NS_While_Mixed; try assumption. 
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - apply HWDx.
+              - destruct Hdom. simpl. simpl in H7. apply dom_subset_eq_compat_left with (X:= dom pd); try assumption.
+              - apply HNSx.
+              - apply HNSx'.
+              - simpl. reflexivity.
+              - simpl. apply dom_equiv_refl. }
+            split. { eapply NS_While_All_True; try assumption. 
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - apply HWD2'.
+              - apply HNS2'.
+              - assumption. }
+            split. { 
+              rewrite H4. 
+              apply dst_equiv_trans with (mu1:= ((  mu x' +   mu x0') + mu pd_notb)%dist_state).
+              - apply dst_add_inj_r. assumption. 
+              - simpl.
+                repeat rewrite <- dst_add_assoc_eq.  
+                apply dst_add_inj_l. 
+                apply dst_equiv_trans with (mu1:= (get_notb_in_mu b (mu pd) +   mu x0')%dist_state).
+                + apply dst_add_comm.
+                + apply dst_add_preserves_equiv.
+                  * apply bT_getnotb_nil in HB2. simpl in HB2. 
+                  simpl in Hmunb. rewrite HB2 in Hmunb. rewrite dst_add_0_r in Hmunb. assumption. 
+                  * destruct Heqx3. try apply dst_mult_preserves_equiv; try assumption. }
+            simpl. split; try assumption.
+            + apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption. 
+              destruct Hdomx'. apply dom_equiv_trans with (l1:= (dom x')%domain); try assumption.
+              apply dom_equiv_refl.
+            + apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption. 
+              destruct Hdomx'. apply dom_equiv_trans with (l1:= (dom x0')%domain); try assumption.
+              destruct Heqx3. assumption.
+          - assert (Hpd2: extract_notb_pd b pd2_ori ≡ pd2_ori). { apply bF_supp_implies_getnotb_eq in HB2; try assumption. }
+            exists (pd_add x' (extract_notb_pd b pd0_ori) (Hdomx0)), pd2_ori. 
+            split. { eapply NS_While_Mixed; try assumption. 
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - apply HWDx.
+              - destruct Hdom. simpl. simpl in H7. apply dom_subset_eq_compat_left with (X:= dom pd); try assumption.
+              - apply HNSx.
+              - apply HNSx'.
+              - simpl. reflexivity.
+              - simpl. apply dom_equiv_refl. }
+            split. { eapply NS_While_All_False; try assumption. 
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - simpl. destruct Hdom. apply dom_subset_eq_compat_left with (X:= dom pd); try assumption. }
+            split. { 
+              rewrite H4. 
+              apply dst_equiv_trans with (mu1:= ((  mu x' +   mu x0') + mu pd_notb)%dist_state).
+              - apply dst_add_inj_r. assumption. 
+              - apply bF_getnotb_nil in HB2.
+                apply NS_mu_implies_nil in HNSx0; try assumption. 
+                apply NS_mu_implies_nil in HNSx0'; try assumption. 
+                rewrite HNSx0'. rewrite dst_add_0_r. simpl. 
+                rewrite <- dst_add_assoc_eq. apply dst_add_inj_l.
+                apply dst_equiv_trans with (mu1:= ((  get_notb_in_mu b (mu pd0_ori) +   get_notb_in_mu b (mu pd2_ori))%dist_state)); try assumption.
+                apply dst_add_inj_l. destruct Hpd2. try assumption. }
+            simpl. split; try assumption.
+            + apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption. 
+              destruct Hdomx'. apply dom_equiv_trans with (l1:= (dom x')%domain); try assumption.
+              apply dom_equiv_refl.
+            + apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption. 
+              destruct Hdomx'. apply dom_equiv_trans with (l1:= (dom x0')%domain); try assumption.
+          - exists (pd_add x' (extract_notb_pd b pd0_ori) (Hdomx0)).
+            exists (pd_add x0' (extract_notb_pd b pd2_ori) (Hdomx2)).
+            split. { eapply NS_While_Mixed; try assumption. 
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - apply HWDx.
+              - simpl. destruct Hdom. apply dom_subset_eq_compat_left with (X:= dom pd); try assumption.
+              - apply HNSx.
+              - apply HNSx'.
+              - simpl. reflexivity.
+              - apply dom_equiv_refl. }
+            split. { eapply NS_While_Mixed; try assumption. 
+              - destruct Hdom. apply dom_equiv_preserves_WF_bexp with (pd:= pd); try assumption.
+              - apply HWDx0.
+              - simpl. destruct Hdom. apply dom_subset_eq_compat_left with (X:= dom pd); try assumption.
+              - apply HNSx0.
+              - apply HNSx0'.
+              - simpl. reflexivity.
+              - apply dom_equiv_refl. }
+            split. {
+              rewrite H4. 
+              apply dst_equiv_trans with (mu1:= ((  mu x' +   mu x0') + mu pd_notb)%dist_state).
+              - apply dst_add_inj_r. assumption. 
+              - simpl.  repeat rewrite <- dst_add_assoc_eq. apply dst_add_inj_l. 
+                apply dst_equiv_trans with (mu1:= (  mu x0' + 
+                (  (if negb (evalB_st b s0) then (s0, p0) :: get_notb_in_mu b mu0' else get_notb_in_mu b mu0') + 
+                  (if negb (evalB_st b s2) then (s2, p2) :: get_notb_in_mu b mu2' else get_notb_in_mu b mu2')))%dist_state).
+                + apply dst_add_inj_l. assumption.
+                + repeat rewrite dst_add_assoc_eq. apply dst_add_inj_r. 
+                apply dst_add_comm. }
+            simpl. split; try assumption.
+            + apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption. 
+              destruct Hdomx'. assumption.
+            + apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption.
+              destruct Hdomx'. assumption.
+        }      
+    }
+Qed.
 
 Lemma linear_NS: forall c (pd0 pd1 pd pd': partial_dist) (p: R), 
   Valid_dist (mu pd0) -> Valid_dist (mu pd1) -> Valid_dist (mu pd) -> 
@@ -3917,7 +6398,7 @@ Proof.
                 apply NS_mu_implies_nil in HNSmu01; try assumption. rewrite HNSmu01. simpl. 
                 rewrite dst_mult_plus_distr_r_eq. rewrite dst_add_assoc_eq. 
                 destruct H. destruct H1. destruct H8.
-                apply dst_add_preserves_equiv; try apply dst_add_preserves_equiv; try apply dst_mult_preserves_equiv; try assumption.
+                apply dst_add_preserves_equiv; try apply dst_add_preserves_equiv; try try apply dst_mult_preserves_equiv; try assumption.
               }
             simpl. split; try assumption. 
             * apply dom_equiv_trans with (l1:= dom pd3); try assumption.  
@@ -4187,7 +6668,7 @@ Proof.
                   rewrite dst_add_assoc_eq. rewrite dst_add_assoc_eq with (mu0:= (p * mu mu02)%dist_state).
                   apply dst_add_inj_r. apply dst_add_comm.
                   + destruct H. destruct H1. destruct H8. repeat rewrite dst_mult_plus_distr_r_eq. 
-                  apply dst_add_preserves_equiv; try apply dst_add_preserves_equiv; try apply dst_mult_preserves_equiv; try assumption.
+                  apply dst_add_preserves_equiv; try apply dst_add_preserves_equiv; try try apply dst_mult_preserves_equiv; try assumption.
                 }
               simpl. split; try assumption. 
               * apply dom_equiv_trans with (l1:= dom pd4); try assumption.  
@@ -4284,10 +6765,10 @@ Proof.
                 apply NS_mu_implies_nil in HNSmu11; try assumption. rewrite HNSmu11. rewrite dst_add_0_r. 
                 rewrite dst_mult_plus_distr_r_eq. repeat rewrite <- dst_add_assoc_eq. 
                 apply dst_add_preserves_equiv.
-                + destruct H. try apply dst_add_preserves_equiv; try apply dst_mult_preserves_equiv; try assumption.
+                + destruct H. try apply dst_add_preserves_equiv; try try apply dst_mult_preserves_equiv; try assumption.
                 + destruct H1. destruct H8.
                   apply dst_equiv_trans with (mu1:= (p * mu mu02 + (1 - p) * mu mu11)%dist_state); try apply dst_add_comm.
-                  apply dst_add_preserves_equiv; try apply dst_add_preserves_equiv; try apply dst_mult_preserves_equiv; try assumption.
+                  apply dst_add_preserves_equiv; try apply dst_add_preserves_equiv; try try apply dst_mult_preserves_equiv; try assumption.
               }
             simpl. split; try assumption. 
             * apply dom_equiv_trans with (l1:= dom pd3); try assumption.  
@@ -4375,7 +6856,7 @@ Proof.
                   apply NS_mu_implies_nil in HNSmu1; try assumption. rewrite HNSmu1. rewrite dst_add_0_r.
                   rewrite dst_mult_plus_distr_r_eq. 
                   destruct H. destruct H1. destruct H8. rewrite dst_add_assoc_eq.
-                  apply dst_add_preserves_equiv; try apply dst_add_preserves_equiv; try apply dst_mult_preserves_equiv; try assumption.
+                  apply dst_add_preserves_equiv; try apply dst_add_preserves_equiv; try try apply dst_mult_preserves_equiv; try assumption.
                 }
             simpl. split; try assumption. 
               * apply dom_equiv_trans with (l1:= dom pd3); try assumption.  
@@ -4465,10 +6946,10 @@ Proof.
                   apply dst_add_preserves_equiv. 
                   + rewrite <- dst_add_assoc_eq. rewrite dst_mult_plus_distr_r_eq with (p:= p).
                     rewrite <- dst_add_assoc_eq. 
-                    try apply dst_add_preserves_equiv; try apply dst_mult_preserves_equiv; try assumption.
+                    try apply dst_add_preserves_equiv; try try apply dst_mult_preserves_equiv; try assumption.
                     apply dst_equiv_trans with (mu1:= (p * mu mu02 + (1 - p) * mu mu11)%dist_state); try apply dst_add_comm.
-                    try apply dst_add_preserves_equiv; try apply dst_mult_preserves_equiv; try assumption.
-                  + try apply dst_add_preserves_equiv; try apply dst_mult_preserves_equiv; try assumption.
+                    try apply dst_add_preserves_equiv; try try apply dst_mult_preserves_equiv; try assumption.
+                  + try apply dst_add_preserves_equiv; try try apply dst_mult_preserves_equiv; try assumption.
                 }
             simpl. split; try assumption. 
               * apply dom_equiv_trans with (l1:= dom pd3); try assumption.  
@@ -5123,11 +7604,11 @@ Proof.
                 rewrite HNSx0' in Heq. rewrite dst_add_0_r in Heq. 
                 apply dst_equiv_trans with (mu1:= (p * mu x')%dist_state); try assumption.
                 destruct Heqx1.
-                apply dst_mult_preserves_equiv; try assumption.
+                try apply dst_mult_preserves_equiv; try assumption.
               - apply bT_getnotb_nil in HB0. simpl in HB0. 
                 simpl in Hmunb. rewrite HB0 in Hmunb. rewrite dst_add_0_l in Hmunb.
                 apply dst_equiv_trans with (mu1:= ((1 - p) * (if negb (evalB_st b s2) then (s2, p2) :: get_notb_in_mu b mu2' else get_notb_in_mu b mu2'))%dist_state); try assumption.
-                destruct Hpd2. apply dst_mult_preserves_equiv; try assumption. }
+                destruct Hpd2. try apply dst_mult_preserves_equiv; try assumption. }
             split; try assumption.
             + apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption. 
               destruct Hdomx'. apply dom_equiv_trans with (l1:= (dom x')%domain); try assumption.
@@ -5164,7 +7645,7 @@ Proof.
               - apply dst_add_inj_r. assumption.
               - rewrite <- dst_add_assoc_eq.  
                 apply dst_add_preserves_equiv.
-                + destruct Heqx1. apply dst_mult_preserves_equiv; try assumption.
+                + destruct Heqx1. try apply dst_mult_preserves_equiv; try assumption.
                 + simpl. rewrite dst_mult_plus_distr_r_eq. apply dst_add_inj_l. 
                   apply bT_getnotb_nil in HB0. simpl in HB0. 
                   simpl in Hmunb. rewrite HB0 in Hmunb. rewrite dst_add_0_l in Hmunb. assumption. }
@@ -5207,14 +7688,14 @@ Proof.
               - apply bT_getnotb_nil in HB2. simpl in HB2. 
                 simpl in Hmunb. rewrite HB2 in Hmunb. rewrite dst_add_0_r in Hmunb.
                 apply dst_equiv_trans with (mu1:= (p * (if negb (evalB_st b s0) then (s0, p0) :: get_notb_in_mu b mu0' else get_notb_in_mu b mu0'))%dist_state); try assumption.
-                destruct Hpd0. apply dst_mult_preserves_equiv; try assumption.
+                destruct Hpd0. try apply dst_mult_preserves_equiv; try assumption.
               - apply bF_getnotb_nil in HB0. 
                 apply NS_mu_implies_nil in HNSx; try assumption. 
                 apply NS_mu_implies_nil in HNSx'; try assumption. simpl in Heq. 
                 rewrite HNSx' in Heq. rewrite dst_add_0_l in Heq. 
                 apply dst_equiv_trans with (mu1:= ((1 - p) * mu x0')%dist_state); try assumption.
                 destruct Heqx3.
-                apply dst_mult_preserves_equiv; try assumption.
+                try apply dst_mult_preserves_equiv; try assumption.
                }
             split; try assumption.
             + apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption. 
@@ -5254,7 +7735,7 @@ Proof.
                 + apply dst_equiv_trans with (mu1:= (p * get_notb_in_mu b (mu pd0_ori) + ((1 - p) * mu x0' + (1 - p) * get_notb_in_mu b (mu pd2_ori)))%dist_state).
                   * repeat rewrite dst_add_assoc_eq. apply dst_add_inj_r. apply dst_add_comm.
                   * apply dst_add_preserves_equiv. 
-                  ** destruct Hpd0. apply dst_mult_preserves_equiv; try assumption.
+                  ** destruct Hpd0. try apply dst_mult_preserves_equiv; try assumption.
                   ** simpl. rewrite dst_mult_plus_distr_r_eq. apply dst_equiv_refl. }
             simpl. split; try assumption.
             + apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption. 
@@ -5304,7 +7785,7 @@ Proof.
                 + apply dst_add_preserves_equiv.
                   * apply bT_getnotb_nil in HB2. simpl in HB2. 
                   simpl in Hmunb. rewrite HB2 in Hmunb. rewrite dst_add_0_r in Hmunb. assumption. 
-                  * destruct Heqx3. apply dst_mult_preserves_equiv; try assumption. }
+                  * destruct Heqx3. try apply dst_mult_preserves_equiv; try assumption. }
             simpl. split; try assumption.
             + apply dom_equiv_trans with (l1:= (dom pd1)%domain); try assumption. 
               destruct Hdomx'. apply dom_equiv_trans with (l1:= (dom x')%domain); try assumption.

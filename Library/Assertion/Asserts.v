@@ -38,7 +38,6 @@ Inductive Pformula: Type :=
   | Oplus : Pformula -> Pformula -> Pformula
   | Odot  : Pformula -> Pformula -> Pformula
   | Pand  : Pformula -> Pformula -> Pformula.
-  (* | Por   : Pformula -> Pformula -> Pformula. *)
 
 Declare Scope formula_scope.
 Bind Scope formula_scope with Dformula. 
@@ -124,12 +123,8 @@ Notation "a + b" := (fun mu => mkAexp a mu + mkAexp b mu) : assertion_scope.
 Notation "a - b" := (fun mu => mkAexp a mu - mkAexp b mu) : assertion_scope.
 Notation "a * b" := (fun mu => mkAexp a mu * mkAexp b mu) : assertion_scope.
 
-(** *** Evaluation *)
-Definition DAssertion_sub_Q (P:DAssertion) (X:nat) (r: Q) : DAssertion := 
-  fun (st : local_st) => P (update st X r).  
-Definition DAssertion_sub_aexp (P:DAssertion) (X:nat) (a: aexp) : DAssertion := 
-  fun (st : local_st) => P (update st X (evalA_st a st)). 
 
+(*******************Syntax Layer/Well-Formedness************)
 Inductive well_defined_Df : Dformula -> Prop := 
   | WD_Dpred : forall b, well_defined_Df (Dpred b)
   | WD_Dexist : forall X f', 
@@ -161,7 +156,6 @@ Fixpoint df_sem (f : Dformula) : DAssertion :=  (* Get the semantics of a determ
                           if (evalB_st b st) then True else False 
   | Dexist X f' => fun st => (is_domain_subset (get_var_in_Dformular f') (return_domain st) = true /\
                               exists r : Q, df_sem f' (update st X r))
-                              \/ (df_sem f' st)
   end.
 Fixpoint pf_sem (f : Pformula) : PAssertion := 
   match f with

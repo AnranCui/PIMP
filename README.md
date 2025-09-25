@@ -25,4 +25,8 @@ make
 ```
 
 ## Contact
+<<<<<<< HEAD
 Email: arcui@stu.ecnu.edu.cn
+=======
+Email: arcui@stu.ecnu.edu.cn
+>>>>>>> 28cc687 (20250925)
