@@ -42,7 +42,7 @@ Definition var_inject_Z (v : option Q) : Prop :=
   | Some q => is_inject_Z q
   | None => True  
   end.
-Definition state_inject_Z (s : local_st) : Prop :=
+Definition state_inject_Z (s : partial_st) : Prop :=
   Forall var_inject_Z s.
 
 Fixpoint dst_inject_Z (mu : dist_state) : Prop := 
@@ -381,7 +381,7 @@ Proof.
   apply H0; try assumption. apply H; assumption. 
 Qed.
 (**************Rules************************)
-Theorem hoare_skip : forall P, {{P}} SKIP {{P}}.
+Lemma hoare_skip : forall P, {{P}} SKIP {{P}}.
 Proof.
 intros P mu mu' Hvalid HZ HZc Hhoare Himp. 
 inversion Hhoare; subst. 
@@ -390,9 +390,9 @@ Qed.
 (**********************************)
 (** *** Evaluation *)
 Definition DAssertion_sub_Q (P:DAssertion) (X:nat) (r: Q) : DAssertion := 
-  fun (st : local_st) => P (update st X r).  
+  fun (st : partial_st) => P (update st X r).  
 Definition DAssertion_sub_aexp (P:DAssertion) (X:nat) (a: aexp) : DAssertion := 
-  fun (st : local_st) => P (update st X (evalA_st a st)). 
+  fun (st : partial_st) => P (update st X (evalA_st a st)). 
 Definition PAssertion_sub (P : PAssertion) (X : nat) (a : aexp) : PAssertion := 
   fun (pd : partial_dist) => 
     forall (HWFa : WF_aexp_with_pd a pd),
@@ -413,7 +413,7 @@ Proof.
       try assumption; simpl; apply Valid_after_DA; try assumption.
 Qed.
 
-Theorem hoare_Dasgn : forall Q X a, {{(Q [X |-> a])}} X ::= a {{Q}}.
+Lemma hoare_Dasgn : forall Q X a, {{(Q [X |-> a])}} X ::= a {{Q}}.
 Proof.
   unfold hoare_triple.
   intros Q X a mu mu' Hvalid HZ HZc HNS HQ.
@@ -436,7 +436,7 @@ Proof.
   - rewrite Rplus_0_r. apply R_plus_sub_eq_1.
 Qed.
 
-Theorem hoare_Rasgn : 
+Lemma hoare_Rasgn : 
   forall phi1 phi2 (X : nat) (a1 a2 : aexp) (p : R) (Hp : 0%R < p < 1%R),
   let Vda := exist _ [(a1, p); (a2, 1 - p)] 
                   (valid_da_of_two a1 a2 p Hp) in 
@@ -468,8 +468,9 @@ Proof.
     - apply DA_preserve_sum_prob. - apply valid_da_of_two. assumption. }
   simpl. apply RA_DA_equiv.
 Qed.
+
 (**********************************)
-Theorem hoare_seq : forall P Q R c1 c2,
+Lemma hoare_seq : forall P Q R c1 c2,
   {{Q}} c2 {{R}} ->
   {{P}} c1 {{Q}} ->
   {{P}} c1;; c2 {{R}}.
@@ -484,12 +485,12 @@ Proof.
   - simpl in HZc. apply H2 with (pd:= mu); try intuition.
 Qed.
 (**********************************)
-Theorem hoare_cond: forall phi1 phi2 phi1' phi2' c1 c2 Bp b, 
-  well_defined_Pf (Pplus Bp (Pand phi1 (Pdeter (Dpred b))) (Pand phi2 (Pdeter (Dpred (Bnot b))))) ->
+Lemma hoare_cond: forall phi1 phi2 phi1' phi2' c1 c2 Bp b, 
+  well_defined_Pf (Pplus Bp (phi1 ∧ (Pdeter (Dpred b))) (phi2 ∧ (Pdeter (Dpred (Bnot b))))) ->
   well_defined_Pf (Pplus Bp phi1' phi2') ->
-  {{[[Pand phi1 (Pdeter (Dpred b))]]}} c1 {{[[phi1']]}} -> 
-  {{[[Pand phi2 (Pdeter (Dpred (Bnot b)))]]}} c2 {{[[phi2']]}} -> 
-  {{[[Pplus Bp (Pand phi1 (Pdeter (Dpred b))) (Pand phi2 (Pdeter (Dpred (Bnot b))))]]}} 
+  {{[[phi1 ∧ (Pdeter (Dpred b))]]}} c1 {{[[phi1']]}} -> 
+  {{[[phi2 ∧ (Pdeter (Dpred (Bnot b)))]]}} c2 {{[[phi2']]}} -> 
+  {{[[Pplus Bp (phi1 ∧ (Pdeter (Dpred b))) (phi2 ∧ (Pdeter (Dpred (Bnot b))))]]}} 
     IF b THEN c1 ELSE c2 FI {{[[Pplus Bp phi1' phi2']]}}.
 Proof.
   intros phi1 phi2 phi1' phi2' c1 c2 p b HWD_pre HWD_post Hc1 Hc2.
@@ -855,15 +856,15 @@ Proof.
         rewrite H4 in Hcontra. destruct Hcontra; discriminate.
 Qed.
 (**********************************)
-Theorem hoare_while: forall phi0 phi1 phi c b,
-  phi = (Oplus (Pand phi0 (Pdeter (Dpred b))) (Pand phi1 (Pdeter (Dpred (Bnot b))))) -> 
+Lemma hoare_while: forall phi0 phi1 phi c b,
+  phi = (phi0 ∧ (Pdeter (Dpred b))) ⊕ (phi1 ∧ (~b)) -> 
   well_defined_Pf phi -> exclude_odot phi1 ->
-  {{[[Pand phi0 (Pdeter (Dpred b))]]}} c {{[[phi]]}} -> 
-  {{[[phi]]}} While b c {{[[Pand phi1 (Pdeter (Dpred (Bnot b)))]]}}.
+  {{[[phi0 ∧ (Pdeter (Dpred b))]]}} c {{[[phi]]}} -> 
+  {{[[phi]]}} While b c {{[[phi1 ∧ (Pdeter (Dpred (Bnot b)))]]}}.
 Proof. 
   intros phi0 phi1 phi c b Hphi HWD HWX Hc.
   intros pd pd' Hvalid HZ HZc Hw H.
-  assert(Hw_copy: pd =[ WHILE b DO c END ]=> pd') by assumption.
+  assert(Hw_copy: pd =[ WHILE b DO c OD ]=> pd') by assumption.
   remember (While b c) as original_command eqn:Horig.
   rewrite Hphi in Hc. rewrite Hphi in H.
   induction Hw; try inversion Horig; subst. 
@@ -916,7 +917,7 @@ Proof.
       destruct H. assumption.
 Qed. 
 (********************************)
-Theorem hoare_consequence_pre : forall (P P' Q : PAssertion) c,
+Lemma hoare_consequence_pre : forall (P P' Q : PAssertion) c,
   {{P'}} c {{Q}} ->
    P ->> P' ->
   {{P}} c {{Q}}.
@@ -926,7 +927,7 @@ Proof.
   apply H0; assumption.
 Qed.
   
-Theorem hoare_consequence_post : forall (P Q Q' : PAssertion) c,
+Lemma hoare_consequence_post : forall (P Q Q' : PAssertion) c,
   {{P}} c {{Q'}} ->
   Q' ->> Q ->
   {{P}} c {{Q}}.
@@ -939,7 +940,7 @@ Proof.
   - apply (Hhoare mu mu'); assumption.
 Qed.
 
-Theorem hoare_consequence : forall (P P' Q Q' : PAssertion) c,
+Lemma hoare_consequence : forall (P P' Q Q' : PAssertion) c,
   {{P'}} c {{Q'}} ->
   P ->> P' ->
   Q' ->> Q ->
@@ -950,7 +951,7 @@ Proof.
   apply hoare_consequence_post with (Q' := Q'); assumption.
 Qed.
 (********************************)
-Theorem hoare_conj: forall P1 Q1 P2 Q2 c, 
+Lemma hoare_conj: forall P1 Q1 P2 Q2 c, 
   {{P1}} c {{Q1}} -> {{P2}} c {{Q2}} -> 
   {{P1 /\ P2}} c {{Q1 /\ Q2}}.
 Proof.
@@ -1172,53 +1173,59 @@ Proof.
 Qed. 
 
 Lemma NS_intersect_preserves: forall pd pd' c V,
-  (get_variables_in_winstr c ∩∅ V)%domain -> 
+  (get_modvar_in_winstr c ∩∅ V)%domain -> 
   pd =[ c ]=> pd' -> (dom pd ∩∅ V)%domain ->
   (dom pd' ∩∅ V)%domain.
 Proof. 
   intros pd pd' c V Hvar HNS Hdom. 
   generalize dependent pd'. generalize dependent pd. induction c; intros.
   - inversion HNS; subst. assumption.
-  - inversion HNS; subst. simpl in *. apply intersect_orb_fst_left in Hvar. 
+  - inversion HNS; subst. simpl in *. 
     apply intersect_orb_l_iff; try assumption.
-  - inversion HNS; subst. destruct v. simpl in *. apply intersect_orb_fst_left in Hvar.
+  - inversion HNS; subst. destruct v. simpl in *. 
     apply intersect_orb_l_iff; try assumption.
   - inversion HNS; subst. simpl in *. apply IHc2 with (pd:= pd1); try assumption. 
     + apply intersect_orb_fst_right in Hvar. assumption.
     + apply intersect_orb_fst_left in Hvar. apply IHc1 with (pd:= pd); try assumption.
   - inversion HNS; subst; simpl in *. 
-    + apply intersect_orb_fst_right in Hvar. 
+    + apply intersect_orb_l_iff; try assumption.
+    (* apply intersect_orb_fst_right in Hvar. 
       apply intersect_orb_l_iff; try assumption.
       rewrite intersect_comm. rewrite intersect_comm in Hvar.
-      apply intersect_subst_trans with (l2:= (get_variables_in_winstr c1 ∪ get_variables_in_winstr c2)%domain); try assumption.
-      apply dom_subset_orb_compat; try apply Win_mod_sub_var.
+      apply intersect_subst_trans with (l2:= (get_modvar_in_winstr c1 ∪ get_modvar_in_winstr c2)%domain); try assumption.
+      * admit.
+      * apply dom_subset_orb_compat; try apply Win_mod_sub_var. *)
     + apply IHc1 with (pd:= pd); try assumption.
-      apply intersect_orb_fst_right in Hvar. apply intersect_orb_fst_left in Hvar.
+      (* apply intersect_orb_fst_right in Hvar.  *)
+      apply intersect_orb_fst_left in Hvar.
       try assumption.
     + apply IHc2 with (pd:= pd); try assumption.
-      apply intersect_orb_fst_right in Hvar. apply intersect_orb_fst_right in Hvar.
+      apply intersect_orb_fst_right in Hvar. 
+      (* apply intersect_orb_fst_right in Hvar. *)
       try assumption.
     + rewrite dom_eq_intersect_compat_right with (l1:= dom pd1); try assumption.
       apply IHc1 with (pd:= pd_b); try assumption. 
-      apply intersect_orb_fst_right in Hvar. apply intersect_orb_fst_left in Hvar.
+      (* apply intersect_orb_fst_right in Hvar.  *)
+      apply intersect_orb_fst_left in Hvar.
       try assumption.
   - remember (While b c) as cw eqn:Heqcw. 
     induction HNS; inversion Heqcw; subst; clear Heqcw.
-    + simpl in *. apply intersect_orb_fst_right in Hvar. 
+    + simpl in *. 
+    (* apply intersect_orb_fst_right in Hvar.  *)
       apply intersect_orb_l_iff; try assumption. 
-      rewrite intersect_comm. rewrite intersect_comm in Hvar.
+      (* rewrite intersect_comm. rewrite intersect_comm in Hvar.
       apply intersect_subst_trans with (l2:= get_variables_in_winstr c); 
-        try assumption; try apply Win_mod_sub_var.
+        try assumption; try apply Win_mod_sub_var. *)
     + apply IHHNS2; try assumption; try reflexivity.
       apply IHc with (pd:= pd); try assumption.
-      simpl in *. apply intersect_orb_fst_right in Hvar. assumption. 
+      (* simpl in *. apply intersect_orb_fst_right in Hvar. assumption.  *)
     + assumption.
     + rewrite dom_eq_intersect_compat_right with (l1:= dom pd1); try assumption.
       apply IHHNS2; try assumption; try reflexivity.
       apply IHc with (pd:= pd_b); try assumption.
-      simpl in Hvar. apply intersect_orb_fst_right in Hvar. assumption. 
+      (* simpl in Hvar. apply intersect_orb_fst_right in Hvar. assumption.  *)
 Qed.
-
+(* Admitted. *)
 Lemma RA_sub_WF_distaexp : forall x pd, 
   (get_variables_in_dist_aexp x ⊆ dom pd)%domain -> 
   WF_distaexp_with_pd x pd.
@@ -1313,7 +1320,7 @@ Proof.
       apply dom_subset_orb_fst_iff in H0. destruct H0. assumption.
     + apply IHc2; try assumption. simpl in Hsub. apply dom_subset_orb_fst_iff in Hsub. destruct Hsub.
       apply dom_subset_orb_fst_iff in H0. destruct H0. assumption.
-  - exists (pd_emp (dom pd ∪ get_modvar_in_winstr (WHILE b DO c END))%domain). 
+  - exists (pd_emp (dom pd ∪ get_modvar_in_winstr (WHILE b DO c OD))%domain). 
     split; try apply pd_equiv_refl. 
     eapply NS_While_Nil; try assumption.
     + destruct Hwd; assumption.
@@ -1330,14 +1337,14 @@ Inductive NoControlFlow : winstr -> Prop :=
 
  Lemma Pd_Iden_implies_WD: forall pd c, 
   NoControlFlow c ->
-  ((get_readvar_in_winstr c) = nil)%domain ->
+  (get_readvar_in_winstr c ⊆ (dom pd))%domain ->
   well_defined_winstr_with_pd c pd.
 Proof.
   intros pd c HNC Hdom. induction c; intros; inversion HNC; simpl in *.
   - simpl. apply I. 
   - simpl in *. unfold WF_aexp_with_pd. rewrite Hdom. simpl. reflexivity.
   - simpl in *. destruct v. apply RA_sub_WF_distaexp. rewrite Hdom. simpl. reflexivity.
-  - simpl in *. apply orb_iff_nil in Hdom. destruct Hdom.
+  - simpl in *. apply dom_subset_orb_fst_iff in Hdom. destruct Hdom.
     apply IHc1; try assumption. 
 Qed. 
 
@@ -1351,25 +1358,36 @@ Definition Identify_pd : partial_dist :=
                      all_partial := PD_Iden
                   |}.
 
-Lemma NS_Identify: forall c pd, 
-  NoControlFlow c ->
+Lemma NS_EXISTS: forall c pd, (*Imporatant for OFrame, read(c) = nil makes sure pd' must exists.*)
+  NoControlFlow c -> 
   well_defined_winstr_with_pd c pd ->
-  get_readvar_in_winstr c = nil ->
-  (exists pd', pd =[ c ]=> pd').
+  (get_readvar_in_winstr c ⊆ (dom pd))%domain ->
+  Valid_dist (mu pd) ->
+  (exists pd', Valid_dist (mu pd') /\ pd =[ c ]=> pd').
 Proof. 
   intros c pd HNC HWD Hread. generalize dependent pd. 
   induction c; intros; inversion HNC; subst; simpl in *.
-  - exists pd. apply NS_Skip.
-  - simpl in HWD. exists (DAssn_under_pd n a pd HWD). apply NS_DAssign; try assumption.
+  - exists pd. split; try assumption. apply NS_Skip.
+  - simpl in HWD. exists (DAssn_under_pd n a pd HWD). 
+    split; try apply NS_DAssign; try assumption.
+    apply Valid_after_DA. assumption.
   - simpl in HWD. 
     assert (HWFa: WF_distaexp_with_pd (proj1_sig v) pd). { destruct v. simpl in *. assumption. } 
-    exists (RAssn_under_pd n v pd HWFa). try apply NS_RAssign; try assumption.
-  - simpl in *. apply orb_iff_nil in Hread. destruct Hread as [Hread1 Hread2].
-    apply IHc1 with (pd:= pd) in Hread1; try assumption. destruct Hread1.
+    exists (RAssn_under_pd n v pd HWFa). 
+    split; try apply NS_RAssign; try assumption.
+    apply Valid_after_RA; try assumption. 
+    destruct v. destruct a. simpl. split; try assumption. rewrite e. lra.
+  - simpl in *. 
+    apply dom_subset_orb_fst_iff in Hread. destruct Hread as [Hread1 Hread2].
+    apply IHc1 with (pd:= pd) in Hread1; try assumption. destruct Hread1. destruct H0.
+    assert (Hreadx: (get_readvar_in_winstr c2 ⊆ dom x)%domain). {
+      apply dom_subset_trans with (l1:= (dom pd)); try assumption.
+      apply subset_NS in H1; try assumption. } 
     assert (HWD2: well_defined_winstr_with_pd c2 x). { 
-      apply Pd_Iden_implies_WD; try assumption. }
-    apply IHc2 with (pd:= x) in Hread2; try assumption. 
-    destruct Hread2. exists x0. eapply NS_Seq; try assumption.
+      apply Pd_Iden_implies_WD; try assumption.  }
+    apply IHc2 with (pd:= x) in Hreadx; try assumption. 
+    destruct Hreadx. exists x0. destruct H4. 
+    split; try assumption. eapply NS_Seq; try assumption.
     * apply HWD2.
     * assumption.
     * assumption.
@@ -1648,8 +1666,8 @@ Lemma readc_independent_preserved_by_NS :
         (Hdom: is_domain_intersect (dom pd0) (dom pd_inde) = false)
         (Hdom': is_domain_intersect (dom pd0') (dom pd_inde) = false), 
     Valid_dist (mu pd) -> Valid_dist (mu pd_inde) -> Valid_dist (mu pd0) ->
-    is_domain_intersect (get_variables_in_winstr c) (dom pd_inde) = false ->
-    NoControlFlow c -> get_readvar_in_winstr c = nil ->
+    is_domain_intersect (get_modvar_in_winstr c) (dom pd_inde) = false ->
+    NoControlFlow c -> (get_readvar_in_winstr c ⊆ (dom pd0))%domain ->
     pd0 =[ c ]=> pd0' -> 
     pd =[ c ]=> pd' -> 
     (combine_pd pd0 pd_inde Hdom) ⊑ pd ->
@@ -1688,7 +1706,8 @@ Proof.
         apply dst_equiv_trans with (mu1:=  DAssn_under_dstate (mu pd \| X) n a); try assumption.
         apply dst_equiv_sym.
         assert (HWFa_res: WF_aexp_with_pd a (restrict_pd pd X H)). {
-          unfold WF_aexp_with_pd. simpl. rewrite Hreadc. simpl. reflexivity. } 
+          unfold WF_aexp_with_pd. simpl. 
+          apply dom_subset_orb_dom_r. assumption. } 
         pose (pd_res:= (DAssn_under_pd n a (restrict_pd pd X H) HWFa_res)).
         apply res_pd_to_dom_refl with (pd:= pd_res); try assumption.
       * apply dst_equiv_trans with (mu1:= DAssn_under_dstate (mu pd0 ⊗ mu pd_inde) n a \|
@@ -1704,7 +1723,11 @@ Proof.
       rewrite <- orb_domain_assoc. rewrite orb_domain_comm with (l':= dom pd_inde). 
       rewrite orb_domain_assoc. 
       apply res_pd_to_dom_refl with (pd:= PD).
-      ** apply DA_independent; try assumption.
+      ** apply DA_independent; try assumption. 
+        apply intersect_orb_l_iff; try assumption. 
+        apply intersect_orb_fst_left in Hdom'. rewrite intersect_comm.
+        apply intersect_subst_trans with (l2:= dom pd0); try assumption.
+        rewrite intersect_comm. assumption.
   - inversion Hsem0; inversion Hsem1; subst. destruct Hsub. simpl in *. 
     split; simpl.
     + apply dom_subset_eq_compat_right with (X:= ((dom pd0 ∪ dom pd_inde) ∪ singleton_bool_list n)%domain).
@@ -1713,8 +1736,9 @@ Proof.
       * apply dom_subset_orb_compat; try apply dom_subset_refl. assumption.
     + pose (X:= (dom pd0 ∪ dom pd_inde)%domain). 
       assert (HWFa_res: WF_distaexp_with_pd (proj1_sig v) (restrict_pd pd X H)). {
-        destruct v. simpl in *. apply RA_sub_WF_distaexp. rewrite Hreadc. 
-        simpl. reflexivity. } 
+        destruct v. simpl in *. apply RA_sub_WF_distaexp.
+        apply dom_subset_trans with (l1:= (dom pd0)%domain); try assumption.
+        simpl. apply dom_subset_orb_snd_l_r. } 
       pose (pd_res:= (RAssn_under_pd n v (restrict_pd pd X H) HWFa_res)).
       pose (PD_comb:= (combine_pd pd0 pd_inde Hdom)).
       assert (HWD_comb: WF_distaexp_with_pd (proj1_sig v) PD_comb). { 
@@ -1735,7 +1759,9 @@ Proof.
         rewrite Hdom_eq. fold X.
         assert (Heq: (RAssn_under_dstate (mu pd) n da \| (X ∪ singleton_bool_list n)%domain == 
                       RAssn_under_dstate (mu pd \| X) n da)%dist_state). {
-          destruct pd. simpl in *. apply RA_res_preserves. rewrite Hreadc. simpl. reflexivity. }
+          destruct pd. simpl in *. apply RA_res_preserves. 
+          apply dom_subset_trans with (l1:= (CoreDef.dom pd0)%domain); try assumption.
+          apply dom_subset_orb_snd_l_r. }
         apply dst_equiv_trans with (mu1:=  RAssn_under_dstate (mu pd \| X) n da); try assumption.
         apply dst_equiv_sym. 
         apply res_pd_to_dom_refl with (pd:= pd_res); try assumption.
@@ -1744,28 +1770,35 @@ Proof.
         apply dst_equiv_trans with (mu1:= (RAssn_under_dstate (mu pd0 ⊗ mu pd_inde) n da)). 
       ** rewrite <- orb_domain_assoc. rewrite orb_domain_comm with (l':= dom pd_inde). 
       rewrite orb_domain_assoc. apply res_pd_to_dom_refl with (pd:= PD).
-      ** apply RA_independent; try assumption.
+      ** apply RA_independent; try assumption. apply intersect_orb_l_iff; try assumption. 
+        apply intersect_orb_fst_left in Hdom'. rewrite intersect_comm.
+        apply intersect_subst_trans with (l2:= dom pd0); try assumption.
+        rewrite intersect_comm. assumption.
   - inversion Hsem0; inversion Hsem1; subst. 
-    assert (Hdomc1: (get_variables_in_winstr c1 ∩∅ dom pd_inde)%domain). { 
+    assert (Hdomc1: (get_modvar_in_winstr c1 ∩∅ dom pd_inde)%domain). { 
       simpl in Hdomc. apply intersect_orb_fst_left in Hdomc; try assumption. }
-    assert (Hdomc2: (get_variables_in_winstr c2 ∩∅ dom pd_inde)%domain). { 
+    assert (Hdomc2: (get_modvar_in_winstr c2 ∩∅ dom pd_inde)%domain). { 
       simpl in Hdomc. apply intersect_orb_fst_right in Hdomc; try assumption. }
     assert (Hdom2: (dom pd2 ∩∅ dom pd_inde)%domain). { apply NS_intersect_preserves with (V:= dom pd_inde) in H5; try assumption. }
     assert (Hdom5: (dom pd0' ∩∅ dom pd_inde)%domain). { apply NS_intersect_preserves with (V:= dom pd_inde) in H8; try assumption. }
     assert (HV5: Valid_dist (mu pd5)). { apply Valid_forall_NS in H13; try assumption. }
     assert (HV2: Valid_dist (mu pd2)). { apply Valid_forall_NS in H5; try assumption. }
     assert (HV': Valid_dist (mu pd')). { apply Valid_forall_NS in H16; try assumption. }
-    inversion HNC; subst. apply orb_iff_nil in Hreadc. destruct Hreadc as [Hreadc1 Hreadc2].
-    specialize (IHc1 H6 Hreadc1 pd_inde HVin Hdomc1 pd HV pd5 H13 pd0 Hdom HV0 Hsub pd2 Hdom2 H5).
-    specialize (IHc2 H7 Hreadc2 pd_inde HVin Hdomc2 pd5 HV5 pd' H16 pd2 Hdom2 HV2 IHc1 pd0' Hdom5 H8).
+    inversion HNC; subst. 
+    apply dom_subset_orb_fst_iff in Hreadc. destruct Hreadc as [Hreadc1 Hreadc2].
+    specialize (IHc1 H6 pd_inde HVin Hdomc1 pd HV pd5 H13 pd0 Hdom HV0 Hreadc1 Hsub pd2 Hdom2 H5).
+    assert (Hreadc2': (get_readvar_in_winstr c2 ⊆ (dom pd2))%domain). { 
+      apply dom_subset_trans with (l1:= (dom pd0)); try assumption. 
+      apply subset_NS in H5; try assumption. }
+    specialize (IHc2 H7 pd_inde HVin Hdomc2 pd5 HV5 pd' H16 pd2 Hdom2 HV2 Hreadc2' IHc1 pd0' Hdom5 H8).
     assumption.
-Qed.
+Qed. 
 
 Lemma readc_local_execution_exists : 
   forall c (pd pd' pd_inde pd0: partial_dist)
       (Hdom: is_domain_intersect (dom pd0)%domain (dom pd_inde) = false)
-      (Hdomc: is_domain_intersect (get_variables_in_winstr c) (dom pd_inde) = false),
-    NoControlFlow c -> get_readvar_in_winstr c = nil ->
+      (Hdomc: is_domain_intersect (get_modvar_in_winstr c) (dom pd_inde) = false),
+    NoControlFlow c -> (get_readvar_in_winstr c ⊆ (dom pd0))%domain ->
     pd =[ c ]=> pd' -> 
     Valid_dist (mu pd) -> Valid_dist (mu pd') -> Valid_dist (mu pd_inde) -> Valid_dist (mu pd0) ->
     combine_pd pd0 pd_inde Hdom ⊑ pd ->
@@ -1796,18 +1829,14 @@ Proof.
     apply readc_independent_preserved_by_NS with (pd:= pd) (pd0:= pd0) (c:= RAssign n v) (Hdom:= Hdom); try assumption.
   - inversion HNS; subst. 
     simpl in Hdomc. 
-    assert (Hc1: get_readvar_in_winstr c1 = []). {
-      apply orb_iff_nil in Hreadc. destruct Hreadc. assumption. }
-    assert (Hc2: get_readvar_in_winstr c2 = []). {
-      apply orb_iff_nil in Hreadc. destruct Hreadc. assumption. }
-    assert (Hdomc1: is_domain_intersect (get_variables_in_winstr c1) (dom pd_inde) = false). {
+    assert (Hdomc1: is_domain_intersect (get_modvar_in_winstr c1) (dom pd_inde) = false). {
       apply intersect_orb_fst_left in Hdomc; try assumption. }
-    assert (Hdomc2: is_domain_intersect (get_variables_in_winstr c2) (dom pd_inde) = false). {
-      apply intersect_orb_fst_right in Hdomc; try assumption. }
+    assert (Hdomc2: is_domain_intersect (get_modvar_in_winstr c2) (dom pd_inde) = false). {
+      apply intersect_orb_fst_right in Hdomc; try assumption. } 
     assert (Hreadc10: (get_readvar_in_winstr c1 ⊆ dom pd0)%domain). {
-      apply orb_iff_nil in Hreadc. destruct Hreadc. rewrite H. simpl. reflexivity. }
+      apply dom_subset_orb_fst_iff in Hreadc. destruct Hreadc. rewrite H. simpl. reflexivity. }
     assert (Hreadc20: (get_readvar_in_winstr c2 ⊆ dom pd0)%domain). {
-      apply orb_iff_nil in Hreadc. destruct Hreadc. rewrite H0. simpl. reflexivity. }
+      apply dom_subset_orb_fst_iff in Hreadc. destruct Hreadc. rewrite H0. simpl. reflexivity. }
     assert (HV2: Valid_dist (mu pd2)). { apply Valid_forall_NS in H5; try assumption. }
     apply IHc1 with (pd0:= pd0) (pd_inde:= pd_inde) (Hdom:= Hdom) (Hdomc:= Hdomc1)in H5; try assumption.
     destruct H5 as [pd_tmp Hsem1]. destruct Hsem1 as [HNS_tmp Hcomb].
@@ -1815,26 +1844,28 @@ Proof.
     apply NS_intersect_preserves with (V:= dom pd_inde) in HNS_T; try assumption.
     assert (HVtmp: Valid_dist (mu pd_tmp)). { apply Valid_forall_NS with (c:= c1) (pd:= pd0); try assumption. }
     apply IHc2 with (pd0:= pd_tmp) (pd_inde:= pd_inde) (Hdom:= HNS_T) (Hdomc:= Hdomc2) in H8; try assumption.
-    destruct H8 as [pd_tmp' Hsem2]. destruct Hsem2 as [HNS_tmp' Hcomb'].
-    assert (HNS0 : pd0 =[ c1;; c2 ]=> pd_tmp'). { 
+    + destruct H8 as [pd_tmp' Hsem2]. destruct Hsem2 as [HNS_tmp' Hcomb'].
+      assert (HNS0 : pd0 =[ c1;; c2 ]=> pd_tmp'). { 
         eapply NS_Seq; try assumption. 
         - apply NS_implies_WD_win with (pd':= pd_tmp). assumption.
         - apply NS_implies_WD_win with (pd:= pd_tmp) (pd':= pd_tmp'); try assumption. 
         - apply HNS_tmp.
         - assumption. }
-    exists pd_tmp', HNS0. destruct Hcomb'; split; try assumption.
+      exists pd_tmp', HNS0. destruct Hcomb'; split; try assumption.
+    + apply dom_subset_trans with (l1:= dom pd0); try assumption.
+      apply subset_NS with (c:= c1); try assumption.
 Qed.
 
-Lemma hoare_OFrame_True: forall (phi0 phi1 phi2: Pformula) c, (*Important*)
+Lemma hoare_OFrame: forall (phi0 phi1 phi2: Pformula) c, (*Important*)
   well_defined_Pf (phi0 ⊙ phi2) -> well_defined_Pf (phi1 ⊙ phi2) -> 
   NoControlFlow c ->
-  is_domain_intersect (get_variables_in_winstr c) (get_var_in_Pformular phi2) = false ->
-  get_readvar_in_winstr c = nil ->
+  ((get_modvar_in_winstr c) ∩∅ (get_var_in_Pformular phi2))%domain ->
+  (get_readvar_in_winstr c ⊆ (get_var_in_Pformular phi0))%domain ->
   {{[[phi0]]}} c {{[[phi1]]}} -> 
   {{[[phi0 ⊙ phi2]]}} c {{[[phi1 ⊙ phi2]]}}.
 Proof.
   intros phi0 phi1 phi2 c HWD0 HWD1 HNC Hdom Hreadc H. 
-  assert (Hreadc_copy: get_readvar_in_winstr c = nil) by assumption.
+  assert (Hreadc_copy: (get_readvar_in_winstr c ⊆ (get_var_in_Pformular phi0))%domain) by assumption.
   unfold hoare_triple in *. intros pd pd' HWF HZ HZc HNS Hsem.  
   assert (HWF': Valid_dist (mu pd')). { apply Valid_forall_NS in HNS; try assumption. }
   assert (Hsem': well_defined_Pf phi0 /\ well_defined_Pf phi2 /\ 
@@ -1846,48 +1877,62 @@ Proof.
   destruct Hsem as [pd0 Hsem]. destruct Hsem as [pd2 Hsem]. 
   destruct Hsem as [Hdom02 Hsem].  
   destruct Hsem as [Hv0 Hsem]. destruct Hsem as [Hv2 Hsem]. 
-  destruct Hsem as [Hsem0 Hsem]. destruct Hsem as [Hsem2 Hsub].
-  assert (HWDc0: well_defined_winstr_with_pd c pd0). {
-    apply Pd_Iden_implies_WD; try assumption. }
-  apply NS_Identify with (pd:= pd0) in Hreadc; try assumption.
-  destruct Hreadc as [pd_tmp HNS_tmp].
+  destruct Hsem as [Hsem0 Hsem]. destruct Hsem as [Hsem2 Hsub]. 
+  assert (Hsem0_sub: (get_var_in_Pformular phi0 ⊆ dom pd0)%domain). {
+    apply satisfy_implies_dom_sub; try assumption. inversion HWD0; subst; try assumption.
+  }
+  pose (pd0_tmp:= restrict_pd pd0 (get_var_in_Pformular phi0) Hsem0_sub). 
+  assert (HWF0': Valid_dist (mu pd0_tmp)). { apply Valid_after_resX; try assumption. }
+  assert (HWDc0: well_defined_winstr_with_pd c pd0_tmp). {
+    apply Pd_Iden_implies_WD; try assumption. } 
+  apply NS_EXISTS with (pd:= pd0_tmp) in Hreadc; try assumption.
+  destruct Hreadc as [pd_tmp HNS_tmp]. destruct HNS_tmp as [HV_tmp HNS_tmp].
   simpl in Hsub. inversion HWD0; inversion HWD1; subst. 
-  assert (Heq0: Sort_pd pd0 ≡ pd0) by apply pd_sort_equiv.
-  assert (HVsort: Valid_dist (mu (Sort_pd pd0))). { 
+  assert (Heq0: Sort_pd pd0_tmp ≡ pd0_tmp) by apply pd_sort_equiv.
+  assert (HVsort: Valid_dist (mu (Sort_pd pd0_tmp))). { 
      try apply Valid_implies_sort_Valid; try assumption. }
-  assert (HWDc0_sort: well_defined_winstr_with_pd c (Sort_pd pd0)). {
+  assert (HWDc0_sort: well_defined_winstr_with_pd c (Sort_pd pd0_tmp)). {
     apply pd_equiv_sym in Heq0.
-    apply pd_equiv_preserves_WD_win with (pd:= pd0); try assumption. }
-  assert (Hsem0_sort: [[phi0]] (Sort_pd pd0)). { 
-      apply pd_equiv_preserves_sem with (pd0:= pd0); try apply Valid_implies_sort_Valid; try assumption. }
+    apply pd_equiv_preserves_WD_win with (pd:= pd0_tmp); try assumption. }
+  assert (Hsem0_sort: [[phi0]] (Sort_pd pd0_tmp)). { 
+    apply pd_equiv_preserves_sem with (pd0:= pd0_tmp); try apply Valid_implies_sort_Valid; try assumption. 
+    apply sem_satisfies_project_implies_phi; try assumption. 
+    }
   apply pd_equiv_sym in Heq0. 
   apply step_deterministic with (c:= c) (pd0':= pd_tmp) in Heq0; try apply Valid_implies_sort_Valid; try assumption. 
   destruct Heq0 as [pd_tmp_sort HNS_sort]. destruct HNS_sort as [Heq_sort HNS_sort].
-
   pose (V0:= get_var_in_Pformular phi0). pose (V2:= get_var_in_Pformular phi2). 
   pose (V1:= get_var_in_Pformular phi1).
   assert (HdomV0: (V0 ⊆ dom pd0)%domain). { apply satisfy_implies_dom_sub in Hsem0; try assumption. }
   assert (HdomV2: (V2 ⊆ dom pd2)%domain). { apply satisfy_implies_dom_sub in Hsem2; try assumption. }
   pose (pd2':= restrict_pd pd2 V2 HdomV2).
   assert (HWF2': Valid_dist (mu pd2')). { apply Valid_after_resX; try assumption. }
-  assert (Hdom02': (dom pd0 ∩∅ V2)%domain). { apply intersect_subst_trans with (l2:= dom pd2); try assumption. }
+  assert (Hdom02': (V0 ∩∅ V2)%domain). { 
+    apply intersect_subst_trans with (l2:= dom pd2); try assumption. 
+    rewrite intersect_comm. 
+    apply intersect_subst_trans with (l2:= dom pd0); try assumption.
+    rewrite intersect_comm. assumption. }
   assert (HNS_copy: pd =[ c ]=> pd') by assumption.
+  assert (HV_Sort0: Valid_dist (mu (Sort_pd pd0))). { 
+     try apply Valid_implies_sort_Valid; try assumption. }
   assert (HsubV2: 
-    {| dom := (dom (Sort_pd pd0) ∪ V2)%domain;
-       mu := mu (Sort_pd pd0) ⊗ (mu pd2 \| V2);
-       all_partial := PD_combine_invar_mu (Sort_pd pd0) pd2' Hdom02'
+    {| dom := ((dom (Sort_pd pd0_tmp)) ∪ V2)%domain;
+       mu := mu (Sort_pd pd0_tmp) ⊗ (mu pd2 \| V2);
+       all_partial := PD_combine_invar_mu (Sort_pd pd0_tmp) pd2' Hdom02'
     |} ⊑ pd). { 
       apply relation_mu_trans with (pd2:= {| dom := (dom (Sort_pd pd0) ∪ dom pd2)%domain; mu := mu (Sort_pd pd0) ⊗ mu pd2; 
                                              all_partial := PD_combine_invar_mu (Sort_pd pd0) pd2 Hdom02 |}); try assumption.
           - apply Valid_after_combine; try assumption; try apply Valid_after_resX; try assumption.
-          - apply Valid_after_combine; try assumption.
+          - apply Valid_after_combine; try assumption. 
           - split; simpl.
             + apply dom_subset_orb_compat; try apply dom_subset_refl; try assumption.
             + apply dst_equiv_sym. 
-              apply dst_equiv_trans with (mu1:= (mu (Sort_pd pd0) \| (dom (Sort_pd pd0))) ⊗ (mu pd2 \| V2)).
+              apply dst_equiv_trans with (mu1:= (mu (Sort_pd pd0) \| V0) ⊗ (mu pd2 \| V2)).
               * apply dst_equiv_implies_combine_compat_r; try apply Valid_after_resX; try assumption.
-              apply dst_equiv_sym. apply res_pd_to_dom_refl.
-              * apply combine_res_merge_equiv; try assumption. try apply dom_subset_refl.
+              apply dst_equiv_trans with (mu1:= (mu pd0\| V0)); try apply mu_res_sort_Peq.
+              unfold V0. apply dst_equiv_sym.
+              apply dst_equiv_sort. 
+              * apply combine_res_merge_equiv; try assumption. 
           - destruct Hsub. split; simpl; try assumption. 
             simpl in H1. apply dst_equiv_trans with (mu1:= mu pd0 ⊗ mu pd2); try assumption. 
             apply combine_left_sort_equiv.
@@ -1914,20 +1959,22 @@ Proof.
           apply subset_NS with (c:=c); try assumption.
       + intuition. 
   }
-  apply readc_local_execution_exists with (pd_inde:= pd2') (pd0:= (Sort_pd pd0)) (Hdom:= Hdom02') (Hdomc:= Hdom) in HNS; try assumption.
+  apply readc_local_execution_exists with 
+    (pd_inde:= pd2') (pd0:= (Sort_pd pd0_tmp)) (Hdom:= Hdom02') (Hdomc:= Hdom) in HNS; 
+      try assumption.
   destruct HNS. destruct H0. 
-  assert (Hsort0_copy: Sort_pd pd0 =[ c ]=> x) by assumption. 
-  assert (Hz0: dst_inject_Z (mu (Sort_pd pd0))). { 
+  assert (Hsort0_copy: Sort_pd pd0_tmp =[ c ]=> x) by assumption. 
+  assert (Hz0: dst_inject_Z (mu (Sort_pd pd0_tmp))). { 
     apply comb_dst_inject_Z in HsubV2; try assumption. 
     apply WF_dist_implies_sortdst_Sorted. assumption. }
-  specialize (H (Sort_pd pd0) x HVsort Hz0 HZc x0 Hsem0_sort).
+  specialize (H (Sort_pd pd0_tmp) x HVsort Hz0 HZc x0 Hsem0_sort).
   assert (Hvar : (dom x ∩∅ V2)%domain). { apply NS_intersect_preserves with (V:= V2) in Hsort0_copy; try assumption. }
   exists x, pd2', Hvar. 
   split. { try apply Valid_forall_NS in Hsort0_copy; try assumption. }
   split; try apply Valid_after_resX; try assumption.
   split; try assumption. 
-  split. { apply sem_satisfies_project_iff with (Hdom:= HdomV2) in Hsem2; try assumption. }
-  apply readc_independent_preserved_by_NS with (pd:= pd) (pd0:= Sort_pd pd0)
+  split. { apply sem_satisfies_project_implies_phi with (Hdom:= HdomV2) in Hsem2; try assumption. }
+  apply readc_independent_preserved_by_NS with (pd:= pd) (pd0:= Sort_pd pd0_tmp)
       (c:= c) (Hdom:= Hdom02'); try assumption.
 Qed.
 (*************************)
@@ -2006,7 +2053,7 @@ Proof.
         inversion HWD0; subst. assumption.
 Qed.
 (*************************)
-Theorem hoare_exists: forall x df c phi, 
+Lemma hoare_exists: forall x df c phi, 
   well_defined_Df (Dexist x df) -> well_defined_Pf phi -> exclude_odot phi ->
   (get_var_in_Pformular phi ⊆ get_var_in_Dformular df)%domain ->
   (forall r, {{[[(Pdeter df)]] [x |-> (Aco r)]}} c {{[[phi]]}}) -> 
@@ -2068,14 +2115,14 @@ Proof.
       ** apply df_sem_conj_mu in H3; intuition.
 Qed.
 (******************************)
-Theorem hoare_post_true : forall (P Q : PAssertion) c, (*PT *)
+Lemma hoare_post_true : forall (P Q : PAssertion) c, (*PT *)
   (forall mu, Q mu) -> {{P}} c {{Q}}.
 Proof. 
   unfold hoare_triple. 
   intros P Q c H. intros.
   apply H.
 Qed.
-Theorem hoare_pre_false : forall (P Q : PAssertion) c, 
+Lemma hoare_pre_false : forall (P Q : PAssertion) c, 
   (forall mu, ~(P mu)) -> {{P}} c {{Q}}.
 Proof.
   unfold hoare_triple. 
@@ -2823,12 +2870,12 @@ Proof.
     exists (restrict_pd x1 V1 HsubV1), x23, Hinter. intuition.
     + apply Valid_after_resX. assumption. 
     + apply Valid_after_combine; apply Valid_after_resX; intuition.
-    + apply sem_satisfies_project_iff; try assumption.
+    + apply sem_satisfies_project_implies_phi; try assumption.
     + exists (restrict_pd x2 V2 HsubV2), (restrict_pd x3 V3 HsubV3), Hinter23. intuition. 
       * apply Valid_after_resX. assumption.
       * apply Valid_after_resX. assumption.
-      * apply sem_satisfies_project_iff; try assumption.
-      * apply sem_satisfies_project_iff; try assumption.
+      * apply sem_satisfies_project_implies_phi; try assumption.
+      * apply sem_satisfies_project_implies_phi; try assumption.
       * simpl. apply relation_mu_refl.
     + simpl. apply relation_mu_trans with (pd2:= {|
           dom := (dom x ∪ dom x3)%domain;
@@ -2886,10 +2933,10 @@ Proof.
     + exists (restrict_pd x1 V1 HsubV1), (restrict_pd x2 V2 HsubV2), Hinter23. intuition. 
       * apply Valid_after_resX. assumption.
       * apply Valid_after_resX. assumption.
-      * apply sem_satisfies_project_iff; try assumption.
-      * apply sem_satisfies_project_iff; try assumption.
+      * apply sem_satisfies_project_implies_phi; try assumption.
+      * apply sem_satisfies_project_implies_phi; try assumption.
       * simpl. apply relation_mu_refl.
-    + apply sem_satisfies_project_iff; try assumption.
+    + apply sem_satisfies_project_implies_phi; try assumption.
     + simpl. apply relation_mu_trans with (pd2:= {|
     dom := (dom x1 ∪ dom x23)%domain;
     mu := mu x1 ⊗ mu x23;
@@ -4081,4 +4128,123 @@ Proof.
   left. split; try lra. exists x0, x1. intuition; split; try assumption.
   - apply df_add_sem_decom with (df:= df) in H15; intuition.
   - apply df_add_sem_decom with (df:= df) in H15; intuition. 
+Qed.
+
+
+(*****************************************************************)
+(* 霍尔逻辑的推导关系 *)
+(* hoare_Rasgn *)
+Inductive hoare_derivable : PAssertion -> winstr -> PAssertion -> Prop :=
+  | H_Skip : forall (P : PAssertion), hoare_derivable P Skip P
+  | H_DAssign : forall (phi : Pformula) (X : nat) (a : aexp),
+    well_defined_Pf phi ->
+      hoare_derivable ([[phi]] [X |-> a]) (DAssign X a) [[phi]]
+  | H_RAssign : forall (phi1 phi2 : Pformula) (X : nat) 
+                            (a1 a2 : aexp) (p : R) (Hp : 0%R < p < 1%R),
+      let Vda := exist _ [(a1, p); (a2, 1 - p)] (valid_da_of_two a1 a2 p Hp) in
+      well_defined_Pf (Pplus p phi1 phi2) ->
+      hoare_derivable 
+        (([[phi1]] [X |-> a1]) /\ ([[phi2]] [X |-> a2]))
+        (RAssign X Vda)
+        ([[phi1 ⊕[p] phi2]])
+  | H_Seq : forall (P Q R : PAssertion) (c1 c2 : winstr),
+      hoare_derivable P c1 Q ->
+      hoare_derivable Q c2 R ->
+      hoare_derivable P (Seq c1 c2) R
+  | H_If : forall (phi1 phi2 phi1' phi2': Pformula) (b : bexp) (c1 c2 : winstr) Bp,
+      well_defined_Pf (Pplus Bp (Pand phi1 (Pdeter (Dpred b))) 
+                                 (Pand phi2 (Pdeter (Dpred (Bnot b))))) ->
+      well_defined_Pf (Pplus Bp phi1' phi2') ->
+      hoare_derivable [[Pand phi1 (Pdeter (Dpred b))]] c1 [[phi1']] ->
+      hoare_derivable [[Pand phi2 (Pdeter (Dpred (Bnot b)))]] c2 [[phi2']] ->
+      hoare_derivable [[Pplus Bp (Pand phi1 (Pdeter (Dpred b))) 
+                                 (Pand phi2 (Pdeter (Dpred (Bnot b))))]] (If b c1 c2) 
+                      [[Pplus Bp phi1' phi2']]
+  | H_While : forall (phi0 phi1 : Pformula) (b : bexp) (c : winstr),
+    let phi:= ((Pand phi0 (Pdeter (Dpred b))) ⊕ (Pand phi1 (Pdeter (Dpred (Bnot b))))) in 
+      well_defined_Pf phi -> exclude_odot phi1 ->
+      hoare_derivable [[Pand phi0 (Pdeter (Dpred b))]] c [[phi]] ->
+      hoare_derivable [[phi]] (While b c) [[Pand phi1 (Pdeter (Dpred (Bnot b)))]]
+  | H_Consequence : forall (P P' Q Q' : PAssertion) (c : winstr),
+      hoare_derivable P' c Q' ->
+      P ->> P' ->
+      Q' ->> Q ->
+      hoare_derivable P c Q 
+  | H_Conj: forall (P1 Q1 P2 Q2: PAssertion) c, 
+      hoare_derivable P1 c Q1 ->
+      hoare_derivable P2 c Q2 ->
+      hoare_derivable (P1 /\ P2) c (Q1 /\ Q2)
+  | H_Oframe: forall (phi0 phi1 phi2: Pformula) c,
+      well_defined_Pf (phi0 ⊙ phi2) -> well_defined_Pf (phi1 ⊙ phi2) -> 
+      NoControlFlow c ->
+      ((get_modvar_in_winstr c) ∩∅ (get_var_in_Pformular phi2))%domain ->
+      (get_readvar_in_winstr c ⊆ get_var_in_Pformular phi0)%domain ->
+      hoare_derivable [[phi0]] c [[phi1]] -> 
+      hoare_derivable [[phi0 ⊙ phi2]] c [[phi1 ⊙ phi2]]
+  | H_Frame: forall (phi0 phi1 phi2: Pformula) c, 
+      well_defined_Pf (phi0 ∧ phi2) -> well_defined_Pf (phi1 ∧ phi2) -> 
+      ((get_modvar_in_winstr c) ∩∅ (get_var_in_Pformular phi2))%domain ->
+      hoare_derivable [[phi0]] c [[phi1]] -> 
+      hoare_derivable [[phi0 ∧ phi2]] c [[phi1 ∧ phi2]]
+  | H_Sum: forall p phi1 phi1' phi2 phi2' c, 
+      well_defined_Pf (phi1 ⊕[p] phi2) -> well_defined_Pf (phi1' ⊕[p] phi2') ->
+      hoare_derivable [[phi1]] c [[phi1']] -> 
+      hoare_derivable [[phi2]] c [[phi2']] -> 
+      hoare_derivable [[phi1 ⊕[p] phi2]] c [[phi1' ⊕[p] phi2']]
+  | H_Exists: forall x df c phi, 
+      well_defined_Df (Dexist x df) -> well_defined_Pf phi -> exclude_odot phi ->
+      (get_var_in_Pformular phi ⊆ get_var_in_Dformular df)%domain ->
+      (forall r, {{[[(Pdeter df)]] [x |-> (Aco r)]}} c {{[[phi]]}}) -> 
+      hoare_derivable [[Pdeter (Dexist x df)]] c [[phi]].
+
+
+
+
+Theorem hoare_soundness: forall c phi1 phi2, 
+  well_defined_Pf phi1 -> well_defined_Pf phi2 ->
+  (hoare_derivable [[phi1]] c [[phi2]]) -> {{[[phi1]]}} c {{[[phi2]]}}.
+Proof.
+  intros c phi1 phi2 HWD1 HWD2 H. induction H; intros pd pd' Valid_pd Inject_pd Winstr_Inject Pd_to_pd' P_pd.
+  - inversion Pd_to_pd'; subst. assumption.
+  - inversion Pd_to_pd'; subst. apply pf_sub_eq; try assumption.
+  - inversion Pd_to_pd'; subst. inversion H; subst. left. split; try assumption. 
+    destruct P_pd as [P_pd0 P_pd1]. 
+    simpl in HWFa. destruct HWFa as [HWFa1 HWFa]. destruct HWFa as [HWFa2].
+    assert (Heq1: ([[phi0]] [X |-> a1]) pd <-> [[phi0]] (DAssn_under_pd X a1 pd HWFa1)). {
+      apply pf_sub_eq; intuition. } destruct Heq1.
+    apply H0 in P_pd0. 
+    assert (Heq2: ([[phi3]] [X |-> a2]) pd <-> [[phi3]] (DAssn_under_pd X a2 pd HWFa2)). {
+      apply pf_sub_eq; intuition. } destruct Heq2.
+    apply H2 in P_pd1. 
+    exists (DAssn_under_pd X a1 pd HWFa1), (DAssn_under_pd X a2 pd HWFa2). intuition.
+    + apply Valid_after_DA. assumption.
+    + apply Valid_after_DA. assumption.
+    + simpl. apply dom_equiv_refl.
+    + simpl. apply dom_equiv_refl.
+    + simpl. rewrite DA_preserve_sum_prob. rewrite RA_preserve_sum_prob; try reflexivity. simpl. lra. 
+    + simpl. rewrite DA_preserve_sum_prob. rewrite RA_preserve_sum_prob; try reflexivity. simpl. lra.
+    + simpl. apply RA_DA_equiv.
+  - unfold hoare_triple in IHhoare_derivable1, IHhoare_derivable2.  
+    inversion Pd_to_pd'; subst. inversion Winstr_Inject; subst. 
+    apply IHhoare_derivable2 with (pd:= pd1); try assumption.
+    + apply Valid_forall_NS in H5; try assumption. 
+    + apply inject_Z_after_NS in H5; try assumption. 
+    + specialize IHhoare_derivable1 with pd pd1. apply IHhoare_derivable1; intuition.
+  - apply hoare_cond with (phi1:= phi0) (phi1':= phi1') (c1:= c1) (Bp:= Bp) in IHhoare_derivable2; try assumption. 
+    unfold hoare_triple in IHhoare_derivable2. apply IHhoare_derivable2 in Pd_to_pd'; intuition.
+  - apply hoare_while with (phi1:= phi3) in IHhoare_derivable; try assumption. 
+    + unfold hoare_triple in IHhoare_derivable. apply IHhoare_derivable in Pd_to_pd'; intuition.
+    + reflexivity.
+  - apply hoare_consequence with (P:= P) (Q:= Q) in IHhoare_derivable; try assumption. 
+    unfold hoare_triple in IHhoare_derivable. apply IHhoare_derivable in Pd_to_pd'; intuition.
+  - apply hoare_conj with (P1:= P1) (Q1:= Q1) in IHhoare_derivable2; try assumption.
+    unfold hoare_triple in IHhoare_derivable2. apply IHhoare_derivable2 in Pd_to_pd'; intuition.
+  - apply hoare_OFrame with (phi2:= phi4) in IHhoare_derivable; try assumption.
+    unfold hoare_triple in IHhoare_derivable. apply IHhoare_derivable in Pd_to_pd'; intuition.
+  - apply hoare_Frame with (phi2:= phi4) in IHhoare_derivable; try assumption. 
+    unfold hoare_triple in IHhoare_derivable. apply IHhoare_derivable in Pd_to_pd'; intuition.
+  - apply hoare_sum with (p:= p) (phi1:= phi0) (phi1':= phi1') in IHhoare_derivable2; try assumption. 
+    unfold hoare_triple in IHhoare_derivable2. apply IHhoare_derivable2 in Pd_to_pd'; intuition.
+  - apply hoare_exists with (x:= x) (df:= df) (phi:= phi) in H3; try assumption. 
+    unfold hoare_triple in H3. apply H3 in Pd_to_pd'; intuition.
 Qed.

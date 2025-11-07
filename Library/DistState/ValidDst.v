@@ -145,7 +145,7 @@ Proof.
   try assumption.
 Qed.
 
-Lemma dst_prob_le_sum : forall (mu:dist_state) (s:local_st), 
+Lemma dst_prob_le_sum : forall (mu:dist_state) (s:partial_st), 
   positive_probs mu -> (get_prob_in_dstate mu s <= sum_probs mu)%R.
 Proof.
   intros. induction mu as [| (s1,p1) mu' Hmu'].
@@ -447,7 +447,7 @@ Proof.
 Qed.
 
 
-Lemma insert_positive: forall (mu:dist_state) (s:local_st) (p:R),
+Lemma insert_positive: forall (mu:dist_state) (s:partial_st) (p:R),
   (0<= sum_probs ((s,p):: mu) <=1)%R ->
   positive_probs mu -> prob_is_positive p ->
   positive_probs (insert_st_pair s p mu).
@@ -487,13 +487,13 @@ Open Scope dstate_scope.
 Inductive Sorted_dst : dist_state -> Prop := 
   | sorted0 : Sorted_dst []
   | sorted1 : forall s p, Sorted_dst [(s, p)]
-  | sorted2 : forall (s1 s2: local_st) (p1 p2: R) (mu: dist_state),
+  | sorted2 : forall (s1 s2: partial_st) (p1 p2: R) (mu: dist_state),
                 (* Valid_state s1 -> Valid_state s2 ->     *)
                 (beq_state s1 s2 = false) /\ (ble_state s1 s2 = true) -> 
                 Sorted_dst ((s2, p2) :: mu) ->
                 Sorted_dst ((s1, p1) :: (s2, p2) :: mu).
 
-Lemma Sorted_inv: forall (mu: dist_state) (s1: local_st) (p1: R),
+Lemma Sorted_inv: forall (mu: dist_state) (s1: partial_st) (p1: R),
   Sorted_dst ((s1,p1) :: mu) -> Sorted_dst mu.
 Proof.
   intros. inversion H; subst.
@@ -638,7 +638,7 @@ Proof.
 Qed.
 
 Lemma insert_st_pair_fst_eq_insert_st: (*Very important simplified equation*)
-  forall (mu: dist_state) (s: local_st) (p: R), 
+  forall (mu: dist_state) (s: partial_st) (p: R), 
     map fst (insert_st_pair s p mu) = insert_st s (map fst mu).
 Proof.
   intros mu s p. generalize dependent s. 

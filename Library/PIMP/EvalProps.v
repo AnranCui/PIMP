@@ -25,13 +25,13 @@ Open Scope list_scope.
 Open Scope dstate_scope.
 
 
-Fixpoint get (i:nat) (s:local_st) : Q :=  (*Use when updating*)
+Fixpoint get (i:nat) (s:partial_st) : Q :=  (*Use when updating*)
   match i, s with
   | 0%nat, Some v :: _  => v
   | S i' , _ :: s' => get i' s'
   | _    , _       => default_Q
   end.
-Fixpoint update (s:local_st) (i:nat) (v:Q) : local_st :=
+Fixpoint update (s:partial_st) (i:nat) (v:Q) : partial_st :=
   match i, s with
   | 0%nat, a :: s' => Some v :: s'
   | 0%nat, []      => Some v :: []
@@ -40,7 +40,7 @@ Fixpoint update (s:local_st) (i:nat) (v:Q) : local_st :=
   end.
 
 (********aexp*)
-Fixpoint evalA_st (a: aexp) (s: local_st) : Q := (** * Eval aexp under partial_state *)
+Fixpoint evalA_st (a: aexp) (s: partial_st) : Q := (** * Eval aexp under partial_state *)
   match a with
   | Aco n => n 
   | Ava x => get x s  
@@ -49,7 +49,7 @@ Fixpoint evalA_st (a: aexp) (s: local_st) : Q := (** * Eval aexp under partial_s
   | Asu a1 a2 => (evalA_st a1 s - evalA_st a2 s)
   end.
 (***************bexp******************)
-Fixpoint evalB_st (b : bexp) (s : local_st) : bool := (** * Eval bexp under partial_state *)
+Fixpoint evalB_st (b : bexp) (s : partial_st) : bool := (** * Eval bexp under partial_state *)
   match b with
   | Btrue => true
   | Bfalse => false
@@ -90,7 +90,7 @@ Proof.
       * simpl. apply IH1. assumption.
 Qed.
 
-Theorem conti_update: forall (v r : Q) (st : local_st) (x: nat), 
+Theorem conti_update: forall (v r : Q) (st : partial_st) (x: nat), 
   (update (update st x v) x r) = update st x r. 
 Proof.
   intros v r st x.
@@ -542,8 +542,8 @@ Qed.
 
 (********************************************)
 Lemma supp_insert_all_none: forall s sp, 
-  forallb (fun s : local_st => st_all_none s) (insert_st s sp) = 
-    (st_all_none s && forallb (fun s : local_st => st_all_none s) sp)%bool.
+  forallb (fun s : partial_st => st_all_none s) (insert_st s sp) = 
+    (st_all_none s && forallb (fun s : partial_st => st_all_none s) sp)%bool.
 Proof.
   intros s sp. induction sp as [|s0 sp' IH]; try reflexivity; intros.
   simpl in *. destruct (beq_state s s0) eqn: Hs.
@@ -556,8 +556,8 @@ Proof.
     rewrite andb_assoc. reflexivity.
 Qed.
 Lemma supp_sort_all_none: forall mu, 
-  forallb (fun s0 : local_st => st_all_none s0) (map fst mu) = 
-  forallb (fun s0 : local_st => st_all_none s0) (map fst (sort_dst mu)).
+  forallb (fun s0 : partial_st => st_all_none s0) (map fst mu) = 
+  forallb (fun s0 : partial_st => st_all_none s0) (map fst (sort_dst mu)).
 Proof.
   intros mu. induction mu as [|(s,p) mu' IH]; simpl; try reflexivity.
   rewrite insert_st_pair_fst_eq_insert_st. 
@@ -565,8 +565,8 @@ Proof.
 Qed.
 
 Lemma supp_insert_evalB: forall s sp b, 
-  forallb (fun s : local_st => evalB_st b s) (insert_st s sp) =
-  (evalB_st b s && forallb (fun s : local_st => evalB_st b s) sp)%bool.
+  forallb (fun s : partial_st => evalB_st b s) (insert_st s sp) =
+  (evalB_st b s && forallb (fun s : partial_st => evalB_st b s) sp)%bool.
 Proof.
   intros s sp. induction sp as [|s0 sp' IH]; try reflexivity; intros.
   simpl in *. destruct (beq_state s s0) eqn: Hs.
@@ -579,8 +579,8 @@ Proof.
     rewrite andb_assoc. reflexivity.
 Qed.
 Lemma supp_sort_evalB: forall mu b, 
-  forallb (fun s0 : local_st => evalB_st b s0) (map fst mu) = 
-  forallb (fun s0 : local_st => evalB_st b s0) (map fst (sort_dst mu)).
+  forallb (fun s0 : partial_st => evalB_st b s0) (map fst mu) = 
+  forallb (fun s0 : partial_st => evalB_st b s0) (map fst (sort_dst mu)).
 Proof.
   intros mu b. induction mu as [|(s,p) mu' IH]; simpl; try reflexivity.
   rewrite insert_st_pair_fst_eq_insert_st. 
@@ -588,8 +588,8 @@ Proof.
 Qed.
 
 Lemma supp_decom_r_evalB: forall mu0 mu1 b, 
-  forallb (fun s : local_st => evalB_st b s) (supp_mu (mu0 + mu1)) = true -> 
-  forallb (fun s : local_st => evalB_st b s) (supp_mu (mu0)) = true.
+  forallb (fun s : partial_st => evalB_st b s) (supp_mu (mu0 + mu1)) = true -> 
+  forallb (fun s : partial_st => evalB_st b s) (supp_mu (mu0)) = true.
 Proof.
   intros mu0 mu1 b Hb. generalize dependent mu1. 
   induction mu0 as [|(s,p) mu0' IH]; intros; try reflexivity.
@@ -600,8 +600,8 @@ Proof.
 Qed. 
 
 Lemma supp_decom_l_evalB: forall mu0 mu1 b, 
-  forallb (fun s : local_st => evalB_st b s) (supp_mu (mu0 + mu1)) = true -> 
-  forallb (fun s : local_st => evalB_st b s) (supp_mu (mu1)) = true.
+  forallb (fun s : partial_st => evalB_st b s) (supp_mu (mu0 + mu1)) = true -> 
+  forallb (fun s : partial_st => evalB_st b s) (supp_mu (mu1)) = true.
 Proof.
   intros mu0 mu1 b Hb. 
   induction mu0 as [|(s,p) mu0' IH]; intros; try reflexivity.
@@ -613,8 +613,8 @@ Proof.
 Qed. 
 
 Lemma supp_insert_negbevalB: forall s sp b, 
-  forallb (fun s : local_st => negb (evalB_st b s)) (insert_st s sp) =
-  (negb (evalB_st b s) && forallb (fun s : local_st => negb (evalB_st b s)) sp)%bool.
+  forallb (fun s : partial_st => negb (evalB_st b s)) (insert_st s sp) =
+  (negb (evalB_st b s) && forallb (fun s : partial_st => negb (evalB_st b s)) sp)%bool.
 Proof.
   intros s sp. induction sp as [|s0 sp' IH]; try reflexivity; intros.
   simpl in *. destruct (beq_state s s0) eqn: Hs.
@@ -628,8 +628,8 @@ Proof.
 Qed.
 
 Lemma supp_sort_negbevalB: forall mu b,
-  forallb (fun s0 : local_st => negb (evalB_st b s0)) (map fst mu) = 
-  forallb (fun s0 : local_st => negb (evalB_st b s0)) (map fst (sort_dst mu)).
+  forallb (fun s0 : partial_st => negb (evalB_st b s0)) (map fst mu) = 
+  forallb (fun s0 : partial_st => negb (evalB_st b s0)) (map fst (sort_dst mu)).
 Proof.
   intros mu b. induction mu as [|(s,p) mu' IH]; simpl; try reflexivity.
   rewrite insert_st_pair_fst_eq_insert_st. 
@@ -637,8 +637,8 @@ Proof.
 Qed.
 
 Lemma supp_decom_r_negbevalB: forall mu0 mu1 b, 
-  forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu (mu0 + mu1)) = true -> 
-  forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu (mu0)) = true.
+  forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu (mu0 + mu1)) = true -> 
+  forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu (mu0)) = true.
 Proof.
   intros mu0 mu1 b Hb. generalize dependent mu1. 
   induction mu0 as [|(s,p) mu0' IH]; intros; try reflexivity.
@@ -649,8 +649,8 @@ Proof.
 Qed. 
 
 Lemma supp_decom_l_negbevalB: forall mu0 mu1 b, 
-  forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu (mu0 + mu1)) = true -> 
-  forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu (mu1)) = true.
+  forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu (mu0 + mu1)) = true -> 
+  forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu (mu1)) = true.
 Proof.
   intros mu0 mu1 b Hb. 
   induction mu0 as [|(s,p) mu0' IH]; intros; try reflexivity.
@@ -684,8 +684,8 @@ Proof.
   split. { 
     intros H. unfold b_supp_classify in *. destruct pd as [dom mu HPD]. 
     destruct mu; simpl in *; try reflexivity.
-    destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu (p :: mu))); 
-    destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu (p :: mu))); try discriminate. }
+    destruct (forallb (fun s : partial_st => evalB_st b s) (supp_mu (p :: mu))); 
+    destruct (forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu (p :: mu))); try discriminate. }
   intros. unfold b_supp_classify in *. rewrite H. reflexivity.
 Qed.
 
@@ -709,7 +709,7 @@ Qed.
  
 Lemma supp_equiv_implies_all_none_eq: forall sp0 sp1, 
   (sp0 == sp1)%supp ->
-  forallb (fun s : local_st => st_all_none s) sp0 = forallb (fun s : local_st => st_all_none s) sp1.
+  forallb (fun s : partial_st => st_all_none s) sp0 = forallb (fun s : partial_st => st_all_none s) sp1.
 Proof.
   intros sp0 sp1 H. generalize dependent sp1.
   induction sp0 as [|l0 sp0 IH]; destruct sp1 as [|l1 sp1]; try reflexivity; intros.
@@ -722,7 +722,7 @@ Qed.
 
 Lemma supp_equiv_implies_evalB_eq: forall sp0 sp1 b, 
   (sp0 == sp1)%supp ->
-  forallb (fun s : local_st => evalB_st b s) sp0 = forallb (fun s : local_st => evalB_st b s) sp1.
+  forallb (fun s : partial_st => evalB_st b s) sp0 = forallb (fun s : partial_st => evalB_st b s) sp1.
 Proof.
   intros sp0 sp1 b H. generalize dependent sp1.
   induction sp0 as [|l0 sp0 IH]; destruct sp1 as [|l1 sp1]; try reflexivity; intros.
@@ -734,8 +734,8 @@ Proof.
 Qed.
 Lemma supp_equiv_implies_negbevalB_eq: forall sp0 sp1 b, 
   (sp0 == sp1)%supp ->
-  forallb (fun s : local_st => negb (evalB_st b s)) sp0 = 
-    forallb (fun s : local_st => negb (evalB_st b s)) sp1.
+  forallb (fun s : partial_st => negb (evalB_st b s)) sp0 = 
+    forallb (fun s : partial_st => negb (evalB_st b s)) sp1.
 Proof.
   intros sp0 sp1 b H. generalize dependent sp1.
   induction sp0 as [|l0 sp0 IH]; destruct sp1 as [|l1 sp1]; try reflexivity; intros.
@@ -796,7 +796,7 @@ Proof.
 Qed.
 
 Lemma st_subst_evalBT: forall s b sp, 
-  ([s] ⊆ sp)%supp -> forallb (fun s : local_st => evalB_st b s) sp = true ->
+  ([s] ⊆ sp)%supp -> forallb (fun s : partial_st => evalB_st b s) sp = true ->
   evalB_st b s = true.
 Proof.
   intros s b sp Hs Hsp. induction sp; simpl in *; try discriminate.  
@@ -809,7 +809,7 @@ Proof.
 Qed.
 
 Lemma st_subst_negbevalBT: forall s b sp, 
-  ([s] ⊆ sp)%supp -> forallb (fun s : local_st => negb (evalB_st b s)) sp = true ->
+  ([s] ⊆ sp)%supp -> forallb (fun s : partial_st => negb (evalB_st b s)) sp = true ->
     negb (evalB_st b s) = true.
 Proof.
   intros s b sp Hs Hsp. induction sp; simpl in *; try discriminate.  
@@ -824,8 +824,8 @@ Qed.
 
 Lemma supp_subst_implies_evalBT_eq: forall sp0 sp1 b, 
   ((sp0) ⊆ sp1)%supp ->
-  forallb (fun s : local_st => evalB_st b s) sp1 = true ->
-  forallb (fun s : local_st => evalB_st b s) (sp0) = true.
+  forallb (fun s : partial_st => evalB_st b s) sp1 = true ->
+  forallb (fun s : partial_st => evalB_st b s) (sp0) = true.
 Proof.
   intros sp0 sp1 b H. intros. generalize dependent sp0.
   induction sp1 as [|l1 sp1 IH]; destruct sp0 as [|l0 sp0]; 
@@ -841,8 +841,8 @@ Qed.
 
 Lemma supp_subst_implies_negbevalBT_eq: forall sp0 sp1 b, 
   ((sp0) ⊆ sp1)%supp ->
-  forallb (fun s : local_st => negb (evalB_st b s)) sp1 = true ->
-  forallb (fun s : local_st => negb (evalB_st b s)) (sp0) = true.
+  forallb (fun s : partial_st => negb (evalB_st b s)) sp1 = true ->
+  forallb (fun s : partial_st => negb (evalB_st b s)) (sp0) = true.
 Proof.
   intros sp0 sp1 b H. intros. generalize dependent sp0.
   induction sp1 as [|l1 sp1 IH]; destruct sp0 as [|l0 sp0]; 
@@ -859,8 +859,8 @@ Qed.
 Lemma supp_insert_subst_implies_evalBT_eq: forall s0 sp0 sp1 b, 
   Sorted_supp sp0 -> Sorted_supp sp1 ->
   ((insert_st s0 sp0) ⊆ sp1)%supp ->
-  forallb (fun s : local_st => evalB_st b s) sp1 = true ->
-  evalB_st b s0 && forallb (fun s : local_st => evalB_st b s) sp0 = true.
+  forallb (fun s : partial_st => evalB_st b s) sp1 = true ->
+  evalB_st b s0 && forallb (fun s : partial_st => evalB_st b s) sp0 = true.
 Proof.
   intros s0 sp0 sp1 b HS0 HS1 H. intros. generalize dependent s0. generalize dependent sp0.
   induction sp1 as [|l1 sp1 IH]; destruct sp0 as [|l0 sp0]; 
@@ -911,8 +911,8 @@ Qed.
 Lemma supp_insert_subst_implies_negbevalBT_eq: forall s0 sp0 sp1 b, 
   Sorted_supp sp0 -> Sorted_supp sp1 ->
   ((insert_st s0 sp0) ⊆ sp1)%supp ->
-  forallb (fun s : local_st => negb (evalB_st b s)) sp1 = true ->
-  (negb (evalB_st b s0)) && forallb (fun s : local_st => negb (evalB_st b s)) sp0 = true.
+  forallb (fun s : partial_st => negb (evalB_st b s)) sp1 = true ->
+  (negb (evalB_st b s0)) && forallb (fun s : partial_st => negb (evalB_st b s)) sp0 = true.
 Proof.
   intros s0 sp0 sp1 b HS0 HS1 H. intros. generalize dependent s0. generalize dependent sp0.
   induction sp1 as [|l1 sp1 IH]; destruct sp0 as [|l0 sp0]; 
@@ -959,8 +959,8 @@ Proof.
 Qed. 
 Lemma supp_mu_subst_evalB: forall s0 p0 mu0 sp b, 
   Sorted_supp sp -> (supp_mu ((s0, p0) :: mu0) ⊆ sp)%supp ->
-  forallb (fun s : local_st => (evalB_st b s)) sp = true ->
-  forallb (fun s : local_st => (evalB_st b s)) (supp_mu ((s0, p0) :: mu0)) = true.
+  forallb (fun s : partial_st => (evalB_st b s)) sp = true ->
+  forallb (fun s : partial_st => (evalB_st b s)) (supp_mu ((s0, p0) :: mu0)) = true.
 Proof.
   intros s0 p0 mu0 sp b HS Hsupp.  
   unfold supp_mu in Hsupp. simpl in Hsupp. 
@@ -972,8 +972,8 @@ Qed.
 
 Lemma supp_mu_subst_negbevalB: forall s0 p0 mu0 sp b, 
   Sorted_supp sp -> (supp_mu ((s0, p0) :: mu0) ⊆ sp)%supp ->
-  forallb (fun s : local_st => negb (evalB_st b s)) sp = true ->
-  forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu ((s0, p0) :: mu0)) = true.
+  forallb (fun s : partial_st => negb (evalB_st b s)) sp = true ->
+  forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu ((s0, p0) :: mu0)) = true.
 Proof.
   intros s0 p0 mu0 sp b HS Hsupp.  
   unfold supp_mu in Hsupp. simpl in Hsupp. 
@@ -995,10 +995,10 @@ Proof.
   destruct (mu1) as [|(s1,p1) mu1'].
   - unfold supp_mu in H0. simpl in H0. rewrite insert_st_pair_fst_eq_insert_st in H0.
     destruct (insert_st s0 (map fst (sort_dst mu0'))) eqn: Hcontra; try discriminate.
-  - destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu ((s1, p1) :: mu1'))) eqn: HT.
+  - destruct (forallb (fun s : partial_st => evalB_st b s) (supp_mu ((s1, p1) :: mu1'))) eqn: HT.
     + apply supp_mu_subst_evalB with (b:= b) in H0; try assumption; try apply Sort_supp_if_WF_supp.
     rewrite H0. reflexivity.
-    + destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu ((s1, p1) :: mu1'))) eqn: HF; try discriminate. 
+    + destruct (forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu ((s1, p1) :: mu1'))) eqn: HF; try discriminate. 
 Qed.
 
 Lemma bF_classify_subst: forall pd0 pd1 b, 
@@ -1013,8 +1013,8 @@ Proof.
   destruct (mu1) as [|(s1,p1) mu1'].
   - unfold supp_mu in H0. simpl in H0. rewrite insert_st_pair_fst_eq_insert_st in H0.
     destruct (insert_st s0 (map fst (sort_dst mu0'))) eqn: Hcontra; try discriminate.
-  - destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu ((s1, p1) :: mu1'))) eqn: HT; try discriminate.
-    destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu ((s1, p1) :: mu1'))) eqn: HF; try discriminate.
+  - destruct (forallb (fun s : partial_st => evalB_st b s) (supp_mu ((s1, p1) :: mu1'))) eqn: HT; try discriminate.
+    destruct (forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu ((s1, p1) :: mu1'))) eqn: HF; try discriminate.
     apply supp_mu_subst_negbevalB with (b:= b) in H0; try assumption. 
     * rewrite H0. unfold supp_mu in H0. simpl in H0. rewrite insert_st_pair_fst_eq_insert_st in H0.
       rewrite supp_insert_negbevalB in H0. apply andb_true_iff in H0. destruct H0. 
@@ -1064,7 +1064,7 @@ Qed.
 Lemma evalB_contra: forall b s mu, 
   evalB_st b s = false -> 
   is_in_supp s (supp_mu mu) = true ->
-  forallb (fun s0 : local_st => evalB_st b s0) (supp_mu mu) = false.
+  forallb (fun s0 : partial_st => evalB_st b s0) (supp_mu mu) = false.
 Proof.
   intros b s mu Hs Hsupp.
   induction mu as [|(s0,p0) mu' IH]; simpl in *; try discriminate.

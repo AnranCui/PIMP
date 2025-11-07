@@ -84,7 +84,7 @@ Proof.
       pose (phi_n := (Pdeter (Dpred (Ava (N1) = Aco 0%Q)) ⊕[1/2] 
                       Pdeter (Dpred (Ava (N1) = Aco 1%Q)))%formula).
       apply hoare_seq with (Q:= [[phi_n ⊙ (Pdeter (Dpred B_X_5))]]); 
-              try apply hoare_OFrame_True; try assumption; try reflexivity. 
+              try apply hoare_OFrame; try assumption; try reflexivity. 
         * pose (pre_if:= (Pdeter (Dpred (Ava X < Aco 5)) ∧ Pdeter (Dpred (Ava N1 = Aco 1))) ⊕[ 1 / 2 ] 
                           Pdeter (Dpred (Ava X < Aco 5)) ∧ Pdeter (Dpred (Bnot (Ava N1 = Aco 1)))).
           pose (post_if:= (Pdeter (Dpred (Ava X < Aco 5)) ⊕ Pdeter (Dpred (Ava X = Aco 5))) ⊕[ 1 / 2 ] 

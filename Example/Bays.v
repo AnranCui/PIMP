@@ -646,7 +646,7 @@ Proof.
     + apply hoare_consequence_pre with (P':= [[(dist_D0dPG0 ⊕[ 489 / 663] dist_D1dPG0) ⊙ ⊤]]). 
       * apply hoare_consequence with (P':= [[⊤ ⊙ (dist_D0dPG0 ⊕[ 489 / 663] dist_D1dPG0)]])
           (Q':=[[dist_XM0 ⊙ (dist_D0dPG0 ⊕[ 489 / 663] dist_D1dPG0)]]); try apply OdotC. 
-        apply hoare_OFrame_True; try reflexivity; try apply RA_XM0_correct; try apply NCF_RAssign.
+        apply hoare_OFrame; try reflexivity; try apply RA_XM0_correct; try apply NCF_RAssign.
         ** apply WD_Odot; repeat apply WD_Pplus; try apply WD_Pand; try apply WD_Pdeter; try apply WD_Dpred; try lra.
           simpl. reflexivity. 
         ** apply WD_Odot; repeat apply WD_Pplus; try apply WD_Pand; try apply WD_Pdeter; try apply WD_Dpred; try lra.
@@ -682,7 +682,7 @@ Proof.
     + apply hoare_consequence_pre with (P':= [[(dist_D0dPG1 ⊕[ 111 / 337] dist_D1dPG1) ⊙ ⊤]]). 
       * apply hoare_consequence with (P':= [[⊤ ⊙ (dist_D0dPG1 ⊕[ 111 / 337] dist_D1dPG1)]])
           (Q':=[[dist_XM1 ⊙ (dist_D0dPG1 ⊕[ 111 / 337] dist_D1dPG1)]]); try apply OdotC. 
-        apply hoare_OFrame_True; try reflexivity; try apply RA_XM1_correct; try apply NCF_RAssign.
+        apply hoare_OFrame; try reflexivity; try apply RA_XM1_correct; try apply NCF_RAssign.
         ** apply WD_Odot; repeat apply WD_Pplus; try apply WD_Pand; try apply WD_Pdeter; try apply WD_Dpred; try lra.
           simpl. reflexivity. 
         ** apply WD_Odot; repeat apply WD_Pplus; try apply WD_Pand; try apply WD_Pdeter; try apply WD_Dpred; try lra.
@@ -749,7 +749,7 @@ Proof.
     * apply hoare_consequence_post with (Q':= [[((Ava XP == Aco 0) ⊕[ 7 / 10] (Ava XP == Aco 1)) ⊙ ((Ava XD == Aco 0) ⊕[ 6 / 10] (Ava XD == Aco 1))]]); 
           try apply OdotC.
       apply hoare_consequence_pre with (P':= [[⊤ ⊙ ((Ava XD == Aco 0) ⊕[ 6 / 10] (Ava XD == Aco 1)) ]]). 
-        + eapply hoare_OFrame_True; intuition. 
+        + eapply hoare_OFrame; intuition. 
         -- apply WD_Odot; try apply WD_Pplus; try apply WD_Pdeter; try apply WD_Dpred; try reflexivity. lra.
         -- apply WD_Odot; try apply WD_Pplus; try apply WD_Pdeter; try apply WD_Dpred; simpl; try lra. 
           destruct (Rle_lt_dec (7 / 10) 0); destruct (Rle_lt_dec 1 (7 / 10)); destruct (Rle_lt_dec (6 / 10) 0); 
@@ -1513,8 +1513,8 @@ Proof.
       replace (3 / 10) with (1 - 7 / 10)%R by lra. assumption.
 Qed.
 Lemma BN_Prog_correct :
-  {{ [[(Ava XD == Aco default_Q) ∧ (Ava XG == Aco default_Q) ∧ (Ava XM == Aco default_Q)]] }} BN_Prog 
-  {{ [[(Ava XP <> Aco 0%Q)]] }}.
+  {{[[(Ava XD == Aco default_Q) ∧ (Ava XG == Aco default_Q) ∧ (Ava XM == Aco default_Q)]]}} BN_Prog 
+  {{[[(Ava XP <> Aco 0%Q)]]}}.
 Proof.
   unfold BN_Prog. 
   pose (PD:= (Ava XD == Aco default_Q)).

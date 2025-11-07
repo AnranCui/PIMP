@@ -10,7 +10,6 @@ From Stdlib Require Import Logic.FunctionalExtensionality.
 From Stdlib Require Import Logic.ClassicalChoice.
 From Stdlib Require Import ZArith.ZArith.
 Require Import Library.UtilityQR.
-
 Import ListNotations.
 Open Scope R_scope.
 
@@ -60,22 +59,22 @@ Delimit Scope supp_scope with supp.
 (********************************************************)
 Open Scope state_scope.
 Definition state := list Q. 
-Definition local_st:= list (option Q).
+Definition partial_st:= list (option Q).
 Definition default_Q : Q := (-99999)%Q. (* Placeholder, indicating that the value of this variable is invalid *)
-Definition Empty_State: local_st := [].
+Definition Empty_State: partial_st := [].
 Definition domain := list bool. (* Record the variables available in a local state *)
 
-(**************** Function of local_st ********************************************************)
+(**************** Function of partial_st ********************************************************)
 
 Definition is_none {A : Type} (v : option A) : bool :=
   match v with
   | None => true
   | Some _ => false
   end.
-Definition st_all_none (s: local_st) := forallb (fun v => is_none v) s.  
+Definition st_all_none (s: partial_st) := forallb (fun v => is_none v) s.  
 
 (*Comparison operation between two states*)
-Fixpoint beq_state (s0 s1 : local_st) : bool := (*s0=s1*)
+Fixpoint beq_state (s0 s1 : partial_st) : bool := (*s0=s1*)
   match s0, s1 with 
   | [], _ => st_all_none s1
   | _, [] => st_all_none s0
@@ -87,7 +86,7 @@ Fixpoint beq_state (s0 s1 : local_st) : bool := (*s0=s1*)
   | _, _ => false
   end.  
 
-Fixpoint ble_state (s0 s1: local_st): bool:= (*s0<=s1*)
+Fixpoint ble_state (s0 s1: partial_st): bool:= (*s0<=s1*)
   match s0, s1 with 
   | [], _ => true
   | _, [] => (st_all_none s0)
@@ -104,7 +103,7 @@ Notation "s0 '==' s1" := (beq_state s0 s1 = true) (at level 70): state_scope.
 Notation "s0 '<=' s1" := (ble_state s0 s1 = true) (at level 70): state_scope.
 Notation "s0 '!=' s1" := (beq_state s0 s1 = false) (at level 70): state_scope.
 
-Fixpoint union_state (s1 s2: local_st) : local_st := (*The premise of the union operation is that "the domains do not intersect"*)
+Fixpoint union_state (s1 s2: partial_st) : partial_st := (*The premise of the union operation is that "the domains do not intersect"*)
   match s1, s2 with
   | [], _ => s2
   | _, [] => s1
@@ -114,7 +113,7 @@ Fixpoint union_state (s1 s2: local_st) : local_st := (*The premise of the union 
   | None :: t1, None :: t2 => None :: union_state t1 t2
   end.
 
-Fixpoint res_st_to_X (s: local_st) (X: domain): local_st := (*Only take the variables in the domain X in state s*)
+Fixpoint res_st_to_X (s: partial_st) (X: domain): partial_st := (*Only take the variables in the domain X in state s*)
   match s, X with
   | [], _ => []
   | _, [] => []
@@ -124,7 +123,7 @@ Fixpoint res_st_to_X (s: local_st) (X: domain): local_st := (*Only take the vari
 
 (************Three relationships of domain: intersection, union, and subset**************************)
 Open Scope domain_scope.
-Definition return_domain (s: local_st): domain := map (fun v => negb (is_none v)) s. (*How to get the domain of a state s*)
+Definition return_domain (s: partial_st): domain := map (fun v => negb (is_none v)) s. (*How to get the domain of a state s*)
 Definition all_false (l : domain) : bool := forallb (fun b => negb b) l. (*Equivalent to an empty list*)
 
 Fixpoint is_domain_subset (l1 l2: domain): bool := 
@@ -174,9 +173,9 @@ Notation "l0 '∩∅' l1" := (is_domain_intersect l0 l1 = false) (at level 50): 
 (***Function of Distribution state***********************************************************************************)
 
 Open Scope dstate_scope.
-Definition dist_state : Type := dist local_st. (*Define distribution status*)
+Definition dist_state : Type := dist partial_st. (*Define distribution status*)
 
-Fixpoint insert_st_pair (s:local_st) (p:R) (mu: dist_state) : dist_state :=
+Fixpoint insert_st_pair (s:partial_st) (p:R) (mu: dist_state) : dist_state :=
   match mu with 
   | [] => [(s,p)]
   | (s',p') :: mu' => if beq_state s s' then (s', (p + p')%R) :: mu'
@@ -189,17 +188,17 @@ Fixpoint sort_dst (mu: dist_state) : dist_state := (*Sort the local state pairs 
   | (s1,p1) :: mu' => insert_st_pair s1 p1 (sort_dst mu')
 end.
 
-Definition supp: Type := list local_st. (*The support of a distribution state is the set of local states*)
+Definition supp: Type := list partial_st. (*The support of a distribution state is the set of local states*)
 Definition supp_mu (mu: dist_state): supp := 
   let sorted_mu := sort_dst mu in (map fst sorted_mu).
 
-Fixpoint is_in_supp (s: local_st) (A : supp) : bool := (* Determine whether a state is in a supp set *)
+Fixpoint is_in_supp (s: partial_st) (A : supp) : bool := (* Determine whether a state is in a supp set *)
   match A with
   | [] => false
   | s' :: A' => (beq_state s s') || (is_in_supp s A')
   end.
 
-Fixpoint insert_st (s:local_st) (A : supp) : supp :=
+Fixpoint insert_st (s:partial_st) (A : supp) : supp :=
   match A with 
   | [] => [s]
   | s' :: A' => if beq_state s s' then s' :: A'
@@ -231,7 +230,7 @@ Notation "l0 '⊆' l1" := (is_supp_subset l0 l1 = true) (at level 70): supp_scop
 
 (********************************************)
 
-Fixpoint get_prob_in_dstate (mu: dist_state) (s: local_st): R :=
+Fixpoint get_prob_in_dstate (mu: dist_state) (s: partial_st): R :=
   match mu with 
   | [] => 0%R  
   | (s', p) :: mu' => if beq_state s s' then (p + (get_prob_in_dstate mu' s))%R
@@ -272,7 +271,7 @@ Fixpoint res_dst_to_X (mu: dist_state) (X: domain) : dist_state := (*PI_X*)
 Notation "mu '⊗' mu'" := (combine_dst mu mu') (at level 30): dstate_scope.
 Notation "mu '\|' X" := (res_dst_to_X mu X) (at level 20): dstate_scope.
 
-Fixpoint bulid_helper (ss: local_st) ps (mu: dist_state) (X: domain) : dist_state :=
+Fixpoint bulid_helper (ss: partial_st) ps (mu: dist_state) (X: domain) : dist_state :=
   match mu with
   | [] => []
   | (s, p) :: mu' =>
@@ -293,7 +292,7 @@ Definition Identify_mu: dist_state := [(Empty_State,1)].
 
 Inductive partial_dst_Prop (X : domain) : dist_state -> Prop := (*Ensure that the domain of each local state in a distribution is X*)
   | PD_nil : partial_dst_Prop X []
-  | PD_cons : forall (s: local_st) (p: R) mu,
+  | PD_cons : forall (s: partial_st) (p: R) mu,
       (domain_equiv X (return_domain s)) ->
       partial_dst_Prop X mu ->
       partial_dst_Prop X ((s, p) :: mu).

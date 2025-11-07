@@ -9,6 +9,8 @@ From Stdlib Require Import Lia.
 From Stdlib Require Import Logic.FunctionalExtensionality.
 From Stdlib Require Import Logic.ClassicalChoice.
 From Stdlib Require Import ZArith.ZArith.
+Require Import Stdlib.FSets.FMapList.
+(* From mathcomp Require Import all_ssreflect. *)
 Import ListNotations.
 Set Default Goal Selector "!".
 Require Import Library.UtilityQR.
@@ -84,10 +86,10 @@ Fixpoint get_var_in_Pformular (phi:Pformula) : domain:= (** FV(phi)*)
 
 
 (*assertion "P [ X |-> a ]", Evaluation*)
-Definition DAssertion := local_st -> Prop.
+Definition DAssertion := partial_st -> Prop.
 Definition PAssertion := partial_dist -> Prop.
 Definition assert_of_Prop (P : Prop) : PAssertion := fun _ => P. 
-Definition Aexp : Type := local_st -> Q.
+Definition Aexp : Type := partial_st -> Q.
 Definition Aexp_of_Q (n : Q) : Aexp := fun _ => n. 
 Definition Aexp_of_aexp (a : aexp) : Aexp := fun st => evalA_st a st. 
 
@@ -138,16 +140,14 @@ Inductive well_defined_Pf : Pformula -> Prop :=
       well_defined_Pf f1 -> well_defined_Pf f2 ->
       well_defined_Pf (Pplus p f1 f2)
   | WD_Oplus : forall f1 f2,
-      well_defined_Pf f1 -> well_defined_Pf f2 ->
-      well_defined_Pf (Oplus f1 f2)
+      well_defined_Pf f1 -> well_defined_Pf f2 -> well_defined_Pf (Oplus f1 f2)
   | WD_Odot : forall f1 f2,
       well_defined_Pf f1 -> well_defined_Pf f2 ->
       is_domain_intersect (get_var_in_Pformular f1)
                           (get_var_in_Pformular f2) = false ->
       well_defined_Pf (Odot f1 f2)
   | WD_Pand : forall f1 f2,
-      well_defined_Pf f1 -> well_defined_Pf f2 ->
-      well_defined_Pf (Pand f1 f2).
+      well_defined_Pf f1 -> well_defined_Pf f2 -> well_defined_Pf (Pand f1 f2).
 
 
 Fixpoint df_sem (f : Dformula) : DAssertion :=  (* Get the semantics of a deterministic formula *)
@@ -157,6 +157,7 @@ Fixpoint df_sem (f : Dformula) : DAssertion :=  (* Get the semantics of a determ
   | Dexist X f' => fun st => (is_domain_subset (get_var_in_Dformular f') (return_domain st) = true /\
                               exists r : Q, df_sem f' (update st X r))
   end.
+
 Fixpoint pf_sem (f : Pformula) : PAssertion := 
   match f with
   | Pdeter df => fun pd => (is_domain_subset (get_var_in_Dformular df) pd.(dom) = true) /\
@@ -196,13 +197,13 @@ Fixpoint pf_sem (f : Pformula) : PAssertion :=
                                   is_domain_subset (get_var_in_Pformular f1) pd.(dom) = true /\
                                   (pf_sem f2 pd2) /\ 
                                   (sum_probs pd2.(mu) = sum_probs pd.(mu))%R))
-  | Odot f1 f2 => fun pd => 
-                                (exists pd1 pd2 (Hvar: is_domain_intersect pd1.(dom) pd2.(dom) = false),
+  | Odot f1 f2 => fun pd =>  (exists pd1 pd2 (Hvar: is_domain_intersect pd1.(dom) pd2.(dom) = false),
                                   Valid_dist pd1.(mu) /\ Valid_dist pd2.(mu) /\  
                                   (pf_sem f1 pd1) /\ (pf_sem f2 pd2) /\ 
                                   (let pd0:= Build_partial_dist (orb_domain pd1.(dom) pd2.(dom)) 
                                                                   (pd1.(mu) ⊗ pd2.(mu)) (PD_combine_invar_mu pd1 pd2 Hvar) in
                                     pd0 ⊑ pd))
   | Pand f1 f2 => fun pd => (pf_sem f1 pd) /\ (pf_sem f2 pd)
-  end.
-Notation "'[[' P ']]'" := (pf_sem P) (at level 0, format "[[ P ]]") : formula_scope. 
+end.
+Notation "'[[' P ']]'" := (pf_sem P) (at level 0, format "[[ P ]]") : formula_scope.
+

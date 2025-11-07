@@ -68,7 +68,7 @@ Notation "x '::=' a" := (DAssign x a) (at level 60): imp_scope.
 Notation "x '$=' d"  := (RAssign x d) (at level 60, right associativity): imp_scope.
 Notation "c1 ;; c2"   := (Seq c1 c2) (at level 80, right associativity): imp_scope. (*;; 是防止和list中的；冲突 *)
 Notation "'IF' b 'THEN' c1 'ELSE' c2 'FI'" := (If b c1 c2) (at level 80, right associativity): imp_scope.
-Notation "'WHILE' b 'DO' c 'END'" := (While b c) (at level 80, right associativity): imp_scope.
+Notation "'WHILE' b 'DO' c 'OD'" := (While b c) (at level 80, right associativity): imp_scope.
 
 (* ####################################################### *)
 Fixpoint singleton_bool_list (n : nat) : domain :=

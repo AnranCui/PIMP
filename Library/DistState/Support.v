@@ -66,7 +66,7 @@ Proof.
       * apply IH; try assumption.
 Qed.
 
-Lemma in_supp_insert_eq: forall (ls: supp) (s s': local_st), 
+Lemma in_supp_insert_eq: forall (ls: supp) (s s': partial_st), 
   is_in_supp s (insert_st s' ls) = beq_state s s' || is_in_supp s ls.
 Proof.
   intros. destruct (is_in_supp s (insert_st s' ls)) eqn: Hbool.
@@ -1071,7 +1071,7 @@ Proof.
   apply conti_sort_eq in Hsort. rewrite Hsort. reflexivity.
 Qed.
 
-Lemma supp_eq_insert_st_eq_preservs: forall (mu1 mu2: dist_state) (s1 s2: local_st), 
+Lemma supp_eq_insert_st_eq_preservs: forall (mu1 mu2: dist_state) (s1 s2: partial_st), 
   let ls1:= supp_mu mu1 in
   let ls2:= supp_mu mu2 in
   beq_supp ls1 ls2 = true -> 
@@ -1209,7 +1209,7 @@ Qed.
 Lemma supp_insert_valid_contra: forall sp s, 
   insert_st s sp = [] -> False.
 Proof.
-  intros. destruct sp.
+  intros. destruct sp as [|l sp'].
   - simpl in *. discriminate.
   - simpl in *. destruct (beq_state s l); destruct (ble_state s l); discriminate.
 Qed.

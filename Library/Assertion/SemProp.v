@@ -227,7 +227,7 @@ Qed.
 (*************************The semantic properties of deterministic formulas*************************)
 
 Theorem df_sem_conj_mu: 
-  forall (dom : domain) (mu : dist_state) (s : local_st) (p : R) df
+  forall (dom : domain) (mu : dist_state) (s : partial_st) (p : R) df
          (Hpd0 : partial_dst_Prop dom [(s, p)])
          (Hpd' : partial_dst_Prop dom ((s, p) :: mu)),
     let pd0 := Build_partial_dist dom [(s,p)] Hpd0 in
@@ -497,7 +497,6 @@ Proof.
             apply IHphi2 with (pd0:= pd0); try assumption].
 Qed. 
 
-
 Lemma sem_mult_cofe: (*lemma 3*)
   forall pd phi p,  
     0 <= p -> well_defined_Pf phi ->
@@ -742,7 +741,7 @@ Proof.
     + apply emp_dst_satisfies_phi; try assumption. apply satisfy_implies_dom_sub; assumption. 
 Qed. 
 
-(*The semantic properties of local states*)
+(*The semantic properties of partial states*)
 Lemma st_eq_implies_df_sem: forall s s' df, 
   beq_state s s' = true -> df_sem df s -> 
   df_sem df s'.
@@ -903,7 +902,7 @@ Proof.
 Qed.
 Open Scope dstate_scope.
 
-Lemma df_sem_resV_implies_pd: (*lemma 4 *)
+Lemma df_sem_resV_implies_pd: (*determinated version of lemma 4 *)
   forall pd df V (HV: is_domain_subset V pd.(dom) = true),
     well_defined_Pf (Pdeter df) ->
     is_domain_subset (get_var_in_Pformular (Pdeter df)) V = true -> 
@@ -926,8 +925,8 @@ Proof.
     apply dom_subset_eq_compat_left with (Z:= V) in H; try assumption.
 Qed. 
 
-Lemma sem_resV_implies_pd: 
-  forall pd phi V (HV: is_domain_subset V pd.(dom) = true), (*lemma4 *)
+Lemma sem_resV_implies_pd: (*One side of lemma 4 *)
+  forall pd phi V (HV: is_domain_subset V pd.(dom) = true), 
     Valid_dist pd.(mu) -> 
     well_defined_Pf phi ->
     is_domain_subset (get_var_in_Pformular phi) V = true ->
@@ -1295,7 +1294,7 @@ Proof.
     + specialize (IHphi1 H1 V H pd HV). apply IHphi1; try assumption.
     + specialize (IHphi2 H2 V H0 pd HV). apply IHphi2; try assumption.
 Qed. 
-
+(***********************************************************************)
 Lemma df_sem_project_implies_V: 
   forall pd df V (HV: is_domain_subset V pd.(dom) = true),
     Valid_dist pd.(mu) -> well_defined_Pf (Pdeter df) ->
@@ -1377,7 +1376,7 @@ Proof.
 Qed.   
 
 
-Lemma sem_satisfies_project_iff: 
+Lemma sem_satisfies_project_implies_phi: 
   forall pd phi (Hdom: is_domain_subset (get_var_in_Pformular phi) pd.(dom) = true),
     Valid_dist pd.(mu) -> well_defined_Pf phi ->
     [[phi]] pd -> 
@@ -1867,7 +1866,7 @@ Proof.
 
 Qed. 
 
-Lemma sem_satisfies_project_implies_V: 
+Lemma sem_satisfies_project_implies_V: (*Another side of lemma 4 *)
   forall pd phi V (HV: is_domain_subset V pd.(dom) = true),
     Valid_dist pd.(mu) -> well_defined_Pf phi ->
     is_domain_subset (get_var_in_Pformular phi) V = true -> 
@@ -2055,7 +2054,7 @@ Proof.
     pose (pd':= Build_partial_dist (get_var_in_Pformular (phi1 ⊙ phi2))  ((pd.(mu))\| (get_var_in_Pformular (phi1 ⊙ phi2))) 
               (PD_after_res (get_var_in_Pformular (phi1 ⊙ phi2)) (dom pd) (mu pd) Hsub' (pd.(all_partial)))).
     assert (Hsem': [[phi1 ⊙ phi2]] pd'). { 
-      apply sem_satisfies_project_iff with (Hdom:= Hsub') in Hsem; try assumption. }
+      apply sem_satisfies_project_implies_phi with (Hdom:= Hsub') in Hsem; try assumption. }
     destruct Hsem'. destruct H. destruct H. destruct H. destruct H0. destruct H1. destruct H2.
     destruct H3. simpl in H3. simpl in H4. 
     simpl. exists x, x0, x1. 
@@ -2101,7 +2100,7 @@ Proof.
   simpl. apply Valid_after_resX. assumption.
 Qed.
 
-(************* Lemma 4 ************************)
+(*************************************)
 Lemma odot_satisfies_iff: forall pd phi1 phi2,
   let X1:= (get_var_in_Pformular phi1) in 
   let X2:= (get_var_in_Pformular phi2) in 
@@ -2303,7 +2302,7 @@ Lemma phi_sem_add: forall pd0 pd1 pd phi, (*The most important problem of the wh
   (sum_probs pd.(mu) = sum_probs (pd0.(mu)) + sum_probs (pd1.(mu)))%R ->
   well_defined_Pf (phi) -> exclude_odot phi ->
   [[phi]] pd0 -> [[phi]] pd1 -> 
-  [[phi]] pd.
+  [[phi]] pd. 
 Proof.
   intros pd0 pd1 pd phi HWF HWF0 HWF1 Hdom0 Hdom1 Hmu_eq Hsum_eq HWD HEX Hsem0 Hsem1. 
   generalize dependent pd1. generalize dependent pd0.
@@ -3986,7 +3985,7 @@ Proof.
       rewrite supp_insert_evalB. 
       rewrite Hst. simpl. 
       inversion HPD; subst. specialize (Hmu H3 Hsub).
-      assert (Hsem': forall st : local_st,
+      assert (Hsem': forall st : partial_st,
               is_in_supp st (supp_mu (mu {| dom := dom; mu := mu'; all_partial := H3 |})) = true ->
                 df_sem (Dpred b) st). {
         intros st Hin. apply Hsem. simpl. apply in_supp_mu_cons_r; try assumption. }
@@ -3995,12 +3994,12 @@ Proof.
       + unfold b_supp_classify in Hmu. simpl in Hmu. 
         destruct mu'.
         ** simpl. right. reflexivity.
-        ** destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu (p0 :: mu'))); 
-          destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu (p0 :: mu'))); try discriminate.
+        ** destruct (forallb (fun s : partial_st => evalB_st b s) (supp_mu (p0 :: mu'))); 
+          destruct (forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu (p0 :: mu'))); try discriminate.
       + unfold b_supp_classify in Hmu. simpl in Hmu. unfold supp_mu in Hmu.
         destruct mu'; try discriminate. right.
-        destruct (forallb (fun s : local_st => evalB_st b s) (map fst (sort_dst (p0 :: mu')))); 
-          destruct (forallb (fun s : local_st => negb (evalB_st b s)) (map fst (sort_dst (p0 :: mu')))); 
+        destruct (forallb (fun s : partial_st => evalB_st b s) (map fst (sort_dst (p0 :: mu')))); 
+          destruct (forallb (fun s : partial_st => negb (evalB_st b s)) (map fst (sort_dst (p0 :: mu')))); 
             try discriminate; try reflexivity.
   }     
     intros. destruct pd as [dom mu HPD]. destruct H as [Hb H].
@@ -4018,18 +4017,18 @@ Proof.
       + rewrite st_eq_implies_evalB with (st2:= s); try assumption.
         destruct (evalB_st b s) eqn:Hst; try apply I.
         simpl in H. destruct H; try discriminate.
-        ++destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu ((s, p) :: mu'))); try discriminate.
-          destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu ((s, p) :: mu'))); try discriminate.
-        ++ destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu ((s, p) :: mu')))eqn: Hcontra; try discriminate. 
+        ++destruct (forallb (fun s : partial_st => evalB_st b s) (supp_mu ((s, p) :: mu'))); try discriminate.
+          destruct (forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu ((s, p) :: mu'))); try discriminate.
+        ++ destruct (forallb (fun s : partial_st => evalB_st b s) (supp_mu ((s, p) :: mu')))eqn: Hcontra; try discriminate. 
         -- unfold supp_mu in Hcontra. simpl in Hcontra. rewrite insert_st_pair_fst_eq_insert_st in Hcontra.
         rewrite supp_insert_evalB in Hcontra. apply andb_true_iff in Hcontra. destruct Hcontra as [Hcontra].
         rewrite Hst in Hcontra. discriminate.
-        -- destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu ((s, p) :: mu'))); try discriminate.
+        -- destruct (forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu ((s, p) :: mu'))); try discriminate.
       + destruct H. 
-        ++ destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu ((s, p) :: mu'))); try discriminate. 
-        destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu ((s, p) :: mu'))); try discriminate.
-        ++ destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu ((s, p) :: mu'))) eqn: Htmp; 
-        destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu ((s, p) :: mu')));
+        ++ destruct (forallb (fun s : partial_st => evalB_st b s) (supp_mu ((s, p) :: mu'))); try discriminate. 
+        destruct (forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu ((s, p) :: mu'))); try discriminate.
+        ++ destruct (forallb (fun s : partial_st => evalB_st b s) (supp_mu ((s, p) :: mu'))) eqn: Htmp; 
+        destruct (forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu ((s, p) :: mu')));
         try discriminate. 
         ** apply Hmu; try assumption. destruct mu'. 
         -- left. reflexivity.
@@ -4062,7 +4061,7 @@ Proof.
       rewrite supp_insert_negbevalB.  
       rewrite Hst. simpl. 
       inversion HPD; subst. specialize (Hmu H3 Hsub).
-      assert (Hsem': forall st : local_st,
+      assert (Hsem': forall st : partial_st,
               is_in_supp st (supp_mu (mu {| dom := dom; mu := mu'; all_partial := H3 |})) = true ->
                 df_sem (Dpred (~b)) st). {
         intros st Hin. apply Hsem. simpl. apply in_supp_mu_cons_r; try assumption. }
@@ -4070,12 +4069,12 @@ Proof.
       + unfold b_supp_classify in Hmu. simpl in Hmu. 
         destruct mu'; try discriminate.
         ** simpl. rewrite Hst. simpl. reflexivity.
-        ** destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu (p0 :: mu'))); 
-          destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu (p0 :: mu'))); try discriminate.
+        ** destruct (forallb (fun s : partial_st => evalB_st b s) (supp_mu (p0 :: mu'))); 
+          destruct (forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu (p0 :: mu'))); try discriminate.
       + rewrite supp_insert_evalB. rewrite Hst. simpl. 
         unfold b_supp_classify in Hmu. simpl in Hmu. 
         destruct (mu'); try discriminate.
-        destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu (p0 :: l))); try discriminate.
+        destruct (forallb (fun s : partial_st => evalB_st b s) (supp_mu (p0 :: l))); try discriminate.
         unfold supp_mu in Hmu. assumption.
   * intros. destruct pd as [dom mu HPD]. destruct H as [Hb H].
     unfold WF_bexp_with_pd in Hb. unfold b_supp_classify in H.
@@ -4092,10 +4091,10 @@ Proof.
       + rewrite st_eq_implies_evalB with (st2:= s); try assumption.
         destruct (evalB_st b s) eqn:Hst; try apply I. simpl.
         simpl in H. destruct H; try discriminate.
-        ++ destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu ((s, p) :: mu'))); try discriminate.
-        destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu ((s, p) :: mu'))); try discriminate.
-        ++ destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu ((s, p) :: mu'))); try discriminate.
-        destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu ((s, p) :: mu'))) eqn: Hcontra; try discriminate.
+        ++ destruct (forallb (fun s : partial_st => evalB_st b s) (supp_mu ((s, p) :: mu'))); try discriminate.
+        destruct (forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu ((s, p) :: mu'))); try discriminate.
+        ++ destruct (forallb (fun s : partial_st => evalB_st b s) (supp_mu ((s, p) :: mu'))); try discriminate.
+        destruct (forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu ((s, p) :: mu'))) eqn: Hcontra; try discriminate.
         unfold supp_mu in Hcontra. simpl in Hcontra. rewrite insert_st_pair_fst_eq_insert_st in Hcontra.
         rewrite supp_insert_negbevalB in Hcontra.  
         rewrite Hst in Hcontra. apply andb_true_iff in Hcontra. destruct Hcontra as [Hcontra].
@@ -4104,10 +4103,10 @@ Proof.
         -- apply Hmu; try assumption. left. reflexivity.
         -- apply Hmu; try assumption. right.      
         destruct H. 
-        ++ destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu ((s, p) :: p0 :: mu'))); try discriminate. 
-        destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu ((s, p) :: p0 :: mu'))); try discriminate.
-        ++ destruct (forallb (fun s : local_st => evalB_st b s) (supp_mu ((s, p) :: p0 :: mu'))); try discriminate. 
-        destruct (forallb (fun s : local_st => negb (evalB_st b s)) (supp_mu ((s, p) :: p0 :: mu'))) eqn: Htmp; try discriminate.
+        ++ destruct (forallb (fun s : partial_st => evalB_st b s) (supp_mu ((s, p) :: p0 :: mu'))); try discriminate. 
+        destruct (forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu ((s, p) :: p0 :: mu'))); try discriminate.
+        ++ destruct (forallb (fun s : partial_st => evalB_st b s) (supp_mu ((s, p) :: p0 :: mu'))); try discriminate. 
+        destruct (forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu ((s, p) :: p0 :: mu'))) eqn: Htmp; try discriminate.
         unfold supp_mu in Htmp. simpl in Htmp. rewrite insert_st_pair_fst_eq_insert_st in Htmp.
         rewrite supp_insert_negbevalB in Htmp.  
         apply andb_true_iff in Htmp. destruct Htmp.
@@ -4455,6 +4454,288 @@ Proof.
       * destruct Hcase3 as [pd01 H]. destruct H as [HWF01 H].
         destruct H as [Hpdeq01 H]. apply pd_equiv_sym in Hpdeq01.
         destruct H as [Hsub H]. 
+        destruct H as [Hsem01 Hsum]. destruct Hsem01 as [Hsem01 Hcontra].
+        apply bF_sem_iff in Hcontra. destruct Hcontra as [_ Hcontra].
+        apply dst_equiv_implies_b_classify with (b:= b) in Hpdeq01; try assumption.
+        rewrite Hbclass in Hpdeq01. 
+        rewrite <- Hpdeq01 in Hcontra. destruct Hcontra; discriminate.
+Qed. 
+
+Lemma Pplus_implies_fst_under_All_true: 
+  forall b Bp pd phi0 phi1, 
+  Valid_dist (mu pd) -> well_defined_Pf (phi0 ∧ Pdeter (Dpred b) ⊕[ Bp] phi1 ∧ Pdeter (Dpred (~ b)))%formula ->
+  b_supp_classify b pd = All_True ->
+  [[phi0 ∧ Pdeter (Dpred b) ⊕[ Bp] phi1 ∧ Pdeter (Dpred (~ b))]] pd ->
+  [[phi0 ∧ Pdeter (Dpred b)]] pd /\ (Bp = 1).
+Proof. 
+  intros b Bp pd phi0 phi1 Hvalid HWD Hbclass Hsem.
+  destruct Hsem as [Hcase1 | Hsem]. 
+    + destruct Hcase1 as [Hp H]. 
+      destruct H as [pd01 H]. destruct H as [pd02 H].
+      destruct H as [HWF01 H]. destruct H as [HWF02 H]. 
+      destruct H as [Hdom01 H]. destruct H as [Hdom02 H].
+      destruct H as [Hsem01 H]. destruct H as [Hsem02 H].
+      destruct H as [Hsum0 H]. destruct H as [Hsum1 Hmu].
+      assert (Hvalid': Valid_dist (Bp * mu pd01 + (1 - Bp) * mu pd02)%dist_state). { 
+          apply Valid_linear; try assumption. 
+          - destruct Hp. split; apply Rlt_le; assumption.
+          - apply Rp_1_minus_p_bounds. 
+            destruct Hp. split; apply Rlt_le; assumption.
+          - rewrite R_plus_sub_eq_1. apply Rle_refl. }
+      assert (HPD': partial_dst_Prop (dom pd) (Bp * mu pd01 + (1 - Bp) * mu pd02)%dist_state). {
+        apply PD_linear; try assumption. 
+        - destruct Hp. apply Rlt_le; assumption.
+        - apply Rp_1_minus_p_bounds. destruct Hp. split; apply Rlt_le; assumption. }
+      pose (pd_tmp:= Build_partial_dist (dom pd) (Bp * mu pd01 + (1 - Bp) * mu pd02) HPD').
+      assert (Heq: pd ≡ pd_tmp). { split; simpl; try apply dom_equiv_refl. assumption. }
+      destruct pd02 as [dom02 mu02 HPD02]. destruct mu02 as [|(s02, p02) mu02']. 
+      * simpl in Hmu. rewrite dst_add_0_r in Hmu. 
+      simpl in Hdom02. simpl in Hsum1. rewrite <- Hsum1 in Hsum0.
+      assert (Hmu_nil: mu pd = []). { 
+        apply sum_probs0_implies_nil; try assumption.
+        apply dst_equiv_implies_sum_probs_eq in Hmu; try assumption.
+        - rewrite dst_sum_prob_coef_mult in Hmu. rewrite Hsum0 in Hmu. rewrite Rmult_0_r in Hmu. assumption.
+        - apply Valid_mult_cofe; try assumption. destruct Hp. split; apply Rlt_le; assumption. }
+      unfold b_supp_classify in Hbclass. rewrite Hmu_nil in Hbclass. 
+      discriminate Hbclass.
+      * destruct Hsem02. destruct H0. simpl in H1. specialize (H1 s02).
+      assert (Hin: is_in_supp s02 (supp_mu ((s02, p02) :: mu02')) = true) by apply in_supp_mu_cons_head.
+      specialize (H1 Hin). destruct H1. 
+      destruct (negb (evalB_st b s02)) eqn: Hs02; try contradiction.
+      apply negb_true_iff in Hs02. 
+      rewrite dst_equiv_implies_b_classify with (pd1:= pd_tmp) in Hbclass; try assumption.
+      assert (Htmp: [[Pdeter (Dpred b)]] pd_tmp). { 
+        apply bT_sem_iff. split; try assumption. 
+        - unfold WF_bexp_with_pd. simpl. simpl in H0. simpl in Hdom02. 
+        apply dom_subset_eq_compat_left with (Z:= (get_variables_in_bexp b)) in Hdom02; try assumption. 
+        - right. assumption. }
+      destruct Htmp as [Hem' Hcontra].
+      specialize (Hcontra s02). 
+      assert (Hin': is_in_supp s02 (supp_mu (mu pd_tmp)) = true).  {
+        apply in_supp_iff_posi_prob; try assumption; try assumption.  
+          pose (p':= (get_prob_in_dstate (Bp * mu pd01)%dist_state s02 + (1 - Bp) * p02 + get_prob_in_dstate ((1 - Bp) * mu02')%dist_state s02)%R).
+          exists p'. simpl. destruct (Req_dec_T (1 - Bp) 0). 
+          -- apply Rp_lt1_minus_p_bounds in Hp. rewrite e in Hp. destruct Hp. apply Rlt_irrefl in H3. contradiction.
+          -- rewrite get_prob_decom. rewrite dst_cons_eq_add.
+          rewrite get_prob_decom. simpl. rewrite state_eq_refl. 
+          rewrite Rplus_0_r. rewrite <- Rplus_assoc.
+          split; try reflexivity. unfold p'.
+          apply Valid_add_decom in Hvalid'. destruct Hvalid'. 
+          simpl in H4.  destruct (Req_dec_T (1 - Bp) 0). 
+          --- apply Rp_lt1_minus_p_bounds in Hp. rewrite e in Hp. destruct Hp. apply Rlt_irrefl in H5. contradiction.
+          --- rewrite dst_cons_eq_add in H4. apply Valid_add_decom in H4. destruct H4. 
+          apply Rplus_lt_le_0_compat. 
+          ++ apply Rplus_le_lt_0_compat. 
+          ** apply dst_Valid_prob_0_1. assumption.
+          ** destruct H4. destruct H6. destruct H6. assumption. 
+          ++ apply dst_Valid_prob_0_1. assumption. }
+      specialize (Hcontra Hin'). simpl in Hcontra. destruct Hcontra as [_ Hcontra].
+      rewrite Hs02 in Hcontra. contradiction.
+    + destruct Hsem as [Hcase2| Hcase3]. 
+      * destruct Hcase2 as [Hp1 H]. destruct H as [pd01 H]. destruct H as [HWF01 H].
+        destruct H as [Hpdeq01 H]. apply pd_equiv_sym in Hpdeq01.
+        destruct H as [Hsem01 Hsum]. split; try assumption.
+        apply pd_equiv_preserves_sem with (pd0:= pd01); try assumption.
+        inversion HWD; subst. assumption.
+      * destruct Hcase3 as [Hp1 H]. destruct H as [pd01 H]. destruct H as [HWF01 H].
+        destruct H as [Hpdeq01 H]. apply pd_equiv_sym in Hpdeq01.
+        destruct H as [Hsem01 Hsum]. destruct Hsem01 as [Hsem01 Hcontra].
+        apply bF_sem_iff in Hcontra. destruct Hcontra as [_ Hcontra].
+        apply dst_equiv_implies_b_classify with (b:= b) in Hpdeq01; try assumption.
+        rewrite Hbclass in Hpdeq01. 
+        rewrite <- Hpdeq01 in Hcontra. destruct Hcontra; discriminate.
+Qed.
+
+Lemma Pplus_implies_snd_under_All_false: 
+  forall b Bp pd phi0 phi1, 
+  Valid_dist (mu pd) -> well_defined_Pf (phi0 ∧ Pdeter (Dpred b) ⊕[ Bp] phi1 ∧ Pdeter (Dpred (~ b))) ->
+  b_supp_classify b pd = All_False ->
+  [[phi0 ∧ Pdeter (Dpred b) ⊕[ Bp] phi1 ∧ Pdeter (Dpred (~ b))]] pd ->
+  [[phi1 ∧ Pdeter (Dpred (~ b))]] pd /\ (Bp = 0).
+Proof. 
+  intros b Bp pd phi0 phi1 Hvalid HWD Hbclass Hsem.
+  destruct Hsem as [Hcase1 | Hsem]. 
+    + destruct Hcase1 as [Hp H]. 
+      destruct H as [pd01 H]. destruct H as [pd02 H].
+      destruct H as [HWF01 H]. destruct H as [HWF02 H]. 
+      destruct H as [Hdom01 H]. destruct H as [Hdom02 H].
+      destruct H as [Hsem01 H]. destruct H as [Hsem02 H].
+      destruct H as [Hsum0 H]. destruct H as [Hsum1 Hmu].
+      assert (Hvalid': Valid_dist (Bp * mu pd01 + (1 - Bp) * mu pd02)%dist_state). { 
+          apply Valid_linear; try assumption. 
+          - destruct Hp. split; apply Rlt_le; assumption.
+          - apply Rp_1_minus_p_bounds. 
+            destruct Hp. split; apply Rlt_le; assumption.
+          - rewrite R_plus_sub_eq_1. apply Rle_refl. }
+      assert (HPD': partial_dst_Prop (dom pd) (Bp * mu pd01 + (1 - Bp) * mu pd02)%dist_state). {
+        apply PD_linear; try assumption. 
+        - destruct Hp. apply Rlt_le; assumption.
+        - apply Rp_1_minus_p_bounds. destruct Hp. split; apply Rlt_le; assumption. }
+      pose (pd_tmp:= Build_partial_dist (dom pd) (Bp * mu pd01 + (1 - Bp) * mu pd02) HPD').
+      assert (Heq: pd ≡ pd_tmp). { split; simpl; try apply dom_equiv_refl. assumption. }
+      destruct pd01 as [dom01 mu01 HPD01]. destruct mu01 as [|(s02, p02) mu02']. 
+      * simpl in Hmu. 
+        simpl in Hdom01. simpl in Hsum0. rewrite <- Hsum0 in Hsum1.
+        assert (Hmu_nil: mu pd = []). { 
+        apply sum_probs0_implies_nil; try assumption.
+        apply dst_equiv_implies_sum_probs_eq in Hmu; try assumption.
+        rewrite dst_sum_prob_coef_mult in Hmu. rewrite Hsum1 in Hmu. rewrite Rmult_0_r in Hmu. assumption. }
+        unfold b_supp_classify in Hbclass. rewrite Hmu_nil in Hbclass. 
+        discriminate Hbclass.
+      * destruct Hsem01. destruct H0. simpl in H1. specialize (H1 s02).
+      assert (Hin: is_in_supp s02 (supp_mu ((s02, p02) :: mu02')) = true) by apply in_supp_mu_cons_head.
+      specialize (H1 Hin). destruct H1. 
+      destruct ((evalB_st b s02)) eqn: Hs02; try contradiction.
+      rewrite dst_equiv_implies_b_classify with (pd1:= pd_tmp) in Hbclass; try assumption.
+      assert (Htmp: [[Pdeter (Dpred (~b))]] pd_tmp). { 
+        apply bF_sem_iff. split; try assumption. 
+        - unfold WF_bexp_with_pd. simpl. simpl in H0. simpl in Hdom01. 
+        apply dom_subset_eq_compat_left with (Z:= (get_variables_in_bexp b)) in Hdom01; try assumption.
+        - right. assumption. }
+      destruct Htmp as [Hem' Hcontra].
+      specialize (Hcontra s02). 
+      assert (Hin': is_in_supp s02 (supp_mu (mu pd_tmp)) = true).  {
+        apply in_supp_iff_posi_prob; try assumption; try assumption.  
+          pose (p':= (Bp * p02 + get_prob_in_dstate (Bp * mu02')%dist_state s02 +  get_prob_in_dstate ((1 - Bp) * (mu pd02))%dist_state s02)%R).
+          exists p'. simpl. destruct (Req_dec_T Bp 0). 
+          -- destruct Hp. rewrite e in H3. apply Rlt_irrefl in H3. contradiction.
+          -- rewrite get_prob_decom. rewrite dst_cons_eq_add.
+          rewrite get_prob_decom. simpl. rewrite state_eq_refl. 
+          rewrite Rplus_0_r. 
+          split; try reflexivity. unfold p'.
+          apply Valid_add_decom in Hvalid'. destruct Hvalid'. 
+          simpl in H3. destruct (Req_dec_T Bp 0). 
+          --- destruct Hp. rewrite e in H5. apply Rlt_irrefl in H5. contradiction.
+          --- rewrite dst_cons_eq_add in H3. apply Valid_add_decom in H3. destruct H3. 
+          apply Rplus_lt_le_0_compat. 
+          ++ apply Rplus_lt_le_0_compat. 
+          ** destruct H3. destruct H6. destruct H6. assumption. 
+          ** apply dst_Valid_prob_0_1. assumption.
+          ++ apply dst_Valid_prob_0_1. assumption. }
+      specialize (Hcontra Hin'). simpl in Hcontra. destruct Hcontra as [_ Hcontra].
+      rewrite Hs02 in Hcontra. contradiction.
+    + destruct Hsem as [Hcase2| Hcase3]. 
+      * destruct Hcase2 as [Hp1 H]. destruct H as [pd01 H]. destruct H as [HWF01 H].
+        destruct H as [Hpdeq01 H]. apply pd_equiv_sym in Hpdeq01.
+        destruct H as [Hsem01 Hsum]. destruct Hsem01 as [Hsem01 Hcontra].
+        apply bT_sem_iff in Hcontra. destruct Hcontra as [_ Hcontra].
+        apply dst_equiv_implies_b_classify with (b:= b) in Hpdeq01; try assumption.
+        rewrite Hbclass in Hpdeq01. 
+        rewrite <- Hpdeq01 in Hcontra.
+         destruct Hcontra; discriminate. 
+      * destruct Hcase3 as [Hp0 H]. destruct H as [pd01 H]. destruct H as [HWF01 H].
+        destruct H as [Hpdeq01 H]. apply pd_equiv_sym in Hpdeq01.
+        destruct H as [Hsem01 Hsum]. split; try assumption. 
+        apply pd_equiv_preserves_sem with (pd0:= pd01); try assumption.
+        inversion HWD; subst. assumption.
+Qed.
+
+Lemma Pplus_implies_under_Mixed: 
+  forall b Bp pd phi0 phi1, 
+  Valid_dist (mu pd) -> well_defined_Pf (phi0 ∧ Pdeter (Dpred b) ⊕[ Bp] phi1 ∧ Pdeter (Dpred (~ b))) ->
+  b_supp_classify b pd = Mixed ->
+  [[phi0 ∧ Pdeter (Dpred b) ⊕[ Bp] phi1 ∧ Pdeter (Dpred (~ b))]] pd ->
+  [[phi0 ∧ Pdeter (Dpred b)]] (extract_b_pd b pd) /\ [[phi1 ∧ Pdeter (Dpred (~ b))]] (extract_notb_pd b pd) /\ (0 < Bp <1).
+Proof. 
+  intros b Bp pd phi0 phi1 Hvalid HWD Hbclass Hsem. 
+  inversion HWD; subst. 
+  destruct Hsem as [Hcase1 | Hsem]. 
+    + destruct Hcase1 as [Hp H]. 
+      destruct H as [pd01 H]. destruct H as [pd02 H].
+      destruct H as [HWF01 H]. destruct H as [HWF02 H]. 
+      destruct H as [Hdom01 H]. destruct H as [Hdom02 H].
+      destruct H as [Hsem01 H]. destruct H as [Hsem02 H].
+      destruct H as [Hsum0 H]. destruct H as [Hsum1 Hmu].
+      assert (Hvalid': Valid_dist (Bp * mu pd01 + (1 - Bp) * mu pd02)%dist_state). { 
+          apply Valid_linear; try assumption. 
+          - apply Rp_1_minus_p_bounds. 
+            destruct Hp. split; apply Rlt_le; assumption.
+          - rewrite R_plus_sub_eq_1. apply Rle_refl. }
+      assert (HPD': partial_dst_Prop (dom pd) (Bp * mu pd01 + (1 - Bp) * mu pd02)%dist_state). {
+        apply PD_linear; try assumption. 
+        - destruct Hp. apply Rlt_le; assumption.
+        - apply Rp_1_minus_p_bounds. destruct Hp. split; apply Rlt_le; assumption. }
+      destruct Hsem01 as [Hsem0 Hsme01]. destruct Hsem02 as [Hsem1 Hsme02].
+      destruct pd as [dom mu HPD]. destruct pd01 as [dom01 mu0_ex HPD0]. 
+      destruct pd02 as [dom02 mu1_ex HPD1].
+      simpl in HWF01. simpl in HWF02. simpl in Hdom01. simpl in Hdom02.
+      simpl in Hsum0. simpl in Hsum1. simpl in Hmu. simpl in Hvalid'. 
+      assert (Hb_eq: (get_b_in_mu b mu == get_b_in_mu b (Bp * mu0_ex + (1 - Bp) * mu1_ex))%dist_state). { 
+          apply Peq_implies_get_b_Peq; try assumption. }
+      assert (Hnotb_eq: (get_notb_in_mu b mu == get_notb_in_mu b (Bp * mu0_ex + (1 - Bp) * mu1_ex))%dist_state). { 
+          apply Peq_implies_get_notb_Peq; try assumption. }
+      assert (Hmu0_ex_b_eq: get_b_in_mu b mu0_ex = mu0_ex). { 
+        apply bT_sem_implies_getb_refl with (pd:= Build_partial_dist dom01 mu0_ex HPD0). assumption. }
+      assert (Hmu0_ex_notb_nil: get_notb_in_mu b mu0_ex = []). {
+          rewrite <- Hmu0_ex_b_eq. apply get_notb_after_get_b. }
+      assert (Hmu1_ex_notb: get_notb_in_mu b mu1_ex = mu1_ex). { 
+        apply bF_sem_implies_getnotb_refl with (pd:= {| dom := dom02; mu := mu1_ex; all_partial := HPD1 |}). 
+        assumption. }
+      assert (Hmu1_ex_b_nil: get_b_in_mu b mu1_ex = []). {
+          rewrite <- Hmu1_ex_notb. 
+          apply get_b_after_get_notb. } 
+      rewrite get_b_assoc in Hb_eq. repeat rewrite dst_get_b_coef_mult in Hb_eq.
+      rewrite Hmu1_ex_b_nil in Hb_eq. simpl in Hb_eq. rewrite dst_add_0_r in Hb_eq.
+      rewrite Hmu0_ex_b_eq in Hb_eq. 
+      rewrite get_notb_assoc in Hnotb_eq. repeat rewrite dst_get_notb_coef_mult in Hnotb_eq.
+      rewrite Hmu0_ex_notb_nil in Hnotb_eq. simpl in Hnotb_eq. rewrite Hmu1_ex_notb in Hnotb_eq. 
+      split. 
+      - assert (HPD0': partial_dst_Prop dom01 (Bp * mu0_ex)). { apply PD_mult_coef; try assumption. }
+        pose (pd0':= Build_partial_dist dom01 (Bp * mu0_ex) HPD0').
+        assert (Hequiv0: (extract_b_pd b {| dom := dom; mu := mu; all_partial := HPD |}) ≡ pd0'). {
+          split; simpl; try assumption. apply dom_equiv_sym. assumption. }
+        apply pd_equiv_preserves_sem with (pd0:= pd0'); try assumption.
+        * simpl. apply Valid_add_decom in Hvalid'. destruct Hvalid'. assumption.
+        * simpl. apply dst_Valid_get_b. assumption.
+        * assert (Hsem': [[phi0 ∧ Pdeter (Dpred b)]] {| dom := dom01; mu := mu0_ex; all_partial := HPD0 |}). {
+            split; try assumption. }
+          apply sem_mult_cofe with (p:= Bp) in Hsem'; try assumption. 
+        ** assert (Hequiv0p: pd0' ≡ 
+        {|
+          dom := CoreDef.dom {| dom := dom01; mu := mu0_ex; all_partial := HPD0 |};
+          mu := Bp * CoreDef.mu {| dom := dom01; mu := mu0_ex; all_partial := HPD0 |};
+          all_partial := pd_mult_preserve_PD {| dom := dom01; mu := mu0_ex; all_partial := HPD0 |} Bp
+        |} ). {
+          split; simpl; try apply dst_equiv_refl. apply dom_equiv_refl.  }
+        apply pd_equiv_preserves_sem with (pd1:= pd0') (phi:= phi0 ∧ Pdeter (Dpred b)) in Hequiv0p; simpl; try assumption.
+        -- apply Valid_mult_cofe; try assumption. 
+        -- apply Valid_mult_cofe; try assumption. 
+        ** destruct Hp. apply Rlt_le; assumption.
+        ** apply Valid_add_decom in Hvalid'. destruct Hvalid'. destruct H. assumption.
+      - assert (HPD1': partial_dst_Prop dom02 ((1 - Bp) * mu1_ex)). { apply PD_mult_coef; try assumption. }
+        pose (pd1':= Build_partial_dist dom02 ((1 - Bp) * mu1_ex) HPD1').
+        assert (Hequiv1: (extract_notb_pd b {| dom := dom; mu := mu; all_partial := HPD |}) ≡ pd1'). {
+          split; simpl; try assumption. apply dom_equiv_sym. assumption. } 
+        split; try assumption.
+        apply pd_equiv_preserves_sem with (pd0:= pd1'); try assumption.
+        * simpl. apply Valid_add_decom in Hvalid'. destruct Hvalid'. assumption.
+        * simpl. apply dst_Valid_get_notb. assumption.
+        * assert (Hsem': [[phi1 ∧ Pdeter (Dpred (~b))]] {| dom := dom02; mu := mu1_ex; all_partial := HPD1 |}). {
+            split; try assumption. }
+          apply sem_mult_cofe with (p:= (1 - Bp)) in Hsem'; try assumption. 
+        ** assert (Hequiv1p: pd1' ≡ 
+        {|
+          dom := CoreDef.dom {| dom := dom02; mu := mu1_ex; all_partial := HPD1 |};
+          mu := (1 - Bp) * CoreDef.mu {| dom := dom02; mu := mu1_ex; all_partial := HPD1 |};
+          all_partial :=
+            pd_mult_preserve_PD {| dom := dom02; mu := mu1_ex; all_partial := HPD1 |} (1 - Bp)
+        |} ). {
+          split; simpl; try apply dst_equiv_refl. apply dom_equiv_refl.  }
+        apply pd_equiv_preserves_sem with (pd1:= pd1') (phi:= phi1 ∧ Pdeter (Dpred (~b))) in Hequiv1p; simpl; try assumption.
+        -- apply Valid_mult_cofe; try assumption. apply Rp_1_minus_p_bounds. destruct Hp. split; apply Rlt_le; assumption.
+        -- apply Valid_mult_cofe; try assumption. apply Rp_1_minus_p_bounds. destruct Hp. split; apply Rlt_le; assumption.
+        ** apply Rp_1_minus_p_bounds. destruct Hp. split; apply Rlt_le; assumption.
+        ** apply Valid_add_decom in Hvalid'. destruct Hvalid'. destruct H0. assumption.
+    + destruct Hsem as [Hcase2| Hcase3]. 
+      * destruct Hcase2 as [Hp1 H]. destruct H as [pd01 H]. destruct H as [HWF01 H].
+        destruct H as [Hpdeq01 H]. apply pd_equiv_sym in Hpdeq01.
+        destruct H as [Hsem01 Hsum]. destruct Hsem01 as [Hsem01 Hcontra].
+        apply bT_sem_iff in Hcontra. destruct Hcontra as [_ Hcontra].
+        apply dst_equiv_implies_b_classify with (b:= b) in Hpdeq01; try assumption.
+        rewrite Hbclass in Hpdeq01. 
+        rewrite <- Hpdeq01 in Hcontra. destruct Hcontra; discriminate.
+      * destruct Hcase3 as [Hp0 H]. destruct H as [pd01 H]. destruct H as [HWF01 H].
+        destruct H as [Hpdeq01 H]. apply pd_equiv_sym in Hpdeq01.
         destruct H as [Hsem01 Hsum]. destruct Hsem01 as [Hsem01 Hcontra].
         apply bF_sem_iff in Hcontra. destruct Hcontra as [_ Hcontra].
         apply dst_equiv_implies_b_classify with (b:= b) in Hpdeq01; try assumption.
