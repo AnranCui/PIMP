@@ -430,7 +430,7 @@ Proof.
 Qed.
 
 
-(********************加 右加******************************************)
+(******************** Add on the right ******************************************)
 Lemma supp_subset_cons_r: forall s l ls, 
   Sorted_supp (s::l) ->
   is_supp_subset l ls = true ->
@@ -452,8 +452,8 @@ Proof.
       rewrite Hle. rewrite Hs'. rewrite Hle'. assumption.
 Qed.
 
-(********************减: 右减 左减******************************)
-Lemma supp_subset_inv_r: forall s l ls,  (*重要*)
+(******************** Delete on the right******************************)
+Lemma supp_subset_inv_r: forall s l ls, 
   Sorted_supp (s::l) ->
   is_supp_subset l (s::ls) = true ->
   is_supp_subset l ls = true.
@@ -469,7 +469,7 @@ Proof.
       apply st_nle_iff. split; try assumption. rewrite state_eq_sym. assumption. }
     rewrite Hle in H. simpl. assumption.
 Qed.
-Lemma supp_subset_inv_l: forall s l ls,  (*重要*)
+Lemma supp_subset_inv_l: forall s l ls,  
   Sorted_supp (s::l) ->
   Sorted_supp ls ->
   is_supp_subset (s::l) ls = true ->
@@ -498,7 +498,7 @@ Proof.
       apply st_le_iff. right. assumption.
 Qed.
 
-(*合并*)
+(*Add on the left*)
 Lemma supp_subset_cons_l: forall s l ls, 
   Sorted_supp (s::l) -> 
   Sorted_supp ls -> 
@@ -533,7 +533,7 @@ Proof.
 Qed.
 
 
-(*subsetsupp支撑集的传递性*)
+(*subsetsupp: support set transitivity*)
 Lemma supp_subset_trans_onest: forall s ls0 ls1, 
   Sorted_supp ls0 -> Sorted_supp ls1 ->
   is_supp_subset [s] ls0 = true -> 
@@ -552,7 +552,7 @@ Proof.
     + apply supp_subset_inv_l in Hsub1; try assumption.
 Qed.
 
-Theorem supp_subset_trans: forall ls0 ls1 ls2, (*重要*)
+Theorem supp_subset_trans: forall ls0 ls1 ls2, (*Important*)
   Sorted_supp ls0 -> Sorted_supp ls1 -> Sorted_supp ls2 ->
   is_supp_subset ls0 ls1 = true -> 
   is_supp_subset ls1 ls2 = true ->
@@ -632,7 +632,7 @@ Proof.
     simpl. apply orb_true_iff. right. assumption.
 Qed.
 
-Lemma not_in_supp_l_if_subset: forall s ls0 ls1, (*重要*)
+Lemma not_in_supp_l_if_subset: forall s ls0 ls1, (*Important*)
   Sorted_supp ls0 -> Sorted_supp ls1 ->
   is_supp_subset ls0 ls1 = true -> 
   is_in_supp s ls1 = false ->
@@ -668,7 +668,7 @@ Proof.
 Qed.
 
 
-(*跟insert*)
+(*insert*)
 Lemma supp_subset_insert_st: forall s ls, 
   is_supp_subset [s] (insert_st s ls) = true.
 Proof.
@@ -680,7 +680,7 @@ Proof.
       * simpl. rewrite state_eq_refl. reflexivity.
       * simpl. rewrite Hs. rewrite Hle. assumption.
 Qed.
-(******************跟insert相关的减 **************)
+(********************************)
 Lemma supp_subset_insert_implies_subset_onest: forall s l ls, 
   Sorted_supp l ->
   Sorted_supp ls ->
@@ -735,7 +735,7 @@ Proof.
       ++ apply supp_subset_cons_implies_head in H. assumption.
 Qed. 
 
-(******************跟insert相关的加 **************)
+(********************************)
 Lemma supp_subset_implies_insert_onest: forall s0 s1 ls,
   is_supp_subset [s0] ls = true ->
   is_supp_subset [s0] (insert_st s1 ls) = true.
@@ -931,8 +931,9 @@ Proof.
       ++ apply supp_subset_implies_insert_onest; try assumption.
       apply supp_subset_cons_implies_head in H; try assumption.
 Qed.
-(***支撑集关于 mu的性质*****)
-Lemma supp_mu_subset_cons: forall s p mu, (*重要*)
+
+(***Properties of the support set with respect to mu*****)
+Lemma supp_mu_subset_cons: forall s p mu, (*Important*)
   is_supp_subset (supp_mu mu) (supp_mu ((s,p)::mu)) = true.
 Proof.
   intros s p mu. induction mu as [|(s0, p0) mu' IH]; simpl; try reflexivity.
@@ -1040,7 +1041,7 @@ Proof.
 Qed.
 
 
-(*该beqsupp的性质了*)
+(*The properties of "beqsupp" *)
 Lemma supp_eq_implies_subset_conj: forall ls1 ls2,
   beq_supp ls1 ls2 = true ->
   is_supp_subset ls1 ls2 = true /\ is_supp_subset ls2 ls1 = true.
@@ -1170,7 +1171,7 @@ Proof.
     unfold supp_mu in IH. rewrite IH. reflexivity.
 Qed. 
 
-Theorem supp_eq_linear: forall mu1 mu2 p,
+Lemma supp_eq_linear: forall mu1 mu2 p,
   (0 < p < 1)%R ->
   supp_mu (mu1 + mu2)%dist_state = supp_mu (p * mu1 + (1 - p) * mu2)%dist_state.
 Proof.
@@ -1188,6 +1189,8 @@ Proof.
     unfold supp_mu in IH. rewrite IH.
     reflexivity.
 Qed.
+
+
 
 Lemma in_supp_return_domain_eq: forall pd st,
   is_in_supp st (supp_mu (mu pd)) = true ->

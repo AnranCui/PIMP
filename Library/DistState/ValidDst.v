@@ -270,7 +270,6 @@ Proof.
     rewrite H0 in Hcontra. apply Rlt_irrefl in Hcontra. contradiction.
 Qed.
 
-(***************************************************************)
 (*************************************************************)
 
 
@@ -488,7 +487,6 @@ Inductive Sorted_dst : dist_state -> Prop :=
   | sorted0 : Sorted_dst []
   | sorted1 : forall s p, Sorted_dst [(s, p)]
   | sorted2 : forall (s1 s2: partial_st) (p1 p2: R) (mu: dist_state),
-                (* Valid_state s1 -> Valid_state s2 ->     *)
                 (beq_state s1 s2 = false) /\ (ble_state s1 s2 = true) -> 
                 Sorted_dst ((s2, p2) :: mu) ->
                 Sorted_dst ((s1, p1) :: (s2, p2) :: mu).

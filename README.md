@@ -61,6 +61,7 @@ Two small examples are included:
 
 - `Example/Bays.v`
 - `Example/Prog1.v`
+- `Example/FDR.v`
 
 ---
 
@@ -70,7 +71,8 @@ Two small examples are included:
 .
 ├── Example
 │   ├── Bays.v
-│   └── Prog1.v
+│   ├── Prog1.v
+│   └── FDR.v
 ├── Library
 │   ├── Assertion
 │   │   ├── Asserts.v — assertion syntax
@@ -97,19 +99,19 @@ Two small examples are included:
 │   └── HoareLogic.v — Hoare logic and its soundness proof
 └── _CoqProject
 
-7 directories, 23 files
+7 directories, 24 files
 ```
 ---
 
 ## ⚙️ Quick Start
 
 ### Prerequisites
-- The Rocq Prover, version `9.1+alpha` compiled with OCaml `4.14.0`
+- The Rocq Prover, version `9.0.0` compiled with OCaml `4.14.0`
 - CoqIDE or VSCode with the Coq extension
 
 ### Compilation
 ```bash
-coq_makefile -f _CoqProject *.v -o Makefile
+rocq makefile -f _CoqProject -o Makefile
 make
 ```
 

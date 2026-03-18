@@ -8,6 +8,8 @@ From Stdlib Require Import Lia.
 From Stdlib Require Import Logic.FunctionalExtensionality.
 From Stdlib Require Import Logic.ClassicalChoice.
 From Stdlib Require Import ZArith.ZArith.
+From Stdlib Require Import Lra.
+
 Import ListNotations.
 Set Default Goal Selector "!".
 
@@ -587,4 +589,30 @@ Proof.
   - rewrite <- H. rewrite Rmult_0_r. rewrite Rplus_0_l. apply Rmult_lt_0_compat; try assumption.
   - rewrite <- H in HC. rewrite <- H0 in HC. rewrite Rplus_0_l in HC. 
   apply Rlt_irrefl in HC. contradiction.
+Qed.
+
+Lemma goal_eq (p : R) :
+  p <> 1 ->
+  2 * p * (1 - / 2) = (1 - p) * (2 * p / (2 - 2 * p)).
+Proof.
+  intro Hp.
+  assert (Hden : 2 - 2 * p <> 0) by nra. 
+  replace (1 - / 2) with (/2) by lra.
+  assert (HL : 2 * p * (/2) = p) by lra.
+  rewrite HL.
+  replace (2 - 2 * p) with (2 * (1 - p)) by ring.
+  assert (Hnp : 1 - p <> 0) by (intro H0; apply Hp; lra).
+  unfold Rdiv. 
+  field_simplify; auto.
+Qed.
+
+Lemma goal_eq_minus (p : R) :
+  p <> 1 ->
+  (1 - 2 * p) = (1 - p) * (1 - 2 * p / (2 - 2 * p)).
+Proof.
+  intro Hp. 
+  assert (Hden : 2 - 2 * p <> 0) by nra. 
+  replace (2 - 2 * p) with (2 * (1 - p)) by ring.
+  apply (Rmult_eq_reg_r (2 - 2 * p)); try exact Hden.
+  field_simplify; lra.
 Qed.

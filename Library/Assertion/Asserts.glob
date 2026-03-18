@@ -1,0 +1,695 @@
+DIGEST 899b5068dbe8ca67718ffc9b04179628
+FLibrary.Assertion.Asserts
+R27:39 Stdlib.QArith.QArith <> <> lib
+R69:81 Stdlib.QArith.Qround <> <> lib
+R111:128 Stdlib.QArith.QArith_base <> <> lib
+R158:166 Stdlib.Bool.Bool <> <> lib
+R196:207 Stdlib.Reals.R_sqrt <> <> lib
+R237:240 Stdlib.Lists.List <> <> lib
+R270:280 Stdlib.Reals.Reals <> <> lib
+R310:312 Stdlib.micromega.Lia <> <> lib
+R342:371 Stdlib.Logic.FunctionalExtensionality <> <> lib
+R401:421 Stdlib.Logic.ClassicalChoice <> <> lib
+R451:463 Stdlib.ZArith.ZArith <> <> lib
+R481:501 Stdlib.FSets.FMapList <> <> lib
+R561:573 Stdlib.Lists.List ListNotations <> mod
+R622:638 Library.UtilityQR <> <> lib
+R656:680 Library.DistState.CoreDef <> <> lib
+R698:723 Library.DistState.ValidDst <> <> lib
+R741:764 Library.DistState.Domain <> <> lib
+R782:806 Library.DistState.Support <> <> lib
+R824:851 Library.DistState.Arithmetic <> <> lib
+R869:893 Library.DistState.Combine <> <> lib
+R911:935 Library.DistState.Partial <> <> lib
+R953:971 Library.PIMP.Syntax <> <> lib
+R989:1010 Library.PIMP.EvalProps <> <> lib
+ind 1223:1230 <> Dformula
+constr 1245:1249 <> Dpred
+constr 1274:1279 <> Dexist
+R1257:1260 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1253:1256 Library.PIMP.Syntax <> bexp ind
+R1261:1268 Library.Assertion.Asserts <> Dformula:1 ind
+R1285:1288 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1282:1284 Corelib.Init.Datatypes <> nat ind
+R1297:1300 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1289:1296 Library.Assertion.Asserts <> Dformula:1 ind
+R1301:1308 Library.Assertion.Asserts <> Dformula:1 ind
+scheme 1223:1230 <> Dformula_rect
+scheme 1223:1230 <> Dformula_ind
+scheme 1223:1230 <> Dformula_rec
+scheme 1223:1230 <> Dformula_sind
+ind 1322:1329 <> Pformula
+constr 1344:1349 <> Pdeter
+constr 1377:1381 <> Pplus
+constr 1427:1431 <> Oplus
+constr 1472:1475 <> Odot
+constr 1517:1520 <> Pand
+R1360:1363 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1352:1359 Library.Assertion.Asserts <> Dformula ind
+R1364:1371 Library.Assertion.Asserts <> Pformula:3 ind
+R1386:1389 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1385:1385 Stdlib.Reals.Rdefinitions RbaseSymbolsImpl R defax
+R1398:1401 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1390:1397 Library.Assertion.Asserts <> Pformula:3 ind
+R1410:1413 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1402:1409 Library.Assertion.Asserts <> Pformula:3 ind
+R1414:1421 Library.Assertion.Asserts <> Pformula:3 ind
+R1443:1446 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1435:1442 Library.Assertion.Asserts <> Pformula:3 ind
+R1455:1458 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1447:1454 Library.Assertion.Asserts <> Pformula:3 ind
+R1459:1466 Library.Assertion.Asserts <> Pformula:3 ind
+R1488:1491 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1480:1487 Library.Assertion.Asserts <> Pformula:3 ind
+R1500:1503 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1492:1499 Library.Assertion.Asserts <> Pformula:3 ind
+R1504:1511 Library.Assertion.Asserts <> Pformula:3 ind
+R1533:1536 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1525:1532 Library.Assertion.Asserts <> Pformula:3 ind
+R1545:1548 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1537:1544 Library.Assertion.Asserts <> Pformula:3 ind
+R1549:1556 Library.Assertion.Asserts <> Pformula:3 ind
+scheme 1322:1329 <> Pformula_rect
+scheme 1322:1329 <> Pformula_ind
+scheme 1322:1329 <> Pformula_rec
+scheme 1322:1329 <> Pformula_sind
+R1800:1805 Library.Assertion.Asserts <> Pdeter constr
+R1808:1812 Library.Assertion.Asserts <> Dpred constr
+R1814:1818 Library.PIMP.Syntax <> Btrue constr
+not 1790:1790 <> ::formula_scope:'⊤'
+R1861:1866 Library.Assertion.Asserts <> Pdeter constr
+R1869:1873 Library.Assertion.Asserts <> Dpred constr
+R1876:1879 Library.PIMP.Syntax <> Band constr
+not 1848:1848 <> ::formula_scope:x_'&&'_x
+R1961:1966 Library.Assertion.Asserts <> Pdeter constr
+R1969:1973 Library.Assertion.Asserts <> Dpred constr
+R1976:1979 Library.PIMP.Syntax <> Bnot constr
+not 1948:1948 <> ::formula_scope:'~'_x
+R2059:2064 Library.Assertion.Asserts <> Pdeter constr
+R2067:2071 Library.Assertion.Asserts <> Dpred constr
+R2074:2076 Library.PIMP.Syntax <> Blt def
+not 2047:2047 <> ::formula_scope:x_'<'_x
+R2157:2162 Library.Assertion.Asserts <> Pdeter constr
+R2165:2169 Library.Assertion.Asserts <> Dpred constr
+R2172:2174 Library.PIMP.Syntax <> Ble constr
+not 2143:2143 <> ::formula_scope:x_'≤'_x
+R2236:2241 Library.Assertion.Asserts <> Pdeter constr
+R2244:2248 Library.Assertion.Asserts <> Dpred constr
+R2251:2253 Library.PIMP.Syntax <> Beq constr
+not 2223:2223 <> ::formula_scope:x_'=='_x
+R2315:2320 Library.Assertion.Asserts <> Pdeter constr
+R2323:2327 Library.Assertion.Asserts <> Dpred constr
+R2330:2333 Library.PIMP.Syntax <> Bnot constr
+R2336:2338 Library.PIMP.Syntax <> Beq constr
+not 2302:2302 <> ::formula_scope:x_'<>'_x
+R2388:2392 Library.Assertion.Asserts <> Oplus constr
+not 2374:2374 <> ::formula_scope:x_'⊕'_x
+R2482:2486 Library.Assertion.Asserts <> Pplus constr
+not 2460:2460 <> ::formula_scope:x_'⊕['_x_']'_x
+R2588:2591 Library.Assertion.Asserts <> Odot constr
+not 2574:2574 <> ::formula_scope:x_'⊙'_x
+R2673:2676 Library.Assertion.Asserts <> Pand constr
+not 2659:2659 <> ::formula_scope:x_'∧'_x
+def 2744:2763 <> get_var_in_Dformular
+R2769:2776 Library.Assertion.Asserts <> Dformula ind
+binder 2766:2767 <> df:5
+R2781:2784 Corelib.Init.Datatypes <> list ind
+R2786:2789 Corelib.Init.Datatypes <> bool ind
+R2815:2816 Library.Assertion.Asserts <> df:5 var
+R2827:2831 Library.Assertion.Asserts <> Dpred constr
+R2838:2858 Library.PIMP.Syntax <> get_variables_in_bexp def
+R2866:2871 Library.Assertion.Asserts <> Dexist constr
+R2883:2902 Library.Assertion.Asserts <> get_var_in_Dformular:6 def
+def 2926:2945 <> get_var_in_Pformular
+R2952:2959 Library.Assertion.Asserts <> Pformula ind
+binder 2948:2950 <> phi:8
+R2964:2969 Library.DistState.CoreDef <> domain def
+R2995:2997 Library.Assertion.Asserts <> phi:8 var
+R3008:3013 Library.Assertion.Asserts <> Pdeter constr
+R3030:3049 Library.Assertion.Asserts <> get_var_in_Dformular def
+R3057:3061 Library.Assertion.Asserts <> Pplus constr
+R3091:3100 Stdlib.Reals.RIneq <> Rle_lt_dec thm
+R3121:3124 Corelib.Init.Specif <> left constr
+R3131:3150 Library.Assertion.Asserts <> get_var_in_Pformular:9 def
+R3178:3182 Corelib.Init.Specif <> right constr
+R3206:3215 Stdlib.Reals.RIneq <> Rle_lt_dec thm
+R3240:3243 Corelib.Init.Specif <> left constr
+R3250:3269 Library.Assertion.Asserts <> get_var_in_Pformular:9 def
+R3301:3305 Corelib.Init.Specif <> right constr
+R3314:3314 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R3340:3346 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R3372:3372 Library.DistState.CoreDef <> ::domain_scope:x_'∪'_x not
+R3315:3334 Library.Assertion.Asserts <> get_var_in_Pformular:9 def
+R3347:3366 Library.Assertion.Asserts <> get_var_in_Pformular:9 def
+R3427:3431 Library.Assertion.Asserts <> Oplus constr
+R3449:3458 Library.DistState.CoreDef <> orb_domain def
+R3461:3480 Library.Assertion.Asserts <> get_var_in_Pformular:9 def
+R3489:3508 Library.Assertion.Asserts <> get_var_in_Pformular:9 def
+R3520:3523 Library.Assertion.Asserts <> Odot constr
+R3542:3551 Library.DistState.CoreDef <> orb_domain def
+R3554:3573 Library.Assertion.Asserts <> get_var_in_Pformular:9 def
+R3582:3601 Library.Assertion.Asserts <> get_var_in_Pformular:9 def
+R3613:3616 Library.Assertion.Asserts <> Pand constr
+R3635:3644 Library.DistState.CoreDef <> orb_domain def
+R3647:3666 Library.Assertion.Asserts <> get_var_in_Pformular:9 def
+R3675:3694 Library.Assertion.Asserts <> get_var_in_Pformular:9 def
+def 3722:3731 <> DAssertion
+R3746:3749 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R3736:3745 Library.DistState.CoreDef <> partial_st def
+def 3767:3776 <> PAssertion
+R3793:3796 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R3781:3792 Library.DistState.CoreDef <> partial_dist rec
+binder 3994:3995 <> mu:11
+R4000:4002 Library.Assertion.Asserts <> ::formula_scope:'~'_x not
+R4005:4006 Library.Assertion.Asserts <> mu:11 var
+not 3980:3980 <> ::assertion_scope:'~'_x
+binder 4054:4055 <> mu:12
+R4065:4069 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R4063:4064 Library.Assertion.Asserts <> mu:12 var
+R4072:4073 Library.Assertion.Asserts <> mu:12 var
+not 4037:4037 <> ::assertion_scope:x_'/\'_x
+def 4106:4119 <> PAssertion_and
+R4129:4138 Library.Assertion.Asserts <> PAssertion def
+binder 4122:4123 <> P1:13
+binder 4125:4126 <> P2:14
+R4142:4151 Library.Assertion.Asserts <> PAssertion def
+R4160:4163 Library.Assertion.Asserts <> ::assertion_scope:x_'/\'_x not
+R4158:4159 Library.Assertion.Asserts <> P1:13 var
+R4164:4165 Library.Assertion.Asserts <> P2:14 var
+binder 4206:4207 <> mu:15
+R4217:4222 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R4215:4216 Library.Assertion.Asserts <> mu:15 var
+R4225:4226 Library.Assertion.Asserts <> mu:15 var
+not 4189:4189 <> ::assertion_scope:x_'->'_x
+binder 4275:4276 <> mu:16
+R4286:4292 Corelib.Init.Logic <> ::type_scope:x_'<->'_x not
+R4284:4285 Library.Assertion.Asserts <> mu:16 var
+R4295:4296 Library.Assertion.Asserts <> mu:16 var
+not 4257:4257 <> ::assertion_scope:x_'<->'_x
+ind 4392:4406 <> well_defined_Df
+constr 4435:4442 <> WD_Dpred
+constr 4486:4494 <> WD_Dexist
+R4418:4421 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R4410:4417 Library.Assertion.Asserts <> Dformula ind
+binder 4453:4453 <> b:19
+R4456:4470 Library.Assertion.Asserts <> well_defined_Df:17 ind
+R4473:4477 Library.Assertion.Asserts <> Dpred constr
+R4479:4479 Library.Assertion.Asserts <> b:19 var
+binder 4505:4505 <> X:20
+binder 4507:4508 <> f':21
+R4591:4600 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R4584:4586 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R4518:4533 Library.DistState.CoreDef <> is_domain_subset def
+R4536:4554 Library.PIMP.Syntax <> singleton_bool_list def
+R4556:4556 Library.Assertion.Asserts <> X:20 var
+R4560:4579 Library.Assertion.Asserts <> get_var_in_Dformular def
+R4581:4582 Library.Assertion.Asserts <> f':21 var
+R4587:4590 Corelib.Init.Datatypes <> true constr
+R4619:4622 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R4601:4615 Library.Assertion.Asserts <> well_defined_Df:17 ind
+R4617:4618 Library.Assertion.Asserts <> f':21 var
+R4623:4637 Library.Assertion.Asserts <> well_defined_Df:17 ind
+R4640:4645 Library.Assertion.Asserts <> Dexist constr
+R4647:4647 Library.Assertion.Asserts <> X:20 var
+R4649:4650 Library.Assertion.Asserts <> f':21 var
+scheme 4392:4406 <> well_defined_Df_ind
+scheme 4392:4406 <> well_defined_Df_sind
+ind 4664:4678 <> well_defined_Pf
+constr 4706:4714 <> WD_Pdeter
+constr 4790:4797 <> WD_Pplus
+constr 4934:4941 <> WD_Oplus
+constr 5043:5049 <> WD_Odot
+constr 5271:5277 <> WD_Pand
+R4690:4693 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R4682:4689 Library.Assertion.Asserts <> Pformula ind
+binder 4725:4726 <> df:24
+R4754:4757 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R4736:4750 Library.Assertion.Asserts <> well_defined_Df ind
+R4752:4753 Library.Assertion.Asserts <> df:24 var
+R4758:4772 Library.Assertion.Asserts <> well_defined_Pf:22 ind
+R4775:4780 Library.Assertion.Asserts <> Pdeter constr
+R4782:4783 Library.Assertion.Asserts <> df:24 var
+binder 4808:4808 <> p:25
+binder 4810:4811 <> f1:26
+binder 4813:4814 <> f2:27
+R4838:4847 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R4825:4828 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'<='_x_'<='_x not
+R4830:4833 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'<='_x_'<='_x not
+R4829:4829 Library.Assertion.Asserts <> p:25 var
+R4829:4829 Library.Assertion.Asserts <> p:25 var
+R4866:4869 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R4848:4862 Library.Assertion.Asserts <> well_defined_Pf:22 ind
+R4864:4865 Library.Assertion.Asserts <> f1:26 var
+R4888:4897 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R4870:4884 Library.Assertion.Asserts <> well_defined_Pf:22 ind
+R4886:4887 Library.Assertion.Asserts <> f2:27 var
+R4898:4912 Library.Assertion.Asserts <> well_defined_Pf:22 ind
+R4915:4919 Library.Assertion.Asserts <> Pplus constr
+R4921:4921 Library.Assertion.Asserts <> p:25 var
+R4923:4924 Library.Assertion.Asserts <> f1:26 var
+R4926:4927 Library.Assertion.Asserts <> f2:27 var
+binder 4952:4953 <> f1:28
+binder 4955:4956 <> f2:29
+R4983:4986 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R4965:4979 Library.Assertion.Asserts <> well_defined_Pf:22 ind
+R4981:4982 Library.Assertion.Asserts <> f1:28 var
+R5005:5008 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R4987:5001 Library.Assertion.Asserts <> well_defined_Pf:22 ind
+R5003:5004 Library.Assertion.Asserts <> f2:29 var
+R5009:5023 Library.Assertion.Asserts <> well_defined_Pf:22 ind
+R5026:5030 Library.Assertion.Asserts <> Oplus constr
+R5032:5033 Library.Assertion.Asserts <> f1:28 var
+R5035:5036 Library.Assertion.Asserts <> f2:29 var
+binder 5060:5061 <> f1:30
+binder 5063:5064 <> f2:31
+R5091:5094 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R5073:5087 Library.Assertion.Asserts <> well_defined_Pf:22 ind
+R5089:5090 Library.Assertion.Asserts <> f1:30 var
+R5113:5122 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R5095:5109 Library.Assertion.Asserts <> well_defined_Pf:22 ind
+R5111:5112 Library.Assertion.Asserts <> f2:31 var
+R5228:5237 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R5220:5222 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R5123:5141 Library.DistState.CoreDef <> is_domain_intersect def
+R5144:5163 Library.Assertion.Asserts <> get_var_in_Pformular def
+R5165:5166 Library.Assertion.Asserts <> f1:30 var
+R5196:5215 Library.Assertion.Asserts <> get_var_in_Pformular def
+R5217:5218 Library.Assertion.Asserts <> f2:31 var
+R5223:5227 Corelib.Init.Datatypes <> false constr
+R5238:5252 Library.Assertion.Asserts <> well_defined_Pf:22 ind
+R5255:5258 Library.Assertion.Asserts <> Odot constr
+R5260:5261 Library.Assertion.Asserts <> f1:30 var
+R5263:5264 Library.Assertion.Asserts <> f2:31 var
+binder 5288:5289 <> f1:32
+binder 5291:5292 <> f2:33
+R5319:5322 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R5301:5315 Library.Assertion.Asserts <> well_defined_Pf:22 ind
+R5317:5318 Library.Assertion.Asserts <> f1:32 var
+R5341:5344 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R5323:5337 Library.Assertion.Asserts <> well_defined_Pf:22 ind
+R5339:5340 Library.Assertion.Asserts <> f2:33 var
+R5345:5359 Library.Assertion.Asserts <> well_defined_Pf:22 ind
+R5362:5365 Library.Assertion.Asserts <> Pand constr
+R5367:5368 Library.Assertion.Asserts <> f1:32 var
+R5370:5371 Library.Assertion.Asserts <> f2:33 var
+scheme 4664:4678 <> well_defined_Pf_ind
+scheme 4664:4678 <> well_defined_Pf_sind
+def 5386:5391 <> df_sem
+R5398:5405 Library.Assertion.Asserts <> Dformula ind
+binder 5394:5394 <> f:34
+R5410:5419 Library.Assertion.Asserts <> DAssertion def
+R5484:5484 Library.Assertion.Asserts <> f:34 var
+R5495:5499 Library.Assertion.Asserts <> Dpred constr
+binder 5510:5511 <> st:37
+R5516:5516 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R5585:5615 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R5578:5580 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R5517:5532 Library.DistState.CoreDef <> is_domain_subset def
+R5535:5555 Library.PIMP.Syntax <> get_variables_in_bexp def
+R5561:5573 Library.DistState.CoreDef <> return_domain def
+R5575:5576 Library.Assertion.Asserts <> st:37 var
+R5581:5584 Corelib.Init.Datatypes <> true constr
+R5620:5627 Library.PIMP.EvalProps <> evalB_st def
+R5631:5632 Library.Assertion.Asserts <> st:37 var
+R5650:5654 Corelib.Init.Logic <> False ind
+R5640:5643 Corelib.Init.Logic <> True ind
+R5661:5666 Library.Assertion.Asserts <> Dexist constr
+binder 5680:5681 <> st:38
+R5755:5788 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R5748:5750 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R5687:5702 Library.DistState.CoreDef <> is_domain_subset def
+R5705:5724 Library.Assertion.Asserts <> get_var_in_Dformular def
+R5731:5743 Library.DistState.CoreDef <> return_domain def
+R5745:5746 Library.Assertion.Asserts <> st:38 var
+R5751:5754 Corelib.Init.Datatypes <> true constr
+R5789:5795 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R5801:5802 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R5800:5800 Stdlib.QArith.QArith_base <> Q rec
+binder 5796:5796 <> r:39
+R5803:5808 Library.Assertion.Asserts <> df_sem:35 def
+R5814:5819 Library.PIMP.EvalProps <> update def
+R5821:5822 Library.Assertion.Asserts <> st:38 var
+R5826:5826 Library.Assertion.Asserts <> r:39 var
+def 5847:5852 <> pf_sem
+R5859:5866 Library.Assertion.Asserts <> Pformula ind
+binder 5855:5855 <> f:40
+R5871:5880 Library.Assertion.Asserts <> PAssertion def
+R5894:5894 Library.Assertion.Asserts <> f:40 var
+R5905:5910 Library.Assertion.Asserts <> Pdeter constr
+binder 5922:5923 <> pd:43
+R5928:5928 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R5987:6020 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6088:6088 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R5980:5982 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R5929:5944 Library.DistState.CoreDef <> is_domain_subset def
+R5947:5966 Library.Assertion.Asserts <> get_var_in_Dformular def
+R5976:5978 Library.DistState.CoreDef <> dom proj
+R5972:5973 Library.Assertion.Asserts <> pd:43 var
+R5983:5986 Corelib.Init.Datatypes <> true constr
+binder 6028:6029 <> st:44
+R6070:6073 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R6063:6065 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R6032:6041 Library.DistState.CoreDef <> is_in_supp def
+R6043:6044 Library.Assertion.Asserts <> st:44 var
+R6047:6053 Library.DistState.CoreDef <> supp_mu def
+R6059:6060 Library.DistState.CoreDef <> mu proj
+R6055:6056 Library.Assertion.Asserts <> pd:43 var
+R6066:6069 Corelib.Init.Datatypes <> true constr
+R6075:6080 Library.Assertion.Asserts <> df_sem def
+R6086:6087 Library.Assertion.Asserts <> st:44 var
+R6095:6099 Library.Assertion.Asserts <> Pplus constr
+binder 6116:6117 <> pd:45
+R6132:6132 Corelib.Init.Logic <> ::type_scope:x_'\/'_x not
+R6704:6740 Corelib.Init.Logic <> ::type_scope:x_'\/'_x not
+R6142:6146 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6703:6703 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6134:6136 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'<'_x_'<'_x not
+R6138:6140 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'<'_x_'<'_x not
+R6147:6153 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R6161:6201 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 6154:6156 <> pd1:46
+binder 6158:6160 <> pd2:47
+R6221:6224 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6202:6211 Library.DistState.CoreDef <> Valid_dist def
+R6218:6219 Library.DistState.CoreDef <> mu proj
+R6213:6215 Library.Assertion.Asserts <> pd1:46 var
+R6244:6286 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6225:6234 Library.DistState.CoreDef <> Valid_dist def
+R6241:6242 Library.DistState.CoreDef <> mu proj
+R6236:6238 Library.Assertion.Asserts <> pd2:47 var
+R6317:6320 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6297:6300 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R6293:6295 Library.DistState.CoreDef <> dom proj
+R6288:6290 Library.Assertion.Asserts <> pd1:46 var
+R6305:6307 Library.DistState.CoreDef <> dom proj
+R6301:6302 Library.Assertion.Asserts <> pd:45 var
+R6351:6392 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6331:6334 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R6327:6329 Library.DistState.CoreDef <> dom proj
+R6322:6324 Library.Assertion.Asserts <> pd2:47 var
+R6339:6341 Library.DistState.CoreDef <> dom proj
+R6335:6336 Library.Assertion.Asserts <> pd:45 var
+R6393:6393 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6407:6411 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6394:6399 Library.Assertion.Asserts <> pf_sem:41 def
+R6404:6406 Library.Assertion.Asserts <> pd1:46 var
+R6412:6412 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6426:6468 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6413:6418 Library.Assertion.Asserts <> pf_sem:41 def
+R6423:6425 Library.Assertion.Asserts <> pd2:47 var
+R6515:6557 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6491:6493 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R6470:6478 Library.DistState.CoreDef <> sum_probs def
+R6485:6486 Library.DistState.CoreDef <> mu proj
+R6480:6482 Library.Assertion.Asserts <> pd1:46 var
+R6495:6503 Library.DistState.CoreDef <> sum_probs def
+R6509:6510 Library.DistState.CoreDef <> mu proj
+R6505:6506 Library.Assertion.Asserts <> pd:45 var
+R6604:6645 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6580:6582 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R6559:6567 Library.DistState.CoreDef <> sum_probs def
+R6574:6575 Library.DistState.CoreDef <> mu proj
+R6569:6571 Library.Assertion.Asserts <> pd2:47 var
+R6584:6592 Library.DistState.CoreDef <> sum_probs def
+R6598:6599 Library.DistState.CoreDef <> mu proj
+R6594:6595 Library.Assertion.Asserts <> pd:45 var
+R6654:6657 Library.DistState.CoreDef <> ::dstate_scope:x_'=='_x not
+R6651:6652 Library.DistState.CoreDef <> mu proj
+R6647:6648 Library.Assertion.Asserts <> pd:45 var
+R6658:6658 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R6671:6674 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R6660:6662 Library.DistState.CoreDef <> ::dstate_scope:x_'*'_x not
+R6668:6669 Library.DistState.CoreDef <> mu proj
+R6663:6665 Library.Assertion.Asserts <> pd1:46 var
+R6675:6675 Library.DistState.CoreDef <> ::dstate_scope:x_'*'_x not
+R6679:6682 Library.DistState.CoreDef <> ::dstate_scope:x_'*'_x not
+R6677:6677 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'-'_x not
+R6688:6689 Library.DistState.CoreDef <> mu proj
+R6683:6685 Library.Assertion.Asserts <> pd2:47 var
+R6741:6741 Corelib.Init.Logic <> ::type_scope:x_'\/'_x not
+R6985:7021 Corelib.Init.Logic <> ::type_scope:x_'\/'_x not
+R7264:7264 Corelib.Init.Logic <> ::type_scope:x_'\/'_x not
+R6747:6751 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6984:6984 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6743:6745 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R6752:6758 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R6762:6802 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 6759:6761 <> pd1:48
+R6822:6825 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6803:6812 Library.DistState.CoreDef <> Valid_dist def
+R6819:6820 Library.DistState.CoreDef <> mu proj
+R6814:6816 Library.Assertion.Asserts <> pd1:48 var
+R6826:6826 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6837:6880 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6830:6834 Library.DistState.CoreDef <> :::x_'≡'_x not
+R6827:6829 Library.Assertion.Asserts <> pd1:48 var
+R6835:6836 Library.Assertion.Asserts <> pd:45 var
+R6881:6881 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6895:6937 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R6882:6887 Library.Assertion.Asserts <> pf_sem:41 def
+R6892:6894 Library.Assertion.Asserts <> pd1:48 var
+R6960:6962 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R6939:6947 Library.DistState.CoreDef <> sum_probs def
+R6954:6955 Library.DistState.CoreDef <> mu proj
+R6949:6951 Library.Assertion.Asserts <> pd1:48 var
+R6964:6972 Library.DistState.CoreDef <> sum_probs def
+R6978:6979 Library.DistState.CoreDef <> mu proj
+R6974:6975 Library.Assertion.Asserts <> pd:45 var
+R7027:7031 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7263:7263 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7023:7025 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R7032:7038 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R7042:7082 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 7039:7041 <> pd2:49
+R7102:7105 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7083:7092 Library.DistState.CoreDef <> Valid_dist def
+R7099:7100 Library.DistState.CoreDef <> mu proj
+R7094:7096 Library.Assertion.Asserts <> pd2:49 var
+R7106:7106 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7117:7159 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7110:7114 Library.DistState.CoreDef <> :::x_'≡'_x not
+R7107:7109 Library.Assertion.Asserts <> pd2:49 var
+R7115:7116 Library.Assertion.Asserts <> pd:45 var
+R7160:7160 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7174:7216 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7161:7166 Library.Assertion.Asserts <> pf_sem:41 def
+R7171:7173 Library.Assertion.Asserts <> pd2:49 var
+R7239:7241 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R7218:7226 Library.DistState.CoreDef <> sum_probs def
+R7233:7234 Library.DistState.CoreDef <> mu proj
+R7228:7230 Library.Assertion.Asserts <> pd2:49 var
+R7243:7251 Library.DistState.CoreDef <> sum_probs def
+R7257:7258 Library.DistState.CoreDef <> mu proj
+R7253:7254 Library.Assertion.Asserts <> pd:45 var
+R7271:7275 Library.Assertion.Asserts <> Oplus constr
+binder 7290:7291 <> pd:50
+R7323:7323 Corelib.Init.Logic <> ::type_scope:x_'\/'_x not
+R7955:7985 Corelib.Init.Logic <> ::type_scope:x_'\/'_x not
+R7324:7330 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R7336:7337 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 7331:7332 <> p1:51
+binder 7334:7335 <> p2:52
+R7352:7355 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7340:7342 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'<'_x_'<'_x not
+R7345:7347 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'<'_x_'<'_x not
+R7343:7344 Library.Assertion.Asserts <> p1:51 var
+R7343:7344 Library.Assertion.Asserts <> p1:51 var
+R7370:7373 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7358:7360 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'<'_x_'<'_x not
+R7363:7365 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'<'_x_'<'_x not
+R7361:7362 Library.Assertion.Asserts <> p2:52 var
+R7361:7362 Library.Assertion.Asserts <> p2:52 var
+R7393:7429 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7954:7954 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7386:7388 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R7379:7381 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'+'_x not
+R7375:7376 Library.Assertion.Asserts <> p1:51 var
+R7382:7383 Library.Assertion.Asserts <> p2:52 var
+R7430:7436 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R7444:7481 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R7953:7953 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 7437:7439 <> pd1:53
+binder 7441:7443 <> pd2:54
+R7501:7504 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7482:7491 Library.DistState.CoreDef <> Valid_dist def
+R7498:7499 Library.DistState.CoreDef <> mu proj
+R7493:7495 Library.Assertion.Asserts <> pd1:53 var
+R7524:7562 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7505:7514 Library.DistState.CoreDef <> Valid_dist def
+R7521:7522 Library.DistState.CoreDef <> mu proj
+R7516:7518 Library.Assertion.Asserts <> pd2:54 var
+R7593:7596 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7573:7576 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R7569:7571 Library.DistState.CoreDef <> dom proj
+R7564:7566 Library.Assertion.Asserts <> pd1:53 var
+R7581:7583 Library.DistState.CoreDef <> dom proj
+R7577:7578 Library.Assertion.Asserts <> pd:50 var
+R7627:7664 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7607:7610 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R7603:7605 Library.DistState.CoreDef <> dom proj
+R7598:7600 Library.Assertion.Asserts <> pd2:54 var
+R7615:7617 Library.DistState.CoreDef <> dom proj
+R7611:7612 Library.Assertion.Asserts <> pd:50 var
+R7665:7665 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7679:7683 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7666:7671 Library.Assertion.Asserts <> pf_sem:41 def
+R7676:7678 Library.Assertion.Asserts <> pd1:53 var
+R7684:7684 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7698:7736 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7685:7690 Library.Assertion.Asserts <> pf_sem:41 def
+R7695:7697 Library.Assertion.Asserts <> pd2:54 var
+R7779:7817 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7756:7758 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R7738:7746 Library.DistState.CoreDef <> sum_probs def
+R7753:7754 Library.DistState.CoreDef <> mu proj
+R7748:7750 Library.Assertion.Asserts <> pd1:53 var
+R7759:7767 Library.DistState.CoreDef <> sum_probs def
+R7773:7774 Library.DistState.CoreDef <> mu proj
+R7769:7770 Library.Assertion.Asserts <> pd:50 var
+R7860:7897 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R7837:7839 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R7819:7827 Library.DistState.CoreDef <> sum_probs def
+R7834:7835 Library.DistState.CoreDef <> mu proj
+R7829:7831 Library.Assertion.Asserts <> pd2:54 var
+R7840:7848 Library.DistState.CoreDef <> sum_probs def
+R7854:7855 Library.DistState.CoreDef <> mu proj
+R7850:7851 Library.Assertion.Asserts <> pd:50 var
+R7906:7909 Library.DistState.CoreDef <> ::dstate_scope:x_'=='_x not
+R7903:7904 Library.DistState.CoreDef <> mu proj
+R7899:7900 Library.Assertion.Asserts <> pd:50 var
+R7910:7910 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R7924:7927 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R7913:7915 Library.DistState.CoreDef <> ::dstate_scope:x_'*'_x not
+R7911:7912 Library.Assertion.Asserts <> p1:51 var
+R7921:7922 Library.DistState.CoreDef <> mu proj
+R7916:7918 Library.Assertion.Asserts <> pd1:53 var
+R7930:7932 Library.DistState.CoreDef <> ::dstate_scope:x_'*'_x not
+R7928:7929 Library.Assertion.Asserts <> p2:52 var
+R7938:7939 Library.DistState.CoreDef <> mu proj
+R7933:7935 Library.Assertion.Asserts <> pd2:54 var
+R7986:7986 Corelib.Init.Logic <> ::type_scope:x_'\/'_x not
+R8301:8331 Corelib.Init.Logic <> ::type_scope:x_'\/'_x not
+R8647:8647 Corelib.Init.Logic <> ::type_scope:x_'\/'_x not
+R7987:7993 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R7997:8033 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R8300:8300 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 7994:7996 <> pd1:55
+R8053:8056 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R8034:8043 Library.DistState.CoreDef <> Valid_dist def
+R8050:8051 Library.DistState.CoreDef <> mu proj
+R8045:8047 Library.Assertion.Asserts <> pd1:55 var
+R8057:8057 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R8068:8107 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R8061:8065 Library.DistState.CoreDef <> :::x_'≡'_x not
+R8058:8060 Library.Assertion.Asserts <> pd1:55 var
+R8066:8067 Library.Assertion.Asserts <> pd:50 var
+R8166:8203 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R8159:8161 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R8108:8123 Library.DistState.CoreDef <> is_domain_subset def
+R8126:8145 Library.Assertion.Asserts <> get_var_in_Pformular def
+R8155:8157 Library.DistState.CoreDef <> dom proj
+R8151:8152 Library.Assertion.Asserts <> pd:50 var
+R8162:8165 Corelib.Init.Datatypes <> true constr
+R8204:8204 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R8218:8257 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R8205:8210 Library.Assertion.Asserts <> pf_sem:41 def
+R8215:8217 Library.Assertion.Asserts <> pd1:55 var
+R8277:8279 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R8259:8267 Library.DistState.CoreDef <> sum_probs def
+R8274:8275 Library.DistState.CoreDef <> mu proj
+R8269:8271 Library.Assertion.Asserts <> pd1:55 var
+R8280:8288 Library.DistState.CoreDef <> sum_probs def
+R8294:8295 Library.DistState.CoreDef <> mu proj
+R8290:8291 Library.Assertion.Asserts <> pd:50 var
+R8332:8338 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R8342:8379 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R8646:8646 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 8339:8341 <> pd2:56
+R8399:8402 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R8380:8389 Library.DistState.CoreDef <> Valid_dist def
+R8396:8397 Library.DistState.CoreDef <> mu proj
+R8391:8393 Library.Assertion.Asserts <> pd2:56 var
+R8403:8403 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R8414:8453 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R8407:8411 Library.DistState.CoreDef <> :::x_'≡'_x not
+R8404:8406 Library.Assertion.Asserts <> pd2:56 var
+R8412:8413 Library.Assertion.Asserts <> pd:50 var
+R8512:8549 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R8505:8507 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R8454:8469 Library.DistState.CoreDef <> is_domain_subset def
+R8472:8491 Library.Assertion.Asserts <> get_var_in_Pformular def
+R8501:8503 Library.DistState.CoreDef <> dom proj
+R8497:8498 Library.Assertion.Asserts <> pd:50 var
+R8508:8511 Corelib.Init.Datatypes <> true constr
+R8550:8550 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R8564:8603 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R8551:8556 Library.Assertion.Asserts <> pf_sem:41 def
+R8561:8563 Library.Assertion.Asserts <> pd2:56 var
+R8623:8625 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R8605:8613 Library.DistState.CoreDef <> sum_probs def
+R8620:8621 Library.DistState.CoreDef <> mu proj
+R8615:8617 Library.Assertion.Asserts <> pd2:56 var
+R8626:8634 Library.DistState.CoreDef <> sum_probs def
+R8640:8641 Library.DistState.CoreDef <> mu proj
+R8636:8637 Library.Assertion.Asserts <> pd:50 var
+R8653:8656 Library.Assertion.Asserts <> Odot constr
+binder 8671:8672 <> pd:57
+R8679:8685 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R8748:8784 Corelib.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 8686:8688 <> pd1:58
+binder 8690:8692 <> pd2:59
+R8740:8742 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R8701:8719 Library.DistState.CoreDef <> is_domain_intersect def
+R8726:8728 Library.DistState.CoreDef <> dom proj
+R8721:8723 Library.Assertion.Asserts <> pd1:58 var
+R8736:8738 Library.DistState.CoreDef <> dom proj
+R8731:8733 Library.Assertion.Asserts <> pd2:59 var
+R8743:8747 Corelib.Init.Datatypes <> false constr
+binder 8695:8698 <> Hvar:60
+R8804:8807 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R8785:8794 Library.DistState.CoreDef <> Valid_dist def
+R8801:8802 Library.DistState.CoreDef <> mu proj
+R8796:8798 Library.Assertion.Asserts <> pd1:58 var
+R8827:8866 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R8808:8817 Library.DistState.CoreDef <> Valid_dist def
+R8824:8825 Library.DistState.CoreDef <> mu proj
+R8819:8821 Library.Assertion.Asserts <> pd2:59 var
+R8867:8867 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R8881:8885 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R8868:8873 Library.Assertion.Asserts <> pf_sem:41 def
+R8878:8880 Library.Assertion.Asserts <> pd1:58 var
+R8886:8886 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R8900:8940 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R9178:9178 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R8887:8892 Library.Assertion.Asserts <> pf_sem:41 def
+R8897:8899 Library.Assertion.Asserts <> pd2:59 var
+R8951:8968 Library.DistState.CoreDef <> Build_partial_dist constr
+R8971:8980 Library.DistState.CoreDef <> orb_domain def
+R8987:8989 Library.DistState.CoreDef <> dom proj
+R8982:8984 Library.Assertion.Asserts <> pd1:58 var
+R8997:8999 Library.DistState.CoreDef <> dom proj
+R8992:8994 Library.Assertion.Asserts <> pd2:59 var
+R9079:9083 Library.DistState.CoreDef <> ::dstate_scope:x_'⊗'_x not
+R9076:9077 Library.DistState.CoreDef <> mu proj
+R9071:9073 Library.Assertion.Asserts <> pd1:58 var
+R9089:9090 Library.DistState.CoreDef <> mu proj
+R9084:9086 Library.Assertion.Asserts <> pd2:59 var
+R9095:9113 Library.DistState.Combine <> PD_combine_invar_mu thm
+R9115:9117 Library.Assertion.Asserts <> pd1:58 var
+R9119:9121 Library.Assertion.Asserts <> pd2:59 var
+R9123:9126 Library.Assertion.Asserts <> Hvar:60 var
+binder 8945:8947 <> pd0:61
+R9171:9175 Library.DistState.CoreDef <> ::dstate_scope:x_'⊑'_x not
+R9168:9170 Library.Assertion.Asserts <> pd0:61 var
+R9176:9177 Library.Assertion.Asserts <> pd:57 var
+R9185:9188 Library.Assertion.Asserts <> Pand constr
+binder 9203:9204 <> pd:62
+R9209:9209 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R9222:9227 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R9240:9240 Corelib.Init.Logic <> ::type_scope:x_'/\'_x not
+R9210:9215 Library.Assertion.Asserts <> pf_sem:41 def
+R9220:9221 Library.Assertion.Asserts <> pd:62 var
+R9228:9233 Library.Assertion.Asserts <> pf_sem:41 def
+R9238:9239 Library.Assertion.Asserts <> pd:62 var
+R9274:9279 Library.Assertion.Asserts <> pf_sem def
+not 9256:9256 <> ::formula_scope:'[['_x_']]'

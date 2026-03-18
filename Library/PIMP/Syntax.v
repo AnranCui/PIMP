@@ -38,6 +38,8 @@ Inductive bexp := (** Syntax of Boolean expressions *)
   | Ble : aexp -> aexp -> bexp (*less than*).
 
 (*The premise of evaluation is that the variable a is a subset of the variables in state*)
+Coercion Ava : nat >-> aexp.
+Coercion Aco : Q >-> aexp.
 
 Declare Scope imp_scope.
 Bind Scope imp_scope with aexp.
@@ -47,11 +49,15 @@ Notation "a + b"  := (Apl a b) (at level 50, left associativity) : imp_scope.
 Notation "a * b"  := (Amu a b) (at level 40, left associativity) : imp_scope.
 Notation "a - b"  := (Asu a b) (at level 50, left associativity) : imp_scope.
 Notation "x && y" := (Band x y) (at level 40, left associativity) : imp_scope.
+Definition Bor (a b : bexp) : bexp := Bnot (Band (Bnot a) (Bnot b)).
+Notation "x || y" := (Bor x y) (at level 50, left associativity) : imp_scope.
 Notation "'~' b"  := (Bnot b) (at level 75, right associativity) : imp_scope.
 Notation "a = b"  := (Beq a b) (at level 70, no associativity) : imp_scope.
 Notation "a <= b" := (Ble a b) (at level 70, no associativity) : imp_scope.
 Definition Blt (a b : aexp) : bexp := Bnot (Ble b a).
 Notation "a < b" := (Blt a b) (at level 70, no associativity) : imp_scope.
+Definition Bge (a b : aexp) : bexp := Bnot (Blt a b).  (* a >= b 定义为 ~(a < b) *)
+Notation "a >= b" := (Bge a b) (at level 70, no associativity) : imp_scope.
 
 (** ** Commands *)
 Definition valid_dist_aexp := { da : dist aexp | positive_probs da /\ sum_probs da = 1%R }.

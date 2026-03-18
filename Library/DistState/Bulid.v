@@ -24,7 +24,7 @@ Open Scope list_scope.
 Open Scope R_scope.
 Open Scope dstate_scope.
 
-Lemma res_bulid_helper_implies_Peq: forall ss ps mu X,
+Lemma res_bulid_helper_implies_Peq: forall ss ps mu X, (*Restrict 到域 X 后是单点分布（按 ss 聚合）*)
   (bulid_helper ss ps mu X) \| X == [(ss, ((get_prob_in_dstate (mu \| X) ss) * ps))%R].
 Proof.
   intros ss ps mu X. generalize dependent X. generalize dependent ss.
@@ -44,7 +44,7 @@ Proof.
     + apply IH; try assumption.
 Qed.
 
-Lemma bulid_res_implies_Peq: forall mu_sub mu X, 
+Lemma bulid_res_implies_Peq: forall mu_sub mu X,  (* Restrict 回 X 得到原来的 \mu_{\text{sub}}*)
   Valid_dist mu ->
   Valid_dist mu_sub ->
   is_supp_subset (supp_mu mu_sub) (supp_mu (mu \| X)) = true ->
@@ -82,7 +82,7 @@ Proof.
 Qed.
 
 (*******************************************)
-Lemma sum_probs_bulid_helper_le: forall ss ps mu X, 
+Lemma sum_probs_bulid_helper_le: forall ss ps mu X,  (*总质量不增*)
   prob_is_positive ps -> 
   Valid_dist mu ->
   sum_probs (bulid_helper ss ps mu X) <= sum_probs mu.
@@ -101,7 +101,7 @@ Proof.
       destruct HV. destruct H0. destruct H0. apply Rlt_le. assumption.
 Qed. 
 
-Lemma Valid_after_bulid_helper: forall ss ps mu X,
+Lemma Valid_after_bulid_helper: forall ss ps mu X, (*有效性保持*)
   Valid_dist mu -> 
   prob_is_positive ps -> 
   Valid_dist (bulid_helper ss ps mu X).
@@ -147,7 +147,7 @@ Proof.
 Qed.
 
 
-Lemma sum_probs_bulid_helper_eq: forall ss ps mu X, 
+Lemma sum_probs_bulid_helper_eq: forall ss ps mu X, (*点概率精确公式*)
   Valid_dist mu -> prob_is_positive ps -> 
   sum_probs (bulid_helper ss ps mu X) = ((get_prob_in_dstate (mu \| X) ss)*ps)%R.
 Proof.
@@ -182,7 +182,7 @@ Proof.
       ** unfold not in H1. exfalso. apply H1. reflexivity.
 Qed.
 
-Lemma sum_probs_bulid: forall mu_sub mu X,
+Lemma sum_probs_bulid: forall mu_sub mu X, (*总概率质量保持（build 不改变 sum_probs）*)
   Valid_dist mu_sub -> Valid_dist mu ->
   is_supp_subset (supp_mu mu_sub) (supp_mu (mu \| X)) = true ->
   sum_probs (bulid_dst_sub mu_sub mu X) = sum_probs mu_sub.
@@ -215,7 +215,7 @@ Proof.
     + destruct H. destruct H1. apply H1. 
 Qed. 
 
-Lemma supp_subset_bulid_helper: forall ss ps mu X, 
+Lemma supp_subset_bulid_helper: forall ss ps mu X,  (*支持集包含关系：helper 的支持属于原支持*)
   Valid_dist mu -> prob_is_positive ps ->
   is_supp_subset (supp_mu (bulid_helper ss ps mu X)) (supp_mu mu) = true.
 Proof.
@@ -371,7 +371,7 @@ Proof.
           destruct Hsub. assumption. 
 Qed.
 
-Lemma bulid_supp_subset: forall mu_sub mu X, 
+Lemma bulid_supp_subset: forall mu_sub mu X,  (*支持集包含关系：build 的支持属于原支持*)
   Valid_dist mu -> Valid_dist mu_sub ->
   is_supp_subset (supp_mu mu_sub) (supp_mu (mu \| X)) = true ->
   is_supp_subset (supp_mu (bulid_dst_sub mu_sub mu X)) (supp_mu mu) = true.
@@ -478,7 +478,7 @@ Proof.
 Qed.
 
 
-Lemma res_bulid_Peq: forall mu_sub s mu X, 
+Lemma res_bulid_Peq: forall mu_sub s mu X,  (*点概率闭式：按投影类做“条件化再加权”*)
   Valid_dist mu -> Valid_dist mu_sub ->
   is_supp_subset (supp_mu mu_sub) (supp_mu (mu \| X)) = true ->
   get_prob_in_dstate (bulid_dst_sub mu_sub mu X) s = 
@@ -524,7 +524,7 @@ Proof.
       rewrite Htemp. rewrite Rmult_0_r. rewrite Rplus_0_l. apply IH; try assumption.
 Qed.
 
-Lemma Peq_implies_res_bulid_Peq: forall mu mu1 X, 
+Lemma Peq_implies_res_bulid_Peq: forall mu mu1 X,  (*“build” 作为 \|X 的右逆（以及线性/可加性）*)
   Valid_dist mu -> Valid_dist mu1 ->
   mu1 == mu \| X -> 
   (bulid_dst_sub mu1 mu X) == mu.
@@ -543,7 +543,7 @@ Proof.
   - rewrite <- Rinv_l_sym; try assumption. rewrite Rmult_1_l. reflexivity.
 Qed.
 
-Lemma res_bulid_add: forall mu mu1 mu2 X, 
+Lemma res_bulid_add: forall mu mu1 mu2 X, (*加法分解：restriction 上的加法分解可 lift 回去相加得到原分布*)
   Valid_dist mu -> Valid_dist mu1 -> Valid_dist mu2 ->
   mu \| X == mu1 + mu2 -> 
   (sum_probs (mu \| X) = sum_probs mu1 + sum_probs mu2)%R ->
@@ -576,7 +576,7 @@ Proof.
   - rewrite <- Rinv_l_sym; try assumption. rewrite Rmult_1_l. reflexivity.
 Qed.
 
-Lemma res_bulid_linear: forall mu mu1 mu2 X p, 
+Lemma res_bulid_linear: forall mu mu1 mu2 X p,  (*线性组合：restriction 上的凸组合可 lift 成全分布的凸组合*)
   0 < p < 1 -> Valid_dist mu -> Valid_dist mu1 -> Valid_dist mu2 ->
   mu \| X == p * mu1 + (1-p) * mu2 ->
   (sum_probs mu1 = sum_probs (mu \| X))%R ->

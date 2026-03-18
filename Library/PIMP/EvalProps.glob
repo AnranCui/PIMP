@@ -1,0 +1,3178 @@
+DIGEST 2447a8b89998cb1a76cb62d6afe48fd4
+FLibrary.PIMP.EvalProps
+R27:39 Stdlib.QArith.QArith <> <> lib
+R69:81 Stdlib.QArith.Qround <> <> lib
+R111:128 Stdlib.QArith.QArith_base <> <> lib
+R158:166 Stdlib.Bool.Bool <> <> lib
+R196:207 Stdlib.Reals.R_sqrt <> <> lib
+R237:240 Stdlib.Lists.List <> <> lib
+R270:280 Stdlib.Reals.Reals <> <> lib
+R310:312 Stdlib.micromega.Lia <> <> lib
+R342:371 Stdlib.Logic.FunctionalExtensionality <> <> lib
+R401:421 Stdlib.Logic.ClassicalChoice <> <> lib
+R451:463 Stdlib.ZArith.ZArith <> <> lib
+R473:485 Stdlib.Lists.List ListNotations <> mod
+R534:550 Library.UtilityQR <> <> lib
+R568:592 Library.DistState.CoreDef <> <> lib
+R610:635 Library.DistState.ValidDst <> <> lib
+R653:676 Library.DistState.Domain <> <> lib
+R694:718 Library.DistState.Support <> <> lib
+R736:763 Library.DistState.Arithmetic <> <> lib
+R781:805 Library.DistState.Combine <> <> lib
+R823:847 Library.DistState.Partial <> <> lib
+R865:883 Library.PIMP.Syntax <> <> lib
+def 946:948 <> get
+R953:955 Corelib.Init.Datatypes <> nat ind
+binder 951:951 <> i:1
+R961:970 Library.DistState.CoreDef <> partial_st def
+binder 959:959 <> s:2
+R975:975 Stdlib.QArith.QArith_base <> Q rec
+R1014:1014 Library.PIMP.EvalProps <> s:2 var
+R1011:1011 Library.PIMP.EvalProps <> i:1 var
+R1038:1041 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1032:1035 Corelib.Init.Datatypes <> Some constr
+R1054:1054 Corelib.Init.Datatypes <> S constr
+R1062:1065 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1072:1074 Library.PIMP.EvalProps <> get:3 def
+R1104:1112 Library.DistState.CoreDef <> default_Q def
+def 1130:1135 <> update
+R1140:1149 Library.DistState.CoreDef <> partial_st def
+binder 1138:1138 <> s:6
+R1155:1157 Corelib.Init.Datatypes <> nat ind
+binder 1153:1153 <> i:7
+R1163:1163 Stdlib.QArith.QArith_base <> Q rec
+binder 1161:1161 <> v:8
+R1168:1177 Library.DistState.CoreDef <> partial_st def
+R1193:1193 Library.PIMP.EvalProps <> s:6 var
+R1190:1190 Library.PIMP.EvalProps <> i:7 var
+R1212:1215 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1228:1231 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1222:1225 Corelib.Init.Datatypes <> Some constr
+R1227:1227 Library.PIMP.EvalProps <> v:8 var
+R1246:1247 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R1263:1266 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1257:1260 Corelib.Init.Datatypes <> Some constr
+R1262:1262 Library.PIMP.EvalProps <> v:8 var
+R1267:1268 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R1274:1274 Corelib.Init.Datatypes <> S constr
+R1282:1285 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1293:1297 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1312:1312 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1298:1303 Library.PIMP.EvalProps <> update:9 def
+R1311:1311 Library.PIMP.EvalProps <> v:8 var
+R1318:1318 Corelib.Init.Datatypes <> S constr
+R1325:1326 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R1340:1344 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1359:1359 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1336:1339 Corelib.Init.Datatypes <> None constr
+R1345:1350 Library.PIMP.EvalProps <> update:9 def
+R1358:1358 Library.PIMP.EvalProps <> v:8 var
+R1352:1353 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+def 1398:1405 <> evalA_st
+R1411:1414 Library.PIMP.Syntax <> aexp ind
+binder 1408:1408 <> a:12
+R1421:1430 Library.DistState.CoreDef <> partial_st def
+binder 1418:1418 <> s:13
+R1435:1435 Stdlib.QArith.QArith_base <> Q rec
+R1487:1487 Library.PIMP.EvalProps <> a:12 var
+R1498:1500 Library.PIMP.Syntax <> Aco constr
+R1514:1516 Library.PIMP.Syntax <> Ava constr
+R1523:1525 Library.PIMP.EvalProps <> get def
+R1529:1529 Library.PIMP.EvalProps <> s:13 var
+R1537:1539 Library.PIMP.Syntax <> Apl constr
+R1564:1566 Stdlib.QArith.QArith_base <> ::Q_scope:x_'+'_x not
+R1551:1558 Library.PIMP.EvalProps <> evalA_st:14 def
+R1563:1563 Library.PIMP.EvalProps <> s:13 var
+R1567:1574 Library.PIMP.EvalProps <> evalA_st:14 def
+R1579:1579 Library.PIMP.EvalProps <> s:13 var
+R1586:1588 Library.PIMP.Syntax <> Amu constr
+R1613:1615 Stdlib.QArith.QArith_base <> ::Q_scope:x_'*'_x not
+R1600:1607 Library.PIMP.EvalProps <> evalA_st:14 def
+R1612:1612 Library.PIMP.EvalProps <> s:13 var
+R1616:1623 Library.PIMP.EvalProps <> evalA_st:14 def
+R1628:1628 Library.PIMP.EvalProps <> s:13 var
+R1635:1637 Library.PIMP.Syntax <> Asu constr
+R1662:1664 Stdlib.QArith.QArith_base <> ::Q_scope:x_'-'_x not
+R1649:1656 Library.PIMP.EvalProps <> evalA_st:14 def
+R1661:1661 Library.PIMP.EvalProps <> s:13 var
+R1665:1672 Library.PIMP.EvalProps <> evalA_st:14 def
+R1677:1677 Library.PIMP.EvalProps <> s:13 var
+def 1736:1743 <> evalB_st
+R1750:1753 Library.PIMP.Syntax <> bexp ind
+binder 1746:1746 <> b:16
+R1761:1770 Library.DistState.CoreDef <> partial_st def
+binder 1757:1757 <> s:17
+R1775:1778 Corelib.Init.Datatypes <> bool ind
+R1830:1830 Library.PIMP.EvalProps <> b:16 var
+R1841:1845 Library.PIMP.Syntax <> Btrue constr
+R1850:1853 Corelib.Init.Datatypes <> true constr
+R1859:1864 Library.PIMP.Syntax <> Bfalse constr
+R1869:1873 Corelib.Init.Datatypes <> false constr
+R1879:1882 Library.PIMP.Syntax <> Band constr
+R1893:1896 Corelib.Init.Datatypes <> andb def
+R1915:1922 Library.PIMP.EvalProps <> evalB_st:18 def
+R1927:1927 Library.PIMP.EvalProps <> s:17 var
+R1899:1906 Library.PIMP.EvalProps <> evalB_st:18 def
+R1911:1911 Library.PIMP.EvalProps <> s:17 var
+R1934:1937 Library.PIMP.Syntax <> Bnot constr
+R1944:1947 Corelib.Init.Datatypes <> negb def
+R1950:1957 Library.PIMP.EvalProps <> evalB_st:18 def
+R1961:1961 Library.PIMP.EvalProps <> s:17 var
+R1959:1959 Library.PIMP.EvalProps <> b:16 var
+R1968:1970 Library.PIMP.Syntax <> Beq constr
+R1981:1988 Stdlib.QArith.QArith_base <> Qeq_bool def
+R1991:1998 Library.PIMP.EvalProps <> evalA_st def
+R2003:2003 Library.PIMP.EvalProps <> s:17 var
+R2007:2014 Library.PIMP.EvalProps <> evalA_st def
+R2019:2019 Library.PIMP.EvalProps <> s:17 var
+R2026:2028 Library.PIMP.Syntax <> Ble constr
+R2039:2046 Stdlib.QArith.QArith_base <> Qle_bool def
+R2049:2056 Library.PIMP.EvalProps <> evalA_st def
+R2061:2061 Library.PIMP.EvalProps <> s:17 var
+R2065:2072 Library.PIMP.EvalProps <> evalA_st def
+R2077:2077 Library.PIMP.EvalProps <> s:17 var
+prf 2195:2207 <> get_update_eq
+binder 2218:2218 <> n:20
+binder 2220:2220 <> x:21
+binder 2222:2223 <> st:22
+R2247:2249 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R2226:2228 Library.PIMP.EvalProps <> get def
+R2230:2230 Library.PIMP.EvalProps <> x:21 var
+R2233:2238 Library.PIMP.EvalProps <> update def
+R2240:2241 Library.PIMP.EvalProps <> st:22 var
+R2243:2243 Library.PIMP.EvalProps <> x:21 var
+R2245:2245 Library.PIMP.EvalProps <> n:20 var
+R2250:2250 Library.PIMP.EvalProps <> n:20 var
+prf 2437:2451 <> get_default_nil
+binder 2461:2461 <> x:23
+R2472:2474 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R2464:2466 Library.PIMP.EvalProps <> get def
+R2468:2468 Library.PIMP.EvalProps <> x:23 var
+R2470:2471 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R2475:2483 Library.DistState.CoreDef <> default_Q def
+prf 2541:2550 <> update_neq
+binder 2561:2562 <> x1:24
+binder 2564:2565 <> x0:25
+binder 2567:2567 <> n:26
+binder 2569:2570 <> st:27
+R2596:2599 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R2588:2590 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R2575:2581 Stdlib.Arith.PeanoNat Nat eqb def
+R2583:2584 Library.PIMP.EvalProps <> x0:25 var
+R2586:2587 Library.PIMP.EvalProps <> x1:24 var
+R2591:2595 Corelib.Init.Datatypes <> false constr
+R2623:2625 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R2600:2602 Library.PIMP.EvalProps <> get def
+R2604:2605 Library.PIMP.EvalProps <> x0:25 var
+R2608:2613 Library.PIMP.EvalProps <> update def
+R2615:2616 Library.PIMP.EvalProps <> st:27 var
+R2618:2619 Library.PIMP.EvalProps <> x1:24 var
+R2621:2621 Library.PIMP.EvalProps <> n:26 var
+R2626:2628 Library.PIMP.EvalProps <> get def
+R2630:2631 Library.PIMP.EvalProps <> x0:25 var
+R2633:2634 Library.PIMP.EvalProps <> st:27 var
+R3026:3028 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R3016:3018 Library.PIMP.EvalProps <> get def
+R3024:3025 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R3029:3037 Library.DistState.CoreDef <> default_Q def
+R3026:3028 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R3016:3018 Library.PIMP.EvalProps <> get def
+R3024:3025 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R3029:3037 Library.DistState.CoreDef <> default_Q def
+prf 3177:3188 <> conti_update
+R3205:3205 Stdlib.QArith.QArith_base <> Q rec
+binder 3199:3199 <> v:28
+binder 3201:3201 <> r:29
+R3214:3223 Library.DistState.CoreDef <> partial_st def
+binder 3209:3210 <> st:30
+R3230:3232 Corelib.Init.Datatypes <> nat ind
+binder 3227:3227 <> x:31
+R3239:3239 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R3266:3269 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R3240:3245 Library.PIMP.EvalProps <> update def
+R3248:3253 Library.PIMP.EvalProps <> update def
+R3255:3256 Library.PIMP.EvalProps <> st:30 var
+R3258:3258 Library.PIMP.EvalProps <> x:31 var
+R3260:3260 Library.PIMP.EvalProps <> v:28 var
+R3263:3263 Library.PIMP.EvalProps <> x:31 var
+R3265:3265 Library.PIMP.EvalProps <> r:29 var
+R3270:3275 Library.PIMP.EvalProps <> update def
+R3277:3278 Library.PIMP.EvalProps <> st:30 var
+R3280:3280 Library.PIMP.EvalProps <> x:31 var
+R3282:3282 Library.PIMP.EvalProps <> r:29 var
+prf 3580:3596 <> update_st_neq_nil
+binder 3606:3606 <> s:32
+binder 3608:3608 <> x:33
+binder 3610:3610 <> n:34
+R3620:3623 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R3614:3617 Corelib.Init.Logic <> ::type_scope:x_'<>'_x not
+R3613:3613 Library.PIMP.EvalProps <> s:32 var
+R3618:3619 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R3636:3639 Corelib.Init.Logic <> ::type_scope:x_'<>'_x not
+R3624:3629 Library.PIMP.EvalProps <> update def
+R3631:3631 Library.PIMP.EvalProps <> s:32 var
+R3633:3633 Library.PIMP.EvalProps <> n:34 var
+R3635:3635 Library.PIMP.EvalProps <> x:33 var
+R3640:3641 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R3784:3786 Corelib.Init.Logic <> not def
+R3829:3831 Corelib.Init.Logic <> not def
+prf 3868:3890 <> all_default_get_default
+binder 3900:3901 <> st:35
+binder 3903:3903 <> i:36
+R3929:3932 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R3922:3924 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R3908:3918 Library.DistState.CoreDef <> st_all_none def
+R3920:3921 Library.PIMP.EvalProps <> st:35 var
+R3925:3928 Corelib.Init.Datatypes <> true constr
+R3942:3945 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R3934:3936 Library.PIMP.EvalProps <> get def
+R3938:3938 Library.PIMP.EvalProps <> i:36 var
+R3940:3941 Library.PIMP.EvalProps <> st:35 var
+R3946:3954 Library.DistState.CoreDef <> default_Q def
+prf 4226:4245 <> st_eq_implies_get_eq
+binder 4255:4257 <> st0:37
+binder 4259:4261 <> st1:38
+binder 4263:4263 <> x:39
+R4286:4289 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R4272:4275 Library.DistState.CoreDef <> ::state_scope:x_'=='_x not
+R4269:4271 Library.PIMP.EvalProps <> st0:37 var
+R4276:4278 Library.PIMP.EvalProps <> st1:38 var
+R4300:4303 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R4291:4293 Library.PIMP.EvalProps <> get def
+R4295:4295 Library.PIMP.EvalProps <> x:39 var
+R4297:4299 Library.PIMP.EvalProps <> st0:37 var
+R4304:4306 Library.PIMP.EvalProps <> get def
+R4308:4308 Library.PIMP.EvalProps <> x:39 var
+R4310:4312 Library.PIMP.EvalProps <> st1:38 var
+R4588:4591 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R4588:4591 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R4636:4642 Stdlib.QArith.QArith_base <> Qeq_alt thm
+R4636:4642 Stdlib.QArith.QArith_base <> Qeq_alt thm
+R4839:4861 Library.PIMP.EvalProps <> all_default_get_default thm
+R4839:4861 Library.PIMP.EvalProps <> all_default_get_default thm
+R4902:4924 Library.PIMP.EvalProps <> all_default_get_default thm
+R4902:4924 Library.PIMP.EvalProps <> all_default_get_default thm
+R4960:4963 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R4960:4963 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+prf 5051:5069 <> st_eq_implies_evalA
+binder 5079:5081 <> st1:40
+binder 5083:5085 <> st2:41
+binder 5087:5087 <> a:42
+R5110:5116 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R5096:5099 Library.DistState.CoreDef <> ::state_scope:x_'=='_x not
+R5093:5095 Library.PIMP.EvalProps <> st1:40 var
+R5100:5102 Library.PIMP.EvalProps <> st2:41 var
+R5132:5135 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R5118:5125 Library.PIMP.EvalProps <> evalA_st def
+R5127:5127 Library.PIMP.EvalProps <> a:42 var
+R5129:5131 Library.PIMP.EvalProps <> st1:40 var
+R5136:5143 Library.PIMP.EvalProps <> evalA_st def
+R5145:5145 Library.PIMP.EvalProps <> a:42 var
+R5147:5149 Library.PIMP.EvalProps <> st2:41 var
+R5239:5258 Library.PIMP.EvalProps <> st_eq_implies_get_eq thm
+R5239:5258 Library.PIMP.EvalProps <> st_eq_implies_get_eq thm
+R5314:5321 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R5314:5321 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R5372:5379 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R5372:5379 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R5429:5436 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R5429:5436 Stdlib.QArith.QArith_base <> Qeq_refl thm
+prf 5454:5472 <> st_eq_implies_evalB
+binder 5482:5484 <> st1:43
+binder 5486:5488 <> st2:44
+binder 5490:5490 <> b:45
+R5513:5520 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R5552:5552 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R5499:5502 Library.DistState.CoreDef <> ::state_scope:x_'=='_x not
+R5496:5498 Library.PIMP.EvalProps <> st1:43 var
+R5503:5505 Library.PIMP.EvalProps <> st2:44 var
+R5535:5537 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R5521:5528 Library.PIMP.EvalProps <> evalB_st def
+R5530:5530 Library.PIMP.EvalProps <> b:45 var
+R5532:5534 Library.PIMP.EvalProps <> st1:43 var
+R5538:5545 Library.PIMP.EvalProps <> evalB_st def
+R5547:5547 Library.PIMP.EvalProps <> b:45 var
+R5549:5551 Library.PIMP.EvalProps <> st2:44 var
+R5722:5722 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R5737:5742 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R5757:5757 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R5723:5730 Library.PIMP.EvalProps <> evalA_st def
+R5743:5750 Library.PIMP.EvalProps <> evalA_st def
+R5722:5722 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R5737:5742 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R5757:5757 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R5723:5730 Library.PIMP.EvalProps <> evalA_st def
+R5743:5750 Library.PIMP.EvalProps <> evalA_st def
+R5779:5797 Library.PIMP.EvalProps <> st_eq_implies_evalA thm
+R5779:5797 Library.PIMP.EvalProps <> st_eq_implies_evalA thm
+R5831:5831 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R5847:5852 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R5868:5868 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R5832:5839 Library.PIMP.EvalProps <> evalA_st def
+R5853:5860 Library.PIMP.EvalProps <> evalA_st def
+R5831:5831 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R5847:5852 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R5868:5868 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R5832:5839 Library.PIMP.EvalProps <> evalA_st def
+R5853:5860 Library.PIMP.EvalProps <> evalA_st def
+R5890:5908 Library.PIMP.EvalProps <> st_eq_implies_evalA thm
+R5890:5908 Library.PIMP.EvalProps <> st_eq_implies_evalA thm
+R5983:5983 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R5998:6003 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R6018:6018 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R5984:5991 Library.PIMP.EvalProps <> evalA_st def
+R6004:6011 Library.PIMP.EvalProps <> evalA_st def
+R5983:5983 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R5998:6003 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R6018:6018 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R5984:5991 Library.PIMP.EvalProps <> evalA_st def
+R6004:6011 Library.PIMP.EvalProps <> evalA_st def
+R6040:6058 Library.PIMP.EvalProps <> st_eq_implies_evalA thm
+R6040:6058 Library.PIMP.EvalProps <> st_eq_implies_evalA thm
+R6092:6092 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R6108:6113 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R6129:6129 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R6093:6100 Library.PIMP.EvalProps <> evalA_st def
+R6114:6121 Library.PIMP.EvalProps <> evalA_st def
+R6092:6092 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R6108:6113 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R6129:6129 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R6093:6100 Library.PIMP.EvalProps <> evalA_st def
+R6114:6121 Library.PIMP.EvalProps <> evalA_st def
+R6151:6169 Library.PIMP.EvalProps <> st_eq_implies_evalA thm
+R6151:6169 Library.PIMP.EvalProps <> st_eq_implies_evalA thm
+prf 6240:6262 <> st_eq_implies_update_eq
+binder 6273:6275 <> st1:46
+binder 6277:6279 <> st2:47
+binder 6281:6281 <> x:48
+binder 6283:6284 <> n1:49
+binder 6286:6287 <> n2:50
+R6311:6314 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R6297:6300 Library.DistState.CoreDef <> ::state_scope:x_'=='_x not
+R6294:6296 Library.PIMP.EvalProps <> st1:46 var
+R6301:6303 Library.PIMP.EvalProps <> st2:47 var
+R6327:6332 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R6318:6321 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R6316:6317 Library.PIMP.EvalProps <> n1:49 var
+R6322:6323 Library.PIMP.EvalProps <> n2:50 var
+R6378:6380 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R6333:6341 Library.DistState.CoreDef <> beq_state def
+R6344:6349 Library.PIMP.EvalProps <> update def
+R6351:6353 Library.PIMP.EvalProps <> st1:46 var
+R6355:6355 Library.PIMP.EvalProps <> x:48 var
+R6357:6358 Library.PIMP.EvalProps <> n1:49 var
+R6362:6367 Library.PIMP.EvalProps <> update def
+R6369:6371 Library.PIMP.EvalProps <> st2:47 var
+R6373:6373 Library.PIMP.EvalProps <> x:48 var
+R6375:6376 Library.PIMP.EvalProps <> n2:50 var
+R6381:6384 Corelib.Init.Datatypes <> true constr
+R6670:6671 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R6670:6671 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R6716:6722 Stdlib.QArith.QArith_base <> Qlt_alt thm
+R6716:6722 Stdlib.QArith.QArith_base <> Qlt_alt thm
+R6737:6746 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R6737:6746 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R6784:6790 Stdlib.QArith.QArith_base <> Qgt_alt thm
+R6784:6790 Stdlib.QArith.QArith_base <> Qgt_alt thm
+R6805:6814 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R6805:6814 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R6880:6881 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R6880:6881 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R6925:6931 Stdlib.QArith.QArith_base <> Qlt_alt thm
+R6925:6931 Stdlib.QArith.QArith_base <> Qlt_alt thm
+R6946:6955 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R6946:6955 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R6993:6999 Stdlib.QArith.QArith_base <> Qgt_alt thm
+R6993:6999 Stdlib.QArith.QArith_base <> Qgt_alt thm
+R7014:7023 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R7014:7023 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R7089:7090 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R7089:7090 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R7131:7152 Library.DistState.Arithmetic <> st_eq_nil_iff_all_none thm
+R7131:7152 Library.DistState.Arithmetic <> st_eq_nil_iff_all_none thm
+R7131:7152 Library.DistState.Arithmetic <> st_eq_nil_iff_all_none thm
+R7181:7187 Stdlib.QArith.QArith_base <> Qlt_alt thm
+R7181:7187 Stdlib.QArith.QArith_base <> Qlt_alt thm
+R7202:7211 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R7202:7211 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R7249:7255 Stdlib.QArith.QArith_base <> Qgt_alt thm
+R7249:7255 Stdlib.QArith.QArith_base <> Qgt_alt thm
+R7270:7279 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R7270:7279 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R7332:7335 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R7332:7335 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R7399:7400 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R7399:7400 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R7444:7450 Stdlib.QArith.QArith_base <> Qlt_alt thm
+R7444:7450 Stdlib.QArith.QArith_base <> Qlt_alt thm
+R7465:7474 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R7465:7474 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R7512:7518 Stdlib.QArith.QArith_base <> Qgt_alt thm
+R7512:7518 Stdlib.QArith.QArith_base <> Qgt_alt thm
+R7533:7542 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R7533:7542 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R7596:7597 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R7596:7597 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R7652:7658 Stdlib.QArith.QArith_base <> Qlt_alt thm
+R7652:7658 Stdlib.QArith.QArith_base <> Qlt_alt thm
+R7673:7682 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R7673:7682 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R7720:7726 Stdlib.QArith.QArith_base <> Qgt_alt thm
+R7720:7726 Stdlib.QArith.QArith_base <> Qgt_alt thm
+R7741:7750 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R7741:7750 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R8013:8034 Library.DistState.Arithmetic <> st_eq_nil_iff_all_none thm
+R8013:8034 Library.DistState.Arithmetic <> st_eq_nil_iff_all_none thm
+R8013:8034 Library.DistState.Arithmetic <> st_eq_nil_iff_all_none thm
+R8078:8081 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R8078:8081 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+prf 8185:8206 <> st_eq_implies_update_a
+binder 8217:8219 <> st1:51
+binder 8221:8223 <> st2:52
+binder 8225:8225 <> x:53
+binder 8227:8227 <> a:54
+R8251:8257 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R8237:8240 Library.DistState.CoreDef <> ::state_scope:x_'=='_x not
+R8234:8236 Library.PIMP.EvalProps <> st1:51 var
+R8241:8243 Library.PIMP.EvalProps <> st2:52 var
+R8331:8333 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R8258:8266 Library.DistState.CoreDef <> beq_state def
+R8269:8274 Library.PIMP.EvalProps <> update def
+R8276:8278 Library.PIMP.EvalProps <> st1:51 var
+R8280:8280 Library.PIMP.EvalProps <> x:53 var
+R8283:8290 Library.PIMP.EvalProps <> evalA_st def
+R8292:8292 Library.PIMP.EvalProps <> a:54 var
+R8294:8296 Library.PIMP.EvalProps <> st1:51 var
+R8301:8306 Library.PIMP.EvalProps <> update def
+R8308:8310 Library.PIMP.EvalProps <> st2:52 var
+R8312:8312 Library.PIMP.EvalProps <> x:53 var
+R8315:8322 Library.PIMP.EvalProps <> evalA_st def
+R8324:8324 Library.PIMP.EvalProps <> a:54 var
+R8326:8328 Library.PIMP.EvalProps <> st2:52 var
+R8334:8337 Corelib.Init.Datatypes <> true constr
+R8368:8368 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R8383:8388 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R8403:8403 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R8369:8376 Library.PIMP.EvalProps <> evalA_st def
+R8389:8396 Library.PIMP.EvalProps <> evalA_st def
+R8419:8437 Library.PIMP.EvalProps <> st_eq_implies_evalA thm
+R8368:8368 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R8383:8388 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R8403:8403 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R8369:8376 Library.PIMP.EvalProps <> evalA_st def
+R8389:8396 Library.PIMP.EvalProps <> evalA_st def
+R8419:8437 Library.PIMP.EvalProps <> st_eq_implies_evalA thm
+R8461:8483 Library.PIMP.EvalProps <> st_eq_implies_update_eq thm
+R8461:8483 Library.PIMP.EvalProps <> st_eq_implies_update_eq thm
+prf 8510:8529 <> Qeq_get_under_res_st
+binder 8539:8539 <> s:55
+binder 8541:8541 <> n:56
+R8554:8557 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R8547:8549 Library.PIMP.EvalProps <> get def
+R8551:8551 Library.PIMP.EvalProps <> n:56 var
+R8553:8553 Library.PIMP.EvalProps <> s:55 var
+R8558:8560 Library.PIMP.EvalProps <> get def
+R8562:8562 Library.PIMP.EvalProps <> n:56 var
+R8565:8575 Library.DistState.CoreDef <> res_st_to_X def
+R8577:8577 Library.PIMP.EvalProps <> s:55 var
+R8580:8598 Library.PIMP.Syntax <> singleton_bool_list def
+R8600:8600 Library.PIMP.EvalProps <> n:56 var
+R8741:8748 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R8741:8748 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R8741:8748 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R8741:8748 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R8823:8830 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R8823:8830 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R8823:8830 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R8823:8830 Stdlib.QArith.QArith_base <> Qeq_refl thm
+prf 8879:8897 <> evalB_Bnot_true_iff
+binder 8907:8907 <> b:57
+binder 8909:8910 <> st:58
+R8940:8944 Corelib.Init.Logic <> ::type_scope:x_'<->'_x not
+R8933:8935 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R8916:8923 Library.PIMP.EvalProps <> evalB_st def
+R8926:8927 Library.PIMP.Syntax <> ::imp_scope:'~'_x not
+R8928:8928 Library.PIMP.EvalProps <> b:57 var
+R8931:8932 Library.PIMP.EvalProps <> st:58 var
+R8936:8939 Corelib.Init.Datatypes <> true constr
+R8958:8960 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R8945:8952 Library.PIMP.EvalProps <> evalB_st def
+R8954:8954 Library.PIMP.EvalProps <> b:57 var
+R8956:8957 Library.PIMP.EvalProps <> st:58 var
+R8961:8965 Corelib.Init.Datatypes <> false constr
+R9017:9029 Stdlib.Bool.Bool <> negb_true_iff thm
+R9017:9029 Stdlib.Bool.Bool <> negb_true_iff thm
+R9017:9029 Stdlib.Bool.Bool <> negb_true_iff thm
+R9081:9093 Stdlib.Bool.Bool <> negb_true_iff thm
+R9081:9093 Stdlib.Bool.Bool <> negb_true_iff thm
+R9081:9093 Stdlib.Bool.Bool <> negb_true_iff thm
+prf 9120:9139 <> evalB_Bnot_false_iff
+binder 9149:9149 <> b:59
+binder 9151:9152 <> st:60
+R9183:9187 Corelib.Init.Logic <> ::type_scope:x_'<->'_x not
+R9175:9177 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R9158:9165 Library.PIMP.EvalProps <> evalB_st def
+R9168:9169 Library.PIMP.Syntax <> ::imp_scope:'~'_x not
+R9170:9170 Library.PIMP.EvalProps <> b:59 var
+R9173:9174 Library.PIMP.EvalProps <> st:60 var
+R9178:9182 Corelib.Init.Datatypes <> false constr
+R9201:9203 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R9188:9195 Library.PIMP.EvalProps <> evalB_st def
+R9197:9197 Library.PIMP.EvalProps <> b:59 var
+R9199:9200 Library.PIMP.EvalProps <> st:60 var
+R9204:9207 Corelib.Init.Datatypes <> true constr
+R9259:9272 Stdlib.Bool.Bool <> negb_false_iff thm
+R9259:9272 Stdlib.Bool.Bool <> negb_false_iff thm
+R9259:9272 Stdlib.Bool.Bool <> negb_false_iff thm
+R9324:9337 Stdlib.Bool.Bool <> negb_false_iff thm
+R9324:9337 Stdlib.Bool.Bool <> negb_false_iff thm
+R9324:9337 Stdlib.Bool.Bool <> negb_false_iff thm
+prf 9364:9384 <> evalB_Bnot_involutive
+binder 9394:9394 <> b:61
+binder 9396:9397 <> st:62
+R9422:9425 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R9439:9439 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R9403:9410 Library.PIMP.EvalProps <> evalB_st def
+R9413:9414 Library.PIMP.Syntax <> ::imp_scope:'~'_x not
+R9415:9416 Library.PIMP.Syntax <> ::imp_scope:'~'_x not
+R9417:9417 Library.PIMP.EvalProps <> b:61 var
+R9420:9421 Library.PIMP.EvalProps <> st:62 var
+R9426:9433 Library.PIMP.EvalProps <> evalB_st def
+R9435:9435 Library.PIMP.EvalProps <> b:61 var
+R9437:9438 Library.PIMP.EvalProps <> st:62 var
+R9479:9493 Stdlib.Bool.Bool <> negb_involutive thm
+R9479:9493 Stdlib.Bool.Bool <> negb_involutive thm
+R9479:9493 Stdlib.Bool.Bool <> negb_involutive thm
+prf 9522:9544 <> evalB_eq_implies_le_rev
+binder 9554:9555 <> a0:63
+binder 9557:9558 <> a1:64
+binder 9560:9561 <> st:65
+R9595:9601 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R9588:9590 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R9567:9574 Library.PIMP.EvalProps <> evalB_st def
+R9579:9581 Library.PIMP.Syntax <> ::imp_scope:x_'='_x not
+R9577:9578 Library.PIMP.EvalProps <> a0:63 var
+R9582:9583 Library.PIMP.EvalProps <> a1:64 var
+R9586:9587 Library.PIMP.EvalProps <> st:65 var
+R9591:9594 Corelib.Init.Datatypes <> true constr
+R9624:9626 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R9602:9609 Library.PIMP.EvalProps <> evalB_st def
+R9614:9617 Library.PIMP.Syntax <> ::imp_scope:x_'<='_x not
+R9612:9613 Library.PIMP.EvalProps <> a1:64 var
+R9618:9619 Library.PIMP.EvalProps <> a0:63 var
+R9622:9623 Library.PIMP.EvalProps <> st:65 var
+R9627:9630 Corelib.Init.Datatypes <> true constr
+R9672:9683 Stdlib.QArith.QArith_base <> Qeq_bool_iff thm
+R9672:9683 Stdlib.QArith.QArith_base <> Qeq_bool_iff thm
+R9711:9722 Stdlib.QArith.QArith_base <> Qle_bool_iff thm
+R9711:9722 Stdlib.QArith.QArith_base <> Qle_bool_iff thm
+R9731:9738 Stdlib.QArith.QArith_base <> Qle_refl thm
+R9731:9738 Stdlib.QArith.QArith_base <> Qle_refl thm
+prf 9753:9771 <> evalB_eq_implies_le
+binder 9781:9782 <> a0:66
+binder 9784:9785 <> a1:67
+binder 9787:9788 <> st:68
+R9822:9828 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R9815:9817 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R9794:9801 Library.PIMP.EvalProps <> evalB_st def
+R9806:9808 Library.PIMP.Syntax <> ::imp_scope:x_'='_x not
+R9804:9805 Library.PIMP.EvalProps <> a0:66 var
+R9809:9810 Library.PIMP.EvalProps <> a1:67 var
+R9813:9814 Library.PIMP.EvalProps <> st:68 var
+R9818:9821 Corelib.Init.Datatypes <> true constr
+R9851:9853 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R9829:9836 Library.PIMP.EvalProps <> evalB_st def
+R9841:9844 Library.PIMP.Syntax <> ::imp_scope:x_'<='_x not
+R9839:9840 Library.PIMP.EvalProps <> a0:66 var
+R9845:9846 Library.PIMP.EvalProps <> a1:67 var
+R9849:9850 Library.PIMP.EvalProps <> st:68 var
+R9854:9857 Corelib.Init.Datatypes <> true constr
+R9899:9910 Stdlib.QArith.QArith_base <> Qeq_bool_iff thm
+R9899:9910 Stdlib.QArith.QArith_base <> Qeq_bool_iff thm
+R9938:9949 Stdlib.QArith.QArith_base <> Qle_bool_iff thm
+R9938:9949 Stdlib.QArith.QArith_base <> Qle_bool_iff thm
+R9958:9965 Stdlib.QArith.QArith_base <> Qle_refl thm
+R9958:9965 Stdlib.QArith.QArith_base <> Qle_refl thm
+prf 9980:10002 <> evalB_not_le_iff_lt_rev
+binder 10012:10013 <> a0:69
+binder 10015:10016 <> a1:70
+binder 10018:10019 <> st:71
+R10051:10053 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R10025:10032 Library.PIMP.EvalProps <> evalB_st def
+R10035:10037 Library.PIMP.Syntax <> ::imp_scope:'~'_x not
+R10046:10046 Library.PIMP.Syntax <> ::imp_scope:'~'_x not
+R10040:10043 Library.PIMP.Syntax <> ::imp_scope:x_'<='_x not
+R10038:10039 Library.PIMP.EvalProps <> a0:69 var
+R10044:10045 Library.PIMP.EvalProps <> a1:70 var
+R10049:10050 Library.PIMP.EvalProps <> st:71 var
+R10054:10061 Library.PIMP.EvalProps <> evalB_st def
+R10066:10068 Library.PIMP.Syntax <> ::imp_scope:x_'<'_x not
+R10064:10065 Library.PIMP.EvalProps <> a1:70 var
+R10069:10070 Library.PIMP.EvalProps <> a0:69 var
+R10073:10074 Library.PIMP.EvalProps <> st:71 var
+prf 10141:10159 <> evalB_lt_implies_le
+binder 10169:10170 <> a0:72
+binder 10172:10173 <> a1:73
+binder 10175:10176 <> st:74
+R10210:10215 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R10203:10205 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R10182:10189 Library.PIMP.EvalProps <> evalB_st def
+R10194:10196 Library.PIMP.Syntax <> ::imp_scope:x_'<'_x not
+R10192:10193 Library.PIMP.EvalProps <> a0:72 var
+R10197:10198 Library.PIMP.EvalProps <> a1:73 var
+R10201:10202 Library.PIMP.EvalProps <> st:74 var
+R10206:10209 Corelib.Init.Datatypes <> true constr
+R10238:10240 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R10216:10223 Library.PIMP.EvalProps <> evalB_st def
+R10228:10231 Library.PIMP.Syntax <> ::imp_scope:x_'<='_x not
+R10226:10227 Library.PIMP.EvalProps <> a0:72 var
+R10232:10233 Library.PIMP.EvalProps <> a1:73 var
+R10236:10237 Library.PIMP.EvalProps <> st:74 var
+R10241:10244 Corelib.Init.Datatypes <> true constr
+R10279:10301 Library.PIMP.EvalProps <> evalB_not_le_iff_lt_rev thm
+R10279:10301 Library.PIMP.EvalProps <> evalB_not_le_iff_lt_rev thm
+R10279:10301 Library.PIMP.EvalProps <> evalB_not_le_iff_lt_rev thm
+R10318:10336 Library.PIMP.EvalProps <> evalB_Bnot_true_iff thm
+R10318:10336 Library.PIMP.EvalProps <> evalB_Bnot_true_iff thm
+R10372:10379 Stdlib.QArith.QArith_base <> Qcompare def
+R10382:10389 Library.PIMP.EvalProps <> evalA_st def
+R10399:10406 Library.PIMP.EvalProps <> evalA_st def
+R10372:10379 Stdlib.QArith.QArith_base <> Qcompare def
+R10382:10389 Library.PIMP.EvalProps <> evalA_st def
+R10399:10406 Library.PIMP.EvalProps <> evalA_st def
+R10438:10444 Stdlib.QArith.QArith_base <> Qeq_alt thm
+R10438:10444 Stdlib.QArith.QArith_base <> Qeq_alt thm
+R10462:10473 Stdlib.QArith.QArith_base <> Qle_bool_iff thm
+R10462:10473 Stdlib.QArith.QArith_base <> Qle_bool_iff thm
+R10482:10489 Stdlib.QArith.QArith_base <> Qle_lteq thm
+R10482:10489 Stdlib.QArith.QArith_base <> Qle_lteq thm
+R10538:10544 Stdlib.QArith.QArith_base <> Qlt_alt thm
+R10538:10544 Stdlib.QArith.QArith_base <> Qlt_alt thm
+R10562:10570 Stdlib.QArith.QArith_base <> Qlt_leneq thm
+R10562:10570 Stdlib.QArith.QArith_base <> Qlt_leneq thm
+R10607:10618 Stdlib.QArith.QArith_base <> Qle_bool_iff thm
+R10607:10618 Stdlib.QArith.QArith_base <> Qle_bool_iff thm
+R10668:10674 Stdlib.QArith.QArith_base <> Qgt_alt thm
+R10668:10674 Stdlib.QArith.QArith_base <> Qgt_alt thm
+R10692:10703 Stdlib.QArith.QArith_base <> Qle_bool_iff thm
+R10692:10703 Stdlib.QArith.QArith_base <> Qle_bool_iff thm
+R10712:10722 Stdlib.QArith.QArith_base <> Qlt_le_weak thm
+R10712:10722 Stdlib.QArith.QArith_base <> Qlt_le_weak thm
+prf 10749:10775 <> evalBeq_implies_lt_compat_l
+binder 10785:10786 <> a0:75
+binder 10788:10789 <> a1:76
+binder 10791:10792 <> a2:77
+binder 10794:10795 <> st:78
+R10829:10835 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R10822:10824 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R10801:10808 Library.PIMP.EvalProps <> evalB_st def
+R10813:10815 Library.PIMP.Syntax <> ::imp_scope:x_'='_x not
+R10811:10812 Library.PIMP.EvalProps <> a0:75 var
+R10816:10817 Library.PIMP.EvalProps <> a1:76 var
+R10820:10821 Library.PIMP.EvalProps <> st:78 var
+R10825:10828 Corelib.Init.Datatypes <> true constr
+R10857:10859 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R10836:10843 Library.PIMP.EvalProps <> evalB_st def
+R10848:10850 Library.PIMP.Syntax <> ::imp_scope:x_'<'_x not
+R10846:10847 Library.PIMP.EvalProps <> a0:75 var
+R10851:10852 Library.PIMP.EvalProps <> a2:77 var
+R10855:10856 Library.PIMP.EvalProps <> st:78 var
+R10860:10867 Library.PIMP.EvalProps <> evalB_st def
+R10872:10874 Library.PIMP.Syntax <> ::imp_scope:x_'<'_x not
+R10870:10871 Library.PIMP.EvalProps <> a1:76 var
+R10875:10876 Library.PIMP.EvalProps <> a2:77 var
+R10879:10880 Library.PIMP.EvalProps <> st:78 var
+R10935:10946 Stdlib.QArith.QArith_base <> Qeq_bool_iff thm
+R10935:10946 Stdlib.QArith.QArith_base <> Qeq_bool_iff thm
+prf 10990:11003 <> evalB_eq_trans
+binder 11013:11014 <> a0:79
+binder 11016:11017 <> a1:80
+binder 11019:11020 <> a2:81
+binder 11022:11023 <> st:82
+R11057:11063 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R11050:11052 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R11029:11036 Library.PIMP.EvalProps <> evalB_st def
+R11041:11043 Library.PIMP.Syntax <> ::imp_scope:x_'='_x not
+R11039:11040 Library.PIMP.EvalProps <> a0:79 var
+R11044:11045 Library.PIMP.EvalProps <> a1:80 var
+R11048:11049 Library.PIMP.EvalProps <> st:82 var
+R11053:11056 Corelib.Init.Datatypes <> true constr
+R11092:11098 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R11085:11087 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R11064:11071 Library.PIMP.EvalProps <> evalB_st def
+R11076:11078 Library.PIMP.Syntax <> ::imp_scope:x_'='_x not
+R11074:11075 Library.PIMP.EvalProps <> a1:80 var
+R11079:11080 Library.PIMP.EvalProps <> a2:81 var
+R11083:11084 Library.PIMP.EvalProps <> st:82 var
+R11088:11091 Corelib.Init.Datatypes <> true constr
+R11120:11122 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R11099:11106 Library.PIMP.EvalProps <> evalB_st def
+R11111:11113 Library.PIMP.Syntax <> ::imp_scope:x_'='_x not
+R11109:11110 Library.PIMP.EvalProps <> a0:79 var
+R11114:11115 Library.PIMP.EvalProps <> a2:81 var
+R11118:11119 Library.PIMP.EvalProps <> st:82 var
+R11123:11126 Corelib.Init.Datatypes <> true constr
+R11185:11196 Stdlib.QArith.QArith_base <> Qeq_bool_iff thm
+R11185:11196 Stdlib.QArith.QArith_base <> Qeq_bool_iff thm
+R11226:11237 Stdlib.QArith.QArith_base <> Qeq_bool_iff thm
+R11226:11237 Stdlib.QArith.QArith_base <> Qeq_bool_iff thm
+R11267:11279 Stdlib.QArith.QArith_base <> Qeq_bool_refl thm
+R11267:11279 Stdlib.QArith.QArith_base <> Qeq_bool_refl thm
+prf 11295:11303 <> evalB_sym
+binder 11313:11314 <> a0:83
+binder 11316:11317 <> a1:84
+binder 11319:11320 <> st:85
+R11347:11349 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R11326:11333 Library.PIMP.EvalProps <> evalB_st def
+R11338:11340 Library.PIMP.Syntax <> ::imp_scope:x_'='_x not
+R11336:11337 Library.PIMP.EvalProps <> a0:83 var
+R11341:11342 Library.PIMP.EvalProps <> a1:84 var
+R11345:11346 Library.PIMP.EvalProps <> st:85 var
+R11350:11357 Library.PIMP.EvalProps <> evalB_st def
+R11362:11364 Library.PIMP.Syntax <> ::imp_scope:x_'='_x not
+R11360:11361 Library.PIMP.EvalProps <> a1:84 var
+R11365:11366 Library.PIMP.EvalProps <> a0:83 var
+R11369:11370 Library.PIMP.EvalProps <> st:85 var
+R11420:11432 Stdlib.QArith.QArith_base <> Qeq_bool_comm thm
+R11420:11432 Stdlib.QArith.QArith_base <> Qeq_bool_comm thm
+prf 11499:11513 <> evalA_more_less
+binder 11523:11523 <> s:86
+binder 11525:11525 <> a:87
+binder 11527:11527 <> l:88
+R11601:11604 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R11534:11541 Library.PIMP.EvalProps <> evalA_st def
+R11543:11543 Library.PIMP.EvalProps <> a:87 var
+R11546:11556 Library.DistState.CoreDef <> res_st_to_X def
+R11558:11558 Library.PIMP.EvalProps <> s:86 var
+R11561:11570 Library.DistState.CoreDef <> orb_domain def
+R11573:11593 Library.PIMP.Syntax <> get_variables_in_aexp def
+R11595:11595 Library.PIMP.EvalProps <> a:87 var
+R11598:11598 Library.PIMP.EvalProps <> l:88 var
+R11605:11612 Library.PIMP.EvalProps <> evalA_st def
+R11614:11614 Library.PIMP.EvalProps <> a:87 var
+R11616:11616 Library.PIMP.EvalProps <> s:86 var
+R11727:11734 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R11727:11734 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R11908:11915 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R11908:11915 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R11908:11915 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R11908:11915 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R11908:11915 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R11908:11915 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R11908:11915 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R11952:11967 Library.DistState.Domain <> orb_domain_nil_r thm
+R11952:11967 Library.DistState.Domain <> orb_domain_nil_r thm
+R11952:11967 Library.DistState.Domain <> orb_domain_nil_r thm
+R11988:12007 Library.PIMP.EvalProps <> Qeq_get_under_res_st thm
+R11988:12007 Library.PIMP.EvalProps <> Qeq_get_under_res_st thm
+R11988:12007 Library.PIMP.EvalProps <> Qeq_get_under_res_st thm
+R12016:12023 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R12016:12023 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R12095:12102 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R12095:12102 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R12095:12102 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R12095:12102 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R12196:12205 Library.DistState.CoreDef <> orb_domain def
+R12208:12228 Library.PIMP.Syntax <> get_variables_in_aexp def
+R12196:12205 Library.DistState.CoreDef <> orb_domain def
+R12208:12228 Library.PIMP.Syntax <> get_variables_in_aexp def
+R12251:12266 Library.DistState.Domain <> orb_domain_assoc thm
+R12251:12266 Library.DistState.Domain <> orb_domain_assoc thm
+R12251:12266 Library.DistState.Domain <> orb_domain_assoc thm
+R12322:12331 Library.DistState.CoreDef <> orb_domain def
+R12334:12354 Library.PIMP.Syntax <> get_variables_in_aexp def
+R12322:12331 Library.DistState.CoreDef <> orb_domain def
+R12334:12354 Library.PIMP.Syntax <> get_variables_in_aexp def
+R12377:12392 Library.DistState.Domain <> orb_domain_assoc thm
+R12377:12392 Library.DistState.Domain <> orb_domain_assoc thm
+R12377:12392 Library.DistState.Domain <> orb_domain_assoc thm
+R12444:12464 Library.PIMP.Syntax <> get_variables_in_aexp def
+R12416:12430 Library.DistState.Domain <> orb_domain_comm thm
+R12444:12464 Library.PIMP.Syntax <> get_variables_in_aexp def
+R12416:12430 Library.DistState.Domain <> orb_domain_comm thm
+R12444:12464 Library.PIMP.Syntax <> get_variables_in_aexp def
+R12416:12430 Library.DistState.Domain <> orb_domain_comm thm
+R12550:12559 Library.DistState.CoreDef <> orb_domain def
+R12562:12582 Library.PIMP.Syntax <> get_variables_in_aexp def
+R12550:12559 Library.DistState.CoreDef <> orb_domain def
+R12562:12582 Library.PIMP.Syntax <> get_variables_in_aexp def
+R12605:12620 Library.DistState.Domain <> orb_domain_assoc thm
+R12605:12620 Library.DistState.Domain <> orb_domain_assoc thm
+R12605:12620 Library.DistState.Domain <> orb_domain_assoc thm
+R12678:12687 Library.DistState.CoreDef <> orb_domain def
+R12690:12710 Library.PIMP.Syntax <> get_variables_in_aexp def
+R12678:12687 Library.DistState.CoreDef <> orb_domain def
+R12690:12710 Library.PIMP.Syntax <> get_variables_in_aexp def
+R12733:12748 Library.DistState.Domain <> orb_domain_assoc thm
+R12733:12748 Library.DistState.Domain <> orb_domain_assoc thm
+R12733:12748 Library.DistState.Domain <> orb_domain_assoc thm
+R12800:12820 Library.PIMP.Syntax <> get_variables_in_aexp def
+R12772:12786 Library.DistState.Domain <> orb_domain_comm thm
+R12800:12820 Library.PIMP.Syntax <> get_variables_in_aexp def
+R12772:12786 Library.DistState.Domain <> orb_domain_comm thm
+R12800:12820 Library.PIMP.Syntax <> get_variables_in_aexp def
+R12772:12786 Library.DistState.Domain <> orb_domain_comm thm
+R12906:12915 Library.DistState.CoreDef <> orb_domain def
+R12918:12938 Library.PIMP.Syntax <> get_variables_in_aexp def
+R12906:12915 Library.DistState.CoreDef <> orb_domain def
+R12918:12938 Library.PIMP.Syntax <> get_variables_in_aexp def
+R12959:12974 Library.DistState.Domain <> orb_domain_assoc thm
+R12959:12974 Library.DistState.Domain <> orb_domain_assoc thm
+R12959:12974 Library.DistState.Domain <> orb_domain_assoc thm
+R13030:13039 Library.DistState.CoreDef <> orb_domain def
+R13042:13062 Library.PIMP.Syntax <> get_variables_in_aexp def
+R13030:13039 Library.DistState.CoreDef <> orb_domain def
+R13042:13062 Library.PIMP.Syntax <> get_variables_in_aexp def
+R13083:13098 Library.DistState.Domain <> orb_domain_assoc thm
+R13083:13098 Library.DistState.Domain <> orb_domain_assoc thm
+R13083:13098 Library.DistState.Domain <> orb_domain_assoc thm
+R13148:13168 Library.PIMP.Syntax <> get_variables_in_aexp def
+R13120:13134 Library.DistState.Domain <> orb_domain_comm thm
+R13148:13168 Library.PIMP.Syntax <> get_variables_in_aexp def
+R13120:13134 Library.DistState.Domain <> orb_domain_comm thm
+R13148:13168 Library.PIMP.Syntax <> get_variables_in_aexp def
+R13120:13134 Library.DistState.Domain <> orb_domain_comm thm
+prf 13232:13246 <> evalA_eq_res_st
+binder 13256:13256 <> s:89
+binder 13258:13258 <> a:90
+R13317:13320 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R13265:13272 Library.PIMP.EvalProps <> evalA_st def
+R13274:13274 Library.PIMP.EvalProps <> a:90 var
+R13277:13287 Library.DistState.CoreDef <> res_st_to_X def
+R13289:13289 Library.PIMP.EvalProps <> s:89 var
+R13292:13312 Library.PIMP.Syntax <> get_variables_in_aexp def
+R13314:13314 Library.PIMP.EvalProps <> a:90 var
+R13321:13328 Library.PIMP.EvalProps <> evalA_st def
+R13330:13330 Library.PIMP.EvalProps <> a:90 var
+R13332:13332 Library.PIMP.EvalProps <> s:89 var
+R13417:13424 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R13417:13424 Stdlib.QArith.QArith_base <> Qeq_refl thm
+R13449:13468 Library.PIMP.EvalProps <> Qeq_get_under_res_st thm
+R13449:13468 Library.PIMP.EvalProps <> Qeq_get_under_res_st thm
+R13449:13468 Library.PIMP.EvalProps <> Qeq_get_under_res_st thm
+R13503:13517 Library.PIMP.EvalProps <> evalA_more_less thm
+R13503:13517 Library.PIMP.EvalProps <> evalA_more_less thm
+R13503:13517 Library.PIMP.EvalProps <> evalA_more_less thm
+R13528:13542 Library.DistState.Domain <> orb_domain_comm thm
+R13528:13542 Library.DistState.Domain <> orb_domain_comm thm
+R13528:13542 Library.DistState.Domain <> orb_domain_comm thm
+R13558:13572 Library.PIMP.EvalProps <> evalA_more_less thm
+R13558:13572 Library.PIMP.EvalProps <> evalA_more_less thm
+R13558:13572 Library.PIMP.EvalProps <> evalA_more_less thm
+R13607:13621 Library.PIMP.EvalProps <> evalA_more_less thm
+R13607:13621 Library.PIMP.EvalProps <> evalA_more_less thm
+R13607:13621 Library.PIMP.EvalProps <> evalA_more_less thm
+R13632:13646 Library.DistState.Domain <> orb_domain_comm thm
+R13632:13646 Library.DistState.Domain <> orb_domain_comm thm
+R13632:13646 Library.DistState.Domain <> orb_domain_comm thm
+R13662:13676 Library.PIMP.EvalProps <> evalA_more_less thm
+R13662:13676 Library.PIMP.EvalProps <> evalA_more_less thm
+R13662:13676 Library.PIMP.EvalProps <> evalA_more_less thm
+R13712:13726 Library.PIMP.EvalProps <> evalA_more_less thm
+R13712:13726 Library.PIMP.EvalProps <> evalA_more_less thm
+R13712:13726 Library.PIMP.EvalProps <> evalA_more_less thm
+R13737:13751 Library.DistState.Domain <> orb_domain_comm thm
+R13737:13751 Library.DistState.Domain <> orb_domain_comm thm
+R13737:13751 Library.DistState.Domain <> orb_domain_comm thm
+R13767:13781 Library.PIMP.EvalProps <> evalA_more_less thm
+R13767:13781 Library.PIMP.EvalProps <> evalA_more_less thm
+R13767:13781 Library.PIMP.EvalProps <> evalA_more_less thm
+prf 13811:13825 <> evalB_more_less
+binder 13835:13835 <> s:91
+binder 13837:13837 <> b:92
+binder 13839:13839 <> l:93
+R13911:13913 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R13844:13851 Library.PIMP.EvalProps <> evalB_st def
+R13853:13853 Library.PIMP.EvalProps <> b:92 var
+R13856:13866 Library.DistState.CoreDef <> res_st_to_X def
+R13868:13868 Library.PIMP.EvalProps <> s:91 var
+R13871:13880 Library.DistState.CoreDef <> orb_domain def
+R13883:13903 Library.PIMP.Syntax <> get_variables_in_bexp def
+R13905:13905 Library.PIMP.EvalProps <> b:92 var
+R13908:13908 Library.PIMP.EvalProps <> l:93 var
+R13914:13921 Library.PIMP.EvalProps <> evalB_st def
+R13923:13923 Library.PIMP.EvalProps <> b:92 var
+R13925:13925 Library.PIMP.EvalProps <> s:91 var
+R14128:14143 Library.DistState.Domain <> orb_domain_nil_r thm
+R14128:14143 Library.DistState.Domain <> orb_domain_nil_r thm
+R14128:14143 Library.DistState.Domain <> orb_domain_nil_r thm
+R14166:14186 Library.PIMP.Syntax <> get_variables_in_bexp def
+R14166:14186 Library.PIMP.Syntax <> get_variables_in_bexp def
+R14234:14254 Library.PIMP.Syntax <> get_variables_in_bexp def
+R14234:14254 Library.PIMP.Syntax <> get_variables_in_bexp def
+R14276:14290 Library.DistState.Domain <> orb_domain_comm thm
+R14276:14290 Library.DistState.Domain <> orb_domain_comm thm
+R14276:14290 Library.DistState.Domain <> orb_domain_comm thm
+R14351:14366 Library.DistState.Domain <> orb_domain_assoc thm
+R14351:14366 Library.DistState.Domain <> orb_domain_assoc thm
+R14351:14366 Library.DistState.Domain <> orb_domain_assoc thm
+R14389:14398 Library.DistState.CoreDef <> orb_domain def
+R14401:14421 Library.PIMP.Syntax <> get_variables_in_bexp def
+R14429:14432 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R14389:14398 Library.DistState.CoreDef <> orb_domain def
+R14401:14421 Library.PIMP.Syntax <> get_variables_in_bexp def
+R14429:14432 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R14467:14482 Library.DistState.Domain <> orb_domain_assoc thm
+R14467:14482 Library.DistState.Domain <> orb_domain_assoc thm
+R14467:14482 Library.DistState.Domain <> orb_domain_assoc thm
+R14527:14547 Library.PIMP.Syntax <> get_variables_in_bexp def
+R14500:14514 Library.DistState.Domain <> orb_domain_comm thm
+R14527:14547 Library.PIMP.Syntax <> get_variables_in_bexp def
+R14500:14514 Library.DistState.Domain <> orb_domain_comm thm
+R14527:14547 Library.PIMP.Syntax <> get_variables_in_bexp def
+R14500:14514 Library.DistState.Domain <> orb_domain_comm thm
+R14572:14587 Library.DistState.Domain <> orb_domain_assoc thm
+R14572:14587 Library.DistState.Domain <> orb_domain_assoc thm
+R14572:14587 Library.DistState.Domain <> orb_domain_assoc thm
+R14610:14619 Library.DistState.CoreDef <> orb_domain def
+R14622:14642 Library.PIMP.Syntax <> get_variables_in_bexp def
+R14650:14653 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R14610:14619 Library.DistState.CoreDef <> orb_domain def
+R14622:14642 Library.PIMP.Syntax <> get_variables_in_bexp def
+R14650:14653 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R14719:14722 Corelib.Init.Datatypes <> negb def
+R14786:14801 Library.DistState.Domain <> orb_domain_assoc thm
+R14786:14801 Library.DistState.Domain <> orb_domain_assoc thm
+R14786:14801 Library.DistState.Domain <> orb_domain_assoc thm
+R14812:14826 Library.PIMP.EvalProps <> evalA_more_less thm
+R14812:14826 Library.PIMP.EvalProps <> evalA_more_less thm
+R14812:14826 Library.PIMP.EvalProps <> evalA_more_less thm
+R14841:14856 Library.DistState.Domain <> orb_domain_assoc thm
+R14841:14856 Library.DistState.Domain <> orb_domain_assoc thm
+R14841:14856 Library.DistState.Domain <> orb_domain_assoc thm
+R14895:14915 Library.PIMP.Syntax <> get_variables_in_aexp def
+R14867:14881 Library.DistState.Domain <> orb_domain_comm thm
+R14895:14915 Library.PIMP.Syntax <> get_variables_in_aexp def
+R14867:14881 Library.DistState.Domain <> orb_domain_comm thm
+R14895:14915 Library.PIMP.Syntax <> get_variables_in_aexp def
+R14867:14881 Library.DistState.Domain <> orb_domain_comm thm
+R14938:14953 Library.DistState.Domain <> orb_domain_assoc thm
+R14938:14953 Library.DistState.Domain <> orb_domain_assoc thm
+R14938:14953 Library.DistState.Domain <> orb_domain_assoc thm
+R14964:14978 Library.PIMP.EvalProps <> evalA_more_less thm
+R14964:14978 Library.PIMP.EvalProps <> evalA_more_less thm
+R14964:14978 Library.PIMP.EvalProps <> evalA_more_less thm
+R15024:15039 Library.DistState.Domain <> orb_domain_assoc thm
+R15024:15039 Library.DistState.Domain <> orb_domain_assoc thm
+R15024:15039 Library.DistState.Domain <> orb_domain_assoc thm
+R15050:15064 Library.PIMP.EvalProps <> evalA_more_less thm
+R15050:15064 Library.PIMP.EvalProps <> evalA_more_less thm
+R15050:15064 Library.PIMP.EvalProps <> evalA_more_less thm
+R15079:15094 Library.DistState.Domain <> orb_domain_assoc thm
+R15079:15094 Library.DistState.Domain <> orb_domain_assoc thm
+R15079:15094 Library.DistState.Domain <> orb_domain_assoc thm
+R15133:15153 Library.PIMP.Syntax <> get_variables_in_aexp def
+R15105:15119 Library.DistState.Domain <> orb_domain_comm thm
+R15133:15153 Library.PIMP.Syntax <> get_variables_in_aexp def
+R15105:15119 Library.DistState.Domain <> orb_domain_comm thm
+R15133:15153 Library.PIMP.Syntax <> get_variables_in_aexp def
+R15105:15119 Library.DistState.Domain <> orb_domain_comm thm
+R15176:15191 Library.DistState.Domain <> orb_domain_assoc thm
+R15176:15191 Library.DistState.Domain <> orb_domain_assoc thm
+R15176:15191 Library.DistState.Domain <> orb_domain_assoc thm
+R15202:15216 Library.PIMP.EvalProps <> evalA_more_less thm
+R15202:15216 Library.PIMP.EvalProps <> evalA_more_less thm
+R15202:15216 Library.PIMP.EvalProps <> evalA_more_less thm
+prf 15244:15258 <> evalB_eq_res_st
+binder 15268:15268 <> s:94
+binder 15270:15270 <> b:95
+R15327:15329 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R15275:15282 Library.PIMP.EvalProps <> evalB_st def
+R15284:15284 Library.PIMP.EvalProps <> b:95 var
+R15287:15297 Library.DistState.CoreDef <> res_st_to_X def
+R15299:15299 Library.PIMP.EvalProps <> s:94 var
+R15302:15322 Library.PIMP.Syntax <> get_variables_in_bexp def
+R15324:15324 Library.PIMP.EvalProps <> b:95 var
+R15330:15337 Library.PIMP.EvalProps <> evalB_st def
+R15339:15339 Library.PIMP.EvalProps <> b:95 var
+R15341:15341 Library.PIMP.EvalProps <> s:94 var
+R15478:15492 Library.PIMP.EvalProps <> evalB_more_less thm
+R15478:15492 Library.PIMP.EvalProps <> evalB_more_less thm
+R15478:15492 Library.PIMP.EvalProps <> evalB_more_less thm
+R15503:15517 Library.DistState.Domain <> orb_domain_comm thm
+R15503:15517 Library.DistState.Domain <> orb_domain_comm thm
+R15503:15517 Library.DistState.Domain <> orb_domain_comm thm
+R15528:15542 Library.PIMP.EvalProps <> evalB_more_less thm
+R15528:15542 Library.PIMP.EvalProps <> evalB_more_less thm
+R15528:15542 Library.PIMP.EvalProps <> evalB_more_less thm
+R15581:15584 Corelib.Init.Datatypes <> negb def
+R15632:15646 Library.PIMP.EvalProps <> evalA_more_less thm
+R15632:15646 Library.PIMP.EvalProps <> evalA_more_less thm
+R15632:15646 Library.PIMP.EvalProps <> evalA_more_less thm
+R15657:15671 Library.DistState.Domain <> orb_domain_comm thm
+R15657:15671 Library.DistState.Domain <> orb_domain_comm thm
+R15657:15671 Library.DistState.Domain <> orb_domain_comm thm
+R15682:15696 Library.PIMP.EvalProps <> evalA_more_less thm
+R15682:15696 Library.PIMP.EvalProps <> evalA_more_less thm
+R15682:15696 Library.PIMP.EvalProps <> evalA_more_less thm
+R15731:15745 Library.PIMP.EvalProps <> evalA_more_less thm
+R15731:15745 Library.PIMP.EvalProps <> evalA_more_less thm
+R15731:15745 Library.PIMP.EvalProps <> evalA_more_less thm
+R15756:15770 Library.DistState.Domain <> orb_domain_comm thm
+R15756:15770 Library.DistState.Domain <> orb_domain_comm thm
+R15756:15770 Library.DistState.Domain <> orb_domain_comm thm
+R15781:15795 Library.PIMP.EvalProps <> evalA_more_less thm
+R15781:15795 Library.PIMP.EvalProps <> evalA_more_less thm
+R15781:15795 Library.PIMP.EvalProps <> evalA_more_less thm
+prf 15824:15844 <> all_false_sing_contra
+binder 15854:15854 <> n:96
+R15892:15894 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R15859:15867 Library.DistState.CoreDef <> all_false def
+R15870:15888 Library.PIMP.Syntax <> singleton_bool_list def
+R15890:15890 Library.PIMP.EvalProps <> n:96 var
+R15895:15899 Corelib.Init.Datatypes <> false constr
+prf 15982:15996 <> sing_nil_contra
+binder 16006:16006 <> n:97
+R16048:16051 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R16034:16037 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R16013:16031 Library.PIMP.Syntax <> singleton_bool_list def
+R16033:16033 Library.PIMP.EvalProps <> n:97 var
+R16038:16039 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R16052:16056 Corelib.Init.Logic <> False ind
+R16198:16218 Library.PIMP.EvalProps <> all_false_sing_contra thm
+R16198:16218 Library.PIMP.EvalProps <> all_false_sing_contra thm
+R16198:16218 Library.PIMP.EvalProps <> all_false_sing_contra thm
+R16322:16324 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R16314:16317 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R16325:16326 Corelib.Init.Datatypes <> Eq constr
+R16322:16324 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R16314:16317 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R16325:16326 Corelib.Init.Datatypes <> Eq constr
+R16379:16381 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R16371:16374 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R16382:16383 Corelib.Init.Datatypes <> Lt constr
+R16379:16381 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R16371:16374 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R16382:16383 Corelib.Init.Datatypes <> Lt constr
+R16484:16486 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R16476:16479 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R16487:16488 Corelib.Init.Datatypes <> Gt constr
+R16484:16486 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R16476:16479 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R16487:16488 Corelib.Init.Datatypes <> Gt constr
+R16512:16518 Stdlib.QArith.QArith_base <> Qgt_alt thm
+R16534:16543 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R16407:16413 Stdlib.QArith.QArith_base <> Qlt_alt thm
+R16429:16438 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+prf 16581:16596 <> update_eq_res_st
+binder 16606:16606 <> s:98
+binder 16608:16608 <> n:99
+binder 16610:16610 <> q:100
+binder 16612:16612 <> X:101
+R16667:16673 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R16742:16742 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R16660:16662 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R16618:16633 Library.DistState.CoreDef <> is_domain_subset def
+R16636:16654 Library.PIMP.Syntax <> singleton_bool_list def
+R16656:16656 Library.PIMP.EvalProps <> n:99 var
+R16659:16659 Library.PIMP.EvalProps <> X:101 var
+R16663:16666 Corelib.Init.Datatypes <> true constr
+R16703:16706 Library.DistState.CoreDef <> ::state_scope:x_'=='_x not
+R16675:16685 Library.DistState.CoreDef <> res_st_to_X def
+R16688:16693 Library.PIMP.EvalProps <> update def
+R16695:16695 Library.PIMP.EvalProps <> s:98 var
+R16697:16697 Library.PIMP.EvalProps <> n:99 var
+R16699:16699 Library.PIMP.EvalProps <> q:100 var
+R16702:16702 Library.PIMP.EvalProps <> X:101 var
+R16707:16712 Library.PIMP.EvalProps <> update def
+R16715:16725 Library.DistState.CoreDef <> res_st_to_X def
+R16727:16727 Library.PIMP.EvalProps <> s:98 var
+R16729:16729 Library.PIMP.EvalProps <> X:101 var
+R16732:16732 Library.PIMP.EvalProps <> n:99 var
+R16734:16734 Library.PIMP.EvalProps <> q:100 var
+R16893:16913 Library.PIMP.EvalProps <> all_false_sing_contra thm
+R16893:16913 Library.PIMP.EvalProps <> all_false_sing_contra thm
+R16893:16913 Library.PIMP.EvalProps <> all_false_sing_contra thm
+R16996:17006 Stdlib.Bool.Bool <> andb_true_r thm
+R16996:17006 Stdlib.Bool.Bool <> andb_true_r thm
+R16996:17006 Stdlib.Bool.Bool <> andb_true_r thm
+R17093:17105 Library.DistState.Arithmetic <> state_eq_refl thm
+R17093:17105 Library.DistState.Arithmetic <> state_eq_refl thm
+R17093:17105 Library.DistState.Arithmetic <> state_eq_refl thm
+R17093:17105 Library.DistState.Arithmetic <> state_eq_refl thm
+R17128:17131 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R17128:17131 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R17178:17184 Stdlib.QArith.QArith_base <> Qlt_alt thm
+R17178:17184 Stdlib.QArith.QArith_base <> Qlt_alt thm
+R17199:17208 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R17199:17208 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R17247:17253 Stdlib.QArith.QArith_base <> Qgt_alt thm
+R17247:17253 Stdlib.QArith.QArith_base <> Qgt_alt thm
+R17268:17277 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R17268:17277 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R17320:17323 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R17320:17323 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R17358:17370 Library.DistState.Arithmetic <> state_eq_refl thm
+R17358:17370 Library.DistState.Arithmetic <> state_eq_refl thm
+R17358:17370 Library.DistState.Arithmetic <> state_eq_refl thm
+R17392:17395 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R17392:17395 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R17430:17442 Library.DistState.Arithmetic <> state_eq_refl thm
+R17430:17442 Library.DistState.Arithmetic <> state_eq_refl thm
+R17430:17442 Library.DistState.Arithmetic <> state_eq_refl thm
+R17528:17540 Library.DistState.Arithmetic <> state_eq_refl thm
+R17528:17540 Library.DistState.Arithmetic <> state_eq_refl thm
+R17528:17540 Library.DistState.Arithmetic <> state_eq_refl thm
+R17528:17540 Library.DistState.Arithmetic <> state_eq_refl thm
+R17664:17667 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R17664:17667 Stdlib.QArith.QArith_base <> ::Q_scope:x_'?='_x not
+R17714:17720 Stdlib.QArith.QArith_base <> Qlt_alt thm
+R17714:17720 Stdlib.QArith.QArith_base <> Qlt_alt thm
+R17736:17745 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R17736:17745 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R17785:17791 Stdlib.QArith.QArith_base <> Qgt_alt thm
+R17785:17791 Stdlib.QArith.QArith_base <> Qgt_alt thm
+R17807:17816 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+R17807:17816 Stdlib.QArith.QArith_base <> Qlt_irrefl thm
+prf 17892:17918 <> update_subst_implies_dom_eq
+binder 17928:17928 <> s:102
+binder 17930:17930 <> x:103
+binder 17932:17932 <> q:104
+R18003:18005 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R17938:17953 Library.DistState.CoreDef <> is_domain_subset def
+R17956:17968 Library.DistState.CoreDef <> return_domain def
+R17970:17970 Library.PIMP.EvalProps <> s:102 var
+R17974:17986 Library.DistState.CoreDef <> return_domain def
+R17989:17994 Library.PIMP.EvalProps <> update def
+R17996:17996 Library.PIMP.EvalProps <> s:102 var
+R17998:17998 Library.PIMP.EvalProps <> x:103 var
+R18000:18000 Library.PIMP.EvalProps <> q:104 var
+R18006:18009 Corelib.Init.Datatypes <> true constr
+R18183:18195 Stdlib.Bool.Bool <> andb_true_iff thm
+R18183:18195 Stdlib.Bool.Bool <> andb_true_iff thm
+R18221:18235 Stdlib.Bool.Bool <> negb_involutive thm
+R18221:18235 Stdlib.Bool.Bool <> negb_involutive thm
+R18221:18235 Stdlib.Bool.Bool <> negb_involutive thm
+R18257:18268 Stdlib.Bool.Bool <> orb_true_iff thm
+R18257:18268 Stdlib.Bool.Bool <> orb_true_iff thm
+R18305:18319 Library.DistState.Domain <> dom_subset_refl thm
+R18305:18319 Library.DistState.Domain <> dom_subset_refl thm
+R18334:18346 Stdlib.Bool.Bool <> andb_true_iff thm
+R18334:18346 Stdlib.Bool.Bool <> andb_true_iff thm
+R18372:18386 Stdlib.Bool.Bool <> negb_involutive thm
+R18372:18386 Stdlib.Bool.Bool <> negb_involutive thm
+R18372:18386 Stdlib.Bool.Bool <> negb_involutive thm
+R18395:18404 Stdlib.Bool.Bool <> orb_negb_r thm
+R18395:18404 Stdlib.Bool.Bool <> orb_negb_r thm
+prf 18438:18450 <> get_n_in_sing
+binder 18460:18460 <> n:105
+binder 18462:18462 <> s:106
+R18507:18512 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R18500:18502 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R18467:18475 Library.DistState.CoreDef <> all_false def
+R18478:18496 Library.PIMP.Syntax <> singleton_bool_list def
+R18498:18498 Library.PIMP.EvalProps <> n:105 var
+R18503:18506 Corelib.Init.Datatypes <> true constr
+R18523:18526 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R18514:18522 Library.DistState.CoreDef <> default_Q def
+R18527:18529 Library.PIMP.EvalProps <> get def
+R18531:18531 Library.PIMP.EvalProps <> n:105 var
+R18533:18533 Library.PIMP.EvalProps <> s:106 var
+prf 18708:18716 <> get_n_sub
+binder 18726:18726 <> n:107
+binder 18728:18728 <> V:108
+binder 18730:18730 <> s:109
+R18784:18790 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R18777:18779 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R18735:18750 Library.DistState.CoreDef <> is_domain_subset def
+R18753:18771 Library.PIMP.Syntax <> singleton_bool_list def
+R18773:18773 Library.PIMP.EvalProps <> n:107 var
+R18776:18776 Library.PIMP.EvalProps <> V:108 var
+R18780:18783 Corelib.Init.Datatypes <> true constr
+R18815:18818 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R18792:18794 Library.PIMP.EvalProps <> get def
+R18796:18796 Library.PIMP.EvalProps <> n:107 var
+R18799:18809 Library.DistState.CoreDef <> res_st_to_X def
+R18811:18811 Library.PIMP.EvalProps <> s:109 var
+R18813:18813 Library.PIMP.EvalProps <> V:108 var
+R18819:18821 Library.PIMP.EvalProps <> get def
+R18823:18823 Library.PIMP.EvalProps <> n:107 var
+R18825:18825 Library.PIMP.EvalProps <> s:109 var
+R19035:19047 Library.PIMP.EvalProps <> get_n_in_sing thm
+R19035:19047 Library.PIMP.EvalProps <> get_n_in_sing thm
+R19035:19047 Library.PIMP.EvalProps <> get_n_in_sing thm
+R19035:19047 Library.PIMP.EvalProps <> get_n_in_sing thm
+R19035:19047 Library.PIMP.EvalProps <> get_n_in_sing thm
+R19035:19047 Library.PIMP.EvalProps <> get_n_in_sing thm
+R19083:19095 Stdlib.Bool.Bool <> andb_true_iff thm
+R19083:19095 Stdlib.Bool.Bool <> andb_true_iff thm
+prf 19231:19252 <> evalA_st_preserve_bool
+binder 19263:19263 <> a:110
+binder 19265:19265 <> s:111
+binder 19267:19267 <> V:112
+R19325:19332 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R19318:19320 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R19274:19289 Library.DistState.CoreDef <> is_domain_subset def
+R19292:19312 Library.PIMP.Syntax <> get_variables_in_aexp def
+R19314:19314 Library.PIMP.EvalProps <> a:110 var
+R19317:19317 Library.PIMP.EvalProps <> V:112 var
+R19321:19324 Corelib.Init.Datatypes <> true constr
+R19386:19395 Stdlib.QArith.QArith_base <> ::Q_scope:x_'=='_x not
+R19334:19341 Library.PIMP.EvalProps <> evalA_st def
+R19343:19343 Library.PIMP.EvalProps <> a:110 var
+R19346:19356 Library.DistState.CoreDef <> res_st_to_X def
+R19358:19358 Library.PIMP.EvalProps <> s:111 var
+R19361:19381 Library.PIMP.Syntax <> get_variables_in_aexp def
+R19383:19383 Library.PIMP.EvalProps <> a:110 var
+R19396:19403 Library.PIMP.EvalProps <> evalA_st def
+R19405:19405 Library.PIMP.EvalProps <> a:110 var
+R19408:19418 Library.DistState.CoreDef <> res_st_to_X def
+R19420:19420 Library.PIMP.EvalProps <> s:111 var
+R19422:19422 Library.PIMP.EvalProps <> V:112 var
+R19583:19602 Library.PIMP.EvalProps <> Qeq_get_under_res_st thm
+R19583:19602 Library.PIMP.EvalProps <> Qeq_get_under_res_st thm
+R19583:19602 Library.PIMP.EvalProps <> Qeq_get_under_res_st thm
+R19615:19623 Library.PIMP.EvalProps <> get_n_sub thm
+R19615:19623 Library.PIMP.EvalProps <> get_n_sub thm
+R19615:19623 Library.PIMP.EvalProps <> get_n_sub thm
+R19615:19623 Library.PIMP.EvalProps <> get_n_sub thm
+R19687:19701 Library.PIMP.EvalProps <> evalA_more_less thm
+R19687:19701 Library.PIMP.EvalProps <> evalA_more_less thm
+R19687:19701 Library.PIMP.EvalProps <> evalA_more_less thm
+R19712:19726 Library.DistState.Domain <> orb_domain_comm thm
+R19712:19726 Library.DistState.Domain <> orb_domain_comm thm
+R19712:19726 Library.DistState.Domain <> orb_domain_comm thm
+R19737:19751 Library.PIMP.EvalProps <> evalA_more_less thm
+R19737:19751 Library.PIMP.EvalProps <> evalA_more_less thm
+R19737:19751 Library.PIMP.EvalProps <> evalA_more_less thm
+R19774:19795 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R19774:19795 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R19850:19864 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R19850:19864 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R19850:19864 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R19911:19925 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R19911:19925 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R19911:19925 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R20010:20024 Library.PIMP.EvalProps <> evalA_more_less thm
+R20010:20024 Library.PIMP.EvalProps <> evalA_more_less thm
+R20010:20024 Library.PIMP.EvalProps <> evalA_more_less thm
+R20035:20049 Library.DistState.Domain <> orb_domain_comm thm
+R20035:20049 Library.DistState.Domain <> orb_domain_comm thm
+R20035:20049 Library.DistState.Domain <> orb_domain_comm thm
+R20060:20074 Library.PIMP.EvalProps <> evalA_more_less thm
+R20060:20074 Library.PIMP.EvalProps <> evalA_more_less thm
+R20060:20074 Library.PIMP.EvalProps <> evalA_more_less thm
+R20097:20118 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R20097:20118 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R20173:20187 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R20173:20187 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R20173:20187 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R20234:20248 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R20234:20248 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R20234:20248 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R20329:20343 Library.PIMP.EvalProps <> evalA_more_less thm
+R20329:20343 Library.PIMP.EvalProps <> evalA_more_less thm
+R20329:20343 Library.PIMP.EvalProps <> evalA_more_less thm
+R20354:20368 Library.DistState.Domain <> orb_domain_comm thm
+R20354:20368 Library.DistState.Domain <> orb_domain_comm thm
+R20354:20368 Library.DistState.Domain <> orb_domain_comm thm
+R20379:20393 Library.PIMP.EvalProps <> evalA_more_less thm
+R20379:20393 Library.PIMP.EvalProps <> evalA_more_less thm
+R20379:20393 Library.PIMP.EvalProps <> evalA_more_less thm
+R20416:20437 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R20416:20437 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R20492:20506 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R20492:20506 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R20492:20506 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R20553:20567 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R20553:20567 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R20553:20567 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+prf 20634:20655 <> evalB_st_preserve_bool
+binder 20666:20666 <> b:113
+binder 20668:20668 <> s:114
+binder 20670:20670 <> V:115
+R20728:20735 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R20721:20723 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R20677:20692 Library.DistState.CoreDef <> is_domain_subset def
+R20695:20715 Library.PIMP.Syntax <> get_variables_in_bexp def
+R20717:20717 Library.PIMP.EvalProps <> b:113 var
+R20720:20720 Library.PIMP.EvalProps <> V:115 var
+R20724:20727 Corelib.Init.Datatypes <> true constr
+R20788:20795 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R20736:20743 Library.PIMP.EvalProps <> evalB_st def
+R20745:20745 Library.PIMP.EvalProps <> b:113 var
+R20748:20758 Library.DistState.CoreDef <> res_st_to_X def
+R20760:20760 Library.PIMP.EvalProps <> s:114 var
+R20763:20783 Library.PIMP.Syntax <> get_variables_in_bexp def
+R20785:20785 Library.PIMP.EvalProps <> b:113 var
+R20796:20803 Library.PIMP.EvalProps <> evalB_st def
+R20805:20805 Library.PIMP.EvalProps <> b:113 var
+R20808:20818 Library.DistState.CoreDef <> res_st_to_X def
+R20820:20820 Library.PIMP.EvalProps <> s:114 var
+R20822:20822 Library.PIMP.EvalProps <> V:115 var
+R20979:20993 Library.PIMP.EvalProps <> evalB_more_less thm
+R20979:20993 Library.PIMP.EvalProps <> evalB_more_less thm
+R20979:20993 Library.PIMP.EvalProps <> evalB_more_less thm
+R21004:21018 Library.DistState.Domain <> orb_domain_comm thm
+R21004:21018 Library.DistState.Domain <> orb_domain_comm thm
+R21004:21018 Library.DistState.Domain <> orb_domain_comm thm
+R21029:21043 Library.PIMP.EvalProps <> evalB_more_less thm
+R21029:21043 Library.PIMP.EvalProps <> evalB_more_less thm
+R21029:21043 Library.PIMP.EvalProps <> evalB_more_less thm
+R21056:21077 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R21056:21077 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R21138:21152 Library.PIMP.EvalProps <> evalB_eq_res_st thm
+R21138:21152 Library.PIMP.EvalProps <> evalB_eq_res_st thm
+R21138:21152 Library.PIMP.EvalProps <> evalB_eq_res_st thm
+R21222:21236 Library.PIMP.EvalProps <> evalB_eq_res_st thm
+R21222:21236 Library.PIMP.EvalProps <> evalB_eq_res_st thm
+R21222:21236 Library.PIMP.EvalProps <> evalB_eq_res_st thm
+R21304:21307 Corelib.Init.Datatypes <> negb def
+R21387:21401 Library.PIMP.EvalProps <> evalA_more_less thm
+R21387:21401 Library.PIMP.EvalProps <> evalA_more_less thm
+R21387:21401 Library.PIMP.EvalProps <> evalA_more_less thm
+R21412:21426 Library.DistState.Domain <> orb_domain_comm thm
+R21412:21426 Library.DistState.Domain <> orb_domain_comm thm
+R21412:21426 Library.DistState.Domain <> orb_domain_comm thm
+R21437:21451 Library.PIMP.EvalProps <> evalA_more_less thm
+R21437:21451 Library.PIMP.EvalProps <> evalA_more_less thm
+R21437:21451 Library.PIMP.EvalProps <> evalA_more_less thm
+R21476:21497 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R21476:21497 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R21539:21560 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21539:21560 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21539:21560 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21539:21560 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21539:21560 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21539:21560 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21594:21615 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21594:21615 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21594:21615 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21594:21615 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21667:21681 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R21667:21681 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R21667:21681 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R21667:21681 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R21667:21681 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R21667:21681 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R21716:21730 Library.PIMP.EvalProps <> evalA_more_less thm
+R21716:21730 Library.PIMP.EvalProps <> evalA_more_less thm
+R21716:21730 Library.PIMP.EvalProps <> evalA_more_less thm
+R21741:21755 Library.DistState.Domain <> orb_domain_comm thm
+R21741:21755 Library.DistState.Domain <> orb_domain_comm thm
+R21741:21755 Library.DistState.Domain <> orb_domain_comm thm
+R21766:21780 Library.PIMP.EvalProps <> evalA_more_less thm
+R21766:21780 Library.PIMP.EvalProps <> evalA_more_less thm
+R21766:21780 Library.PIMP.EvalProps <> evalA_more_less thm
+R21805:21826 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R21805:21826 Library.DistState.Domain <> dom_subset_orb_fst_iff thm
+R21868:21889 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21868:21889 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21868:21889 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21868:21889 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21868:21889 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21868:21889 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21923:21944 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21923:21944 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21923:21944 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21923:21944 Library.PIMP.EvalProps <> evalA_st_preserve_bool thm
+R21996:22010 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R21996:22010 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R21996:22010 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R21996:22010 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R21996:22010 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+R21996:22010 Library.PIMP.EvalProps <> evalA_eq_res_st thm
+prf 22086:22105 <> supp_insert_all_none
+binder 22115:22115 <> s:116
+binder 22117:22118 <> sp:117
+R22186:22193 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R22124:22130 Stdlib.Lists.List <> forallb def
+R22171:22179 Library.DistState.CoreDef <> insert_st def
+R22181:22181 Library.PIMP.EvalProps <> s:116 var
+R22183:22184 Library.PIMP.EvalProps <> sp:117 var
+R22141:22150 Library.DistState.CoreDef <> partial_st def
+binder 22137:22137 <> s:118
+R22155:22165 Library.DistState.CoreDef <> st_all_none def
+R22167:22167 Library.PIMP.EvalProps <> s:118 var
+R22208:22211 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R22195:22205 Library.DistState.CoreDef <> st_all_none def
+R22207:22207 Library.PIMP.EvalProps <> s:116 var
+R22212:22218 Stdlib.Lists.List <> forallb def
+R22258:22259 Library.PIMP.EvalProps <> sp:117 var
+R22229:22238 Library.DistState.CoreDef <> partial_st def
+binder 22225:22225 <> s:119
+R22243:22253 Library.DistState.CoreDef <> st_all_none def
+R22255:22255 Library.PIMP.EvalProps <> s:119 var
+R22369:22377 Library.DistState.CoreDef <> beq_state def
+R22369:22377 Library.DistState.CoreDef <> beq_state def
+R22416:22439 Library.DistState.Arithmetic <> st_eq_eq_all_none_compat thm
+R22416:22439 Library.DistState.Arithmetic <> st_eq_eq_all_none_compat thm
+R22471:22480 Stdlib.Bool.Bool <> andb_assoc thm
+R22471:22480 Stdlib.Bool.Bool <> andb_assoc thm
+R22471:22480 Stdlib.Bool.Bool <> andb_assoc thm
+R22491:22499 Stdlib.Bool.Bool <> andb_diag thm
+R22491:22499 Stdlib.Bool.Bool <> andb_diag thm
+R22491:22499 Stdlib.Bool.Bool <> andb_diag thm
+R22529:22537 Library.DistState.CoreDef <> ble_state def
+R22529:22537 Library.DistState.CoreDef <> ble_state def
+R22625:22634 Stdlib.Bool.Bool <> andb_assoc thm
+R22625:22634 Stdlib.Bool.Bool <> andb_assoc thm
+R22625:22634 Stdlib.Bool.Bool <> andb_assoc thm
+R22671:22681 Library.DistState.CoreDef <> st_all_none def
+R22650:22658 Stdlib.Bool.Bool <> andb_comm thm
+R22671:22681 Library.DistState.CoreDef <> st_all_none def
+R22650:22658 Stdlib.Bool.Bool <> andb_comm thm
+R22671:22681 Library.DistState.CoreDef <> st_all_none def
+R22650:22658 Stdlib.Bool.Bool <> andb_comm thm
+R22699:22708 Stdlib.Bool.Bool <> andb_assoc thm
+R22699:22708 Stdlib.Bool.Bool <> andb_assoc thm
+R22699:22708 Stdlib.Bool.Bool <> andb_assoc thm
+prf 22735:22752 <> supp_sort_all_none
+binder 22762:22763 <> mu:120
+R22829:22834 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R22769:22775 Stdlib.Lists.List <> forallb def
+R22818:22820 Corelib.Lists.ListDef <> map def
+R22826:22827 Library.PIMP.EvalProps <> mu:120 var
+R22822:22824 Corelib.Init.Datatypes <> fst def
+R22787:22796 Library.DistState.CoreDef <> partial_st def
+binder 22782:22783 <> s0:121
+R22801:22811 Library.DistState.CoreDef <> st_all_none def
+R22813:22814 Library.PIMP.EvalProps <> s0:121 var
+R22835:22841 Stdlib.Lists.List <> forallb def
+R22884:22886 Corelib.Lists.ListDef <> map def
+R22893:22900 Library.DistState.CoreDef <> sort_dst def
+R22902:22903 Library.PIMP.EvalProps <> mu:120 var
+R22888:22890 Corelib.Init.Datatypes <> fst def
+R22853:22862 Library.DistState.CoreDef <> partial_st def
+binder 22848:22849 <> s0:122
+R22867:22877 Library.DistState.CoreDef <> st_all_none def
+R22879:22880 Library.PIMP.EvalProps <> s0:122 var
+R22995:23025 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R22995:23025 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R22995:23025 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R23039:23058 Library.PIMP.EvalProps <> supp_insert_all_none thm
+R23039:23058 Library.PIMP.EvalProps <> supp_insert_all_none thm
+R23039:23058 Library.PIMP.EvalProps <> supp_insert_all_none thm
+prf 23098:23114 <> supp_insert_evalB
+binder 23124:23124 <> s:123
+binder 23126:23127 <> sp:124
+binder 23129:23129 <> b:125
+R23196:23200 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R23135:23141 Stdlib.Lists.List <> forallb def
+R23181:23189 Library.DistState.CoreDef <> insert_st def
+R23191:23191 Library.PIMP.EvalProps <> s:123 var
+R23193:23194 Library.PIMP.EvalProps <> sp:124 var
+R23152:23161 Library.DistState.CoreDef <> partial_st def
+binder 23148:23148 <> s:126
+R23166:23173 Library.PIMP.EvalProps <> evalB_st def
+R23175:23175 Library.PIMP.EvalProps <> b:125 var
+R23177:23177 Library.PIMP.EvalProps <> s:126 var
+R23214:23217 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R23202:23209 Library.PIMP.EvalProps <> evalB_st def
+R23211:23211 Library.PIMP.EvalProps <> b:125 var
+R23213:23213 Library.PIMP.EvalProps <> s:123 var
+R23218:23224 Stdlib.Lists.List <> forallb def
+R23263:23264 Library.PIMP.EvalProps <> sp:124 var
+R23235:23244 Library.DistState.CoreDef <> partial_st def
+binder 23231:23231 <> s:127
+R23249:23256 Library.PIMP.EvalProps <> evalB_st def
+R23258:23258 Library.PIMP.EvalProps <> b:125 var
+R23260:23260 Library.PIMP.EvalProps <> s:127 var
+R23374:23382 Library.DistState.CoreDef <> beq_state def
+R23374:23382 Library.DistState.CoreDef <> beq_state def
+R23421:23439 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R23421:23439 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R23484:23493 Stdlib.Bool.Bool <> andb_assoc thm
+R23484:23493 Stdlib.Bool.Bool <> andb_assoc thm
+R23484:23493 Stdlib.Bool.Bool <> andb_assoc thm
+R23504:23512 Stdlib.Bool.Bool <> andb_diag thm
+R23504:23512 Stdlib.Bool.Bool <> andb_diag thm
+R23504:23512 Stdlib.Bool.Bool <> andb_diag thm
+R23542:23550 Library.DistState.CoreDef <> ble_state def
+R23542:23550 Library.DistState.CoreDef <> ble_state def
+R23638:23647 Stdlib.Bool.Bool <> andb_assoc thm
+R23638:23647 Stdlib.Bool.Bool <> andb_assoc thm
+R23638:23647 Stdlib.Bool.Bool <> andb_assoc thm
+R23684:23691 Library.PIMP.EvalProps <> evalB_st def
+R23663:23671 Stdlib.Bool.Bool <> andb_comm thm
+R23684:23691 Library.PIMP.EvalProps <> evalB_st def
+R23663:23671 Stdlib.Bool.Bool <> andb_comm thm
+R23684:23691 Library.PIMP.EvalProps <> evalB_st def
+R23663:23671 Stdlib.Bool.Bool <> andb_comm thm
+R23711:23720 Stdlib.Bool.Bool <> andb_assoc thm
+R23711:23720 Stdlib.Bool.Bool <> andb_assoc thm
+R23711:23720 Stdlib.Bool.Bool <> andb_assoc thm
+prf 23747:23761 <> supp_sort_evalB
+binder 23771:23772 <> mu:128
+binder 23774:23774 <> b:129
+R23839:23844 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R23780:23786 Stdlib.Lists.List <> forallb def
+R23828:23830 Corelib.Lists.ListDef <> map def
+R23836:23837 Library.PIMP.EvalProps <> mu:128 var
+R23832:23834 Corelib.Init.Datatypes <> fst def
+R23798:23807 Library.DistState.CoreDef <> partial_st def
+binder 23793:23794 <> s0:130
+R23812:23819 Library.PIMP.EvalProps <> evalB_st def
+R23821:23821 Library.PIMP.EvalProps <> b:129 var
+R23823:23824 Library.PIMP.EvalProps <> s0:130 var
+R23845:23851 Stdlib.Lists.List <> forallb def
+R23893:23895 Corelib.Lists.ListDef <> map def
+R23902:23909 Library.DistState.CoreDef <> sort_dst def
+R23911:23912 Library.PIMP.EvalProps <> mu:128 var
+R23897:23899 Corelib.Init.Datatypes <> fst def
+R23863:23872 Library.DistState.CoreDef <> partial_st def
+binder 23858:23859 <> s0:131
+R23877:23884 Library.PIMP.EvalProps <> evalB_st def
+R23886:23886 Library.PIMP.EvalProps <> b:129 var
+R23888:23889 Library.PIMP.EvalProps <> s0:131 var
+R24006:24036 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R24006:24036 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R24006:24036 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R24050:24066 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R24050:24066 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R24050:24066 Library.PIMP.EvalProps <> supp_insert_evalB thm
+prf 24106:24123 <> supp_decom_r_evalB
+binder 24133:24135 <> mu0:132
+binder 24137:24139 <> mu1:133
+binder 24141:24141 <> b:134
+R24220:24226 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R24213:24215 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R24147:24153 Stdlib.Lists.List <> forallb def
+R24193:24199 Library.DistState.CoreDef <> supp_mu def
+R24205:24207 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R24202:24204 Library.PIMP.EvalProps <> mu0:132 var
+R24208:24210 Library.PIMP.EvalProps <> mu1:133 var
+R24164:24173 Library.DistState.CoreDef <> partial_st def
+binder 24160:24160 <> s:135
+R24178:24185 Library.PIMP.EvalProps <> evalB_st def
+R24187:24187 Library.PIMP.EvalProps <> b:134 var
+R24189:24189 Library.PIMP.EvalProps <> s:135 var
+R24216:24219 Corelib.Init.Datatypes <> true constr
+R24287:24289 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R24227:24233 Stdlib.Lists.List <> forallb def
+R24273:24279 Library.DistState.CoreDef <> supp_mu def
+R24282:24284 Library.PIMP.EvalProps <> mu0:132 var
+R24244:24253 Library.DistState.CoreDef <> partial_st def
+binder 24240:24240 <> s:136
+R24258:24265 Library.PIMP.EvalProps <> evalB_st def
+R24267:24267 Library.PIMP.EvalProps <> b:134 var
+R24269:24269 Library.PIMP.EvalProps <> s:136 var
+R24290:24293 Corelib.Init.Datatypes <> true constr
+R24424:24430 Library.DistState.CoreDef <> supp_mu def
+R24448:24478 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R24448:24478 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R24448:24478 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R24489:24505 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R24489:24505 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R24489:24505 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R24518:24524 Library.DistState.CoreDef <> supp_mu def
+R24554:24584 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R24554:24584 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R24554:24584 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R24604:24620 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R24604:24620 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R24604:24620 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R24635:24647 Stdlib.Bool.Bool <> andb_true_iff thm
+R24635:24647 Stdlib.Bool.Bool <> andb_true_iff thm
+prf 24735:24752 <> supp_decom_l_evalB
+binder 24762:24764 <> mu0:137
+binder 24766:24768 <> mu1:138
+binder 24770:24770 <> b:139
+R24849:24855 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R24842:24844 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R24776:24782 Stdlib.Lists.List <> forallb def
+R24822:24828 Library.DistState.CoreDef <> supp_mu def
+R24834:24836 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R24831:24833 Library.PIMP.EvalProps <> mu0:137 var
+R24837:24839 Library.PIMP.EvalProps <> mu1:138 var
+R24793:24802 Library.DistState.CoreDef <> partial_st def
+binder 24789:24789 <> s:140
+R24807:24814 Library.PIMP.EvalProps <> evalB_st def
+R24816:24816 Library.PIMP.EvalProps <> b:139 var
+R24818:24818 Library.PIMP.EvalProps <> s:140 var
+R24845:24848 Corelib.Init.Datatypes <> true constr
+R24916:24918 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R24856:24862 Stdlib.Lists.List <> forallb def
+R24902:24908 Library.DistState.CoreDef <> supp_mu def
+R24911:24913 Library.PIMP.EvalProps <> mu1:138 var
+R24873:24882 Library.DistState.CoreDef <> partial_st def
+binder 24869:24869 <> s:141
+R24887:24894 Library.PIMP.EvalProps <> evalB_st def
+R24896:24896 Library.PIMP.EvalProps <> b:139 var
+R24898:24898 Library.PIMP.EvalProps <> s:141 var
+R24919:24922 Corelib.Init.Datatypes <> true constr
+R25068:25074 Library.DistState.CoreDef <> supp_mu def
+R25109:25139 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R25109:25139 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R25109:25139 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R25161:25177 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R25161:25177 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R25161:25177 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R25192:25204 Stdlib.Bool.Bool <> andb_true_iff thm
+R25192:25204 Stdlib.Bool.Bool <> andb_true_iff thm
+prf 25261:25281 <> supp_insert_negbevalB
+binder 25291:25291 <> s:142
+binder 25293:25294 <> sp:143
+binder 25296:25296 <> b:144
+R25370:25374 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R25302:25308 Stdlib.Lists.List <> forallb def
+R25355:25363 Library.DistState.CoreDef <> insert_st def
+R25365:25365 Library.PIMP.EvalProps <> s:142 var
+R25367:25368 Library.PIMP.EvalProps <> sp:143 var
+R25319:25328 Library.DistState.CoreDef <> partial_st def
+binder 25315:25315 <> s:145
+R25333:25336 Corelib.Init.Datatypes <> negb def
+R25339:25346 Library.PIMP.EvalProps <> evalB_st def
+R25348:25348 Library.PIMP.EvalProps <> b:144 var
+R25350:25350 Library.PIMP.EvalProps <> s:145 var
+R25395:25398 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R25376:25379 Corelib.Init.Datatypes <> negb def
+R25382:25389 Library.PIMP.EvalProps <> evalB_st def
+R25391:25391 Library.PIMP.EvalProps <> b:144 var
+R25393:25393 Library.PIMP.EvalProps <> s:142 var
+R25399:25405 Stdlib.Lists.List <> forallb def
+R25451:25452 Library.PIMP.EvalProps <> sp:143 var
+R25416:25425 Library.DistState.CoreDef <> partial_st def
+binder 25412:25412 <> s:146
+R25430:25433 Corelib.Init.Datatypes <> negb def
+R25436:25443 Library.PIMP.EvalProps <> evalB_st def
+R25445:25445 Library.PIMP.EvalProps <> b:144 var
+R25447:25447 Library.PIMP.EvalProps <> s:146 var
+R25562:25570 Library.DistState.CoreDef <> beq_state def
+R25562:25570 Library.DistState.CoreDef <> beq_state def
+R25609:25627 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R25609:25627 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R25672:25681 Stdlib.Bool.Bool <> andb_assoc thm
+R25672:25681 Stdlib.Bool.Bool <> andb_assoc thm
+R25672:25681 Stdlib.Bool.Bool <> andb_assoc thm
+R25692:25700 Stdlib.Bool.Bool <> andb_diag thm
+R25692:25700 Stdlib.Bool.Bool <> andb_diag thm
+R25692:25700 Stdlib.Bool.Bool <> andb_diag thm
+R25730:25738 Library.DistState.CoreDef <> ble_state def
+R25730:25738 Library.DistState.CoreDef <> ble_state def
+R25826:25835 Stdlib.Bool.Bool <> andb_assoc thm
+R25826:25835 Stdlib.Bool.Bool <> andb_assoc thm
+R25826:25835 Stdlib.Bool.Bool <> andb_assoc thm
+R25872:25875 Corelib.Init.Datatypes <> negb def
+R25878:25885 Library.PIMP.EvalProps <> evalB_st def
+R25851:25859 Stdlib.Bool.Bool <> andb_comm thm
+R25872:25875 Corelib.Init.Datatypes <> negb def
+R25878:25885 Library.PIMP.EvalProps <> evalB_st def
+R25851:25859 Stdlib.Bool.Bool <> andb_comm thm
+R25872:25875 Corelib.Init.Datatypes <> negb def
+R25878:25885 Library.PIMP.EvalProps <> evalB_st def
+R25851:25859 Stdlib.Bool.Bool <> andb_comm thm
+R25906:25915 Stdlib.Bool.Bool <> andb_assoc thm
+R25906:25915 Stdlib.Bool.Bool <> andb_assoc thm
+R25906:25915 Stdlib.Bool.Bool <> andb_assoc thm
+prf 25943:25961 <> supp_sort_negbevalB
+binder 25971:25972 <> mu:147
+binder 25974:25974 <> b:148
+R26045:26050 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R25979:25985 Stdlib.Lists.List <> forallb def
+R26034:26036 Corelib.Lists.ListDef <> map def
+R26042:26043 Library.PIMP.EvalProps <> mu:147 var
+R26038:26040 Corelib.Init.Datatypes <> fst def
+R25997:26006 Library.DistState.CoreDef <> partial_st def
+binder 25992:25993 <> s0:149
+R26011:26014 Corelib.Init.Datatypes <> negb def
+R26017:26024 Library.PIMP.EvalProps <> evalB_st def
+R26026:26026 Library.PIMP.EvalProps <> b:148 var
+R26028:26029 Library.PIMP.EvalProps <> s0:149 var
+R26051:26057 Stdlib.Lists.List <> forallb def
+R26106:26108 Corelib.Lists.ListDef <> map def
+R26115:26122 Library.DistState.CoreDef <> sort_dst def
+R26124:26125 Library.PIMP.EvalProps <> mu:147 var
+R26110:26112 Corelib.Init.Datatypes <> fst def
+R26069:26078 Library.DistState.CoreDef <> partial_st def
+binder 26064:26065 <> s0:150
+R26083:26086 Corelib.Init.Datatypes <> negb def
+R26089:26096 Library.PIMP.EvalProps <> evalB_st def
+R26098:26098 Library.PIMP.EvalProps <> b:148 var
+R26100:26101 Library.PIMP.EvalProps <> s0:150 var
+R26219:26249 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R26219:26249 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R26219:26249 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R26263:26283 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R26263:26283 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R26263:26283 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+prf 26323:26344 <> supp_decom_r_negbevalB
+binder 26354:26356 <> mu0:151
+binder 26358:26360 <> mu1:152
+binder 26362:26362 <> b:153
+R26448:26454 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R26441:26443 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R26368:26374 Stdlib.Lists.List <> forallb def
+R26421:26427 Library.DistState.CoreDef <> supp_mu def
+R26433:26435 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R26430:26432 Library.PIMP.EvalProps <> mu0:151 var
+R26436:26438 Library.PIMP.EvalProps <> mu1:152 var
+R26385:26394 Library.DistState.CoreDef <> partial_st def
+binder 26381:26381 <> s:154
+R26399:26402 Corelib.Init.Datatypes <> negb def
+R26405:26412 Library.PIMP.EvalProps <> evalB_st def
+R26414:26414 Library.PIMP.EvalProps <> b:153 var
+R26416:26416 Library.PIMP.EvalProps <> s:154 var
+R26444:26447 Corelib.Init.Datatypes <> true constr
+R26522:26524 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R26455:26461 Stdlib.Lists.List <> forallb def
+R26508:26514 Library.DistState.CoreDef <> supp_mu def
+R26517:26519 Library.PIMP.EvalProps <> mu0:151 var
+R26472:26481 Library.DistState.CoreDef <> partial_st def
+binder 26468:26468 <> s:155
+R26486:26489 Corelib.Init.Datatypes <> negb def
+R26492:26499 Library.PIMP.EvalProps <> evalB_st def
+R26501:26501 Library.PIMP.EvalProps <> b:153 var
+R26503:26503 Library.PIMP.EvalProps <> s:155 var
+R26525:26528 Corelib.Init.Datatypes <> true constr
+R26659:26665 Library.DistState.CoreDef <> supp_mu def
+R26683:26713 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R26683:26713 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R26683:26713 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R26724:26744 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R26724:26744 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R26724:26744 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R26757:26763 Library.DistState.CoreDef <> supp_mu def
+R26793:26823 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R26793:26823 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R26793:26823 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R26843:26863 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R26843:26863 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R26843:26863 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R26878:26890 Stdlib.Bool.Bool <> andb_true_iff thm
+R26878:26890 Stdlib.Bool.Bool <> andb_true_iff thm
+prf 26978:26999 <> supp_decom_l_negbevalB
+binder 27009:27011 <> mu0:156
+binder 27013:27015 <> mu1:157
+binder 27017:27017 <> b:158
+R27103:27109 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R27096:27098 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R27023:27029 Stdlib.Lists.List <> forallb def
+R27076:27082 Library.DistState.CoreDef <> supp_mu def
+R27088:27090 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R27085:27087 Library.PIMP.EvalProps <> mu0:156 var
+R27091:27093 Library.PIMP.EvalProps <> mu1:157 var
+R27040:27049 Library.DistState.CoreDef <> partial_st def
+binder 27036:27036 <> s:159
+R27054:27057 Corelib.Init.Datatypes <> negb def
+R27060:27067 Library.PIMP.EvalProps <> evalB_st def
+R27069:27069 Library.PIMP.EvalProps <> b:158 var
+R27071:27071 Library.PIMP.EvalProps <> s:159 var
+R27099:27102 Corelib.Init.Datatypes <> true constr
+R27177:27179 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R27110:27116 Stdlib.Lists.List <> forallb def
+R27163:27169 Library.DistState.CoreDef <> supp_mu def
+R27172:27174 Library.PIMP.EvalProps <> mu1:157 var
+R27127:27136 Library.DistState.CoreDef <> partial_st def
+binder 27123:27123 <> s:160
+R27141:27144 Corelib.Init.Datatypes <> negb def
+R27147:27154 Library.PIMP.EvalProps <> evalB_st def
+R27156:27156 Library.PIMP.EvalProps <> b:158 var
+R27158:27158 Library.PIMP.EvalProps <> s:160 var
+R27180:27183 Corelib.Init.Datatypes <> true constr
+R27329:27335 Library.DistState.CoreDef <> supp_mu def
+R27370:27400 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R27370:27400 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R27370:27400 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R27422:27442 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R27422:27442 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R27422:27442 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R27457:27469 Stdlib.Bool.Bool <> andb_true_iff thm
+R27457:27469 Stdlib.Bool.Bool <> andb_true_iff thm
+ind 27530:27545 <> b_classification
+constr 27562:27568 <> All_nil
+constr 27574:27581 <> All_True
+constr 27637:27645 <> All_False
+constr 27701:27705 <> Mixed
+scheme 27530:27545 <> b_classification_rect
+scheme 27530:27545 <> b_classification_ind
+scheme 27530:27545 <> b_classification_rec
+scheme 27530:27545 <> b_classification_sind
+def 27721:27735 <> b_supp_classify
+R27741:27744 Library.PIMP.Syntax <> bexp ind
+binder 27738:27738 <> b:163
+R27752:27763 Library.DistState.CoreDef <> partial_dist rec
+binder 27748:27749 <> pd:164
+R27768:27783 Library.PIMP.EvalProps <> b_classification ind
+R27798:27799 Library.DistState.CoreDef <> mu proj
+R27801:27802 Library.PIMP.EvalProps <> pd:164 var
+R27815:27816 Stdlib.Lists.List ListNotations ::list_scope:'['_']' not
+R27821:27827 Library.PIMP.EvalProps <> All_nil constr
+R27853:27859 Library.DistState.CoreDef <> supp_mu def
+R27862:27863 Library.DistState.CoreDef <> mu proj
+R27865:27866 Library.PIMP.EvalProps <> pd:164 var
+binder 27843:27848 <> states:165
+R27888:27888 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R27927:27988 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R28034:28034 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R27889:27895 Stdlib.Lists.List <> forallb def
+R27921:27926 Library.PIMP.EvalProps <> states:165 var
+binder 27902:27902 <> s:166
+R27907:27914 Library.PIMP.EvalProps <> evalB_st def
+R27916:27916 Library.PIMP.EvalProps <> b:163 var
+R27918:27918 Library.PIMP.EvalProps <> s:166 var
+R27989:27995 Stdlib.Lists.List <> forallb def
+R28028:28033 Library.PIMP.EvalProps <> states:165 var
+binder 28002:28002 <> s:167
+R28007:28010 Corelib.Init.Datatypes <> negb def
+R28013:28020 Library.PIMP.EvalProps <> evalB_st def
+R28022:28022 Library.PIMP.EvalProps <> b:163 var
+R28024:28024 Library.PIMP.EvalProps <> s:167 var
+R28053:28053 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R28058:28059 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R28061:28061 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R28054:28057 Corelib.Init.Datatypes <> true constr
+R28066:28073 Library.PIMP.EvalProps <> All_True constr
+R28087:28087 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R28089:28090 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R28095:28095 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R28091:28094 Corelib.Init.Datatypes <> true constr
+R28100:28108 Library.PIMP.EvalProps <> All_False constr
+R28127:28131 Library.PIMP.EvalProps <> Mixed constr
+prf 28161:28169 <> pd_Nil_mu
+binder 28179:28179 <> b:168
+binder 28181:28182 <> pd:169
+R28215:28219 Corelib.Init.Logic <> ::type_scope:x_'<->'_x not
+R28205:28207 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R28185:28199 Library.PIMP.EvalProps <> b_supp_classify def
+R28201:28201 Library.PIMP.EvalProps <> b:168 var
+R28203:28204 Library.PIMP.EvalProps <> pd:169 var
+R28208:28214 Library.PIMP.EvalProps <> All_nil constr
+R28225:28227 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R28220:28221 Library.DistState.CoreDef <> mu proj
+R28223:28224 Library.PIMP.EvalProps <> pd:169 var
+R28228:28230 Corelib.Init.Datatypes <> nil constr
+R28273:28287 Library.PIMP.EvalProps <> b_supp_classify def
+R28385:28391 Stdlib.Lists.List <> forallb def
+R28431:28437 Library.DistState.CoreDef <> supp_mu def
+R28441:28444 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R28402:28411 Library.DistState.CoreDef <> partial_st def
+binder 28398:28398 <> s:170
+R28416:28423 Library.PIMP.EvalProps <> evalB_st def
+R28427:28427 Library.PIMP.EvalProps <> s:170 var
+R28467:28473 Stdlib.Lists.List <> forallb def
+R28520:28526 Library.DistState.CoreDef <> supp_mu def
+R28530:28533 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R28484:28493 Library.DistState.CoreDef <> partial_st def
+binder 28480:28480 <> s:171
+R28498:28501 Corelib.Init.Datatypes <> negb def
+R28504:28511 Library.PIMP.EvalProps <> evalB_st def
+R28515:28515 Library.PIMP.EvalProps <> s:171 var
+R28385:28391 Stdlib.Lists.List <> forallb def
+R28431:28437 Library.DistState.CoreDef <> supp_mu def
+R28441:28444 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R28402:28411 Library.DistState.CoreDef <> partial_st def
+binder 28398:28398 <> s:172
+R28416:28423 Library.PIMP.EvalProps <> evalB_st def
+R28427:28427 Library.PIMP.EvalProps <> s:172 var
+R28467:28473 Stdlib.Lists.List <> forallb def
+R28520:28526 Library.DistState.CoreDef <> supp_mu def
+R28530:28533 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R28484:28493 Library.DistState.CoreDef <> partial_st def
+binder 28480:28480 <> s:173
+R28498:28501 Corelib.Init.Datatypes <> negb def
+R28504:28511 Library.PIMP.EvalProps <> evalB_st def
+R28515:28515 Library.PIMP.EvalProps <> s:173 var
+R28467:28473 Stdlib.Lists.List <> forallb def
+R28520:28526 Library.DistState.CoreDef <> supp_mu def
+R28530:28533 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R28484:28493 Library.DistState.CoreDef <> partial_st def
+binder 28480:28480 <> s:174
+R28498:28501 Corelib.Init.Datatypes <> negb def
+R28504:28511 Library.PIMP.EvalProps <> evalB_st def
+R28515:28515 Library.PIMP.EvalProps <> s:174 var
+R28578:28592 Library.PIMP.EvalProps <> b_supp_classify def
+prf 28636:28654 <> dst_sort_b_classify
+binder 28664:28665 <> pd:175
+binder 28667:28667 <> b:176
+R28691:28697 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R28673:28682 Library.DistState.CoreDef <> Valid_dist def
+R28685:28686 Library.DistState.CoreDef <> mu proj
+R28688:28689 Library.PIMP.EvalProps <> pd:175 var
+R28718:28720 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R28698:28712 Library.PIMP.EvalProps <> b_supp_classify def
+R28714:28714 Library.PIMP.EvalProps <> b:176 var
+R28716:28717 Library.PIMP.EvalProps <> pd:175 var
+R28721:28735 Library.PIMP.EvalProps <> b_supp_classify def
+R28737:28737 Library.PIMP.EvalProps <> b:176 var
+R28740:28746 Library.DistState.Partial <> Sort_pd def
+R28748:28749 Library.PIMP.EvalProps <> pd:175 var
+R28817:28831 Library.PIMP.EvalProps <> b_supp_classify def
+R28860:28873 Library.DistState.Support <> supp_eq_sorted thm
+R28860:28873 Library.DistState.Support <> supp_eq_sorted thm
+R28860:28873 Library.DistState.Support <> supp_eq_sorted thm
+R28860:28873 Library.DistState.Support <> supp_eq_sorted thm
+R28963:28976 Library.DistState.CoreDef <> insert_st_pair def
+R28983:28990 Library.DistState.CoreDef <> sort_dst def
+R28963:28976 Library.DistState.CoreDef <> insert_st_pair def
+R28983:28990 Library.DistState.CoreDef <> sort_dst def
+R29022:29039 Library.DistState.Support <> insert_pair_contra thm
+R29022:29039 Library.DistState.Support <> insert_pair_contra thm
+R29100:29113 Library.DistState.ValidDst <> Valid_dist_inv thm
+R29100:29113 Library.DistState.ValidDst <> Valid_dist_inv thm
+R29163:29169 Library.DistState.CoreDef <> supp_mu def
+R29191:29221 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R29191:29221 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R29191:29221 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R29236:29252 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R29236:29252 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R29236:29252 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R29267:29287 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R29267:29287 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R29267:29287 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R29304:29311 Library.PIMP.EvalProps <> evalB_st def
+R29304:29311 Library.PIMP.EvalProps <> evalB_st def
+prf 29356:29385 <> supp_equiv_implies_all_none_eq
+binder 29395:29397 <> sp0:177
+binder 29399:29401 <> sp1:178
+R29424:29429 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R29411:29414 Library.DistState.CoreDef <> ::supp_scope:x_'=='_x not
+R29408:29410 Library.PIMP.EvalProps <> sp0:177 var
+R29415:29417 Library.PIMP.EvalProps <> sp1:178 var
+R29479:29481 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R29430:29436 Stdlib.Lists.List <> forallb def
+R29476:29478 Library.PIMP.EvalProps <> sp0:177 var
+R29447:29456 Library.DistState.CoreDef <> partial_st def
+binder 29443:29443 <> s:179
+R29461:29471 Library.DistState.CoreDef <> st_all_none def
+R29473:29473 Library.PIMP.EvalProps <> s:179 var
+R29482:29488 Stdlib.Lists.List <> forallb def
+R29528:29530 Library.PIMP.EvalProps <> sp1:178 var
+R29499:29508 Library.DistState.CoreDef <> partial_st def
+binder 29495:29495 <> s:180
+R29513:29523 Library.DistState.CoreDef <> st_all_none def
+R29525:29525 Library.PIMP.EvalProps <> s:180 var
+R29753:29765 Stdlib.Bool.Bool <> andb_true_iff thm
+R29753:29765 Stdlib.Bool.Bool <> andb_true_iff thm
+R29828:29851 Library.DistState.Arithmetic <> st_eq_eq_all_none_compat thm
+R29828:29851 Library.DistState.Arithmetic <> st_eq_eq_all_none_compat thm
+prf 29895:29921 <> supp_equiv_implies_evalB_eq
+binder 29931:29933 <> sp0:181
+binder 29935:29937 <> sp1:182
+binder 29939:29939 <> b:183
+R29962:29967 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R29949:29952 Library.DistState.CoreDef <> ::supp_scope:x_'=='_x not
+R29946:29948 Library.PIMP.EvalProps <> sp0:181 var
+R29953:29955 Library.PIMP.EvalProps <> sp1:182 var
+R30016:30018 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R29968:29974 Stdlib.Lists.List <> forallb def
+R30013:30015 Library.PIMP.EvalProps <> sp0:181 var
+R29985:29994 Library.DistState.CoreDef <> partial_st def
+binder 29981:29981 <> s:184
+R29999:30006 Library.PIMP.EvalProps <> evalB_st def
+R30008:30008 Library.PIMP.EvalProps <> b:183 var
+R30010:30010 Library.PIMP.EvalProps <> s:184 var
+R30019:30025 Stdlib.Lists.List <> forallb def
+R30064:30066 Library.PIMP.EvalProps <> sp1:182 var
+R30036:30045 Library.DistState.CoreDef <> partial_st def
+binder 30032:30032 <> s:185
+R30050:30057 Library.PIMP.EvalProps <> evalB_st def
+R30059:30059 Library.PIMP.EvalProps <> b:183 var
+R30061:30061 Library.PIMP.EvalProps <> s:185 var
+R30291:30303 Stdlib.Bool.Bool <> andb_true_iff thm
+R30291:30303 Stdlib.Bool.Bool <> andb_true_iff thm
+R30366:30384 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R30366:30384 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+prf 30440:30470 <> supp_equiv_implies_negbevalB_eq
+binder 30480:30482 <> sp0:186
+binder 30484:30486 <> sp1:187
+binder 30488:30488 <> b:188
+R30511:30516 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R30498:30501 Library.DistState.CoreDef <> ::supp_scope:x_'=='_x not
+R30495:30497 Library.PIMP.EvalProps <> sp0:186 var
+R30502:30504 Library.PIMP.EvalProps <> sp1:187 var
+R30572:30579 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R30517:30523 Stdlib.Lists.List <> forallb def
+R30569:30571 Library.PIMP.EvalProps <> sp0:186 var
+R30534:30543 Library.DistState.CoreDef <> partial_st def
+binder 30530:30530 <> s:189
+R30548:30551 Corelib.Init.Datatypes <> negb def
+R30554:30561 Library.PIMP.EvalProps <> evalB_st def
+R30563:30563 Library.PIMP.EvalProps <> b:188 var
+R30565:30565 Library.PIMP.EvalProps <> s:189 var
+R30580:30586 Stdlib.Lists.List <> forallb def
+R30632:30634 Library.PIMP.EvalProps <> sp1:187 var
+R30597:30606 Library.DistState.CoreDef <> partial_st def
+binder 30593:30593 <> s:190
+R30611:30614 Corelib.Init.Datatypes <> negb def
+R30617:30624 Library.PIMP.EvalProps <> evalB_st def
+R30626:30626 Library.PIMP.EvalProps <> b:188 var
+R30628:30628 Library.PIMP.EvalProps <> s:190 var
+R30859:30871 Stdlib.Bool.Bool <> andb_true_iff thm
+R30859:30871 Stdlib.Bool.Bool <> andb_true_iff thm
+R30934:30952 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R30934:30952 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+prf 31009:31036 <> dst_equiv_implies_b_classify
+binder 31049:31051 <> pd0:191
+binder 31053:31055 <> pd1:192
+binder 31057:31057 <> b:193
+R31083:31086 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R31064:31073 Library.DistState.CoreDef <> Valid_dist def
+R31076:31077 Library.DistState.CoreDef <> mu proj
+R31079:31081 Library.PIMP.EvalProps <> pd0:191 var
+R31106:31111 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R31087:31096 Library.DistState.CoreDef <> Valid_dist def
+R31099:31100 Library.DistState.CoreDef <> mu proj
+R31102:31104 Library.PIMP.EvalProps <> pd1:192 var
+R31123:31128 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R31115:31119 Library.DistState.CoreDef <> :::x_'≡'_x not
+R31112:31114 Library.PIMP.EvalProps <> pd0:191 var
+R31120:31122 Library.PIMP.EvalProps <> pd1:192 var
+R31150:31152 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R31129:31143 Library.PIMP.EvalProps <> b_supp_classify def
+R31145:31145 Library.PIMP.EvalProps <> b:193 var
+R31147:31149 Library.PIMP.EvalProps <> pd0:191 var
+R31153:31167 Library.PIMP.EvalProps <> b_supp_classify def
+R31169:31169 Library.PIMP.EvalProps <> b:193 var
+R31171:31173 Library.PIMP.EvalProps <> pd1:192 var
+R31226:31244 Library.PIMP.EvalProps <> dst_sort_b_classify thm
+R31226:31244 Library.PIMP.EvalProps <> dst_sort_b_classify thm
+R31226:31244 Library.PIMP.EvalProps <> dst_sort_b_classify thm
+R31226:31244 Library.PIMP.EvalProps <> dst_sort_b_classify thm
+R31273:31291 Library.PIMP.EvalProps <> dst_sort_b_classify thm
+R31273:31291 Library.PIMP.EvalProps <> dst_sort_b_classify thm
+R31273:31291 Library.PIMP.EvalProps <> dst_sort_b_classify thm
+R31273:31291 Library.PIMP.EvalProps <> dst_sort_b_classify thm
+R31447:31450 Library.DistState.CoreDef <> ::dstate_scope:x_'=='_x not
+R31451:31458 Library.DistState.CoreDef <> sort_dst def
+R31447:31450 Library.DistState.CoreDef <> ::dstate_scope:x_'=='_x not
+R31451:31458 Library.DistState.CoreDef <> sort_dst def
+R31486:31499 Library.DistState.ValidDst <> dst_equiv_sort thm
+R31486:31499 Library.DistState.ValidDst <> dst_equiv_sort thm
+R31528:31531 Library.DistState.CoreDef <> ::dstate_scope:x_'=='_x not
+R31532:31539 Library.DistState.CoreDef <> sort_dst def
+R31528:31531 Library.DistState.CoreDef <> ::dstate_scope:x_'=='_x not
+R31532:31539 Library.DistState.CoreDef <> sort_dst def
+R31567:31580 Library.DistState.ValidDst <> dst_equiv_sort thm
+R31567:31580 Library.DistState.ValidDst <> dst_equiv_sort thm
+R31621:31624 Library.DistState.CoreDef <> ::dstate_scope:x_'=='_x not
+R31609:31616 Library.DistState.CoreDef <> sort_dst def
+R31625:31632 Library.DistState.CoreDef <> sort_dst def
+R31621:31624 Library.DistState.CoreDef <> ::dstate_scope:x_'=='_x not
+R31609:31616 Library.DistState.CoreDef <> sort_dst def
+R31625:31632 Library.DistState.CoreDef <> sort_dst def
+R31666:31680 Library.DistState.Arithmetic <> dst_equiv_trans thm
+R31666:31680 Library.DistState.Arithmetic <> dst_equiv_trans thm
+R31696:31708 Library.DistState.Arithmetic <> dst_equiv_sym thm
+R31696:31708 Library.DistState.Arithmetic <> dst_equiv_sym thm
+R31752:31766 Library.DistState.Arithmetic <> dst_equiv_trans thm
+R31752:31766 Library.DistState.Arithmetic <> dst_equiv_trans thm
+R31832:31841 Library.DistState.CoreDef <> Valid_dist def
+R31844:31851 Library.DistState.CoreDef <> sort_dst def
+R31832:31841 Library.DistState.CoreDef <> Valid_dist def
+R31844:31851 Library.DistState.CoreDef <> sort_dst def
+R31868:31891 Library.DistState.ValidDst <> Valid_implies_sort_Valid thm
+R31868:31891 Library.DistState.ValidDst <> Valid_implies_sort_Valid thm
+R31932:31941 Library.DistState.CoreDef <> Valid_dist def
+R31944:31951 Library.DistState.CoreDef <> sort_dst def
+R31932:31941 Library.DistState.CoreDef <> Valid_dist def
+R31944:31951 Library.DistState.CoreDef <> sort_dst def
+R31968:31991 Library.DistState.ValidDst <> Valid_implies_sort_Valid thm
+R31968:31991 Library.DistState.ValidDst <> Valid_implies_sort_Valid thm
+R32066:32068 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R32029:32035 Library.DistState.CoreDef <> beq_dst def
+R32038:32045 Library.DistState.CoreDef <> sort_dst def
+R32053:32060 Library.DistState.CoreDef <> sort_dst def
+R32069:32072 Corelib.Init.Datatypes <> true constr
+R32066:32068 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R32029:32035 Library.DistState.CoreDef <> beq_dst def
+R32038:32045 Library.DistState.CoreDef <> sort_dst def
+R32053:32060 Library.DistState.CoreDef <> sort_dst def
+R32069:32072 Corelib.Init.Datatypes <> true constr
+R32089:32119 Library.DistState.ValidDst <> Sort_Valid_Peq_implies_beq_True thm
+R32089:32119 Library.DistState.ValidDst <> Sort_Valid_Peq_implies_beq_True thm
+R32160:32189 Library.DistState.ValidDst <> WF_dist_implies_sortdst_Sorted thm
+R32160:32189 Library.DistState.ValidDst <> WF_dist_implies_sortdst_Sorted thm
+R32237:32266 Library.DistState.ValidDst <> WF_dist_implies_sortdst_Sorted thm
+R32237:32266 Library.DistState.ValidDst <> WF_dist_implies_sortdst_Sorted thm
+R32304:32329 Library.DistState.Support <> dst_equiv_implies_beq_supp thm
+R32304:32329 Library.DistState.Support <> dst_equiv_implies_beq_supp thm
+R32364:32378 Library.PIMP.EvalProps <> b_supp_classify def
+R32408:32421 Library.DistState.Support <> supp_eq_sorted thm
+R32408:32421 Library.DistState.Support <> supp_eq_sorted thm
+R32408:32421 Library.DistState.Support <> supp_eq_sorted thm
+R32408:32421 Library.DistState.Support <> supp_eq_sorted thm
+R32408:32421 Library.DistState.Support <> supp_eq_sorted thm
+R32408:32421 Library.DistState.Support <> supp_eq_sorted thm
+R32408:32421 Library.DistState.Support <> supp_eq_sorted thm
+R32408:32421 Library.DistState.Support <> supp_eq_sorted thm
+R32408:32421 Library.DistState.Support <> supp_eq_sorted thm
+R32408:32421 Library.DistState.Support <> supp_eq_sorted thm
+R32490:32496 Library.DistState.CoreDef <> supp_mu def
+R32450:32476 Library.PIMP.EvalProps <> supp_equiv_implies_evalB_eq thm
+R32490:32496 Library.DistState.CoreDef <> supp_mu def
+R32450:32476 Library.PIMP.EvalProps <> supp_equiv_implies_evalB_eq thm
+R32490:32496 Library.DistState.CoreDef <> supp_mu def
+R32450:32476 Library.PIMP.EvalProps <> supp_equiv_implies_evalB_eq thm
+R32490:32496 Library.DistState.CoreDef <> supp_mu def
+R32450:32476 Library.PIMP.EvalProps <> supp_equiv_implies_evalB_eq thm
+R32574:32580 Library.DistState.CoreDef <> supp_mu def
+R32530:32560 Library.PIMP.EvalProps <> supp_equiv_implies_negbevalB_eq thm
+R32574:32580 Library.DistState.CoreDef <> supp_mu def
+R32530:32560 Library.PIMP.EvalProps <> supp_equiv_implies_negbevalB_eq thm
+R32574:32580 Library.DistState.CoreDef <> supp_mu def
+R32530:32560 Library.PIMP.EvalProps <> supp_equiv_implies_negbevalB_eq thm
+R32574:32580 Library.DistState.CoreDef <> supp_mu def
+R32530:32560 Library.PIMP.EvalProps <> supp_equiv_implies_negbevalB_eq thm
+R32616:32623 Library.DistState.CoreDef <> sort_dst def
+R32641:32648 Library.DistState.CoreDef <> sort_dst def
+R32616:32623 Library.DistState.CoreDef <> sort_dst def
+R32641:32648 Library.DistState.CoreDef <> sort_dst def
+R32641:32648 Library.DistState.CoreDef <> sort_dst def
+R32707:32719 Library.DistState.Arithmetic <> dst_equiv_sym thm
+R32707:32719 Library.DistState.Arithmetic <> dst_equiv_sym thm
+R32748:32768 Library.DistState.ValidDst <> dst_cons_valid_contra thm
+R32748:32768 Library.DistState.ValidDst <> dst_cons_valid_contra thm
+R32844:32864 Library.DistState.ValidDst <> dst_cons_valid_contra thm
+R32844:32864 Library.DistState.ValidDst <> dst_cons_valid_contra thm
+prf 32925:32944 <> b_classify_mult_coef
+binder 32954:32955 <> pd:194
+binder 32957:32957 <> p:195
+binder 32959:32959 <> b:196
+R32970:32976 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R32966:32968 Stdlib.Reals.Rdefinitions <> ::R_scope:x_'<'_x not
+R32969:32969 Library.PIMP.EvalProps <> p:195 var
+R33009:33011 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R32977:32991 Library.PIMP.EvalProps <> b_supp_classify def
+R32993:32993 Library.PIMP.EvalProps <> b:196 var
+R32996:33002 Library.DistState.Partial <> cofe_pd def
+R33004:33005 Library.PIMP.EvalProps <> pd:194 var
+R33007:33007 Library.PIMP.EvalProps <> p:195 var
+R33012:33026 Library.PIMP.EvalProps <> b_supp_classify def
+R33028:33028 Library.PIMP.EvalProps <> b:196 var
+R33030:33031 Library.PIMP.EvalProps <> pd:194 var
+R33058:33072 Library.PIMP.EvalProps <> b_supp_classify def
+R33096:33112 Library.DistState.Support <> supp_eq_mult_coef thm
+R33096:33112 Library.DistState.Support <> supp_eq_mult_coef thm
+R33096:33112 Library.DistState.Support <> supp_eq_mult_coef thm
+R33096:33112 Library.DistState.Support <> supp_eq_mult_coef thm
+R33144:33145 Library.DistState.CoreDef <> mu proj
+R33144:33145 Library.DistState.CoreDef <> mu proj
+R33215:33223 Stdlib.Reals.RIneq <> Req_dec_T thm
+R33215:33223 Stdlib.Reals.RIneq <> Req_dec_T thm
+R33276:33285 Stdlib.Reals.RIneq <> Rlt_irrefl thm
+R33276:33285 Stdlib.Reals.RIneq <> Rlt_irrefl thm
+prf 33339:33353 <> st_subst_evalBT
+binder 33363:33363 <> s:197
+binder 33365:33365 <> b:198
+binder 33367:33368 <> sp:199
+R33391:33394 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R33378:33382 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R33375:33375 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R33377:33377 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R33376:33376 Library.PIMP.EvalProps <> s:197 var
+R33383:33384 Library.PIMP.EvalProps <> sp:199 var
+R33449:33454 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R33442:33444 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R33395:33401 Stdlib.Lists.List <> forallb def
+R33440:33441 Library.PIMP.EvalProps <> sp:199 var
+R33412:33421 Library.DistState.CoreDef <> partial_st def
+binder 33408:33408 <> s:200
+R33426:33433 Library.PIMP.EvalProps <> evalB_st def
+R33435:33435 Library.PIMP.EvalProps <> b:198 var
+R33437:33437 Library.PIMP.EvalProps <> s:200 var
+R33445:33448 Corelib.Init.Datatypes <> true constr
+R33467:33469 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R33455:33462 Library.PIMP.EvalProps <> evalB_st def
+R33464:33464 Library.PIMP.EvalProps <> b:198 var
+R33466:33466 Library.PIMP.EvalProps <> s:197 var
+R33470:33473 Corelib.Init.Datatypes <> true constr
+R33565:33573 Library.DistState.CoreDef <> beq_state def
+R33565:33573 Library.DistState.CoreDef <> beq_state def
+R33600:33612 Stdlib.Bool.Bool <> andb_true_iff thm
+R33600:33612 Stdlib.Bool.Bool <> andb_true_iff thm
+R33647:33665 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R33647:33665 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R33727:33735 Library.DistState.CoreDef <> ble_state def
+R33727:33735 Library.DistState.CoreDef <> ble_state def
+R33772:33784 Stdlib.Bool.Bool <> andb_true_iff thm
+R33772:33784 Stdlib.Bool.Bool <> andb_true_iff thm
+prf 33859:33877 <> st_subst_negbevalBT
+binder 33887:33887 <> s:201
+binder 33889:33889 <> b:202
+binder 33891:33892 <> sp:203
+R33915:33918 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R33902:33906 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R33899:33899 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R33901:33901 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R33900:33900 Library.PIMP.EvalProps <> s:201 var
+R33907:33908 Library.PIMP.EvalProps <> sp:203 var
+R33980:33987 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R33973:33975 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R33919:33925 Stdlib.Lists.List <> forallb def
+R33971:33972 Library.PIMP.EvalProps <> sp:203 var
+R33936:33945 Library.DistState.CoreDef <> partial_st def
+binder 33932:33932 <> s:204
+R33950:33953 Corelib.Init.Datatypes <> negb def
+R33956:33963 Library.PIMP.EvalProps <> evalB_st def
+R33965:33965 Library.PIMP.EvalProps <> b:202 var
+R33967:33967 Library.PIMP.EvalProps <> s:204 var
+R33976:33979 Corelib.Init.Datatypes <> true constr
+R34007:34009 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R33988:33991 Corelib.Init.Datatypes <> negb def
+R33994:34001 Library.PIMP.EvalProps <> evalB_st def
+R34003:34003 Library.PIMP.EvalProps <> b:202 var
+R34005:34005 Library.PIMP.EvalProps <> s:201 var
+R34010:34013 Corelib.Init.Datatypes <> true constr
+R34105:34113 Library.DistState.CoreDef <> beq_state def
+R34105:34113 Library.DistState.CoreDef <> beq_state def
+R34140:34152 Stdlib.Bool.Bool <> andb_true_iff thm
+R34140:34152 Stdlib.Bool.Bool <> andb_true_iff thm
+R34187:34205 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R34187:34205 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R34267:34275 Library.DistState.CoreDef <> ble_state def
+R34267:34275 Library.DistState.CoreDef <> ble_state def
+R34312:34324 Stdlib.Bool.Bool <> andb_true_iff thm
+R34312:34324 Stdlib.Bool.Bool <> andb_true_iff thm
+prf 34400:34427 <> supp_subst_implies_evalBT_eq
+binder 34437:34439 <> sp0:205
+binder 34441:34443 <> sp1:206
+binder 34445:34445 <> b:207
+R34471:34476 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R34452:34452 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R34456:34461 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R34453:34455 Library.PIMP.EvalProps <> sp0:205 var
+R34462:34464 Library.PIMP.EvalProps <> sp1:206 var
+R34532:34537 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R34525:34527 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R34477:34483 Stdlib.Lists.List <> forallb def
+R34522:34524 Library.PIMP.EvalProps <> sp1:206 var
+R34494:34503 Library.DistState.CoreDef <> partial_st def
+binder 34490:34490 <> s:208
+R34508:34515 Library.PIMP.EvalProps <> evalB_st def
+R34517:34517 Library.PIMP.EvalProps <> b:207 var
+R34519:34519 Library.PIMP.EvalProps <> s:208 var
+R34528:34531 Corelib.Init.Datatypes <> true constr
+R34588:34590 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R34538:34544 Stdlib.Lists.List <> forallb def
+R34584:34586 Library.PIMP.EvalProps <> sp0:205 var
+R34555:34564 Library.DistState.CoreDef <> partial_st def
+binder 34551:34551 <> s:209
+R34569:34576 Library.PIMP.EvalProps <> evalB_st def
+R34578:34578 Library.PIMP.EvalProps <> b:207 var
+R34580:34580 Library.PIMP.EvalProps <> s:209 var
+R34591:34594 Corelib.Init.Datatypes <> true constr
+R34807:34819 Stdlib.Bool.Bool <> andb_true_iff thm
+R34807:34819 Stdlib.Bool.Bool <> andb_true_iff thm
+R34853:34861 Library.DistState.CoreDef <> beq_state def
+R34853:34861 Library.DistState.CoreDef <> beq_state def
+R34931:34949 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R34931:34949 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R35039:35047 Library.DistState.CoreDef <> ble_state def
+R35039:35047 Library.DistState.CoreDef <> ble_state def
+R35104:35107 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R35104:35107 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+prf 35149:35180 <> supp_subst_implies_negbevalBT_eq
+binder 35190:35192 <> sp0:210
+binder 35194:35196 <> sp1:211
+binder 35198:35198 <> b:212
+R35224:35229 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R35205:35205 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R35209:35214 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R35206:35208 Library.PIMP.EvalProps <> sp0:210 var
+R35215:35217 Library.PIMP.EvalProps <> sp1:211 var
+R35292:35297 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R35285:35287 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R35230:35236 Stdlib.Lists.List <> forallb def
+R35282:35284 Library.PIMP.EvalProps <> sp1:211 var
+R35247:35256 Library.DistState.CoreDef <> partial_st def
+binder 35243:35243 <> s:213
+R35261:35264 Corelib.Init.Datatypes <> negb def
+R35267:35274 Library.PIMP.EvalProps <> evalB_st def
+R35276:35276 Library.PIMP.EvalProps <> b:212 var
+R35278:35278 Library.PIMP.EvalProps <> s:213 var
+R35288:35291 Corelib.Init.Datatypes <> true constr
+R35355:35357 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R35298:35304 Stdlib.Lists.List <> forallb def
+R35351:35353 Library.PIMP.EvalProps <> sp0:210 var
+R35315:35324 Library.DistState.CoreDef <> partial_st def
+binder 35311:35311 <> s:214
+R35329:35332 Corelib.Init.Datatypes <> negb def
+R35335:35342 Library.PIMP.EvalProps <> evalB_st def
+R35344:35344 Library.PIMP.EvalProps <> b:212 var
+R35346:35346 Library.PIMP.EvalProps <> s:214 var
+R35358:35361 Corelib.Init.Datatypes <> true constr
+R35574:35586 Stdlib.Bool.Bool <> andb_true_iff thm
+R35574:35586 Stdlib.Bool.Bool <> andb_true_iff thm
+R35620:35628 Library.DistState.CoreDef <> beq_state def
+R35620:35628 Library.DistState.CoreDef <> beq_state def
+R35698:35716 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R35698:35716 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R35806:35814 Library.DistState.CoreDef <> ble_state def
+R35806:35814 Library.DistState.CoreDef <> ble_state def
+R35871:35874 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R35871:35874 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+prf 35916:35950 <> supp_insert_subst_implies_evalBT_eq
+binder 35960:35961 <> s0:215
+binder 35963:35965 <> sp0:216
+binder 35967:35969 <> sp1:217
+binder 35971:35971 <> b:218
+R35992:35995 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R35977:35987 Library.DistState.Support <> Sorted_supp ind
+R35989:35991 Library.PIMP.EvalProps <> sp0:216 var
+R36011:36016 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R35996:36006 Library.DistState.Support <> Sorted_supp ind
+R36008:36010 Library.PIMP.EvalProps <> sp1:217 var
+R36050:36055 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R36018:36018 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R36035:36040 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R36019:36027 Library.DistState.CoreDef <> insert_st def
+R36029:36030 Library.PIMP.EvalProps <> s0:215 var
+R36032:36034 Library.PIMP.EvalProps <> sp0:216 var
+R36041:36043 Library.PIMP.EvalProps <> sp1:217 var
+R36111:36116 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R36104:36106 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R36056:36062 Stdlib.Lists.List <> forallb def
+R36101:36103 Library.PIMP.EvalProps <> sp1:217 var
+R36073:36082 Library.DistState.CoreDef <> partial_st def
+binder 36069:36069 <> s:219
+R36087:36094 Library.PIMP.EvalProps <> evalB_st def
+R36096:36096 Library.PIMP.EvalProps <> b:218 var
+R36098:36098 Library.PIMP.EvalProps <> s:219 var
+R36107:36110 Corelib.Init.Datatypes <> true constr
+R36182:36184 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R36130:36133 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R36117:36124 Library.PIMP.EvalProps <> evalB_st def
+R36126:36126 Library.PIMP.EvalProps <> b:218 var
+R36128:36129 Library.PIMP.EvalProps <> s0:215 var
+R36134:36140 Stdlib.Lists.List <> forallb def
+R36179:36181 Library.PIMP.EvalProps <> sp0:216 var
+R36151:36160 Library.DistState.CoreDef <> partial_st def
+binder 36147:36147 <> s:220
+R36165:36172 Library.PIMP.EvalProps <> evalB_st def
+R36174:36174 Library.PIMP.EvalProps <> b:218 var
+R36176:36176 Library.PIMP.EvalProps <> s:220 var
+R36185:36188 Corelib.Init.Datatypes <> true constr
+R36443:36451 Library.DistState.CoreDef <> beq_state def
+R36471:36479 Library.DistState.CoreDef <> ble_state def
+R36443:36451 Library.DistState.CoreDef <> beq_state def
+R36471:36479 Library.DistState.CoreDef <> ble_state def
+R36471:36479 Library.DistState.CoreDef <> ble_state def
+R36529:36541 Stdlib.Bool.Bool <> andb_true_iff thm
+R36529:36541 Stdlib.Bool.Bool <> andb_true_iff thm
+R36575:36585 Stdlib.Bool.Bool <> andb_true_r thm
+R36575:36585 Stdlib.Bool.Bool <> andb_true_r thm
+R36575:36585 Stdlib.Bool.Bool <> andb_true_r thm
+R36598:36606 Library.DistState.CoreDef <> beq_state def
+R36598:36606 Library.DistState.CoreDef <> beq_state def
+R36638:36656 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R36638:36656 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R36720:36728 Library.DistState.CoreDef <> ble_state def
+R36720:36728 Library.DistState.CoreDef <> ble_state def
+R36781:36795 Library.PIMP.EvalProps <> st_subst_evalBT thm
+R36781:36795 Library.PIMP.EvalProps <> st_subst_evalBT thm
+R36862:36874 Stdlib.Bool.Bool <> andb_true_iff thm
+R36862:36874 Stdlib.Bool.Bool <> andb_true_iff thm
+R36906:36918 Library.DistState.Support <> Sort_supp_inv thm
+R36906:36918 Library.DistState.Support <> Sort_supp_inv thm
+R36978:36986 Library.DistState.CoreDef <> beq_state def
+R36978:36986 Library.DistState.CoreDef <> beq_state def
+R37023:37031 Library.DistState.CoreDef <> beq_state def
+R37023:37031 Library.DistState.CoreDef <> beq_state def
+R37066:37084 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R37066:37084 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R37135:37153 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R37135:37153 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R37232:37259 Library.PIMP.EvalProps <> supp_subst_implies_evalBT_eq thm
+R37232:37259 Library.PIMP.EvalProps <> supp_subst_implies_evalBT_eq thm
+R37314:37322 Library.DistState.CoreDef <> ble_state def
+R37314:37322 Library.DistState.CoreDef <> ble_state def
+R37370:37380 Library.DistState.Support <> Sorted_supp ind
+R37385:37388 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R37370:37380 Library.DistState.Support <> Sorted_supp ind
+R37385:37388 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R37422:37434 Library.DistState.Support <> Sort_supp_inv thm
+R37422:37434 Library.DistState.Support <> Sort_supp_inv thm
+R37501:37511 Stdlib.Bool.Bool <> andb_true_r thm
+R37501:37511 Stdlib.Bool.Bool <> andb_true_r thm
+R37501:37511 Stdlib.Bool.Bool <> andb_true_r thm
+R37520:37538 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R37520:37538 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R37588:37615 Library.PIMP.EvalProps <> supp_subst_implies_evalBT_eq thm
+R37588:37615 Library.PIMP.EvalProps <> supp_subst_implies_evalBT_eq thm
+R37676:37688 Stdlib.Bool.Bool <> andb_true_iff thm
+R37676:37688 Stdlib.Bool.Bool <> andb_true_iff thm
+R37735:37762 Library.DistState.Support <> supp_subset_insert_preserves thm
+R37735:37762 Library.DistState.Support <> supp_subset_insert_preserves thm
+R37797:37813 Library.DistState.Support <> supp_subset_inv_l thm
+R37797:37813 Library.DistState.Support <> supp_subset_inv_l thm
+R37853:37881 Library.DistState.Support <> supp_subset_cons_implies_head thm
+R37853:37881 Library.DistState.Support <> supp_subset_cons_implies_head thm
+R37917:37925 Library.DistState.CoreDef <> ble_state def
+R37917:37925 Library.DistState.CoreDef <> ble_state def
+R37964:37972 Library.DistState.CoreDef <> beq_state def
+R37964:37972 Library.DistState.CoreDef <> beq_state def
+R38008:38026 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R38008:38026 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R38095:38122 Library.PIMP.EvalProps <> supp_subst_implies_evalBT_eq thm
+R38095:38122 Library.PIMP.EvalProps <> supp_subst_implies_evalBT_eq thm
+R38178:38186 Library.DistState.CoreDef <> ble_state def
+R38178:38186 Library.DistState.CoreDef <> ble_state def
+R38238:38265 Library.PIMP.EvalProps <> supp_subst_implies_evalBT_eq thm
+R38238:38265 Library.PIMP.EvalProps <> supp_subst_implies_evalBT_eq thm
+R38320:38328 Library.DistState.CoreDef <> beq_state def
+R38320:38328 Library.DistState.CoreDef <> beq_state def
+R38364:38382 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R38364:38382 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R38451:38463 Library.DistState.Support <> Sort_supp_inv thm
+R38451:38463 Library.DistState.Support <> Sort_supp_inv thm
+R38520:38528 Library.DistState.CoreDef <> ble_state def
+R38520:38528 Library.DistState.CoreDef <> ble_state def
+R38583:38587 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R38579:38579 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R38582:38582 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R38609:38637 Library.DistState.Support <> supp_subset_cons_implies_head thm
+R38583:38587 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R38579:38579 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R38582:38582 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R38609:38637 Library.DistState.Support <> supp_subset_cons_implies_head thm
+R38696:38700 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R38680:38688 Library.DistState.CoreDef <> insert_st def
+R38696:38700 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R38680:38688 Library.DistState.CoreDef <> insert_st def
+R38730:38746 Library.DistState.Support <> supp_subset_inv_l thm
+R38730:38746 Library.DistState.Support <> supp_subset_inv_l thm
+R38784:38816 Library.DistState.Support <> Sort_supp_cons_insert_st_preserve thm
+R38784:38816 Library.DistState.Support <> Sort_supp_cons_insert_st_preserve thm
+R38849:38863 Library.PIMP.EvalProps <> st_subst_evalBT thm
+R38849:38863 Library.PIMP.EvalProps <> st_subst_evalBT thm
+R38964:38976 Library.DistState.Support <> Sort_supp_inv thm
+R38964:38976 Library.DistState.Support <> Sort_supp_inv thm
+prf 39017:39055 <> supp_insert_subst_implies_negbevalBT_eq
+binder 39065:39066 <> s0:221
+binder 39068:39070 <> sp0:222
+binder 39072:39074 <> sp1:223
+binder 39076:39076 <> b:224
+R39097:39100 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R39082:39092 Library.DistState.Support <> Sorted_supp ind
+R39094:39096 Library.PIMP.EvalProps <> sp0:222 var
+R39116:39121 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R39101:39111 Library.DistState.Support <> Sorted_supp ind
+R39113:39115 Library.PIMP.EvalProps <> sp1:223 var
+R39155:39160 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R39123:39123 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R39140:39145 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R39124:39132 Library.DistState.CoreDef <> insert_st def
+R39134:39135 Library.PIMP.EvalProps <> s0:221 var
+R39137:39139 Library.PIMP.EvalProps <> sp0:222 var
+R39146:39148 Library.PIMP.EvalProps <> sp1:223 var
+R39223:39228 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R39216:39218 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R39161:39167 Stdlib.Lists.List <> forallb def
+R39213:39215 Library.PIMP.EvalProps <> sp1:223 var
+R39178:39187 Library.DistState.CoreDef <> partial_st def
+binder 39174:39174 <> s:225
+R39192:39195 Corelib.Init.Datatypes <> negb def
+R39198:39205 Library.PIMP.EvalProps <> evalB_st def
+R39207:39207 Library.PIMP.EvalProps <> b:224 var
+R39209:39209 Library.PIMP.EvalProps <> s:225 var
+R39219:39222 Corelib.Init.Datatypes <> true constr
+R39310:39312 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R39229:39229 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R39250:39254 Corelib.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R39230:39233 Corelib.Init.Datatypes <> negb def
+R39236:39243 Library.PIMP.EvalProps <> evalB_st def
+R39245:39245 Library.PIMP.EvalProps <> b:224 var
+R39247:39248 Library.PIMP.EvalProps <> s0:221 var
+R39255:39261 Stdlib.Lists.List <> forallb def
+R39307:39309 Library.PIMP.EvalProps <> sp0:222 var
+R39272:39281 Library.DistState.CoreDef <> partial_st def
+binder 39268:39268 <> s:226
+R39286:39289 Corelib.Init.Datatypes <> negb def
+R39292:39299 Library.PIMP.EvalProps <> evalB_st def
+R39301:39301 Library.PIMP.EvalProps <> b:224 var
+R39303:39303 Library.PIMP.EvalProps <> s:226 var
+R39313:39316 Corelib.Init.Datatypes <> true constr
+R39571:39579 Library.DistState.CoreDef <> beq_state def
+R39599:39607 Library.DistState.CoreDef <> ble_state def
+R39571:39579 Library.DistState.CoreDef <> beq_state def
+R39599:39607 Library.DistState.CoreDef <> ble_state def
+R39599:39607 Library.DistState.CoreDef <> ble_state def
+R39657:39669 Stdlib.Bool.Bool <> andb_true_iff thm
+R39657:39669 Stdlib.Bool.Bool <> andb_true_iff thm
+R39703:39713 Stdlib.Bool.Bool <> andb_true_r thm
+R39703:39713 Stdlib.Bool.Bool <> andb_true_r thm
+R39703:39713 Stdlib.Bool.Bool <> andb_true_r thm
+R39726:39734 Library.DistState.CoreDef <> beq_state def
+R39726:39734 Library.DistState.CoreDef <> beq_state def
+R39766:39784 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R39766:39784 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R39848:39856 Library.DistState.CoreDef <> ble_state def
+R39848:39856 Library.DistState.CoreDef <> ble_state def
+R39909:39927 Library.PIMP.EvalProps <> st_subst_negbevalBT thm
+R39909:39927 Library.PIMP.EvalProps <> st_subst_negbevalBT thm
+R39994:40006 Stdlib.Bool.Bool <> andb_true_iff thm
+R39994:40006 Stdlib.Bool.Bool <> andb_true_iff thm
+R40038:40050 Library.DistState.Support <> Sort_supp_inv thm
+R40038:40050 Library.DistState.Support <> Sort_supp_inv thm
+R40110:40118 Library.DistState.CoreDef <> beq_state def
+R40110:40118 Library.DistState.CoreDef <> beq_state def
+R40155:40163 Library.DistState.CoreDef <> beq_state def
+R40155:40163 Library.DistState.CoreDef <> beq_state def
+R40198:40216 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R40198:40216 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R40267:40285 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R40267:40285 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R40364:40395 Library.PIMP.EvalProps <> supp_subst_implies_negbevalBT_eq thm
+R40364:40395 Library.PIMP.EvalProps <> supp_subst_implies_negbevalBT_eq thm
+R40450:40458 Library.DistState.CoreDef <> ble_state def
+R40450:40458 Library.DistState.CoreDef <> ble_state def
+R40506:40516 Library.DistState.Support <> Sorted_supp ind
+R40521:40524 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R40506:40516 Library.DistState.Support <> Sorted_supp ind
+R40521:40524 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R40558:40570 Library.DistState.Support <> Sort_supp_inv thm
+R40558:40570 Library.DistState.Support <> Sort_supp_inv thm
+R40637:40647 Stdlib.Bool.Bool <> andb_true_r thm
+R40637:40647 Stdlib.Bool.Bool <> andb_true_r thm
+R40637:40647 Stdlib.Bool.Bool <> andb_true_r thm
+R40656:40674 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R40656:40674 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R40724:40755 Library.PIMP.EvalProps <> supp_subst_implies_negbevalBT_eq thm
+R40724:40755 Library.PIMP.EvalProps <> supp_subst_implies_negbevalBT_eq thm
+R40816:40828 Stdlib.Bool.Bool <> andb_true_iff thm
+R40816:40828 Stdlib.Bool.Bool <> andb_true_iff thm
+R40875:40902 Library.DistState.Support <> supp_subset_insert_preserves thm
+R40875:40902 Library.DistState.Support <> supp_subset_insert_preserves thm
+R40937:40953 Library.DistState.Support <> supp_subset_inv_l thm
+R40937:40953 Library.DistState.Support <> supp_subset_inv_l thm
+R40993:41021 Library.DistState.Support <> supp_subset_cons_implies_head thm
+R40993:41021 Library.DistState.Support <> supp_subset_cons_implies_head thm
+R41057:41065 Library.DistState.CoreDef <> ble_state def
+R41057:41065 Library.DistState.CoreDef <> ble_state def
+R41104:41112 Library.DistState.CoreDef <> beq_state def
+R41104:41112 Library.DistState.CoreDef <> beq_state def
+R41148:41166 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R41148:41166 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R41235:41266 Library.PIMP.EvalProps <> supp_subst_implies_negbevalBT_eq thm
+R41235:41266 Library.PIMP.EvalProps <> supp_subst_implies_negbevalBT_eq thm
+R41322:41330 Library.DistState.CoreDef <> ble_state def
+R41322:41330 Library.DistState.CoreDef <> ble_state def
+R41382:41413 Library.PIMP.EvalProps <> supp_subst_implies_negbevalBT_eq thm
+R41382:41413 Library.PIMP.EvalProps <> supp_subst_implies_negbevalBT_eq thm
+R41468:41476 Library.DistState.CoreDef <> beq_state def
+R41468:41476 Library.DistState.CoreDef <> beq_state def
+R41512:41530 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R41512:41530 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R41599:41611 Library.DistState.Support <> Sort_supp_inv thm
+R41599:41611 Library.DistState.Support <> Sort_supp_inv thm
+R41668:41676 Library.DistState.CoreDef <> ble_state def
+R41668:41676 Library.DistState.CoreDef <> ble_state def
+R41731:41735 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R41727:41727 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R41730:41730 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R41757:41785 Library.DistState.Support <> supp_subset_cons_implies_head thm
+R41731:41735 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R41727:41727 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R41730:41730 Stdlib.Lists.List ListNotations ::list_scope:'['_x_']' not
+R41757:41785 Library.DistState.Support <> supp_subset_cons_implies_head thm
+R41844:41848 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R41828:41836 Library.DistState.CoreDef <> insert_st def
+R41844:41848 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R41828:41836 Library.DistState.CoreDef <> insert_st def
+R41878:41894 Library.DistState.Support <> supp_subset_inv_l thm
+R41878:41894 Library.DistState.Support <> supp_subset_inv_l thm
+R41932:41964 Library.DistState.Support <> Sort_supp_cons_insert_st_preserve thm
+R41932:41964 Library.DistState.Support <> Sort_supp_cons_insert_st_preserve thm
+R41997:42015 Library.PIMP.EvalProps <> st_subst_negbevalBT thm
+R41997:42015 Library.PIMP.EvalProps <> st_subst_negbevalBT thm
+R42116:42128 Library.DistState.Support <> Sort_supp_inv thm
+R42116:42128 Library.DistState.Support <> Sort_supp_inv thm
+prf 42166:42184 <> supp_mu_subst_evalB
+binder 42194:42195 <> s0:227
+binder 42197:42198 <> p0:228
+binder 42200:42202 <> mu0:229
+binder 42204:42205 <> sp:230
+binder 42207:42207 <> b:231
+R42227:42230 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R42213:42223 Library.DistState.Support <> Sorted_supp ind
+R42225:42226 Library.PIMP.EvalProps <> sp:230 var
+R42270:42275 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R42257:42261 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R42232:42238 Library.DistState.CoreDef <> supp_mu def
+R42249:42252 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R42241:42241 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R42244:42245 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R42248:42248 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R42242:42243 Library.PIMP.EvalProps <> s0:227 var
+R42246:42247 Library.PIMP.EvalProps <> p0:228 var
+R42253:42255 Library.PIMP.EvalProps <> mu0:229 var
+R42262:42263 Library.PIMP.EvalProps <> sp:230 var
+R42332:42337 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R42325:42327 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R42276:42282 Stdlib.Lists.List <> forallb def
+R42323:42324 Library.PIMP.EvalProps <> sp:230 var
+R42293:42302 Library.DistState.CoreDef <> partial_st def
+binder 42289:42289 <> s:232
+R42308:42315 Library.PIMP.EvalProps <> evalB_st def
+R42317:42317 Library.PIMP.EvalProps <> b:231 var
+R42319:42319 Library.PIMP.EvalProps <> s:232 var
+R42328:42331 Corelib.Init.Datatypes <> true constr
+R42412:42414 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R42338:42344 Stdlib.Lists.List <> forallb def
+R42386:42392 Library.DistState.CoreDef <> supp_mu def
+R42403:42406 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R42395:42395 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R42398:42399 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R42402:42402 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R42396:42397 Library.PIMP.EvalProps <> s0:227 var
+R42400:42401 Library.PIMP.EvalProps <> p0:228 var
+R42407:42409 Library.PIMP.EvalProps <> mu0:229 var
+R42355:42364 Library.DistState.CoreDef <> partial_st def
+binder 42351:42351 <> s:233
+R42370:42377 Library.PIMP.EvalProps <> evalB_st def
+R42379:42379 Library.PIMP.EvalProps <> b:231 var
+R42381:42381 Library.PIMP.EvalProps <> s:233 var
+R42415:42418 Corelib.Init.Datatypes <> true constr
+R42473:42479 Library.DistState.CoreDef <> supp_mu def
+R42518:42548 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R42518:42548 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R42518:42548 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R42570:42576 Library.DistState.CoreDef <> supp_mu def
+R42594:42624 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R42594:42624 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R42594:42624 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R42635:42651 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R42635:42651 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R42635:42651 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R42662:42696 Library.PIMP.EvalProps <> supp_insert_subst_implies_evalBT_eq thm
+R42662:42696 Library.PIMP.EvalProps <> supp_insert_subst_implies_evalBT_eq thm
+R42739:42758 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R42739:42758 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+prf 42775:42797 <> supp_mu_subst_negbevalB
+binder 42807:42808 <> s0:234
+binder 42810:42811 <> p0:235
+binder 42813:42815 <> mu0:236
+binder 42817:42818 <> sp:237
+binder 42820:42820 <> b:238
+R42840:42843 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R42826:42836 Library.DistState.Support <> Sorted_supp ind
+R42838:42839 Library.PIMP.EvalProps <> sp:237 var
+R42883:42888 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R42870:42874 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R42845:42851 Library.DistState.CoreDef <> supp_mu def
+R42862:42865 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R42854:42854 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R42857:42858 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R42861:42861 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R42855:42856 Library.PIMP.EvalProps <> s0:234 var
+R42859:42860 Library.PIMP.EvalProps <> p0:235 var
+R42866:42868 Library.PIMP.EvalProps <> mu0:236 var
+R42875:42876 Library.PIMP.EvalProps <> sp:237 var
+R42950:42955 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R42943:42945 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R42889:42895 Stdlib.Lists.List <> forallb def
+R42941:42942 Library.PIMP.EvalProps <> sp:237 var
+R42906:42915 Library.DistState.CoreDef <> partial_st def
+binder 42902:42902 <> s:239
+R42920:42923 Corelib.Init.Datatypes <> negb def
+R42926:42933 Library.PIMP.EvalProps <> evalB_st def
+R42935:42935 Library.PIMP.EvalProps <> b:238 var
+R42937:42937 Library.PIMP.EvalProps <> s:239 var
+R42946:42949 Corelib.Init.Datatypes <> true constr
+R43035:43037 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R42956:42962 Stdlib.Lists.List <> forallb def
+R43009:43015 Library.DistState.CoreDef <> supp_mu def
+R43026:43029 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R43018:43018 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R43021:43022 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R43025:43025 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R43019:43020 Library.PIMP.EvalProps <> s0:234 var
+R43023:43024 Library.PIMP.EvalProps <> p0:235 var
+R43030:43032 Library.PIMP.EvalProps <> mu0:236 var
+R42973:42982 Library.DistState.CoreDef <> partial_st def
+binder 42969:42969 <> s:240
+R42987:42990 Corelib.Init.Datatypes <> negb def
+R42993:43000 Library.PIMP.EvalProps <> evalB_st def
+R43002:43002 Library.PIMP.EvalProps <> b:238 var
+R43004:43004 Library.PIMP.EvalProps <> s:240 var
+R43038:43041 Corelib.Init.Datatypes <> true constr
+R43096:43102 Library.DistState.CoreDef <> supp_mu def
+R43141:43171 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R43141:43171 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R43141:43171 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R43193:43199 Library.DistState.CoreDef <> supp_mu def
+R43217:43247 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R43217:43247 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R43217:43247 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R43258:43278 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R43258:43278 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R43258:43278 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R43289:43327 Library.PIMP.EvalProps <> supp_insert_subst_implies_negbevalBT_eq thm
+R43289:43327 Library.PIMP.EvalProps <> supp_insert_subst_implies_negbevalBT_eq thm
+R43370:43389 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R43370:43389 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+prf 43406:43422 <> bT_classify_subst
+binder 43432:43434 <> pd0:241
+binder 43436:43438 <> pd1:242
+binder 43440:43440 <> b:243
+R43461:43466 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R43446:43446 Corelib.Init.Logic <> ::type_scope:x_'<>'_x not
+R43453:43457 Corelib.Init.Logic <> ::type_scope:x_'<>'_x not
+R43447:43448 Library.DistState.CoreDef <> mu proj
+R43450:43452 Library.PIMP.EvalProps <> pd0:241 var
+R43458:43460 Corelib.Init.Datatypes <> nil constr
+R43526:43532 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R43519:43521 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R43467:43480 Library.DistState.CoreDef <> is_supp_subset def
+R43483:43489 Library.DistState.CoreDef <> supp_mu def
+R43492:43493 Library.DistState.CoreDef <> mu proj
+R43495:43497 Library.PIMP.EvalProps <> pd0:241 var
+R43502:43508 Library.DistState.CoreDef <> supp_mu def
+R43511:43512 Library.DistState.CoreDef <> mu proj
+R43514:43516 Library.PIMP.EvalProps <> pd1:242 var
+R43522:43525 Corelib.Init.Datatypes <> true constr
+R43565:43570 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R43554:43556 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R43533:43547 Library.PIMP.EvalProps <> b_supp_classify def
+R43549:43549 Library.PIMP.EvalProps <> b:243 var
+R43551:43553 Library.PIMP.EvalProps <> pd1:242 var
+R43557:43564 Library.PIMP.EvalProps <> All_True constr
+R43592:43594 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R43571:43585 Library.PIMP.EvalProps <> b_supp_classify def
+R43587:43587 Library.PIMP.EvalProps <> b:243 var
+R43589:43591 Library.PIMP.EvalProps <> pd0:241 var
+R43595:43602 Library.PIMP.EvalProps <> All_True constr
+R43648:43662 Library.PIMP.EvalProps <> b_supp_classify def
+R43875:43881 Library.DistState.CoreDef <> supp_mu def
+R43911:43941 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R43911:43941 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R43911:43941 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R43964:43972 Library.DistState.CoreDef <> insert_st def
+R43978:43980 Corelib.Lists.ListDef <> map def
+R43987:43994 Library.DistState.CoreDef <> sort_dst def
+R43982:43984 Corelib.Init.Datatypes <> fst def
+R43964:43972 Library.DistState.CoreDef <> insert_st def
+R43978:43980 Corelib.Lists.ListDef <> map def
+R43987:43994 Library.DistState.CoreDef <> sort_dst def
+R43982:43984 Corelib.Init.Datatypes <> fst def
+R44050:44056 Stdlib.Lists.List <> forallb def
+R44096:44102 Library.DistState.CoreDef <> supp_mu def
+R44113:44116 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R44105:44105 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R44108:44109 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R44112:44112 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R44067:44076 Library.DistState.CoreDef <> partial_st def
+binder 44063:44063 <> s:244
+R44081:44088 Library.PIMP.EvalProps <> evalB_st def
+R44092:44092 Library.PIMP.EvalProps <> s:244 var
+R44050:44056 Stdlib.Lists.List <> forallb def
+R44096:44102 Library.DistState.CoreDef <> supp_mu def
+R44113:44116 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R44105:44105 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R44108:44109 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R44112:44112 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R44067:44076 Library.DistState.CoreDef <> partial_st def
+binder 44063:44063 <> s:245
+R44081:44088 Library.PIMP.EvalProps <> evalB_st def
+R44092:44092 Library.PIMP.EvalProps <> s:245 var
+R44146:44164 Library.PIMP.EvalProps <> supp_mu_subst_evalB thm
+R44212:44231 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R44146:44164 Library.PIMP.EvalProps <> supp_mu_subst_evalB thm
+R44212:44231 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R44212:44231 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R44279:44285 Stdlib.Lists.List <> forallb def
+R44332:44338 Library.DistState.CoreDef <> supp_mu def
+R44349:44352 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R44341:44341 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R44344:44345 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R44348:44348 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R44296:44305 Library.DistState.CoreDef <> partial_st def
+binder 44292:44292 <> s:246
+R44310:44313 Corelib.Init.Datatypes <> negb def
+R44316:44323 Library.PIMP.EvalProps <> evalB_st def
+R44327:44327 Library.PIMP.EvalProps <> s:246 var
+R44279:44285 Stdlib.Lists.List <> forallb def
+R44332:44338 Library.DistState.CoreDef <> supp_mu def
+R44349:44352 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R44341:44341 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R44344:44345 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R44348:44348 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R44296:44305 Library.DistState.CoreDef <> partial_st def
+binder 44292:44292 <> s:247
+R44310:44313 Corelib.Init.Datatypes <> negb def
+R44316:44323 Library.PIMP.EvalProps <> evalB_st def
+R44327:44327 Library.PIMP.EvalProps <> s:247 var
+prf 44401:44417 <> bF_classify_subst
+binder 44427:44429 <> pd0:248
+binder 44431:44433 <> pd1:249
+binder 44435:44435 <> b:250
+R44456:44461 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R44441:44441 Corelib.Init.Logic <> ::type_scope:x_'<>'_x not
+R44448:44452 Corelib.Init.Logic <> ::type_scope:x_'<>'_x not
+R44442:44443 Library.DistState.CoreDef <> mu proj
+R44445:44447 Library.PIMP.EvalProps <> pd0:248 var
+R44453:44455 Corelib.Init.Datatypes <> nil constr
+R44521:44527 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R44514:44516 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R44462:44475 Library.DistState.CoreDef <> is_supp_subset def
+R44478:44484 Library.DistState.CoreDef <> supp_mu def
+R44487:44488 Library.DistState.CoreDef <> mu proj
+R44490:44492 Library.PIMP.EvalProps <> pd0:248 var
+R44497:44503 Library.DistState.CoreDef <> supp_mu def
+R44506:44507 Library.DistState.CoreDef <> mu proj
+R44509:44511 Library.PIMP.EvalProps <> pd1:249 var
+R44517:44520 Corelib.Init.Datatypes <> true constr
+R44561:44566 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R44549:44551 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R44528:44542 Library.PIMP.EvalProps <> b_supp_classify def
+R44544:44544 Library.PIMP.EvalProps <> b:250 var
+R44546:44548 Library.PIMP.EvalProps <> pd1:249 var
+R44552:44560 Library.PIMP.EvalProps <> All_False constr
+R44588:44590 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R44567:44581 Library.PIMP.EvalProps <> b_supp_classify def
+R44583:44583 Library.PIMP.EvalProps <> b:250 var
+R44585:44587 Library.PIMP.EvalProps <> pd0:248 var
+R44591:44599 Library.PIMP.EvalProps <> All_False constr
+R44645:44659 Library.PIMP.EvalProps <> b_supp_classify def
+R44872:44878 Library.DistState.CoreDef <> supp_mu def
+R44908:44938 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R44908:44938 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R44908:44938 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R44961:44969 Library.DistState.CoreDef <> insert_st def
+R44975:44977 Corelib.Lists.ListDef <> map def
+R44984:44991 Library.DistState.CoreDef <> sort_dst def
+R44979:44981 Corelib.Init.Datatypes <> fst def
+R44961:44969 Library.DistState.CoreDef <> insert_st def
+R44975:44977 Corelib.Lists.ListDef <> map def
+R44984:44991 Library.DistState.CoreDef <> sort_dst def
+R44979:44981 Corelib.Init.Datatypes <> fst def
+R45047:45053 Stdlib.Lists.List <> forallb def
+R45093:45099 Library.DistState.CoreDef <> supp_mu def
+R45110:45113 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R45102:45102 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R45105:45106 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R45109:45109 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R45064:45073 Library.DistState.CoreDef <> partial_st def
+binder 45060:45060 <> s:251
+R45078:45085 Library.PIMP.EvalProps <> evalB_st def
+R45089:45089 Library.PIMP.EvalProps <> s:251 var
+R45047:45053 Stdlib.Lists.List <> forallb def
+R45093:45099 Library.DistState.CoreDef <> supp_mu def
+R45110:45113 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R45102:45102 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R45105:45106 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R45109:45109 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R45064:45073 Library.DistState.CoreDef <> partial_st def
+binder 45060:45060 <> s:252
+R45078:45085 Library.PIMP.EvalProps <> evalB_st def
+R45089:45089 Library.PIMP.EvalProps <> s:252 var
+R45163:45169 Stdlib.Lists.List <> forallb def
+R45216:45222 Library.DistState.CoreDef <> supp_mu def
+R45233:45236 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R45225:45225 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R45228:45229 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R45232:45232 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R45180:45189 Library.DistState.CoreDef <> partial_st def
+binder 45176:45176 <> s:253
+R45194:45197 Corelib.Init.Datatypes <> negb def
+R45200:45207 Library.PIMP.EvalProps <> evalB_st def
+R45211:45211 Library.PIMP.EvalProps <> s:253 var
+R45163:45169 Stdlib.Lists.List <> forallb def
+R45216:45222 Library.DistState.CoreDef <> supp_mu def
+R45233:45236 Corelib.Init.Datatypes <> ::list_scope:x_'::'_x not
+R45225:45225 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R45228:45229 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R45232:45232 Corelib.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R45180:45189 Library.DistState.CoreDef <> partial_st def
+binder 45176:45176 <> s:254
+R45194:45197 Corelib.Init.Datatypes <> negb def
+R45200:45207 Library.PIMP.EvalProps <> evalB_st def
+R45211:45211 Library.PIMP.EvalProps <> s:254 var
+R45282:45304 Library.PIMP.EvalProps <> supp_mu_subst_negbevalB thm
+R45282:45304 Library.PIMP.EvalProps <> supp_mu_subst_negbevalB thm
+R45368:45374 Library.DistState.CoreDef <> supp_mu def
+R45404:45434 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R45404:45434 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R45404:45434 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R45457:45477 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R45457:45477 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R45457:45477 Library.PIMP.EvalProps <> supp_insert_negbevalB thm
+R45492:45504 Stdlib.Bool.Bool <> andb_true_iff thm
+R45492:45504 Stdlib.Bool.Bool <> andb_true_iff thm
+R45540:45546 Library.DistState.CoreDef <> supp_mu def
+R45564:45594 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R45564:45594 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R45564:45594 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R45611:45627 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R45611:45627 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R45611:45627 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R45636:45648 Stdlib.Bool.Bool <> negb_true_iff thm
+R45636:45648 Stdlib.Bool.Bool <> negb_true_iff thm
+R45701:45720 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R45701:45720 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+prf 45735:45753 <> bT_classify_decom_r
+binder 45763:45764 <> pd:255
+binder 45766:45768 <> pd0:256
+binder 45770:45772 <> pd1:257
+binder 45774:45774 <> b:258
+R45798:45801 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R45780:45789 Library.DistState.CoreDef <> Valid_dist def
+R45792:45793 Library.DistState.CoreDef <> mu proj
+R45795:45796 Library.PIMP.EvalProps <> pd:255 var
+R45841:45847 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R45802:45811 Library.DistState.CoreDef <> Valid_dist def
+R45820:45822 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R45814:45815 Library.DistState.CoreDef <> mu proj
+R45817:45819 Library.PIMP.EvalProps <> pd0:256 var
+R45823:45824 Library.DistState.CoreDef <> mu proj
+R45826:45828 Library.PIMP.EvalProps <> pd1:257 var
+R45885:45888 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R45853:45856 Library.DistState.CoreDef <> ::dstate_scope:x_'=='_x not
+R45848:45849 Library.DistState.CoreDef <> mu proj
+R45851:45852 Library.PIMP.EvalProps <> pd:255 var
+R45864:45866 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R45858:45859 Library.DistState.CoreDef <> mu proj
+R45861:45863 Library.PIMP.EvalProps <> pd0:256 var
+R45867:45868 Library.DistState.CoreDef <> mu proj
+R45870:45872 Library.PIMP.EvalProps <> pd1:257 var
+R45904:45910 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R45889:45889 Corelib.Init.Logic <> ::type_scope:x_'<>'_x not
+R45896:45900 Corelib.Init.Logic <> ::type_scope:x_'<>'_x not
+R45890:45891 Library.DistState.CoreDef <> mu proj
+R45893:45895 Library.PIMP.EvalProps <> pd0:256 var
+R45901:45903 Corelib.Init.Datatypes <> nil constr
+R45937:45940 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R45918:45921 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R45912:45914 Library.DistState.CoreDef <> dom proj
+R45916:45917 Library.PIMP.EvalProps <> pd:255 var
+R45922:45924 Library.DistState.CoreDef <> dom proj
+R45926:45928 Library.PIMP.EvalProps <> pd0:256 var
+R45967:45973 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R45948:45951 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R45942:45944 Library.DistState.CoreDef <> dom proj
+R45946:45947 Library.PIMP.EvalProps <> pd:255 var
+R45952:45954 Library.DistState.CoreDef <> dom proj
+R45956:45958 Library.PIMP.EvalProps <> pd1:257 var
+R46005:46011 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R45994:45996 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R45974:45988 Library.PIMP.EvalProps <> b_supp_classify def
+R45990:45990 Library.PIMP.EvalProps <> b:258 var
+R45992:45993 Library.PIMP.EvalProps <> pd:255 var
+R45997:46004 Library.PIMP.EvalProps <> All_True constr
+R46033:46035 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R46012:46026 Library.PIMP.EvalProps <> b_supp_classify def
+R46028:46028 Library.PIMP.EvalProps <> b:258 var
+R46030:46032 Library.PIMP.EvalProps <> pd0:256 var
+R46036:46043 Library.PIMP.EvalProps <> All_True constr
+R46119:46135 Library.PIMP.EvalProps <> bT_classify_subst thm
+R46119:46135 Library.PIMP.EvalProps <> bT_classify_subst thm
+R46208:46211 Library.DistState.CoreDef <> ::supp_scope:x_'=='_x not
+R46193:46199 Library.DistState.CoreDef <> supp_mu def
+R46202:46203 Library.DistState.CoreDef <> mu proj
+R46212:46218 Library.DistState.CoreDef <> supp_mu def
+R46227:46229 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R46221:46222 Library.DistState.CoreDef <> mu proj
+R46230:46231 Library.DistState.CoreDef <> mu proj
+R46208:46211 Library.DistState.CoreDef <> ::supp_scope:x_'=='_x not
+R46193:46199 Library.DistState.CoreDef <> supp_mu def
+R46202:46203 Library.DistState.CoreDef <> mu proj
+R46212:46218 Library.DistState.CoreDef <> supp_mu def
+R46227:46229 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R46221:46222 Library.DistState.CoreDef <> mu proj
+R46230:46231 Library.DistState.CoreDef <> mu proj
+R46258:46283 Library.DistState.Support <> dst_equiv_implies_beq_supp thm
+R46258:46283 Library.DistState.Support <> dst_equiv_implies_beq_supp thm
+R46312:46338 Library.DistState.Support <> supp_eq_implies_subset_conj thm
+R46312:46338 Library.DistState.Support <> supp_eq_implies_subset_conj thm
+R46400:46406 Library.DistState.CoreDef <> supp_mu def
+R46415:46417 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R46409:46410 Library.DistState.CoreDef <> mu proj
+R46418:46419 Library.DistState.CoreDef <> mu proj
+R46370:46386 Library.DistState.Support <> supp_subset_trans thm
+R46443:46462 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R46400:46406 Library.DistState.CoreDef <> supp_mu def
+R46415:46417 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R46409:46410 Library.DistState.CoreDef <> mu proj
+R46418:46419 Library.DistState.CoreDef <> mu proj
+R46370:46386 Library.DistState.Support <> supp_subset_trans thm
+R46443:46462 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R46443:46462 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R46443:46462 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R46443:46462 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R46443:46462 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R46521:46525 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R46496:46502 Library.DistState.CoreDef <> supp_mu def
+R46511:46513 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R46505:46506 Library.DistState.CoreDef <> mu proj
+R46514:46515 Library.DistState.CoreDef <> mu proj
+R46526:46532 Library.DistState.CoreDef <> supp_mu def
+R46541:46543 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R46535:46536 Library.DistState.CoreDef <> mu proj
+R46544:46545 Library.DistState.CoreDef <> mu proj
+R46568:46583 Library.DistState.Support <> supp_subset_refl thm
+R46521:46525 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R46496:46502 Library.DistState.CoreDef <> supp_mu def
+R46511:46513 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R46505:46506 Library.DistState.CoreDef <> mu proj
+R46514:46515 Library.DistState.CoreDef <> mu proj
+R46526:46532 Library.DistState.CoreDef <> supp_mu def
+R46541:46543 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R46535:46536 Library.DistState.CoreDef <> mu proj
+R46544:46545 Library.DistState.CoreDef <> mu proj
+R46568:46583 Library.DistState.Support <> supp_subset_refl thm
+R46594:46615 Library.DistState.Support <> supp_mu_subset_decom_l thm
+R46634:46653 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R46594:46615 Library.DistState.Support <> supp_mu_subset_decom_l thm
+R46634:46653 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R46634:46653 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+prf 46710:46728 <> bF_classify_decom_r
+binder 46738:46739 <> pd:259
+binder 46741:46743 <> pd0:260
+binder 46745:46747 <> pd1:261
+binder 46749:46749 <> b:262
+R46773:46776 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R46755:46764 Library.DistState.CoreDef <> Valid_dist def
+R46767:46768 Library.DistState.CoreDef <> mu proj
+R46770:46771 Library.PIMP.EvalProps <> pd:259 var
+R46816:46822 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R46777:46786 Library.DistState.CoreDef <> Valid_dist def
+R46795:46797 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R46789:46790 Library.DistState.CoreDef <> mu proj
+R46792:46794 Library.PIMP.EvalProps <> pd0:260 var
+R46798:46799 Library.DistState.CoreDef <> mu proj
+R46801:46803 Library.PIMP.EvalProps <> pd1:261 var
+R46860:46863 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R46828:46831 Library.DistState.CoreDef <> ::dstate_scope:x_'=='_x not
+R46823:46824 Library.DistState.CoreDef <> mu proj
+R46826:46827 Library.PIMP.EvalProps <> pd:259 var
+R46839:46841 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R46833:46834 Library.DistState.CoreDef <> mu proj
+R46836:46838 Library.PIMP.EvalProps <> pd0:260 var
+R46842:46843 Library.DistState.CoreDef <> mu proj
+R46845:46847 Library.PIMP.EvalProps <> pd1:261 var
+R46879:46885 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R46864:46864 Corelib.Init.Logic <> ::type_scope:x_'<>'_x not
+R46871:46875 Corelib.Init.Logic <> ::type_scope:x_'<>'_x not
+R46865:46866 Library.DistState.CoreDef <> mu proj
+R46868:46870 Library.PIMP.EvalProps <> pd0:260 var
+R46876:46878 Corelib.Init.Datatypes <> nil constr
+R46912:46915 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R46893:46896 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R46887:46889 Library.DistState.CoreDef <> dom proj
+R46891:46892 Library.PIMP.EvalProps <> pd:259 var
+R46897:46899 Library.DistState.CoreDef <> dom proj
+R46901:46903 Library.PIMP.EvalProps <> pd0:260 var
+R46942:46948 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R46923:46926 Library.DistState.CoreDef <> ::domain_scope:x_'=='_x not
+R46917:46919 Library.DistState.CoreDef <> dom proj
+R46921:46922 Library.PIMP.EvalProps <> pd:259 var
+R46927:46929 Library.DistState.CoreDef <> dom proj
+R46931:46933 Library.PIMP.EvalProps <> pd1:261 var
+R46981:46987 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R46969:46971 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R46949:46963 Library.PIMP.EvalProps <> b_supp_classify def
+R46965:46965 Library.PIMP.EvalProps <> b:262 var
+R46967:46968 Library.PIMP.EvalProps <> pd:259 var
+R46972:46980 Library.PIMP.EvalProps <> All_False constr
+R47009:47011 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R46988:47002 Library.PIMP.EvalProps <> b_supp_classify def
+R47004:47004 Library.PIMP.EvalProps <> b:262 var
+R47006:47008 Library.PIMP.EvalProps <> pd0:260 var
+R47012:47020 Library.PIMP.EvalProps <> All_False constr
+R47096:47112 Library.PIMP.EvalProps <> bF_classify_subst thm
+R47096:47112 Library.PIMP.EvalProps <> bF_classify_subst thm
+R47185:47188 Library.DistState.CoreDef <> ::supp_scope:x_'=='_x not
+R47170:47176 Library.DistState.CoreDef <> supp_mu def
+R47179:47180 Library.DistState.CoreDef <> mu proj
+R47189:47195 Library.DistState.CoreDef <> supp_mu def
+R47204:47206 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R47198:47199 Library.DistState.CoreDef <> mu proj
+R47207:47208 Library.DistState.CoreDef <> mu proj
+R47185:47188 Library.DistState.CoreDef <> ::supp_scope:x_'=='_x not
+R47170:47176 Library.DistState.CoreDef <> supp_mu def
+R47179:47180 Library.DistState.CoreDef <> mu proj
+R47189:47195 Library.DistState.CoreDef <> supp_mu def
+R47204:47206 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R47198:47199 Library.DistState.CoreDef <> mu proj
+R47207:47208 Library.DistState.CoreDef <> mu proj
+R47235:47260 Library.DistState.Support <> dst_equiv_implies_beq_supp thm
+R47235:47260 Library.DistState.Support <> dst_equiv_implies_beq_supp thm
+R47289:47315 Library.DistState.Support <> supp_eq_implies_subset_conj thm
+R47289:47315 Library.DistState.Support <> supp_eq_implies_subset_conj thm
+R47377:47383 Library.DistState.CoreDef <> supp_mu def
+R47392:47394 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R47386:47387 Library.DistState.CoreDef <> mu proj
+R47395:47396 Library.DistState.CoreDef <> mu proj
+R47347:47363 Library.DistState.Support <> supp_subset_trans thm
+R47420:47439 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R47377:47383 Library.DistState.CoreDef <> supp_mu def
+R47392:47394 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R47386:47387 Library.DistState.CoreDef <> mu proj
+R47395:47396 Library.DistState.CoreDef <> mu proj
+R47347:47363 Library.DistState.Support <> supp_subset_trans thm
+R47420:47439 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R47420:47439 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R47420:47439 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R47420:47439 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R47420:47439 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R47498:47502 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R47473:47479 Library.DistState.CoreDef <> supp_mu def
+R47488:47490 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R47482:47483 Library.DistState.CoreDef <> mu proj
+R47491:47492 Library.DistState.CoreDef <> mu proj
+R47503:47509 Library.DistState.CoreDef <> supp_mu def
+R47518:47520 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R47512:47513 Library.DistState.CoreDef <> mu proj
+R47521:47522 Library.DistState.CoreDef <> mu proj
+R47545:47560 Library.DistState.Support <> supp_subset_refl thm
+R47498:47502 Library.DistState.CoreDef <> ::supp_scope:x_'⊆'_x not
+R47473:47479 Library.DistState.CoreDef <> supp_mu def
+R47488:47490 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R47482:47483 Library.DistState.CoreDef <> mu proj
+R47491:47492 Library.DistState.CoreDef <> mu proj
+R47503:47509 Library.DistState.CoreDef <> supp_mu def
+R47518:47520 Library.DistState.CoreDef <> ::dstate_scope:x_'+'_x not
+R47512:47513 Library.DistState.CoreDef <> mu proj
+R47521:47522 Library.DistState.CoreDef <> mu proj
+R47545:47560 Library.DistState.Support <> supp_subset_refl thm
+R47571:47592 Library.DistState.Support <> supp_mu_subset_decom_l thm
+R47611:47630 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R47571:47592 Library.DistState.Support <> supp_mu_subset_decom_l thm
+R47611:47630 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+R47611:47630 Library.DistState.Support <> Sort_supp_if_WF_supp thm
+prf 47689:47700 <> evalB_contra
+binder 47710:47710 <> b:263
+binder 47712:47712 <> s:264
+binder 47714:47715 <> mu:265
+R47741:47747 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R47733:47735 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R47721:47728 Library.PIMP.EvalProps <> evalB_st def
+R47730:47730 Library.PIMP.EvalProps <> b:263 var
+R47732:47732 Library.PIMP.EvalProps <> s:264 var
+R47736:47740 Corelib.Init.Datatypes <> false constr
+R47780:47785 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R47773:47775 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R47748:47757 Library.DistState.CoreDef <> is_in_supp def
+R47759:47759 Library.PIMP.EvalProps <> s:264 var
+R47762:47768 Library.DistState.CoreDef <> supp_mu def
+R47770:47771 Library.PIMP.EvalProps <> mu:265 var
+R47776:47779 Corelib.Init.Datatypes <> true constr
+R47845:47847 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R47786:47792 Stdlib.Lists.List <> forallb def
+R47834:47840 Library.DistState.CoreDef <> supp_mu def
+R47842:47843 Library.PIMP.EvalProps <> mu:265 var
+R47804:47813 Library.DistState.CoreDef <> partial_st def
+binder 47799:47800 <> s0:266
+R47818:47825 Library.PIMP.EvalProps <> evalB_st def
+R47827:47827 Library.PIMP.EvalProps <> b:263 var
+R47829:47830 Library.PIMP.EvalProps <> s0:266 var
+R47848:47852 Corelib.Init.Datatypes <> false constr
+R47964:47970 Library.DistState.CoreDef <> supp_mu def
+R48009:48039 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R48009:48039 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R48009:48039 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R48061:48077 Library.DistState.Support <> in_supp_insert_eq thm
+R48061:48077 Library.DistState.Support <> in_supp_insert_eq thm
+R48061:48077 Library.DistState.Support <> in_supp_insert_eq thm
+R48095:48106 Stdlib.Bool.Bool <> orb_true_iff thm
+R48095:48106 Stdlib.Bool.Bool <> orb_true_iff thm
+R48148:48154 Library.DistState.CoreDef <> supp_mu def
+R48172:48202 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R48172:48202 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R48172:48202 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R48217:48233 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R48217:48233 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R48217:48233 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R48247:48265 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R48247:48265 Library.PIMP.EvalProps <> st_eq_implies_evalB thm
+R48348:48354 Library.DistState.CoreDef <> supp_mu def
+R48372:48402 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R48372:48402 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R48372:48402 Library.DistState.ValidDst <> insert_st_pair_fst_eq_insert_st thm
+R48417:48433 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R48417:48433 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R48417:48433 Library.PIMP.EvalProps <> supp_insert_evalB thm
+R48463:48469 Library.DistState.CoreDef <> supp_mu def
+R48498:48509 Stdlib.Bool.Bool <> andb_false_r thm
+R48498:48509 Stdlib.Bool.Bool <> andb_false_r thm

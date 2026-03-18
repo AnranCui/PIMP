@@ -5,6 +5,7 @@ From Stdlib Require Import Bool.Bool.
 From Stdlib Require Import Reals.R_sqrt.
 From Stdlib Require Import List.
 From Stdlib Require Import Reals.Reals.
+From Stdlib Require Psatz.
 From Stdlib Require Import Lia.
 From Stdlib Require Import Logic.FunctionalExtensionality.
 From Stdlib Require Import Logic.ClassicalChoice.
@@ -1335,17 +1336,17 @@ Inductive NoControlFlow : winstr -> Prop :=
       NoControlFlow c1 -> NoControlFlow c2 ->
       NoControlFlow (Seq c1 c2).
 
- Lemma Pd_Iden_implies_WD: forall pd c, 
+ Lemma Pd_Iden_implies_WD: forall pd c, (*不能确定get_modvar_in_winstr和 pd dom的关系*)
   NoControlFlow c ->
   (get_readvar_in_winstr c ⊆ (dom pd))%domain ->
   well_defined_winstr_with_pd c pd.
 Proof.
-  intros pd c HNC Hdom. induction c; intros; inversion HNC; simpl in *.
+  intros pd c HNC Hdom. induction c; intros; try inversion HNC; simpl in *.
   - simpl. apply I. 
   - simpl in *. unfold WF_aexp_with_pd. rewrite Hdom. simpl. reflexivity.
   - simpl in *. destruct v. apply RA_sub_WF_distaexp. rewrite Hdom. simpl. reflexivity.
   - simpl in *. apply dom_subset_orb_fst_iff in Hdom. destruct Hdom.
-    apply IHc1; try assumption. 
+    apply IHc1; try assumption.
 Qed. 
 
 Lemma PD_Iden: partial_dst_Prop nil Identify_mu.
@@ -1358,7 +1359,7 @@ Definition Identify_pd : partial_dist :=
                      all_partial := PD_Iden
                   |}.
 
-Lemma NS_EXISTS: forall c pd, (*Imporatant for OFrame, read(c) = nil makes sure pd' must exists.*)
+Lemma NS_EXISTS: forall c pd, (*Imporatant for OFrame, read(c) makes sure pd' must exists.*)
   NoControlFlow c -> 
   well_defined_winstr_with_pd c pd ->
   (get_readvar_in_winstr c ⊆ (dom pd))%domain ->
@@ -1366,7 +1367,7 @@ Lemma NS_EXISTS: forall c pd, (*Imporatant for OFrame, read(c) = nil makes sure 
   (exists pd', Valid_dist (mu pd') /\ pd =[ c ]=> pd').
 Proof. 
   intros c pd HNC HWD Hread. generalize dependent pd. 
-  induction c; intros; inversion HNC; subst; simpl in *.
+  induction c; intros; try inversion HNC; subst; simpl in *.
   - exists pd. split; try assumption. apply NS_Skip.
   - simpl in HWD. exists (DAssn_under_pd n a pd HWD). 
     split; try apply NS_DAssign; try assumption.
@@ -3788,6 +3789,7 @@ Proof.
   unfold assert_implies in *. intros. destruct H1. assumption.
 Qed.
 
+
 (***************************************************)
 Lemma Oplus_same: forall phi, 
   well_defined_Pf phi -> exclude_odot phi ->
@@ -3838,6 +3840,63 @@ Proof.
       apply pd_equiv_sym. assumption. 
     * destruct Hcase3 as [pd1 H]. destruct H as [HWF1 H].
       destruct H as [Hpdeq1 H]. destruct H as [Hdom H].
+      destruct H as [Hsem1 Hsum]. 
+      apply pd_equiv_preserves_sem with (pd0:= pd1); try assumption. 
+      apply pd_equiv_sym. assumption. 
+Qed.
+
+Lemma Pplus_same: forall p phi, 
+  well_defined_Pf (phi ⊕[p] phi) -> exclude_odot phi ->
+  [[(phi ⊕[p] phi)]] ->> [[phi]].
+Proof.
+  intros p phi HWD HEX.
+  unfold assert_implies. intros pd HV HZ Hsem.
+  inversion HWD; subst.  
+  destruct Hsem as [Hcase1 | Hsem].
+  - destruct Hcase1 as [Hp1 H]. 
+    destruct H as [pd1 H]. destruct H as [pd2 H].
+    destruct H as [HWF1 H]. destruct H as [HWF2 H].
+    destruct H as [Hdom1 H]. destruct H as [Hdom2 H].   
+    destruct H as [Hsem0 H]. destruct H as [Hsem1 H].
+    destruct H as [Hsum1 H]. destruct H as [Hsum2 Heq].
+    pose (p2:= (1 - p)%R).
+    assert (Hsum2p: (0 <= sum_probs (p2 * mu pd2)%dist_state <= 1)%R). {
+      apply Valid_mult_cofe with (p:= p2) in HWF2; try assumption.
+      - destruct HWF2. assumption.
+      - unfold p2. apply Rp_1_minus_p_bounds, Rbound_loss. assumption. }
+    assert (Hsum1p: (0 <= sum_probs (p * mu pd1)%dist_state <= 1)%R). { 
+      apply Valid_mult_cofe with (p:= p) in HWF1; try assumption.
+      - destruct HWF1. assumption. }
+
+    assert (Hp20: (0 <= p2)%R). { apply Rp_1_minus_p_bounds; try assumption. }
+    assert (Hp0: (0 <= p)%R). { destruct Hp1. lra. }
+    assert (Hp201: (0 <= p2 <= 1)%R). { apply Rp_1_minus_p_bounds; try assumption. }
+
+    apply sem_mult_cofe with (p:= p) in Hsem0; 
+    apply sem_mult_cofe with (p:= p2) in Hsem1; try assumption.
+    apply phi_sem_add with (pd0:= {|
+      dom := dom pd1;
+      mu := (p * mu pd1)%dist_state;
+      all_partial := pd_mult_preserve_PD pd1 p |}) 
+      (pd1:= {|
+      dom := dom pd2;
+      mu := (p2 * mu pd2)%dist_state;
+      all_partial := pd_mult_preserve_PD pd2 p2 |}); 
+        try assumption; try apply Valid_mult_cofe; try assumption; simpl.
+    + apply dst_equiv_implies_sum_probs_eq in Heq; try assumption.
+      * rewrite dst_sum_prob_decom in Heq. assumption.
+      * apply Rbound_loss in Hp1. 
+      apply Valid_linear; try assumption. lra. 
+  - destruct Hsem as [Hcase2| Hcase3]. 
+    * destruct Hcase2 as [Hp1 H]. destruct H as [pd1 H].
+      destruct H as [HWF1 H].
+      destruct H as [Hpdeq1 H]. 
+      destruct H as [Hsem1 Hsum]. 
+      apply pd_equiv_preserves_sem with (pd0:= pd1); try assumption. 
+      apply pd_equiv_sym. assumption. 
+    * destruct Hcase3 as [Hp2 H].  destruct H as [pd1 H].
+      destruct H as [HWF1 H].
+      destruct H as [Hpdeq1 H]. 
       destruct H as [Hsem1 Hsum]. 
       apply pd_equiv_preserves_sem with (pd0:= pd1); try assumption. 
       apply pd_equiv_sym. assumption. 
@@ -4133,7 +4192,7 @@ Qed.
 
 (*****************************************************************)
 (* 霍尔逻辑的推导关系 *)
-(* hoare_Rasgn *)
+(* *)
 Inductive hoare_derivable : PAssertion -> winstr -> PAssertion -> Prop :=
   | H_Skip : forall (P : PAssertion), hoare_derivable P Skip P
   | H_DAssign : forall (phi : Pformula) (X : nat) (a : aexp),
@@ -4197,9 +4256,6 @@ Inductive hoare_derivable : PAssertion -> winstr -> PAssertion -> Prop :=
       (forall r, {{[[(Pdeter df)]] [x |-> (Aco r)]}} c {{[[phi]]}}) -> 
       hoare_derivable [[Pdeter (Dexist x df)]] c [[phi]].
 
-
-
-
 Theorem hoare_soundness: forall c phi1 phi2, 
   well_defined_Pf phi1 -> well_defined_Pf phi2 ->
   (hoare_derivable [[phi1]] c [[phi2]]) -> {{[[phi1]]}} c {{[[phi2]]}}.
@@ -4248,3 +4304,6 @@ Proof.
   - apply hoare_exists with (x:= x) (df:= df) (phi:= phi) in H3; try assumption. 
     unfold hoare_triple in H3. apply H3 in Pd_to_pd'; intuition.
 Qed.
+
+
+(*************************************************************************************************)

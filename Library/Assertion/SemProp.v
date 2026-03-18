@@ -4017,8 +4017,8 @@ Proof.
       + rewrite st_eq_implies_evalB with (st2:= s); try assumption.
         destruct (evalB_st b s) eqn:Hst; try apply I.
         simpl in H. destruct H; try discriminate.
-        ++destruct (forallb (fun s : partial_st => evalB_st b s) (supp_mu ((s, p) :: mu'))); try discriminate.
-          destruct (forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu ((s, p) :: mu'))); try discriminate.
+        ++ destruct (forallb (fun s : partial_st => evalB_st b s) (supp_mu ((s, p) :: mu'))); try discriminate.
+           destruct (forallb (fun s : partial_st => negb (evalB_st b s)) (supp_mu ((s, p) :: mu'))); try discriminate.
         ++ destruct (forallb (fun s : partial_st => evalB_st b s) (supp_mu ((s, p) :: mu')))eqn: Hcontra; try discriminate. 
         -- unfold supp_mu in Hcontra. simpl in Hcontra. rewrite insert_st_pair_fst_eq_insert_st in Hcontra.
         rewrite supp_insert_evalB in Hcontra. apply andb_true_iff in Hcontra. destruct Hcontra as [Hcontra].

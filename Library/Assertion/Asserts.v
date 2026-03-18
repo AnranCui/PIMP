@@ -85,47 +85,20 @@ Fixpoint get_var_in_Pformular (phi:Pformula) : domain:= (** FV(phi)*)
   end.
 
 
-(*assertion "P [ X |-> a ]", Evaluation*)
 Definition DAssertion := partial_st -> Prop.
 Definition PAssertion := partial_dist -> Prop.
-Definition assert_of_Prop (P : Prop) : PAssertion := fun _ => P. 
-Definition Aexp : Type := partial_st -> Q.
-Definition Aexp_of_Q (n : Q) : Aexp := fun _ => n. 
-Definition Aexp_of_aexp (a : aexp) : Aexp := fun st => evalA_st a st. 
-
-Coercion assert_of_Prop : Sortclass >-> PAssertion.
-Coercion Aexp_of_Q : Q >-> Aexp.
-Coercion Aexp_of_aexp : aexp >-> Aexp.
-
-Arguments assert_of_Prop /.
-Arguments Aexp_of_Q /.
-Arguments Aexp_of_aexp /.
-Add Printing Coercion Aexp_of_Q Aexp_of_aexp assert_of_Prop.
-
 
 Declare Scope assertion_scope.
 Bind Scope assertion_scope with PAssertion.
 Bind Scope assertion_scope with DAssertion.
 Delimit Scope assertion_scope with assertion. 
-Notation assert P := (P%assertion : PAssertion).
-Notation mkAexp a := (a%assertion : Aexp).
-(************************)
-Notation "~ P" := (fun mu => ~ assert P mu) : assertion_scope.
-Notation "P /\ Q" := (fun mu => assert P mu /\ assert Q mu) : assertion_scope.
+
+Notation "~ P" := (fun mu => ~  P mu) : assertion_scope.
+Notation "P /\ Q" := (fun mu =>  P mu /\  Q mu) : assertion_scope.
 Definition PAssertion_and (P1 P2: PAssertion): PAssertion := ((P1 /\ P2)%assertion).
-Notation "P -> Q" := (fun mu => assert P mu ->  assert Q mu) : assertion_scope.
-Notation "P <-> Q" := (fun mu => assert P mu <->  assert Q mu) : assertion_scope.
-Notation "a = b" := (fun mu => mkAexp a mu = mkAexp b mu) : assertion_scope.
-Notation "a <> b" := (fun mu => mkAexp a mu <> mkAexp b mu) : assertion_scope.
-Notation "a <= b" := (fun mu => mkAexp a mu <= mkAexp b mu) : assertion_scope.
-Notation "a < b" := (fun mu => mkAexp a mu < mkAexp b mu) : assertion_scope.
-Notation "a >= b" := (fun mu => mkAexp a mu >= mkAexp b mu) : assertion_scope.
-Notation "a > b" := (fun mu => mkAexp a mu > mkAexp b mu) : assertion_scope.
-Notation "a + b" := (fun mu => mkAexp a mu + mkAexp b mu) : assertion_scope.
-Notation "a - b" := (fun mu => mkAexp a mu - mkAexp b mu) : assertion_scope.
-Notation "a * b" := (fun mu => mkAexp a mu * mkAexp b mu) : assertion_scope.
-
-
+Notation "P -> Q" := (fun mu =>  P mu ->   Q mu) : assertion_scope.
+Notation "P <-> Q" := (fun mu =>  P mu <->   Q mu) : assertion_scope.
+ 
 (*******************Syntax Layer/Well-Formedness************)
 Inductive well_defined_Df : Dformula -> Prop := 
   | WD_Dpred : forall b, well_defined_Df (Dpred b)
@@ -206,4 +179,9 @@ Fixpoint pf_sem (f : Pformula) : PAssertion :=
   | Pand f1 f2 => fun pd => (pf_sem f1 pd) /\ (pf_sem f2 pd)
 end.
 Notation "'[[' P ']]'" := (pf_sem P) (at level 0, format "[[ P ]]") : formula_scope.
+
+(************************************************************************************)
+
+
+
 
